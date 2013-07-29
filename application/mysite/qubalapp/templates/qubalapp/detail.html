@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/bootstrap.css">
+</head>
+<body>
+
+
+{{ course }} - {{ course.date }}
+
+<hr>
+
+<h1>{{ course.name }}</h1>
+<ul>
+	{% for student in course.student_set.all %}
+		<li><a href='/profile/{{ student.id }}/'>{{ student.name }} {{ student.lastname }}</a></li>
+	{% endfor %}
+</ul>
+
+</body>
+</html>

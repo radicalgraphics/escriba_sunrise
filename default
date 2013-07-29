@@ -1,0 +1,26 @@
+NameVirtualHost 151.236.216.80:80
+<VirtualHost 151.236.216.80:80>
+   ServerName www.qubal.eu
+   ServerAlias qubal.eu
+   ServerAdmin bochelord@gmail.com
+
+   DocumentRoot /var/www/qubal_public
+
+   ErrorLog /var/www/qubal_public/logs/error.log
+   CustomLog /var/www/qubal_public/logs/access.log combined
+
+   WSGIScriptAlias / /home/bochelord/test_qubal/qubalapp/django.wsgi
+
+   Alias /robots.txt /var/www/qubal_public/robots.txt
+   Alias /favicon.ico /var/www/qubal_public/favicon.ico
+   Alias /images /var/www/qubal_public/media
+   Alias /static /var/www/qubal_public/static
+   Alias /phpmyadmin /usr/share/phpmyadmin
+
+   <Directory /var/www/qubal_public/media/>
+   Order deny,allow
+   Allow from all
+   Options -Indexes FollowSymLinks
+   </Directory>
+
+</VirtualHost>

@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<title>Qubal | Courses</title>
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-flatly.css"/>
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/font-awesome.css"/>
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/navbar.css">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/profile.css"/>
+</head>
+
+<body>
+
+{% autoescape off %}{{ navbar_content }}{% endautoescape %}
+
+<div class="container">
+{% load imagekit %}
+
+<div class='row'>
+	<div class='span12'>
+
+
+	<h4>Profile</h4>
+	<hr><br>
+	<div class='text_name_title'>
+		{{ student.name | upper }} {{ student.lastname}}
+	</div>
+
+	
+		<hr>
+
+		<div class='row'>
+			<div class='span3 offset2'>
+				<p>STATUS: <span class='label label-mini label-warning'>placeholder</span>
+				</p>
+			</div>
+			<div class='span1 offset8'>
+				FOO
+			</div>
+
+		</div>
+
+
+		<h4>Cursos</h4>
+    <ul>
+		{% for n in courses_list %}
+			<li><a href='/courses/{{n.user_id}}/'>{{n.name}}</a></li>
+		{% endfor %}
+    </ul>
+		<a class="btn" href="/">Home</a>
+
+		</div>
+
+	<div class='span1'>
+		PORK
+	</div>
+
+
+</div>
+
+</div>
+
+</body>
+</html>

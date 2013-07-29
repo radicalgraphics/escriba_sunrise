@@ -1,0 +1,142 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-flatly.css">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/landing.css">
+	<title>QUBALAPP login</title>
+</head>
+<body>
+<!-- <div class="wrapper"> -->
+<div class="container">
+
+	<div class="hero-unit-white">
+		<div class="row">
+			<div class="span2">
+				<p><img src="{{ STATIC_URL }}qubalapp/main_engine/img/qubal_logo.png" class="img-rounded" width="110" height="110"></p>
+			</div>
+			<div class="span7">
+				<h3 class="h3-title">Qubalapp 0.3</h3>
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="span8">
+				Welcome to QUBAL
+			</div>
+		</div>
+		<div class="row">
+			<div class="span8">
+				<blockquote>
+				<em>- Quest Based Adaptive Learning </em>
+				</blockquote>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="span10">
+				<hr class="mini-hr">
+
+				<div class="row">
+					<div class="span5 borde-raya"><h3>Member log in</h3>
+						<form name="login" action="/test/login/" method="POST">
+							{% csrf_token %}
+							<div class="row">
+								<div class="span1-5">
+										<p class="landing">Username:</p> 
+										<p class="landing">Password:</p>
+								</div>
+								<div class="span3">
+									<input type="text" name="username"><br>
+									<input type="password" name="password"><br>
+								</div>
+							</div>
+							<div class="label label-important">{{ mensaje_de_mierda }}</div>
+
+								<button class="btn btn-info" type="submit">
+									<i class="icon-signin icon-white"></i> Log in
+								</button>
+				 			<!-- <a class="btn btn-success" type="submit" href="../search/?q="><i class="icon-search icon-white"></i>Buscar</a> -->
+						</form>
+
+					</div>
+					<div class="row">
+						<div class="span5"><h3>Or just log in using:</h3>
+							<div class="row row-button">
+								<div class="span3">
+									<a class="btn btn-primary" href="#">
+									<span class="medium-icon"><i class="icon-facebook-sign"></i></span> 
+									Facebook
+									</a>
+								</div>
+							</div>
+							<div class="row row-button">
+								<div class="span3">
+									<a class="btn btn-info" href="#">
+									<span class="medium-icon"><i class="icon-linkedin-sign"></i></span> 
+									Linkedin
+									</a>
+								</div>
+							</div>
+							<div class="row row-button">
+								<div class="span3">
+									<a class="btn btn-info" href="#">
+									<span class="medium-icon"><i class="icon-twitter-sign"></i></span> 
+									Twitter
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+<!-- </div> div id="wrapper" -->
+
+
+
+<div class="containerfoot" >
+	
+		
+		<div class="row" id='footer'>
+			<div class="span2 pull-left pagination-centered">
+				<p class='qubal_logo_text'><span class="letter-blue">Q</span>ubal v0.3</p>
+				<p>(c)2013 Studiesoft</p>
+				<p class='pagination-centered'><a href='http://www.studiesoft.nl'><img src="{{ STATIC_URL }}qubalapp/main_engine/img/Studiesoft-logo.png"  title="©2013 StudieSoft"></a></p>
+
+				
+
+				
+			</div>
+			
+			<div class="span2 pull-right pagination-centered">
+				
+				<p>Powered by</p>
+
+				<p class='pagination-centered'><a href='http://www.radicalgraphics.com'><img src="{{ STATIC_URL }}qubalapp/main_engine/img/radicallogoon.png" height="80" title="Radical Graphics Studios"></a></p>
+
+				
+
+
+			</div>
+
+			
+		</div>
+	
+</div>
+
+
+
+
+</div> <!-- container main ends -->
+
+</body>
+</html>
+

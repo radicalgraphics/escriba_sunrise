@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Formulario de busqueda</title>
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/bootstrap.css">
+</head>
+<body>
+	<div class="container">
+		<form action="/search/" method="get">
+			<input type="text" name="q">
+			
+
+			<button class="btn btn-success" type="submit">
+				<i class="icon-search icon-white"></i>Buscar!
+			</button>
+ 			<!-- <a class="btn btn-success" type="submit" href="../search/?q="><i class="icon-search icon-white"></i>Buscar</a> -->
+		</form>
+		<a class="btn" href="http://127.0.0.1:8000/">Home</a>
+	</div>
+</body>
+</html>

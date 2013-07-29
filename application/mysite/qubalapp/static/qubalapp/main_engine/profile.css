@@ -1,0 +1,127 @@
+
+/*----*/
+/* Styles for the NAVBAR  */
+/*----*/
+
+body{
+	background-color: #ffffff;
+}
+
+
+
+.navbar-inverse .navbar-inner {
+  background-color: #e1e1e1;
+  background-image: linear-gradient(to bottom, #e1e1e1, #e1e1e1);
+  background-repeat: repeat-x;
+  border-color: #e1e1e1;
+
+
+border: 0px solid #d4d4d4;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
+  *zoom: 1;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+     -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+}
+
+
+
+.span1menu {
+  width: 120px;
+  padding-top: 17px;
+}
+
+.span2menu{
+
+  float: left;
+  min-height: 1px;
+  margin: 0px;
+  width: 140px;
+}
+
+
+[class*="span"] {
+  float: left;
+  min-height: 1px;
+  margin: 0px;
+}
+
+.navbar-inverse .nav .active > a,
+.navbar-inverse .nav .active > a:hover,
+.navbar-inverse .nav .active > a:focus {
+  color: #2c3e50;
+  border-bottom: 5px solid;
+  border-color: #00ccff;
+  background-color: #e1e1e1;
+  font-size: 20px;
+}
+
+.navbar .nav{
+ font-size: 18px; 
+}
+
+
+input[type="text"],
+input[type="password"]
+{
+  width:70px;
+  /*padding: 3px 2px;*/
+  text-indent: 1px;
+  border: 2px solid #dce4ec;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+  margin-top: 15px;
+  font-size:12px;
+  font-family: 'OpenSans';
+  color: #468847;
+
+}
+
+.btn{
+  line-height: 20px;
+}
+
+form { 
+  margin: 0 0 5px;
+}
+
+.version {
+  font-size: 10px;
+  color:#aeaeae;
+  font-weight: normal;
+  text-transform: none;
+  font-family: "OpenSans";
+  text-align: center;
+}
+
+.logo_text{
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: none;
+  font-family: "OpenSans";
+}
+
+.version {
+  font-size: 10px;
+  color:#aeaeae;
+  font-weight: normal;
+  text-transform: none;
+  font-family: "OpenSans";
+  text-align: center;
+}
+
+
+/* Styles for profile screen */
+
+.text_name_title{
+	font-family: 'OpenSans';
+	font-weight: bold;
+	font-size: 50px;
+	color: #8a8a8a;
+	margin-left: 40px;
+}

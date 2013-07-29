@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>Formulario de busqueda</title>
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-flatly.css">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/index.css">
+</head>
+<body>
+
+
+<div class="container">
+  <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="/"><img src="{{ STATIC_URL }}qubalapp/main_engine/img/qubal_logo.png" width="64" height="64"><span class="logo_text">QUBAL</span></a>
+            <ul class="nav">
+              <li class="span1menu">
+                <a href="/" class="pagination-centered">
+                    <i class="icon-dashboard"></i><br>Dashboard
+                </a>
+              </li>
+              <li class="span1menu">
+                <a href="/profile/1" class="pagination-centered">
+                  <i class="icon-user"></i><br>Profile
+                </a>
+              </li>
+
+              <li class="span1menu">
+                <a href="/teams/" class="pagination-centered">
+                  <i class="icon-group"></i><br>Teams
+                </a>
+              </li>
+
+              <li class="span1menu">
+                <a href="/course_listing/" class="pagination-centered">
+                  <i class="icon-tasks"></i><br>Courses
+                </a>
+              </li>
+
+              
+
+              
+            </ul>
+            <div class="row pull-right">
+
+              <!-- AQUI VA EL FORMULARIO en vez de en otra pagina diferente...-->
+              <div class="span2">
+                <form action="/search/" method="get">
+                 
+                    <i class=""></i><input type="text" name="q"  placeholder="search..."/>
+                 
+                 
+                    <button class="btn btn-success btn-mini" type="submit">
+                      <i class="icon-search icon-white"></i>
+                    </button>
+              
+              </form>
+              </div>
+              <div class="span2">
+                 
+                 <a class="btn btn-mini btn-warning" href="/admin"><i class="icon-cog"></i> ADMIN</a>
+                 <span class="version"><br>QUBAL v0.1<br><a href='/logout/'>logout</a></span>
+                
+              </div>
+
+            </div>
+          </div>
+      </div>
+  </div> <!-- Div que cierra el container que incluye el navbar -->
+
+<br><br><br><br><br><br><br>
+
+
+
+
+
+
+{% if error_message %}
+	
+	<p>{{ error_message }}</p>
+
+{% else%}	
+	<p>Has buscado a: <strong>{{ query }}</strong></p>
+	{% if students %}
+	<p>Found {{ students|length }} student{{ students|pluralize }}.</p>
+	<ul>
+	{% for student in students %}
+	<li><a href='/profile/{{ student.user_id }}'>{{ student.name }} {{ student.lastname }}</a></li>
+	{% endfor %}
+	</ul>
+	{% else %}
+	<p>No hay ningún estudiante con ese nombre.</p>
+	{% endif %}
+
+{% endif %}
+</body>
+</html>

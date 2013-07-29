@@ -1,0 +1,854 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+  <title>Qubal v0.3</title>
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-flatly.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/font-awesome.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/navbar.css">
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/index.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/opentip.css" />
+
+
+
+<script>
+$(function($) {
+
+                $(".knob").knob({
+                    change : function (value) {
+                        //console.log("change : " + value);
+                    },
+                    release : function (value) {
+                        //console.log(this.$.attr('value'));
+                        console.log("release : " + value);
+                    },
+                    cancel : function () {
+                        console.log("cancel : ", this);
+                    },
+                    draw : function () {
+
+                        // "tron" case
+                        if(this.$.data('skin') == 'tron') {
+
+                            var a = this.angle(this.cv)  // Angle
+                                , sa = this.startAngle          // Previous start angle
+                                , sat = this.startAngle         // Start angle
+                                , ea                            // Previous end angle
+                                , eat = sat + a                 // End angle
+                                , r = 1;
+
+                            this.g.lineWidth = this.lineWidth;
+
+                            this.o.cursor
+                                && (sat = eat - 0.3)
+                                && (eat = eat + 0.3);
+
+                            if (this.o.displayPrevious) {
+                                ea = this.startAngle + this.angle(this.v);
+                                this.o.cursor
+                                    && (sa = ea - 0.3)
+                                    && (ea = ea + 0.3);
+                                this.g.beginPath();
+                                this.g.strokeStyle = this.pColor;
+                                this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sa, ea, false);
+                                this.g.stroke();
+                            }
+
+                            this.g.beginPath();
+                            this.g.strokeStyle = r ? this.o.fgColor : this.fgColor ;
+                            this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sat, eat, false);
+                            this.g.stroke();
+
+                            this.g.lineWidth = 2;
+                            this.g.beginPath();
+                            this.g.strokeStyle = this.o.fgColor;
+                            this.g.arc( this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
+                            this.g.stroke();
+
+                            return false;
+                        }
+                    }
+                });
+});
+
+
+ </script>
+
+
+</head>
+
+<body>
+
+{% autoescape off %}{{ navbar_content }}{% endautoescape %}
+
+<div class="container">
+
+{% load imagekit %}
+
+
+  <div class='row offset-cuarto'>
+
+    <div class='span3'>
+      <div class='row'><!-- ROW from profilewidget start -->
+      
+      <div class='span5'>
+        
+            <p class='pull-right'><h3> </h3></p><br>
+        
+
+        <h4 class='opensans-bold'>{{ student.name }} {{ student.lastname }}</h4>
+        
+        <div class='span1ymedio pull-right push-up label label-inverse profile_level'><div class='opensans-bold offset-cuarto'><br><span class='totalxp_text pull-right'>{{ total_xp }}</span> <div class='push-up20 totalxp_text offset-medio'>XP</div><br><span class='pagination-centered current_level_text'>{{ current_level }}&nbsp;</span></div><p class='opensans-bold pagination-centered '>EXPLORER</p>
+
+
+
+        </div>
+
+        {% generateimage 'qubalapp:thumbnail150x150' source=student.image as tn2 %}
+        <div class='push-down profile_image'><img src='{{ tn2.url }}' class='img-circle' title='{{ student.name}} {{ student.lastname }} - level {{ current_level }} - explorer' rel="tooltip-left"/></div>
+        <br><br>
+      </div>
+
+<div class='clearfix'></div>
+
+
+  
+  <div class='span4ymedio profile_widget bg-grey'>
+
+       <div class='row pull-right push-up'>
+            <div class='offset2 span2'>
+                <!-- <span class=''> level {{current_level}}</span><br> -->
+                <span class=''> <i class='icon-level-up letter-large' title='levelup to {{ next_level }} at: {{next_level_at}} XP'></i> {{ current_xp }}/{{ xp_needed_for_level_up }} XP</span>
+                <div class="span1ymedio progress progress-striped active">
+                  <div class="bar" style="width:{{ percent_current_xp }}%;" title='level {{ current_level}} to {{ next_level }} progress: {{ current_xp }}/{{ xp_needed_for_level_up }}xp - {{ percent_current_xp }}%'></div>
+
+                </div>
+
+
+
+                <p class='container'>
+                <h5>Last Achievement</h5>
+                  {% if last_achievement_list %}
+                    {% for last_achievement in last_achievement_list.all %}
+                      {% generateimage 'qubalapp:thumbnail100x100' source=last_achievement.image as last_achievement_holder %}
+                      <img src='{{ last_achievement_holder.url }}' class='img-polaroid' rel="tooltip" title='{{ last_achievement.name }} : {{ last_achievement.description }}'/><br><p class='lead'>{{ last_achievement.name }}</p>
+                    {% endfor %}
+                  {% else %}
+                  <p>No hay ultimo logro</p>
+                  {% endif %}
+                </p>
+            </div>
+
+            <div class='clearfix'></div>
+      </div><!-- Last achievement div -->
+
+    
+  <div class='row '>
+    <h4> <i class="icon-group"></i> <span class="logo_text">Teams</span></h4>
+    
+
+      <div class='span2ycuarto well-small'>
+         
+            {% if student_teams_list %}
+                
+                {% for team in student_teams_list.all %}
+                
+                {% generateimage 'qubalapp:thumbnail30x30' source=team.image as team_holder %}
+                  <a href="/team/{{ team.id }}/" rel="tooltip" title='{{team.name}}' >
+                    <img src='{{ team_holder.url }}' class='img-polaroid'/>
+                  </a>
+                {% endfor %}
+                  <i class='icon-chevron-sign-right button_viewmore'></i>
+            {% else %}
+                <p>No team</p>
+            {% endif %}
+        
+      </div>
+
+     
+
+
+
+    </div>
+
+    <div class='row push-up90'>
+      <h4> <i class="icon-star"></i> <span class="logo_text">Achievements</span></h4>
+        <div class='span2ycuarto well-small'>
+          {% if student_achievement_list %}
+                
+                {% for achievement in student_achievement_list.all %}
+                
+                {% generateimage 'qubalapp:thumbnail30x30' source=achievement.image as achievement_holder %}
+                
+                  <a href="/achievement/{{ achievement.id }}/" rel="tooltip" title='{{achievement.name}}'>
+                    <img src='{{ achievement_holder.url }}' class='img-polaroid'/>
+                  </a>
+                {% endfor %}
+                  <i class='icon-chevron-sign-right button_viewmore'></i>
+            {% else %}
+                <p>No Achievements!</p>
+
+            {% endif %}
+        </div>
+
+        
+
+    </div>
+    
+<br>
+  </div>
+
+
+  </div><!-- ROW profilewidget ends -->
+</div>
+
+  
+    <div class='span6 spano'>
+                <h3>
+                  <i class='icon-asterisk' id='bouncy'></i> <span class="opensans">Hi {{ student.name }}! Welcome back!</span>
+                </h3>
+            <div class="row box_continue bg-grey">
+                  <div class="span5">
+                      
+                      
+                      <div class='row latest_activity_box'>
+                        <div class='span6'>
+                          <h3>
+                            <p class='opensans'>Your latest activity</p>
+                          </h3>
+                          <p>
+                          </p>
+                          <hr>
+                        </div>
+                      </div>
+
+
+
+
+                      <p>
+                        {{ student.name }} | level {{ current_level }} | {{ total_xp }} totalxp
+                      </p>
+                      <div class="span3 progress progress-striped active">
+                        <div class="bar" style="width:{{ percent_xp }}%;"></div>
+                      </div><br>
+                      <div class="progress progress-striped active">
+                        <div class="bar" style="width:{{ percent }}%;"></div>
+                      </div>
+                      
+                      
+
+
+
+
+
+
+
+
+                  </div> <!-- div span5 -->
+
+
+            </div> <!-- row box_continue -->
+    </div> <!-- span6 spano -->
+
+  </div> <!-- row offset-cuarto -->
+
+
+  
+
+
+
+
+<div class='row offset2'>
+
+  <div class='span6'>
+
+    <!-- QuBal Knob Box -->
+  <div class="knob-box bg-grey">
+    <div class="row">
+      <div class="span3 knob-box-icon">
+        <i class="icon-fire big-icon"></i><span class="text-18 opensans-bold">   Your Powers!</span>
+      </div>
+    </div>
+    <hr class="dark-hr">
+
+    <div class="row">
+      <div class="radius radius-box-top"> <!-- radius-box 1 the magenta one -->
+        
+          <input type="text" rel="tooltip" title="Mastery {{ student_powers.mastery }}%" data-width="150" class="dial1">
+          <div class="row radius-box-text">
+            <span class="text-18 opensans-bold">Improve Skill <i class="icon-chevron-sign-up radius-text-magenta"></i></span> 
+          </div>
+
+      </div>
+      <div class="radius radius-box-top"> <!-- radius-box 2 the grey one -->
+
+        <input type="text" rel="tooltip" title="Focus {{ student_powers.focus }}%" data-width="150" class="dial2">
+        <div class="row radius-box-text">
+            <span class="text-18 opensans-bold">Improve Skill <i class="icon-chevron-sign-up radius-text-grey"></i></span> 
+          </div>
+
+      </div>
+
+    </div>
+
+
+
+
+    <div class="row">
+      <div class="radius radius-box"> <!-- radius-box 3 the green one -->
+        
+          <input type="text" rel="tooltip" title="Social Skill {{ student_powers.social_skill }}%" data-width="150" class="dial3">
+          <div class="row radius-box-text">
+            <span class="text-18 opensans-bold">Improve Skill <i class="icon-chevron-sign-up radius-text-green"></i></span> 
+          </div>
+
+      </div>
+      <div class="radius radius-box">
+
+        <input type="text" rel="tooltip" title="Communication {{ student_powers.communication }}%" data-width="150" class="dial4">
+        <div class="row radius-box-text">
+            <span class="text-18 opensans-bold">Improve Skill <i class="icon-chevron-sign-up radius-text-blue"></i></span> 
+          </div>
+
+      </div>
+
+    </div>
+    <div class="row">
+
+      <div class="radius lower-radius-box">
+
+        <input type="text" rel="tooltip" title="Responsability {{ student_powers.responsability }}%" data-width="150" class="dial5">
+        <div class="row radius-box-text">
+            <span class="opensans-bold">Improve Skill <i class="icon-chevron-sign-up radius-text-purple"></i></span> 
+          </div>
+
+      </div>
+      <div class="radius lower-radius-box">
+
+        <input type="text" rel="tooltip" title="Activity {{ student_powers.activity }}%"data-width="150" class="dial6">
+        <div class="row radius-box-text">
+            <span class="text-18 opensans-bold">Improve Skill <i class="icon-chevron-sign-up radius-text-orange"></i></span> 
+        </div>
+
+      </div>
+    </div> <!-- row --> 
+
+  </div> <!-- knob-box -->
+
+  </div>
+
+
+  <div class='span6 spano2'>
+
+
+<div class="row box_curses bg-grey">
+                  <div class="span5">
+                      
+                      
+                      <div class='row latest_activity_box'>
+                        <div class='span6'>
+                          <h3>
+                            <p class='opensans'>Learn courses</p>
+                          </h3>
+                          <p>
+                          </p>
+                          <hr>
+                        </div>
+                      </div>
+
+
+
+
+                      <p>
+                        {{ student.name }} | level {{ current_level }} | {{ total_xp }} totalxp
+                      </p>
+                      <div class="span3 progress progress-striped active">
+                        <div class="bar" style="width:{{ percent_xp }}%;"></div>
+                      </div><br>
+                      <div class="progress progress-striped active">
+                        <div class="bar" style="width:{{ percent }}%;"></div>
+                      </div>
+                      
+                      
+
+
+
+                      <div class="row carousel-box">
+
+    
+                        <div class="span5">
+                          <div id="myCarousel" class="carousel slide">
+                            <ol class="carousel-indicators">
+                              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                              <li data-target="#myCarousel" data-slide-to="1"></li>
+                              <li data-target="#myCarousel" data-slide-to="2"></li>
+                              <li data-target="#myCarousel" data-slide-to="3"></li>
+                            </ol>
+                            <!-- Carousel items -->
+                            <div class="carousel-inner carousel-rounded">
+
+                              <div class="active item">
+                                <img src="{{ STATIC_URL}}qubalapp/main_engine/img/carousel1.jpg" alt"">
+                                
+                                  <div class="carousel-caption">
+                                    
+                                    <div class="row">
+                                      <div class="span2 available-course">
+                                        Available Courses
+                                      </div>
+                                    </div>
+                                    
+                                    <div class="row pb20">
+                                      <div class="span1 available-course-icon">
+                                        <i class="icon-desktop big-icon"></i>
+                                      </div>
+                                      <div class"span2">
+                                        <span class="text-blue">CSS3! NEW </span><br>
+                                        Learn CSS3<br>
+                                        <span class="text-small">Learn CSS3 with the new <span class="text-blue">QuBAL</span> system.</span>
+
+                                      </div>
+                                    </div>
+
+                                  </div>
+                                
+
+                              </div> <!-- div active item -->
+
+                              <div class="item">
+                                <img src="{{ STATIC_URL}}qubalapp/main_engine/img/carousel2.jpg" alt"">
+                                  
+                                  <div class="carousel-caption">
+                                    
+                                    <div class="row">
+                                      <div class="span2 available-course">
+                                        Available Courses
+                                      </div>
+                                    </div>
+                                    
+                                    <div class="row pb20">
+                                      <div class="span1 available-course-icon">
+                                        <i class="icon-desktop big-icon"></i>
+                                      </div>
+                                      <div class"span2">
+                                        <span class="text-blue">jquery</span><br>
+                                        The jquery path!<br>
+                                        <span class="text-small">10 quest, 50 challenges and 100 new tasks!.</span>
+                                      </div>
+                                    </div>
+
+                                  </div>
+                                  
+                                </div>
+                              <div class="item">
+                                <img src="{{ STATIC_URL}}qubalapp/main_engine/img/carousel3.jpg" alt"">
+                                  
+                                  <div class="carousel-caption">
+                                    
+                                    <div class="row">
+                                      <div class="span2 available-course">
+                                        Available Courses3
+                                      </div>
+                                    </div>
+                                    
+                                    <div class="row pb20">
+                                      <div class="span1 available-course-icon">
+                                        <i class="icon-desktop big-icon"></i>
+                                      </div>
+                                      <div class"span2">
+                                        <span class="text-blue">CourseTitle3</span><br>
+                                        CourseInformation3<br>
+                                        <span class="text-small">Ut wise enim ad minim veniam quis nostrud ipsum 3.</span>
+
+                                      </div>
+                                    </div>
+                      <!--               <div class="row">
+                                      <p class="negro"> CSS cross coutry! Join now to this exciting course!</p>
+                                    </div>  -->
+                                  </div>
+                                  
+                              </div> <!-- div item -->
+                              <div class="item">
+                                <img src="{{ STATIC_URL}}qubalapp/main_engine/img/carousel4.jpg" alt"">
+
+                                 <div class="carousel-caption">
+                                    
+                                    <div class="row">
+                                      <div class="span2 available-course">
+                                        <span class="text-white">Available Courses4</span>
+                                      </div>
+                                    </div>
+                                    
+                                    <div class="row pb20">
+                                      <div class="span1 available-course-icon">
+                                        <i class="icon-desktop big-icon text-white"></i>
+                                      </div>
+                                      <div class"span2">
+                                        <span class="text-blue">CourseTitle4</span><br>
+                                        <span class="text-white">CourseInformation4</span><br>
+                                        <span class="text-small text-white">Ut wise enim ad minim veniam quis nostrud ipsum 4.</span>
+
+                                      </div>
+                                    </div>
+                      <!--               <div class="row">
+                                      <p class="negro"> CSS cross coutry! Join now to this exciting course!</p>
+                                    </div>  -->
+                                  </div>
+                                  
+
+                                  
+                              </div> <!-- div item -->
+                            </div> <!-- div carousel-inener -->
+                          <!-- Carousel nav -->
+
+                          <a class="carousel-control left jcarousel-prev-disabled" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                          <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+
+                          </div> <!-- div myCarousel -->
+                        </div> <!-- div span5 (doing as container)-->
+                      
+
+                  </div> <!-- div from the carousel box-->
+
+
+
+
+
+                      
+
+
+
+
+
+                  </div> <!-- div span5 -->
+
+
+            </div> <!-- row box_continue -->
+
+
+
+
+
+
+  </div>
+</div>
+
+
+
+
+ <br><br><br>
+
+  <div class="containerfoot" >
+  
+    
+    <div class="row" id='footer'>
+      <p class='qubal_logo_text opensans-bold'><i class='icon-sitemap icon-flip-vertical'></i><span class="letter-blue"> Q</span>ubal v0.3</p>
+      <hr>
+      
+      <div class="span2 pull-left pagination-centered">
+        
+      
+        <p>(c)2013 Studiesoft</p>
+        <p class='pagination-centered'><a href='http://www.studiesoft.nl'><img src="{{ STATIC_URL }}qubalapp/main_engine/img/Studiesoft-logo.png"  title="©2013 StudieSoft"></a></p>
+
+        
+
+        
+      </div>
+      
+      <div class="span2 pull-right pagination-centered">
+        
+        <p>Powered by</p>
+
+        <p class='pagination-centered'><a href='http://www.radicalgraphics.com'><img src="{{ STATIC_URL }}qubalapp/main_engine/img/radicallogoon.png" width="120" height="120" title="Radical Graphics Studios"></a></p>
+
+      </div>
+     
+    </div>
+  
+  </div> <!-- footer end -->
+
+</div> <!-- main container end div -->
+
+
+<!-- =================================================== -->
+<!-- =================== javascripts =================== -->
+<!-- =================================================== -->
+
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/jquery.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/jquery.knob.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/opentip-jquery-excanvas.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/opentip.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/adapter-jquery.js"></script>
+
+    <script>
+      $('#myCarousel').carousel()
+      interval: 1000
+    </script>
+
+    <script>
+    // $(function() {
+    //     $(".dial").knob({
+    //          'min':0,
+    //          'max':100,
+    //          'step':1,
+    //          'readOnly': true,
+    //          'lineCap': 'round',
+    //          'fgColor': 'c2c2c2',
+    //          'change' : function (v) { console.log(v); },
+    //        });
+
+    // });
+
+// Mastery knob
+
+    $(document).ready(function (){
+    $('.dial1').val(0).trigger('change').delay(1000);
+    $(".dial1").knob({
+        // 'min':0,
+        // 'max':100,
+        // 'readOnly': true,
+        'width': 150,
+        'height': 150,
+        // 'fgColor': '#b9e672',
+        // 'step': 1,
+        // 'dynamicDraw': true,
+        // //'displayInput': false,
+        'thickness': 0.20,
+        // //'tickColorizeValues': true,
+        // 'lineCap': 'round',
+        // //'cursor': true
+    'min':0,
+    'max':100,
+    'fgColor': '#d3004d',
+    'inputColor':'#d3004d',
+    'step':1,
+    'readOnly': true,
+    'lineCap': 'round',
+    'skin': 'tron',
+    })         
+    
+        var tmr = self.setInterval(function(){myDelay()},40);        
+        var m = 0;
+        function myDelay(){
+            m += 1;
+            $('.dial1').val(m).trigger('change');
+            if(m=={{ student_powers.mastery }}) {            
+                window.clearInterval(tmr);
+            }
+        }    
+    });
+
+// Focus knob
+
+    $(document).ready(function (){
+    $('.dial2').val(0).trigger('change').delay(1000);
+    $(".dial2").knob({
+        // 'min':0,
+        // 'max':100,
+        // 'readOnly': true,
+        'width': 150,
+        'height': 150,
+        // 'fgColor': '#b9e672',
+        // 'step': 1,
+        // 'dynamicDraw': true,
+        // //'displayInput': false,
+        'thickness': 0.20,
+        // //'tickColorizeValues': true,
+        // 'lineCap': 'round',
+        // //'cursor': true
+    'min':0,
+    'max':100,
+    'fgColor': '#3b3b3b',
+    'inputColor':'#3b3b3b',
+    'step':1,
+    'readOnly': true,
+    'lineCap': 'round',
+    'skin': 'tron',
+    })         
+    
+        var tmr = self.setInterval(function(){myDelay()},40);        
+        var m = 0;
+        function myDelay(){
+            m += 1;
+            $('.dial2').val(m).trigger('change');
+            if(m=={{ student_powers.focus }}) {            
+                window.clearInterval(tmr);
+            }
+        }    
+    });
+
+
+
+
+
+
+    $(document).ready(function (){
+    $('.dial3').val(0).trigger('change').delay(1000);
+    $(".dial3").knob({
+        // 'min':0,
+        // 'max':100,
+        // 'readOnly': true,
+        'width': 150,
+        'height': 150,
+        // 'fgColor': '#b9e672',
+        // 'step': 1,
+        // 'dynamicDraw': true,
+        // //'displayInput': false,
+        'thickness': 0.20,
+        // //'tickColorizeValues': true,
+        // 'lineCap': 'round',
+        // //'cursor': true
+    'min':0,
+    'max':100,
+    'fgColor': '#99cc00',
+    'inputColor':'#99cc00',
+    'step':1,
+    'readOnly': true,
+    'lineCap': 'round',
+    'skin': 'tron',
+    })         
+    
+        var tmr = self.setInterval(function(){myDelay()},40);        
+        var m = 0;
+        function myDelay(){
+            m += 1;
+            $('.dial3').val(m).trigger('change');
+            if(m=={{ student_powers.social_skill }}) {            
+                window.clearInterval(tmr);
+            }
+        }    
+    });
+
+
+
+    $(document).ready(function (){
+    $('.dial4').val(0).trigger('change').delay(1000);
+    $(".dial4").knob({
+        // 'min':0,
+        // 'max':100,
+        // 'readOnly': true,
+        'width': 150,
+        'height': 150,
+        // 'fgColor': '#b9e672',
+        // 'step': 1,
+        // 'dynamicDraw': true,
+        // //'displayInput': false,
+        'thickness': 0.20,
+        // //'tickColorizeValues': true,
+        // 'lineCap': 'round',
+        // //'cursor': true
+      'min':0,
+    'max':100,
+    'fgColor': '#0199ff',
+    'inputColor':'#0199ff',
+    'step':1,
+    'readOnly': true,
+    'lineCap': 'round'
+    })         
+    
+        var tmr = self.setInterval(function(){myDelay()},40);        
+        var m = 0;
+        function myDelay(){
+            m += 1;
+            $('.dial4').val(m).trigger('change');
+            if(m=={{ student_powers.communication }}) {            
+                window.clearInterval(tmr);
+            }
+        }    
+    });
+
+
+
+    $(document).ready(function (){
+    $('.dial5').val(0).trigger('change').delay(1000);
+    $(".dial5").knob({
+        // 'min':0,
+        // 'max':100,
+        // 'readOnly': true,
+        'width': 150,
+        'height': 150,
+        // 'fgColor': '#b9e672',
+        // 'step': 1,
+        // 'dynamicDraw': true,
+        // //'displayInput': false,
+        'thickness': 0.20,
+        // //'tickColorizeValues': true,
+        // 'lineCap': 'round',
+        // //'cursor': true
+      'min':0,
+    'max':100,
+    'fgColor': '#9966cc',
+    'inputColor':'#9966cc',
+    'step':1,
+    'readOnly': true,
+    'lineCap': 'round'
+    })         
+    
+        var tmr = self.setInterval(function(){myDelay()},40);        
+        var m = 0;
+        function myDelay(){
+            m += 1;
+            $('.dial5').val(m).trigger('change');
+            if(m=={{ student_powers.responsability }}) {            
+                window.clearInterval(tmr);
+            }
+        }    
+    });
+
+
+
+    $(document).ready(function (){
+    $('.dial6').val(0).trigger('change').delay(1000);
+    $(".dial6").knob({
+        // 'min':0,
+        // 'max':100,
+        // 'readOnly': true,
+        'width': 150,
+        'height': 150,
+        // 'fgColor': '#b9e672',
+        // 'step': 1,
+        // 'dynamicDraw': true,
+        // //'displayInput': false,
+        'thickness': 0.20,
+        // //'tickColorizeValues': true,
+        // 'lineCap': 'round',
+        // //'cursor': true
+      'min':0,
+    'max':100,
+    'fgColor': '#ff9901',
+    'inputColor':'#ff9901',
+    'step':1,
+    'readOnly': true,
+    'lineCap': 'round'
+    })         
+    
+        var tmr = self.setInterval(function(){myDelay()},40);        
+        var m = 0;
+        function myDelay(){
+            m += 1;
+            $('.dial6').val(m).trigger('change');
+            if(m=={{ student_powers.activity }}) {            
+                window.clearInterval(tmr);
+            }
+        }    
+    });
+
+
+    $("[rel=tooltip]").tooltip({ placement: 'top'});
+    $("[rel=tooltip-left]").tooltip({ placement: 'left'});
+
+    $(document).ready(function() {
+    $('#bouncy')
+        .css({"font-size":10})   // Set to 0 as soon as possible – may result in flicker, but it's not hidden for users with no JS (Googlebot for instance!)
+        .delay(2000)           // Wait for a bit so the user notices it fade in
+        .css({"font-size":36});
+        //.delay(1000)     // Fade it back in. Swap css for animate in legacy browsers if required.
+        //.css({"font-size":32});
+    });
+
+    </script>
+
+</body>
+</html>

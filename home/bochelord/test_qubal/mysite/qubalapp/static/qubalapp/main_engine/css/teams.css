@@ -1,0 +1,66 @@
+body{
+	background-color: #ffffff;
+}
+
+.your-teams-title{
+   font-size: 50px;
+   padding-bottom: 20px;
+   margin-left: -20px;
+}
+
+.team-box {
+  width: 460px;
+  margin-bottom: 15px;
+  float: left;
+}
+
+.well {
+  height: 96px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  -webkit-box-shadow: 0px 1px 5px rgba(50, 50, 50, 1);
+     -moz-box-shadow: 0px 1px 5px rgba(50, 50, 50, 1);
+          box-shadow: 0px 1px 5px rgba(50, 50, 50, 1);
+  transition: all 0.3s ease;
+}
+
+.img-format {
+  margin-top: -28px;
+  margin-left: -28px;
+  position: absolute;
+  -webkit-box-shadow: 0px 1px 5px rgba(50, 50, 50, 1);
+     -moz-box-shadow: 0px 1px 5px rgba(50, 50, 50, 1);
+          box-shadow: 0px 1px 5px rgba(50, 50, 50, 1);
+}
+
+.label,
+.badge {
+  display: inline-block;
+  margin-top: -28px;
+  margin-right: -28px;
+  font-size: 11.844px;
+  font-weight: bold;
+  line-height: 14px;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+
+.team-box-title {
+  width: 390px;
+  margin-top: -6px;
+  margin-left: 80px;
+  padding-bottom: 5px;
+  font-size: 1.7em;
+}
+
+.team-box-course-name {
+  margin-left: 80px;
+  font-size: 1em;
+}

@@ -1,0 +1,468 @@
+body{
+	background-color: #ffffff;
+}
+
+.navbar-inverse .navbar-inner {
+  background-color: #e1e1e1;
+  background-image: linear-gradient(to bottom, #e1e1e1, #e1e1e1);
+  background-repeat: repeat-x;
+  border-color: #e1e1e1;
+
+
+border: 0px solid #d4d4d4;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
+  *zoom: 1;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+     -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+}
+
+
+.span1menu {
+  width: 120px;
+  padding-top: 17px;
+}
+
+[class*="span"] {
+  float: left;
+  min-height: 1px;
+  margin: 0px;
+}
+
+
+
+
+.navbar-inverse .nav .active > a,
+.navbar-inverse .nav .active > a:hover,
+.navbar-inverse .nav .active > a:focus {
+  color: #2c3e50;
+  border-bottom: 5px solid;
+  border-color: #00ccff;
+  background-color: #e1e1e1;
+  font-size: 20px;
+}
+
+.navbar .nav{
+ font-size: 18px; 
+}
+
+
+input[type="text"],
+input[type="password"]
+{
+  width:70px;
+  /*padding: 3px 2px;*/
+  text-indent: 1px;
+  border: 2px solid #dce4ec;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+  margin-top: 15px;
+  font-size:12px;
+  font-family: 'OpenSans';
+  color: #468847;
+
+}
+
+.btn{
+  line-height: 20px;
+}
+
+form { 
+  margin: 0 0 5px;
+}
+
+.version {
+  font-size: 10px;
+  color:#aeaeae;
+  font-weight: normal;
+  text-transform: none;
+  font-family: "OpenSans";
+  text-align: center;
+}
+
+.logo_text{
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: none;
+  font-family: "OpenSans";
+}
+
+.level_text{
+  font-size: 10px;
+  font-family: 'OpenSans-Light';
+  color: #585F6E;
+}
+
+.opensans-bold{
+  font-family: "OpenSans";
+  font-weight: bold;
+}
+
+.opensans{
+  font-family: "OpenSans";
+}
+
+.letter-blue{
+  color:#229fc4;
+}
+
+.push-up{
+  margin-top: -50px;
+}
+
+.push-up5{
+  margin-top: -5px;
+}
+
+.push-up10{
+  margin-top: -10px;
+}
+
+.push-up20{
+  margin-top: -20px;
+}
+
+.push-down{
+  margin-bottom: -130px;
+}
+
+.offset-medio {
+  margin-left: 50px;
+}
+
+.offset-cuarto {
+  margin-left: 25px;
+}
+
+h1{
+   font-size: 70px;
+   margin-bottom: 5px;
+}
+
+.button_viewmore{
+  font-size: 22px;
+  color: #C2C2C2;
+  line-height: 10px;
+}
+
+.span2ycuarto {
+  width: 160px;
+}
+
+.span1ymedio {
+  width: 100px;
+}
+
+.span4ymedio {
+  width: 350px;
+}
+
+.profile_widget{
+  
+  border: 1px solid #c2c2c2;
+  padding-top: 65px;
+  padding-left: 30px;
+  margin-top: 10px;
+  -webkit-border-radius: 10px 4em 10px 10px;
+     -moz-border-radius: 10px 4em 10px 10px;
+          border-radius: 10px 4em 10px 10px;
+
+}
+
+.profile_image{
+  position: absolute;
+  z-index: 100;
+}
+
+.profile_level{
+  line-height: 20px;
+  /*-moz-border-radius-bottomright: 35px 50px;
+  border-bottom-right-radius: 35px 50px;*/
+  -webkit-border-radius: 1em 5em 2em 1em;
+  -moz-border-radius: 1em 5em 2em 1em;
+  border-radius: 1em 5em 2em 1em;
+}
+
+.spano {
+  float: left;
+  min-height: 1px;
+  margin-left: 220px;
+}
+
+.box_continue{
+  padding: 20px;
+
+  border:1px solid #c2c2c2;
+    -webkit-border-radius: 10px 20px 10px 10px;
+     -moz-border-radius: 10px 20px 10px 10px;
+          border-radius: 10px 20px 10px 10px;
+
+}
+
+.totalxp_text{
+  font-size: 14px
+}
+
+.current_level_text{
+  font-size: 70px;
+}
+
+.letter-large{
+  font-size: 25px;
+}
+/***/
+/* Input box styled */
+
+/*
+  
+  CSSs para el Carousel
+
+*/
+
+.carousel {
+  position: relative;
+  line-height: 1;
+}
+
+.jcarousel-prev-disabled, .jcarousel-next-disabled
+{
+    visibility:hidden;
+}
+
+.carousel-caption {
+
+  padding-top: 20px;
+  padding-left: 10px;
+  border: 10px;
+  border-color: #000000;
+  background: #333333;
+  background: rgba(0, 0, 0, 0);
+  color: #000000;
+}
+
+.carousel-caption p,
+.carousel-caption h4 {
+  line-height: 0px;
+  color: #000000;
+}
+
+.carousel-caption h4 {
+  margin: 0 0 5px;
+}
+
+
+.carousel-caption h6 {
+  color: #9E9E9E;
+}
+
+.carousel-caption .course-title h6 {
+  color: #9E9E9E;
+}
+
+.carousel-caption p {
+  margin-left: 15px;
+}
+
+.big-icon {
+  font-size: 40px;
+}
+
+.available-course {
+  margin-left: 35px;
+  margin-bottom: 10px;
+
+}
+
+.available-course-icon {
+  margin-left: 35px;
+}
+
+.text-blue{
+  color: #229fc4;
+}
+
+.text-white{
+  color: #ffffff;
+}
+
+.text-small {
+  font-size: 11px;
+}
+
+.pb20 {
+  padding-bottom: 12px;
+}
+
+.carousel-box {
+  width: 380px;
+  padding: 5px;
+  margin-left: 0px;
+  border:0px solid #999999;
+    -webkit-border-radius: 10px 10px 10px 10px;
+     -moz-border-radius: 10px 10px 10px 10px;
+          border-radius: 10px 10px 10px 10px;
+}
+
+.carousel-rounded {
+-webkit-border-radius: 8px 8px 8px 8px;
+   -moz-border-radius: 8px 8px 8px 8px;
+        border-radius: 8px 8px 8px 8px; 
+}
+
+/* FIN de CSSs para el carousel */
+
+/* INICIO de CSS para el Qubal Knob */
+
+.knob-box {
+  width: 370px;
+  padding: 5px;
+  margin-left: 5px;
+  margin-top: 20px;
+  padding-bottom: 60px;
+  border:1px solid #999999;
+    -webkit-border-radius: 10px 10px 10px 10px;
+     -moz-border-radius: 10px 10px 10px 10px;
+          border-radius: 10px 10px 10px 10px;
+}
+
+.radius {
+    background: #565656;
+    width: 150px;
+    height: 150px;
+    float: left;
+    margin: 6px;
+    
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+}
+
+.knob-box-icon {
+  margin-left: 40px;
+  margin-top: 10px;
+}
+
+.text-18 {
+  font-size: 18px;
+}
+
+.dark-hr {
+  margin: 15px 5px;
+  border: 0;
+  border-top: 1px solid #999999;
+  border-bottom: 1px solid #ffffff;
+}
+
+.radius-box {
+  width: 150px;
+  margin-left: 35px;
+  margin-bottom: 20px;
+}
+
+.lower-radius-box {
+  width: 150px;
+  margin-left: 35px;
+  margin-top: 40px;
+}
+
+.radius-text-green {
+  color: #99cc00;
+}
+
+.radius-text-blue {
+  color: #0199ff;
+}
+
+.radius-text-purple {
+  color: #9966cc;
+}
+
+.radius-text-orange {
+  color: #ff9901;
+}
+
+.radius-box-text {
+  margin-left: 5px;
+  margin-top: 15px;
+  font-size: 16px;
+  color: #999999;
+
+}
+
+/* FIN de CSS para el Qubal Knob */
+
+
+/* Icon Nav Effects */
+.icon-dashboard:before {
+  content: "\f0e4";
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+  }
+
+
+.icon-dashboard:hover {
+  color: #ffffff;
+
+}
+
+.icon-user:before {
+  content: "\f007";
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.icon-user:hover {
+  color: #ffffff;
+}
+
+.icon-group:before {
+  content: "\f0c0";
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.icon-group:hover {
+  color: #ffffff;
+}
+
+.icon-tasks:before {
+  content: "\f0ae";
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.icon-tasks:hover {
+  color: #ffffff;
+}
+
+
+/*Spin Effect on images */
+
+.well a img {
+  transition: all 0.4s ease;
+}
+
+.well a:hover img {
+  -webkit-transform: scale(1.2) rotate(360deg);
+  -moz-transform: scale(1.2) rotate(360deg);
+  -ms-transform: scale(1.2) rotate(360deg);
+  -o-transform: scale(1.2) rotate(360deg);
+  transform: scale(1.2) rotate(360deg);
+}

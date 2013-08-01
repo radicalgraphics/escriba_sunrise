@@ -259,7 +259,7 @@ def login(request):
 		auth.login(request, user)
 		return HttpResponseRedirect("/test")
 	else:
-		return HttpResponseRedirect("test/landing/?error")
+		return HttpResponseRedirect("/test/landing/?error")
 
 
 

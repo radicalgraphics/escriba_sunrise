@@ -1,7 +1,6 @@
 #urls.py in qubalapp
 
-from django.conf.urls import patterns, url, include
-
+from django.conf.urls import patterns, url
 
 from django.conf import settings
 
@@ -11,7 +10,6 @@ urlpatterns = patterns('',
 	
     # //this gets you to qubalapp/
     # url(r'^(?P<course_id>\d+)/$', views.courses, name='detail'),
-    # url(r'^admin/', admin.site.urls),
 
     url(r'^course_listing/$', views.course_listing, name='course_listing'),
 

@@ -5,6 +5,7 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
+from model_utils.managers import InheritanceManager
 
 # Create your models here.
 
@@ -25,7 +26,7 @@ class Achievement(models.Model):
                                       processors=[ResizeToFill(50, 50)],
                                       format='JPEG',
                                       options={'quality': 70})
-    unlock_nicknames = models.OneToOneField('Nickname', primary_key=False, blank=True, null=True)
+    unlock_nickname = models.OneToOneField('Nickname', primary_key=False, blank=True, null=True)
     unlocked_date = models.DateTimeField('Unlocked Date', blank=True, null=True)
     # has_achievements = models.ForeignKey(Achievement)
 
@@ -34,16 +35,15 @@ class Achievement(models.Model):
 
 
 class Power(models.Model):
-    social_skill = models.IntegerField(default=0)
+    teamwork = models.IntegerField(default=0)
     communication = models.IntegerField(default=0)
     responsability = models.IntegerField(default=0)
-    activity = models.IntegerField(default=0)
+    perseverance = models.IntegerField(default=0)
     mastery = models.IntegerField(default=0)
     focus = models.IntegerField(default=0)
-    has_person = models.OneToOneField('Person', primary_key=True)
 
     def __unicode__(self):
-        return str(self.has_person.name)+": Mas "+str(self.activity)+" Foc "+str(self.focus)+" Soc "+str(self.social_skill)+" Com "+str(self.communication)+" Res "+str(self.responsability)+" Act "+str(self.activity)
+        return str(self.id)+": Mas "+str(self.mastery)+" Foc "+str(self.focus)+" Tem "+str(self.teamwork)+" Com "+str(self.communication)+" Res "+str(self.responsability)+" Per "+str(self.perseverance)
 
 
 # class Students_in_Course(models.Model):
@@ -128,9 +128,11 @@ class Person(models.Model):
     dropbox = models.CharField(max_length=250, blank=True, null=True)
 
     has_address = models.ForeignKey('Address', blank=True, null=True)
-
+    has_powers = models.OneToOneField('Power', blank=True, null=True)
     # has_edu_skills = models.ManyToManyField('Edu_Skill')
     # has_personal_skills = models.ManyToManyField('Personal_Skill')
+
+    objects = InheritanceManager()
 
     def __unicode__(self):
         return self.name+" "+self.lastname

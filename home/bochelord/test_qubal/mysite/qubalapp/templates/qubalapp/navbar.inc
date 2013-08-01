@@ -2,14 +2,24 @@
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner show-g">
       <div class="container">
-        <a class="brand" href="/test/"><img src="{{ STATIC_URL }}qubalapp/main_engine/img/qubal_logo.png" width="64" height="64"/><span class="logo_text">QUBAL</span></a>
+        <a class="brand" href="/test"><img src="{{ STATIC_URL }}qubalapp/main_engine/img/qubal_logo.png" width="64" height="64"/><span class="logo_text">QUBAL</span></a>
           <ul class="nav">
 
             <li>
               {% load imagekit %}
-              {% generateimage 'qubalapp:thumbnail50x50' source=student.image as student_image %}
+              {% load staticfiles %}
+              
               <div class="navbar-student-image">
+              {% if student.image %}
+                {% generateimage 'qubalapp:thumbnail50x50' source=student.image as student_image %}
+            
                 <img src='{{ student_image.url }}' class='img-circle'/>
+              {% else %}
+
+                <img src='{{ STATIC_URL }}qubalapp/main_engine/img/default_avatar_grey_50.jpg' class='img-circle'/>
+
+              {% endif %}
+
               </div>
             </li>
             <li>
@@ -25,11 +35,11 @@
 
           {% if active_url == 'index.html' %}
             <li class="active text">
-              <a href="/test/" class="pagination-centered"><i class="icon-dashboard"></i><br>Dashboard</a>
+              <a href="/test" class="pagination-centered"><i class="icon-dashboard"></i><br>Dashboard</a>
             </li>
           {% else %}
             <li class="text">
-              <a href="/test/" class="pagination-centered"><i class="icon-dashboard"></i><br>Dashboard</a>
+              <a href="/test" class="pagination-centered"><i class="icon-dashboard"></i><br>Dashboard</a>
             </li>
           {% endif %}
               
@@ -99,7 +109,7 @@
             <div class="span2menu pull-right">
                  
               <a class="btn btn-mini btn-warning" href="/test/admin"><i class="icon-cog"></i> ADMIN</a>
-              <span class="version"><br>QUBAL v0.3</span><br><a href='/test/logout/'>logout</a>
+              <span class="version"><br>QUBAL {{ QUBAL_VERSION }}</span><br><a href='/test/logout/'>logout</a>
                 
             </div>
   </div> <!-- div navbar navbar-inverse line 2 -->

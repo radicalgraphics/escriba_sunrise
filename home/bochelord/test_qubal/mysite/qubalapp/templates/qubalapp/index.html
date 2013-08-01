@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Qubal v0.3</title>
+  <title>Qubal {{ QUBAL_VERSION }}</title>
 	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-flatly.css" />
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/font-awesome.css" />
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/navbar.css">
@@ -104,8 +104,13 @@ $(function($) {
 
         </div>
 
-        {% generateimage 'qubalapp:thumbnail150x150' source=student.image as tn2 %}
-        <div class='push-down profile_image'><img src='{{ tn2.url }}' class='img-circle' title='{{ student.name}} {{ student.lastname }} - level {{ current_level }} - explorer' rel="tooltip-left"/></div>
+        {% if student.image %}
+
+          {% generateimage 'qubalapp:thumbnail150x150' source=student.image as tn2 %}
+          <div class='push-down profile_image'><img src='{{ tn2.url }}' class='img-circle' title='{{ student.name}} {{ student.lastname }} - level {{ current_level }} - explorer' rel="tooltip-left"/></div>
+        {% else %}
+          <div class='push-down profile_image'><img src='{{ STATIC_URL }}qubalapp/main_engine/img/default_avatar_grey.jpg' width='150' class='img-circle' title='{{ student.name}} {{ student.lastname }} - level {{ current_level }} - explorer' rel="tooltip-left"/></div>
+        {% endif %}
         <br><br>
       </div>
 
@@ -297,7 +302,7 @@ $(function($) {
     <div class="row">
       <div class="radius radius-box"> <!-- radius-box 3 the green one -->
         
-          <input type="text" rel="tooltip" title="Social Skill {{ student_powers.social_skill }}%" data-width="150" class="dial3">
+          <input type="text" rel="tooltip" title="Social Skill {{ student_powers.teamwork }}%" data-width="150" class="dial3">
           <div class="row radius-box-text">
             <span class="text-18 opensans-bold">Improve Skill <i class="icon-chevron-sign-up radius-text-green"></i></span> 
           </div>
@@ -325,7 +330,7 @@ $(function($) {
       </div>
       <div class="radius lower-radius-box">
 
-        <input type="text" rel="tooltip" title="Activity {{ student_powers.activity }}%"data-width="150" class="dial6">
+        <input type="text" rel="tooltip" title="Activity {{ student_powers.perseverance }}%"data-width="150" class="dial6">
         <div class="row radius-box-text">
             <span class="text-18 opensans-bold">Improve Skill <i class="icon-chevron-sign-up radius-text-orange"></i></span> 
         </div>
@@ -542,7 +547,7 @@ $(function($) {
   
     
     <div class="row" id='footer'>
-      <p class='qubal_logo_text opensans-bold'><i class='icon-sitemap icon-flip-vertical'></i><span class="letter-blue"> Q</span>ubal v0.3</p>
+      <p class='qubal_logo_text opensans-bold'><i class='icon-sitemap icon-flip-vertical'></i><span class="letter-blue"> Q</span>ubal {{ QUBAL_VERSION }}</p>
       <hr>
       
       <div class="span2 pull-left pagination-centered">
@@ -715,7 +720,7 @@ $(function($) {
         function myDelay(){
             m += 1;
             $('.dial3').val(m).trigger('change');
-            if(m=={{ student_powers.social_skill }}) {            
+            if(m=={{ student_powers.teamwork }}) {            
                 window.clearInterval(tmr);
             }
         }    
@@ -829,7 +834,7 @@ $(function($) {
         function myDelay(){
             m += 1;
             $('.dial6').val(m).trigger('change');
-            if(m=={{ student_powers.activity }}) {            
+            if(m=={{ student_powers.perseverance }}) {            
                 window.clearInterval(tmr);
             }
         }    

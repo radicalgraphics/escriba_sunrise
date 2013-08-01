@@ -6,10 +6,8 @@ When trying to release a new version of Qubal:
 
 - Update the DB if needed: 
 - Drop (Delete/Erase) the current one on the server. 
-- Generate a new one locally with SQLITE3 format.
--- Open it up with SQLITE Browser and Export it as SQL (the file has to be called SQLITE3_qubaldb.sql).
-- Now Run the script sqlite_ to_mysql.py (folder escriba/databse) and it will generate a file called MYSQL_qubaldb.sql. That file needs still to be treated by replacing the " character for the ` character. Do it on your favorite editor. 
-- Once you have MYSQL_qubaldb.sql ready, go to phpmyadmin on the server (.../phpmyadmin)and import the file. Everything should be then up an running (fingers crossed).
+- Generate a new one locally with MySQL format. 
+- Once you have MYSQL file ready, go to phpmyadmin on the server (.../phpmyadmin)and import (aka copy&paste) the file. Everything should be then up an running (fingers crossed).
 
 fix for the id null:
 ====================

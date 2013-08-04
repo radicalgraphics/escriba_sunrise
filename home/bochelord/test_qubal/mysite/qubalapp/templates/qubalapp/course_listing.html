@@ -21,12 +21,17 @@
       {% if local_student_courses %}
         
           {% for course in local_student_courses.all %}
-          {% generateimage 'qubalapp:thumbnail100x100' source=course.image as imagen %}
-            
-            <div class='course-box'>
-              <div class='well'>
 
-                <img class="img-format img-circle pull-left" src='{{ imagen.url }}' />
+              {% if course.image %}
+                  {% generateimage 'qubalapp:thumbnail100x100' source=course.image as imagen %}
+                    <div class='course-box'>
+                    <div class='well'>
+                    <img class="img-format img-circle pull-left" src='{{ imagen.url }}' />
+              {% else %}
+                    <div class='course-box'>
+                    <div class='well'>
+                    <img class="img-format img-circle pull-left" src='{{ STATIC_URL }}default_images/default_course_dark.jpg' width='100' />
+              {% endif %}
                 <span class="label label-info pull-right">badge</span>
               
                 <div class="course-box-title">
@@ -56,12 +61,16 @@
 <hr class="central-hr"><br>
 <span class="all-courses-title"> All Courses </span><br><br><br>
       {% for course in course_list.all %}
-      {% generateimage 'qubalapp:thumbnail100x100' source=course.image as imagen %}
-
-            <div class='course-box'>
-              <div class='well'>
-
-                <img class="img-format img-circle pull-left" src='{{ imagen.url }}' />
+              {% if course.image %}
+                  {% generateimage 'qubalapp:thumbnail100x100' source=course.image as imagen %}
+                    <div class='course-box'>
+                    <div class='well'>
+                    <img class="img-format img-circle pull-left" src='{{ imagen.url }}' />
+              {% else %}
+                    <div class='course-box'>
+                    <div class='well'>
+                    <img class="img-format img-circle pull-left" src='{{ STATIC_URL }}default_images/default_course_dark.jpg' width='100'/>
+              {% endif %}
                 <span class="label label-info pull-right">badge</span>
               
                 <div class="course-box-title">

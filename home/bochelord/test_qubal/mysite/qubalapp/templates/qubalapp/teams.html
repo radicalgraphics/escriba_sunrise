@@ -22,14 +22,23 @@
       {% if local_student_teams %}
         
           {% for team in local_student_teams.all %}
-          {% generateimage 'qubalapp:thumbnail100x100' source=team.image as imagen %}
-            
-            <div class='team-box'>
-              <div class='well'>
 
-                <img class="img-format img-polaroid pull-left" src='{{ imagen.url }}' />
-                <span class="label label-info pull-right">badge</span>
-              
+            {% if team.image %}
+            
+              {% generateimage 'qubalapp:thumbnail100x100' source=team.image as imagen %}         
+                <div class='team-box'>
+                  <div class='well'>
+
+                    <img class="img-format img-polaroid pull-left" src='{{ imagen.url }}' />
+                    <span class="label label-info pull-right">badge</span>
+            {% else %}
+                <div class='team-box'>
+                  <div class='well'>
+
+                    <img class="img-format img-polaroid pull-left" src='{{ STATIC_URL }}default_images/default_team_avatar.jpg' width=100 />
+                    <span class="label label-info pull-right">badge</span>
+            {% endif%}
+
                 <div class="team-box-title">
                   <a href="/teams/{{ team.id }}/">{{ team.name }}</a>
                 </div>

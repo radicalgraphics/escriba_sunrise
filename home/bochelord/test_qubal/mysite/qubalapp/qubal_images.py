@@ -10,7 +10,7 @@ class Thumbnail50x50(ImageSpec):
     
     processors = [ResizeToFill(50, 50)]
     format = 'JPEG'
-    options = {'quality': 70}
+    options = {'quality': 100}
     
 
 
@@ -18,19 +18,19 @@ class Thumbnail100x100(ImageSpec):
     
     processors = [ResizeToFill(100, 100)]
     format = 'JPEG'
-    options = {'quality': 70}
+    options = {'quality': 100}
 
 
 class Thumbnail150x150(ImageSpec):
     
     processors = [ResizeToFill(150, 150)]
     format = 'JPEG'
-    options = {'quality': 70}
+    options = {'quality': 100}
     
 
 class Thumbnail30x30(ImageSpec):
     
     processors = [ResizeToFill(30, 30)]
     format = 'JPEG'
-    options = {'quality': 70}
+    options = {'quality': 100}
     

@@ -8,68 +8,69 @@
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/navbar.css">
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/index.css" />
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/opentip.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/alert-notification-animations.css" />
 
 
 
 <script>
-$(function($) {
+// $(function($) {
 
-                $(".knob").knob({
-                    change : function (value) {
-                        //console.log("change : " + value);
-                    },
-                    release : function (value) {
-                        //console.log(this.$.attr('value'));
-                        console.log("release : " + value);
-                    },
-                    cancel : function () {
-                        console.log("cancel : ", this);
-                    },
-                    draw : function () {
+//                 $(".knob").knob({
+//                     change : function (value) {
+//                         //console.log("change : " + value);
+//                     },
+//                     release : function (value) {
+//                         //console.log(this.$.attr('value'));
+//                         console.log("release : " + value);
+//                     },
+//                     cancel : function () {
+//                         console.log("cancel : ", this);
+//                     },
+//                     draw : function () {
 
-                        // "tron" case
-                        if(this.$.data('skin') == 'tron') {
+//                         // "tron" case
+//                         if(this.$.data('skin') == 'tron') {
 
-                            var a = this.angle(this.cv)  // Angle
-                                , sa = this.startAngle          // Previous start angle
-                                , sat = this.startAngle         // Start angle
-                                , ea                            // Previous end angle
-                                , eat = sat + a                 // End angle
-                                , r = 1;
+//                             var a = this.angle(this.cv)  // Angle
+//                                 , sa = this.startAngle          // Previous start angle
+//                                 , sat = this.startAngle         // Start angle
+//                                 , ea                            // Previous end angle
+//                                 , eat = sat + a                 // End angle
+//                                 , r = 1;
 
-                            this.g.lineWidth = this.lineWidth;
+//                             this.g.lineWidth = this.lineWidth;
 
-                            this.o.cursor
-                                && (sat = eat - 0.3)
-                                && (eat = eat + 0.3);
+//                             this.o.cursor
+//                                 && (sat = eat - 0.3)
+//                                 && (eat = eat + 0.3);
 
-                            if (this.o.displayPrevious) {
-                                ea = this.startAngle + this.angle(this.v);
-                                this.o.cursor
-                                    && (sa = ea - 0.3)
-                                    && (ea = ea + 0.3);
-                                this.g.beginPath();
-                                this.g.strokeStyle = this.pColor;
-                                this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sa, ea, false);
-                                this.g.stroke();
-                            }
+//                             if (this.o.displayPrevious) {
+//                                 ea = this.startAngle + this.angle(this.v);
+//                                 this.o.cursor
+//                                     && (sa = ea - 0.3)
+//                                     && (ea = ea + 0.3);
+//                                 this.g.beginPath();
+//                                 this.g.strokeStyle = this.pColor;
+//                                 this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sa, ea, false);
+//                                 this.g.stroke();
+//                             }
 
-                            this.g.beginPath();
-                            this.g.strokeStyle = r ? this.o.fgColor : this.fgColor ;
-                            this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sat, eat, false);
-                            this.g.stroke();
+//                             this.g.beginPath();
+//                             this.g.strokeStyle = r ? this.o.fgColor : this.fgColor ;
+//                             this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sat, eat, false);
+//                             this.g.stroke();
 
-                            this.g.lineWidth = 2;
-                            this.g.beginPath();
-                            this.g.strokeStyle = this.o.fgColor;
-                            this.g.arc( this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
-                            this.g.stroke();
+//                             this.g.lineWidth = 2;
+//                             this.g.beginPath();
+//                             this.g.strokeStyle = this.o.fgColor;
+//                             this.g.arc( this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
+//                             this.g.stroke();
 
-                            return false;
-                        }
-                    }
-                });
-});
+//                             return false;
+//                         }
+//                     }
+//                 });
+// });
 
 
  </script>
@@ -109,7 +110,7 @@ $(function($) {
           {% generateimage 'qubalapp:thumbnail150x150' source=student.image as tn2 %}
           <div class='push-down profile_image'><img src='{{ tn2.url }}' class='img-circle' title='{{ student.name}} {{ student.lastname }} - level {{ current_level }} - explorer' rel="tooltip-left"/></div>
         {% else %}
-          <div class='push-down profile_image'><img src='{{ STATIC_URL }}qubalapp/main_engine/img/default_avatar_grey.jpg' width='150' class='img-circle' title='{{ student.name}} {{ student.lastname }} - level {{ current_level }} - explorer' rel="tooltip-left"/></div>
+          <div class='push-down profile_image'><img src='{{ STATIC_URL }}default_images/default_avatar_grey.jpg' width='150' class='img-circle' title='{{ student.name}} {{ student.lastname }} - level {{ current_level }} - explorer' rel="tooltip-left"/></div>
         {% endif %}
         <br><br>
       </div>
@@ -135,8 +136,14 @@ $(function($) {
                 <h5>Last Achievement</h5>
                   {% if last_achievement_list %}
                     {% for last_achievement in last_achievement_list.all %}
-                      {% generateimage 'qubalapp:thumbnail100x100' source=last_achievement.image as last_achievement_holder %}
-                      <img src='{{ last_achievement_holder.url }}' class='img-polaroid' rel="tooltip" title='{{ last_achievement.name }} : {{ last_achievement.description }}'/><br><p class='lead'>{{ last_achievement.name }}</p>
+
+                      {% if last_achievement.image %}
+                        {% generateimage 'qubalapp:thumbnail100x100' source=last_achievement.image as last_achievement_holder %}
+                        <img src='{{ last_achievement_holder.url }}' class='img-polaroid' rel="tooltip" title='{{ last_achievement.name }} : {{ last_achievement.description }}'/><br><p class='lead'>{{ last_achievement.name }}</p>
+                      {% else %}
+                        <img src='{{ STATIC_URL }}default_images/default_achievement.jpg' width="100" class='img-polaroid' rel="tooltip" title='{{ last_achievement.name }} : {{ last_achievement.description }}'/><br><p class='lead'>{{ last_achievement.name }}</p>
+                      {% endif %}
+
                     {% endfor %}
                   {% else %}
                   <p>No hay ultimo logro</p>
@@ -158,10 +165,18 @@ $(function($) {
                 
                 {% for team in student_teams_list.all %}
                 
-                {% generateimage 'qubalapp:thumbnail30x30' source=team.image as team_holder %}
-                  <a href="/team/{{ team.id }}/" rel="tooltip" title='{{team.name}}' >
-                    <img src='{{ team_holder.url }}' class='img-polaroid'/>
-                  </a>
+                  {% if team.image %}
+
+                    {% generateimage 'qubalapp:thumbnail30x30' source=team.image as team_holder %}
+                      <a href="/team/{{ team.id }}/" rel="tooltip" title='{{team.name}}' >
+                        <img src='{{ team_holder.url }}' class='img-polaroid'/>
+                      </a>
+                  {% else %}
+                      <a href="/team/{{ team.id }}/" rel="tooltip" title='{{team.name}}' >
+                        <img src='{{ STATIC_URL }}default_images/default_team_avatar.jpg' width="30" class='img-polaroid'/>
+                      </a>
+                  {% endif %}
+
                 {% endfor %}
                   <i class='icon-chevron-sign-right button_viewmore'></i>
             {% else %}
@@ -183,11 +198,19 @@ $(function($) {
                 
                 {% for achievement in student_achievement_list.all %}
                 
-                {% generateimage 'qubalapp:thumbnail30x30' source=achievement.image as achievement_holder %}
-                
-                  <a href="/achievement/{{ achievement.id }}/" rel="tooltip" title='{{achievement.name}}'>
-                    <img src='{{ achievement_holder.url }}' class='img-polaroid'/>
-                  </a>
+                {% if achievement.image %}
+
+                  {% generateimage 'qubalapp:thumbnail30x30' source=achievement.image as achievement_holder %}
+                  
+                    <a href="/achievement/{{ achievement.id }}/" rel="tooltip" title='{{achievement.name}}'>
+                      <img src='{{ achievement_holder.url }}' class='img-polaroid'/>
+                    </a>
+                {% else %}
+                    <a href="/achievement/{{ achievement.id }}/" rel="tooltip" title='{{achievement.name}}'>
+                      <img src='{{ STATIC_URL }}default_images/default_achievement.jpg' width="30" class='img-polaroid'/>
+                    </a>
+                {% endif %}
+
                 {% endfor %}
                   <i class='icon-chevron-sign-right button_viewmore'></i>
             {% else %}
@@ -222,6 +245,7 @@ $(function($) {
                             <p class='opensans'>Your latest activity</p>
                           </h3>
                           <p>
+                            <div class="notifications top-right span5"></div>
                           </p>
                           <hr>
                         </div>
@@ -586,6 +610,8 @@ $(function($) {
 <script src="{{ STATIC_URL }}qubalapp/main_engine/js/opentip-jquery-excanvas.js"></script>
 <script src="{{ STATIC_URL }}qubalapp/main_engine/js/opentip.js"></script>
 <script src="{{ STATIC_URL }}qubalapp/main_engine/js/adapter-jquery.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap-notify.js"></script>
+
 
     <script>
       $('#myCarousel').carousel()
@@ -854,6 +880,8 @@ $(function($) {
     });
 
     </script>
+
+{% autoescape off %}{{ notifications_content }}{% endautoescape %}
 
 </body>
 </html>

@@ -191,3 +191,15 @@ form {
 /* ================================= */
 /* Navbar classes END ============== */
 /* ================================= */
+
+/* Debug CSS */
+.debug-icons {
+  font-size: 24px;
+}
+
+.debug-absolute {
+  float: right;
+  position: absolute;
+  right: 65px;
+  top: 150px;
+}

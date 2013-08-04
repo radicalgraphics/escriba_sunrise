@@ -220,6 +220,13 @@ def profile(request, student_id):
 	total_xp = local_student.xp
 	current_level = calculate_level(total_xp)
 
+	#####
+	# Check for avoid a crash when the image doesn't exist
+	
+	if not os.path.isfile(settings.MEDIA_ROOT +str(local_student.image)):
+		local_student.image = ""
+			
+			
 	url = 'profile.html'
 	
 	html = prerender_nav(local_student, url, current_level, settings, request)
@@ -259,7 +266,7 @@ def login(request):
 		auth.login(request, user)
 		return HttpResponseRedirect("/test")
 	else:
-		return HttpResponseRedirect("test/landing/?error")
+		return HttpResponseRedirect("/test/landing/?error")
 
 
 
@@ -284,6 +291,12 @@ def teams(request):
 
 			total_xp = local_student.xp
 			current_level = calculate_level(total_xp)
+
+			#####
+			# Check for avoid a crash when the image doesn't exist
+	
+			if not os.path.isfile(settings.MEDIA_ROOT +str(local_student.image)):
+				local_student.image = ""
 
 			url = 'teams.html'
 
@@ -313,6 +326,15 @@ def course_listing(request):
 
 			total_xp = local_student.xp
 			current_level = calculate_level(total_xp)
+
+
+			#####
+			# Check for avoid a crash when the image doesn't exist
+	
+			if not os.path.isfile(settings.MEDIA_ROOT +str(local_student.image)):
+				local_student.image = ""
+
+			
 
 			url = 'course_listing.html'
 

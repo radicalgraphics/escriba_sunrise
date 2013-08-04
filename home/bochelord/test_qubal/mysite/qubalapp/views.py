@@ -11,16 +11,20 @@ from imagekit import ImageSpec, register
 from imagekit import processors
 from imagekit.processors import ResizeToFill
 from qubal_images import *
+import qubal_rules, qubal_init
 import os
 import sys
 from django.template import Context, Template
 from django.conf import settings
 from qubal_prerender import *
 
-import sys
+import qubal_check_image
 
 from django.contrib.contenttypes.models import ContentType, ContentTypeManager
 
+from actstream.models import user_stream
+from actstream import action
+from actstream.models import Action
 
 register.generator('qubalapp:thumbnail30x30', Thumbnail30x30)
 register.generator('qubalapp:thumbnail50x50', Thumbnail50x50)
@@ -30,19 +34,34 @@ register.generator('qubalapp:thumbnail150x150', Thumbnail150x150)
 
 def index(request):
 
-
-
-	
 	if request.user.is_authenticated():
 
-		local_person = request.user
+		local_user = request.user
+		# guardo la lista de acciones del usuario, en este punto, el login.
+		#lista_de_acciones = user_stream(request.user)
 
+		#local_persona = get_object_or_404(Person, pk=local_user.id)
 		
+		#lista_de_acciones = Action.objects.filter(verb='usuario logeado', actor_object_id=local_user.id)
+		#ultima_accion = lista_de_acciones[0]
+		#print "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"+str(ultima_accion)
+		#print "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"+str(ultima_accion.actor)
+		#print "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"+str(ultima_accion.verb)
+
+		# We check the login_rule to add XP to the user if last action is logged.
+		qubal_rules.login_rule(local_user)
+
+		#if ultima_accion.verb == 'usuario logeado':
+		#	local_persona.xp += +2
+		#	local_persona.save()
+
+		#sys.exit()
 
 		# we need to check the type of local_person (Student or Teacher)
 		
 		# we do it with the fancy django_model_utils lib
 		# we ask the parent class Person which kind of instance is the user logged_in (teacher or student)
+		local_person = request.user
 		real_person = Person.objects.get_subclass(user=local_person.id)
 
 		# We ask if it is student or not
@@ -72,22 +91,15 @@ def index(request):
 
 			# student_powers = local_student.has_powers_set.get(id=local_person.id)
 			# We get the powers of the student and then check if it's empty or not
-			student_powers = Power.objects.filter(id=local_student.has_powers_id)
+			
 			
 			
 			# If the student_powers are empty we create everything to zero.
-			if not student_powers:
-				power = Power.objects.create(teamwork=1,
-											 communication=1,
-											 responsability=1,
-											 perseverance=1,
-											 mastery=1,
-											 focus=1)
-				local_student.has_powers = power
-				local_student.save()
+
 
 			# We get the specific student powers and assign it to the student_powers var
 			# to send it as context to the index.html
+			
 			student_powers = local_student.has_powers
 
 			percent = current_level * 10
@@ -117,6 +129,8 @@ def index(request):
 	
 			html = prerender_nav(local_student, url, current_level, settings, request)
 
+
+			notifications_script = prerender_notifications(local_student)
 			#source_file = open(local_student.image.url,'r')
 			#image_generator = Thumbnail(local_student.image)
 			#result = image_generator.generate()
@@ -136,6 +150,7 @@ def index(request):
 				   'next_level':next_level,
 				   'student_powers': student_powers,
 				   'navbar_content': html,
+				   'notifications_content': notifications_script,
 				   'QUBAL_VERSION': settings.QUBAL_VERSION }
 
 		
@@ -164,6 +179,7 @@ def index(request):
 			current_level = calculate_level(total_xp) 
 
 			url = 'index.html'
+
 
 			html = prerender_nav(local_teacher, url, current_level, settings, request)
 
@@ -221,12 +237,16 @@ def profile(request, student_id):
 	current_level = calculate_level(total_xp)
 
 	#####
-	# Check for avoid a crash when the image doesn't exist
+			# Check for avoid a crash when the image doesn't exist
 	
 	if not os.path.isfile(settings.MEDIA_ROOT +str(local_student.image)):
 		local_student.image = ""
-			
-			
+
+
+	print "CABEZADEMELON" + str(local_student_courses)
+
+	#sys.exit("SE ACABO LO Q SE DABA")
+
 	url = 'profile.html'
 	
 	html = prerender_nav(local_student, url, current_level, settings, request)
@@ -241,7 +261,7 @@ def profile(request, student_id):
 def landing(request):
 
 	if 'error' in request.GET:
-		mensaje_puerco = "Has olvidado tu clave? comeme el rabo!"
+		mensaje_puerco = "Has olvidado tu clave?"
 	else:
 		mensaje_puerco = ""
 	# c = {}
@@ -264,6 +284,26 @@ def login(request):
 
 	if user is not None and user.is_active:
 		auth.login(request, user)
+		
+		# Guardamos la accion de que el usuario se ha logeado.
+		action.send(request.user, verb='notification_welcome', description='Welcome to Qubal!', mostrado='no')
+
+		# Chequeamos si hay cursos sin imagenes...
+		# Check for avoid crash when courses don't have image. If it doesn't then it enters "" (blank)
+		qubal_check_image.courses()
+		# same for achievements
+		qubal_check_image.achievements()
+		qubal_check_image.teams()
+
+		real_person = Person.objects.get_subclass(user=user.id)
+
+		if isinstance(real_person, Student):
+			local_student = get_object_or_404(Student, pk=user.id)
+			qubal_init.check_powers(local_student)
+		elif isinstance(real_person, Teacher):
+			local_teacher = get_object_or_404(Teacher, pk=user.id)
+			qubal_init.check_powers(local_teacher)
+		
 		return HttpResponseRedirect("/test")
 	else:
 		return HttpResponseRedirect("/test/landing/?error")
@@ -271,6 +311,10 @@ def login(request):
 
 
 def logout(request):
+
+	
+	# Action to confirm the user has logged out
+	action.send(request.user, verb='notification_loggedout', description='Logged out ok')
 
 	auth.logout(request)
 
@@ -317,6 +361,8 @@ def course_listing(request):
 
 		local_person = request.user
 
+		
+
 		if Student.objects.get(pk=local_person.id):
 
 			local_student = get_object_or_404 (Student, pk=local_person.id)
@@ -327,7 +373,6 @@ def course_listing(request):
 			total_xp = local_student.xp
 			current_level = calculate_level(total_xp)
 
-
 			#####
 			# Check for avoid a crash when the image doesn't exist
 	
@@ -335,6 +380,7 @@ def course_listing(request):
 				local_student.image = ""
 
 			
+
 
 			url = 'course_listing.html'
 

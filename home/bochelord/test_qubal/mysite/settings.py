@@ -13,7 +13,7 @@ DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
          #'NAME': 'K:/Root/Radical Graphics Studios/GitHub/escriba/database/qubaldb.db', # Or path to database file if using sqlite3.
-         'NAME': 'qubaldb', #Leunam's machine path
+         'NAME': 'qubaldb', 
          # The following settings are not used with sqlite3:
          'USER': 'root',
          'PASSWORD': 'Sunr1s3',
@@ -129,7 +129,7 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
-QUBAL_VERSION = 'v0.3 Toro'
+QUBAL_VERSION = 'v0.3.0 Toro'
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -144,7 +144,8 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
 	'qubalapp',
-    'imagekit'
+    'imagekit',
+	'actstream',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -176,6 +177,14 @@ LOGGING = {
     }
 }
 
+ACTSTREAM_SETTINGS = {
+    'MODELS': ('auth.user', 'comments.comment'),
+    'MANAGER': 'actstream.managers.ActionManager',
+    'FETCH_RELATIONS': True,
+    'USE_PREFETCH': True,
+    'USE_JSONFIELD': True,
+    'GFK_FETCH_DEPTH': 1,
+}
 
 # SESSION_ENGINE = {
 #     'django.contrib.sessions.backends.signed_cookies'

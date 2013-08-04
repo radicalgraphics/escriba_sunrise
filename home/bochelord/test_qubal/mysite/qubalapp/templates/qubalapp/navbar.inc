@@ -109,10 +109,12 @@
             <div class="span2menu pull-right">
                  
               <a class="btn btn-mini btn-warning" href="/test/admin"><i class="icon-cog"></i> ADMIN</a>
-              <span class="version"><br>QUBAL {{ QUBAL_VERSION }}</span><br><a href='/test/logout/'>logout</a>
+              <span class="version"><br>QUBAL {{ QUBAL_VERSION }}</span><br>
+			  <a href='/test/logout/'><i class="icon-signout"></i> logout</a>
                 
             </div>
   </div> <!-- div navbar navbar-inverse line 2 -->
 
 </div> <!-- div container line 1 -->
 
+<div><span class="pull-right debug-absolute">{{ debug_placeholder|safe }}</span><div>

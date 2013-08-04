@@ -21,7 +21,7 @@ class Achievement(models.Model):
     name = models.CharField(max_length=250)
     description = models.TextField()
     # points = models.IntegerField(default=0)
-    image = models.ImageField(upload_to="images/achievements", blank=True, null=True)
+    image = models.ImageField(upload_to="images/achievements",default="default_images/default_achievement.jpg")
     image_thumbnail = ImageSpecField(source='image',
                                       processors=[ResizeToFill(50, 50)],
                                       format='JPEG',
@@ -53,7 +53,7 @@ class Power(models.Model):
 
 # Course that helds several students
 class Course(models.Model):
-    image = models.ImageField(upload_to="images/courses", blank=True, null=True)
+    image = models.ImageField(upload_to="images/courses",default="default_images/default_course_dark.jpg")
     image_thumbnail = ImageSpecField(source='image',
                                       processors=[ResizeToFill(50, 50)],
                                       format='JPEG',
@@ -90,7 +90,7 @@ class Team(models.Model):
     name = models.CharField(max_length=100)
     is_in_course = models.ForeignKey('Course')
     description = models.TextField()
-    image = models.ImageField(upload_to="images/teams", blank=True, null=True)
+    image = models.ImageField(upload_to="images/teams",default="default_images/default_team_avatar.jpg")
     image_thumbnail = ImageSpecField(source='image',
                                       processors=[ResizeToFill(50, 50)],
                                       format='JPEG',
@@ -112,7 +112,7 @@ class Person(models.Model):
     lastname = models.CharField(max_length=100)
     birth = models.DateTimeField('Birthdate')
     email = models.EmailField(max_length=75)
-    image = models.ImageField(upload_to="images/persons", blank=True, null=True)
+    image = models.ImageField(upload_to="images/persons",default="default_images/default_avatar_grey.jpg")
     image_thumbnail = ImageSpecField(source='image',
                                       processors=[ResizeToFill(50, 50)],
                                       format='JPEG',

@@ -12,3 +12,69 @@ When trying to release a new version of Qubal:
 fix for the id null:
 ====================
 ALTER TABLE auth_user MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT;
+
+
+=========================================================================
+Reprosteps ==============================================================
+=========================================================================
+
+=================
+home/bochelord...
+=================
+
+mysite
+======
+Compare for changes in settings.py ---- escriba - escriba-sunrise - Yes
+Compare for changes in urls.py --------    "            "         - Yes
+
+
+qubalapp
+========
+Compare urls.py --------	"       "	        - Yes
+Compare admin.py -------	"	"		- Yes
+
+Copy -> models.py
+Copy -> qubal_check_image.py
+Copy -> qubal_images.py
+Copy -> qubal_init.py
+Copy -> qubal_prerender.py
+Copy -> qubal_rules.py
+Copy -> qubal_xp.py
+Copy -> tests.py
+
+						   LOCAL		SERVER
+						================================
+Compare - views.py               note ->	(/landing/)		(/test/landing/)
+
+qubalapp/templates
+==================
+
+compare -> navbar.inc				(/)			(/test)
+
+copy -> index.html
+copy -> index_teacher.html
+
+Compare -> landing.html				
+
+copy -> teams.html
+copy -> course_listing.html
+copy -> notifications.inc
+copy -> profile.html
+copy -> search_results.html
+
+===========================
+var/www/qubal_public/static
+===========================
+
+copy -> default_images (folder (if needed))
+copy -> main_engine (folder)
+
+=======================================================
+=======================================================
+
+- Go to qubal.ue/phpmyadmin
+- export current database (qubaldb)
+
+(use the script "recompile_db.py" (edit it to include the .sql file) - ERROR)
+
+sudo service apache2 restart

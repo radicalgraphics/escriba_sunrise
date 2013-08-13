@@ -135,11 +135,11 @@ ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, us
 
 # Settings for mail
 # Trying to send through our account on gmail
-EMAIL_USE_TLS = True
-EMAIL_HOST = ''
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
-EMAIL_PORT = 
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = ''
+# EMAIL_HOST_USER = ''
+# EMAIL_HOST_PASSWORD = ''
+# EMAIL_PORT = 
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',

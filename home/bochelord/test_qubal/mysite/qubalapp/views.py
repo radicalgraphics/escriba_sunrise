@@ -1,7 +1,7 @@
 # Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, render_to_response
-from qubalapp.models import Course, Student, Rules_Xp_per_Level, Team, Power, Teacher, Person
+from qubalapp.models import Course, Student, Rules_Xp_per_Level, Team, Power, Teacher, Person, Quest_Status
 from django.core.context_processors import csrf
 from django.contrib import auth
 from django.contrib.auth.models import User
@@ -356,7 +356,7 @@ def login(request):
 
 		else:
 			# Aun no tiene el personaje creado asi que lo redirigimos a register_character_landing
-			return HttpResponseRedirect("/register_character_landing/")
+			return HttpResponseRedirect("/test/register_character_landing/")
 
 	else:
 		return HttpResponseRedirect("/test/landing/?error")
@@ -473,6 +473,11 @@ def quest_listing(request):
 
 			local_student_quests_status = Quest_Status.objects.filter(student=local_student.user_id).order_by('started_on_date')
 
+			# Check for avoid a crash when the image doesn't exist
+			if not os.path.isfile(settings.MEDIA_ROOT +str(local_student.image)):
+				local_student.image = ""
+
+
 			url = 'quest_listing.html'
 
 			html = prerender_nav(local_student, url, current_level, settings, request)
@@ -515,6 +520,9 @@ def quest(request, quest_id):
 			quest = get_object_or_404 (Quest, pk=quest_id)
 
 			course_with_that_quest = get_object_or_404(Course, has_quests=quest_id)
+
+			if not os.path.isfile(settings.MEDIA_ROOT +str(local_student.image)):
+				local_student.image = ""
 
 			url = 'quest.html'
 

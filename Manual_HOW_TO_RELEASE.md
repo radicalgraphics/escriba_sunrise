@@ -31,9 +31,10 @@ Compare for changes in urls.py --------    "            "         - OK
 qubalapp
 ========
 Compare urls.py --------	"       "	        - OK
-Compare admin.py -------	"	"		- Yes
+Compare admin.py -------	"	"		- OK
 
 Copy -> models.py
+copy -> qubal_forms.py
 Copy -> qubal_check_image.py
 Copy -> qubal_images.py
 Copy -> qubal_init.py
@@ -44,29 +45,37 @@ Copy -> tests.py
 
 						   LOCAL		SERVER
 						================================
-Compare - views.py               note ->	(/landing/)		(/test/landing/)
+Compare - views.py               note ->	(/landing/)		(/test/landing/)    - OK
 
 qubalapp/templates
 ==================
 
-compare -> navbar.inc				(/)			(/test)
+compare -> navbar.inc				(/)			(/test)                         - OK
+ 
+copy -> index.html 																- OK
+copy -> index_teacher.html 														- OK
 
-copy -> index.html
-copy -> index_teacher.html
+Compare -> landing.html															- OK
 
-Compare -> landing.html				
-
-copy -> teams.html
-copy -> course_listing.html
-copy -> notifications.inc
-copy -> profile.html
-copy -> search_results.html
+copy -> teams.html 																- OK
+copy -> course_listing.html 													- OK
+copy -> notifications.inc 														- OK
+copy -> profile.html 															- OK
+copy -> search_results.html 													- OK
+copy -> file_field.html 														- OK
+copy -> quest.html 																- OK
+copy -> quest_listing.html 														- OK
+copy -> register_character.html 												- OK
+copy -> search_results.html 													- OK
 
 ===========================
 var/www/qubal_public/static
 ===========================
 
 copy -> default_images (folder (if needed))
+copy -> css
+copy -> js
+copy -> img (i.e. logo.png)
 copy -> main_engine (folder)
 
 =======================================================

@@ -155,7 +155,7 @@ class Register_Character_Landing_Form(forms.Form):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_class = 'form-inline' # the css class applied to the form apart from the .uniform
-        self.helper.form_action = '/register_character/'
+        self.helper.form_action = '/test/register_character/'
         # Layout field definition (order is important)
         self.helper.layout = Layout(
             Fieldset(

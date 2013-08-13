@@ -43,7 +43,7 @@
                       <span class="label label-success pull-right"><i class="icon-shield"></i> Quest</span>
                     
                       <div class="quest-box-title">
-                        <a href="/quest/{{ quest_status.quest.id }}/">{{ quest_status.quest.name }}</a>
+                        <a href="/test/quest/{{ quest_status.quest.id }}/">{{ quest_status.quest.name }}</a>
                       </div>
 
                       <div class="quest-box-date">
@@ -100,7 +100,7 @@
                 <span class="label label-warning pull-right"><i class="icon-shield"></i> Quest</span>
                 
                 <div class="quest-box-title">
-                  <a href="/quest/{{ local_student_quest_completed.id }}/">{{ local_student_quest_completed.name }}</a>
+                  <a href="/test/quest/{{ local_student_quest_completed.id }}/">{{ local_student_quest_completed.name }}</a>
                 </div>
 
                 <div class="quest-box-date">
@@ -145,7 +145,7 @@
 
             {% for local_student_active_course in local_student_active_courses_list.all %}
                 <div class="course-title">
-                <a href="/course/{{ local_student_active_course.id }}/"><span>{{ local_student_active_course.name }}</span></a><br><br><br>
+                <a href="/test/course/{{ local_student_active_course.id }}/"><span>{{ local_student_active_course.name }}</span></a><br><br><br>
                 </div>
                 
                 {% for local_student_course_quest in local_student_active_course.has_quests.all %}
@@ -162,7 +162,7 @@
                     <span class="label label-warning pull-right"><i class="icon-shield"></i> Quest</span>
                     
                     <div class="quest-box-title">
-                      <a href="/quest/{{ local_student_course_quest.id }}/">{{ local_student_course_quest.name }}</a>
+                      <a href="/test/quest/{{ local_student_course_quest.id }}/">{{ local_student_course_quest.name }}</a>
                     </div>
 
                     <div class="quest-box-date">

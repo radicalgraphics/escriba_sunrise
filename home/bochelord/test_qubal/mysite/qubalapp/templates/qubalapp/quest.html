@@ -1,0 +1,177 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<title>Qubal | Quests</title>
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-flatly.css">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/navbar.css">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/quest.css">
+</head>
+
+<body>
+
+{% load imagekit %}
+{% autoescape off %}{{ navbar_content }}{% endautoescape %}
+
+<div class="container">
+
+	<ul class="breadcrumb">
+  		<li>
+  			<a href="/">Dashboard</a>
+  			<span class="divider">></span>
+  		</li>
+
+  		<li>
+  			<a href="/quest_listing/">Quests</a>
+  			<span class="divider">></span>
+  		</li>
+  		<li class="active">Quests available</li>
+	</ul>
+
+	<hr class="hr-format">
+
+
+<!-- SAMPLEEEE -->
+
+	<div class="row">
+		<div class="span12">
+			<h3 class="course-title-name">Course: {{ course.name }}</h3>
+			<p class="quests-tab-title">Quests available </p>
+
+
+				{% generateimage 'qubalapp:thumbnail150x150' source=student.image as tn2 %}
+
+			<div class="tabbable tabs-left quest-tab-menu"> <!-- QUESTS TABS MENU starts <<<<<<<<<<<<<<<<<<<<<<<<< -->
+					<ul class="nav nav-tabs" id="myTab">
+					{% for quest in course.has_quests.all %}
+						{% if quest == course.has_quests.all|first %}
+					  		<li class="active"><a href="#{{ quest.id }}" data-toggle="pill"><i class="icon-shield"></i> {{ quest.name }}</a></li>
+					  	{% else %}
+					  		<li class=""><a href="#{{ quest.id }}" data-toggle="pill"><i class="icon-shield"></i> {{ quest.name }}</a></li>
+					  	{% endif %}
+					{% endfor %}
+					</ul>
+
+				<div class="tab-content">
+				
+				{% for quest in course.has_quests.all %}
+					{% if quest == course.has_quests.all|first %}
+						<div class="tab-pane active" id="{{ quest.id }}">
+
+							{% if quest.image %}
+								{% generateimage 'qubalapp:thumbnail30x30' source=quest.image as quest_image %}
+									<!-- QUEST DATA in the tab-content <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+								<p class="quest-image"><img class="img-circle" src="{{ quest_image.url }}" /></p>
+							{% else %}
+								<p class="quest-image"><img class="img-circle" src="{{ STATIC_URL }}default_images/default_quest.png" width="30" /></p>
+							{% endif %}
+
+									<p class="quest-title">{{quest.name}}</p>
+									<p class="quest-description">{{quest.description}}</p>
+									<!-- QUEST DATA in the tab-content END <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+							<hr class="hr-format">
+
+							<div class='row'>
+								<div class='span5'>
+									<div class="tabbable tabs-left challenge-tab-menu">
+								
+					{% else %}
+						<div class="tab-pane" id="{{ quest.id }}">
+
+							<!-- QUEST DATA in the tab-content <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+
+							{% if quest.image %}
+								{% generateimage 'qubalapp:thumbnail30x30' source=quest.image as quest_image %}
+									<!-- QUEST DATA in the tab-content <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+								<p class="quest-image"><img class="img-circle" src="{{ quest_image.url }}" /></p>
+							{% else %}
+								<p class="quest-image"><img class="img-circle" src="{{ STATIC_URL }}default_images/default_quest.png" width="30" /></p>
+							{% endif %}
+
+							
+							<p class="quest-title">{{quest.name}}</p>
+							<p class="quest-description">{{quest.description}}</p>
+							<!-- QUEST DATA in the tab-content END <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+							<hr class="hr-format">
+
+							<div class='row'>
+								<div class='span5'>
+									<div class="tabbable tabs-left challenge-tab-menu"> <!-- CHALLENGE TABS MENU starts <<<<<<<<<<<<< -->
+								
+					{% endif %}
+
+
+										<ul class="nav nav-tabs"> 
+										{% for challenge in quest.has_challenges.all %}
+										
+											{% if challenge == quest.has_challenges.all|first  %}
+										  		<li class="active challenge-tab-title"><a href="#{{quest.id}}{{challenge.id}}" data-toggle="pill"><i class="icon-trophy"></i> {{ challenge.name }}</a></li>
+										  		<p class="challenge-tab-description">{{ challenge.description }}</p>
+										  	{% else %}
+										  		<li class=" challenge-tab-title"><a href="#{{quest.id}}{{challenge.id}}" data-toggle="pill"><i class="icon-trophy"></i> {{ challenge.name }}</a></li>
+										  		<p class="challenge-tab-description">{{ challenge.description }}</p>
+										  	{% endif %}
+
+										{% endfor %}
+										</ul>
+										
+
+									
+										
+									</div>
+								</div>
+								<div class="span3">
+										<div class="tab-content">
+											{% for challenge in quest.has_challenges.all %}
+												{% if challenge == quest.has_challenges.all|first  %}
+													<div class="tab-pane active" id="{{quest.id}}{{ challenge.id }}">
+												{% else %}
+													<div class="tab-pane" id="{{quest.id}}{{ challenge.id }}">
+												{% endif %}
+												<p class="task-title">Tasks</p>
+
+
+											
+												{% for task in challenge.has_tasks.all %}
+													<a href="#"><p class="task-name"><i class="icon-puzzle-piece"></i> {{ task.name }}</p></a>
+												{% endfor %}
+													</div>
+											{% endfor%}
+										</div>
+
+								</div>
+							</div>
+						</div>										
+
+				{% endfor %}
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div> <!-- container div -->
+
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/jquery.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap.js"></script>
+
+<script>
+	
+	$('#myTab a[href="#1"]').click(function(e){
+		e.preventDefault();
+		$(this).tab('show');
+	}
+
+  	$('#myTab2 a[href="#11"]').click(function(e){
+		e.preventDefault();
+		$(this).tab('show');
+	}
+
+
+})
+
+</script>
+
+</body>
+</html>

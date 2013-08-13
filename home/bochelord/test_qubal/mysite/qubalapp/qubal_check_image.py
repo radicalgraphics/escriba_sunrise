@@ -3,7 +3,7 @@
 # Library where the check to avoid crash when the image doesn't exist is done
 # Checks for courses, teams and achievements so far
 # (c)2013 Radical Graphics Studios
-from qubalapp.models import Student, Course, Achievement, Team
+from qubalapp.models import Student, Course, Achievement, Team, Quest
 import sys
 import os
 from django.shortcuts import get_object_or_404
@@ -15,7 +15,7 @@ def courses():
      to be an image is actually on the server. If not , it inserts a "" on the field"""
 
     # local_student = get_object_or_404 (Student, pk=student_id)
-    # local_student_courses = local_student.is_enrolled_in_courses.all()
+    # local_student_courses = local_student.active_courses.all()
 
     list_of_courses = Course.objects.all()
 
@@ -60,3 +60,18 @@ def teams():
             if team.image != "":
                 team.image = ""
                 team.save()
+
+
+def quests():
+    """Checks all the quests on Quest Table to check if the path claimed
+     to be an image is actually on the server. If not , it inserts a "" on the field"""
+
+    list_of_quests = Quest.objects.all()
+
+    for quest in list_of_quests:
+        if not os.path.isfile(settings.MEDIA_ROOT + str(quest.image)):
+
+            # Check para ver si lo hemos puesto a "" already
+            if quest.image != "":
+                quest.image = ""
+                quest.save()

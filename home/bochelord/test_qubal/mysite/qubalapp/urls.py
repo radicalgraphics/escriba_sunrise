@@ -31,8 +31,16 @@ urlpatterns = patterns('',
 
     url(r'^logout/$', views.logout),
 
+    url(r'^quest_listing/$', views.quest_listing, name='quest_listing'),
+
+    url(r'^quest/(?P<quest_id>\d+)/$', views.quest),
+
     # //this gets you to index: qubal/
     url(r'^$', views.index, name='index'),
 
-    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT})
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+
+    url(r'^register_character_landing/$', views.register_character_landing),
+
+    url(r'^register_character/$', views.register_character),
 )

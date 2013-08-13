@@ -7,6 +7,7 @@ ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 
+QUBAL_VERSION = 'v0.4.5 Littlechest'
 MANAGERS = ADMINS
 
 DATABASES = {
@@ -129,13 +130,22 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
-QUBAL_VERSION = 'v0.3.0 Toro'
 
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
+
+# Settings for mail
+# Trying to send through our account on gmail
+EMAIL_USE_TLS = True
+EMAIL_HOST = ''
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = 
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
+	'registration',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
@@ -146,6 +156,8 @@ INSTALLED_APPS = (
 	'qubalapp',
     'imagekit',
 	'actstream',
+	'crispy_forms',
+    'datetimewidget',
 )
 
 # A sample logging configuration. The only tangible logging

@@ -24,13 +24,13 @@ home/bochelord...
 
 mysite
 ======
-Compare for changes in settings.py ---- escriba - escriba-sunrise - Yes
-Compare for changes in urls.py --------    "            "         - Yes
+Compare for changes in settings.py ---- escriba - escriba-sunrise - OK
+Compare for changes in urls.py --------    "            "         - OK
 
 
 qubalapp
 ========
-Compare urls.py --------	"       "	        - Yes
+Compare urls.py --------	"       "	        - OK
 Compare admin.py -------	"	"		- Yes
 
 Copy -> models.py

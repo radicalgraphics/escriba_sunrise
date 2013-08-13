@@ -83,7 +83,21 @@
                 <i class="icon-tasks"></i><br>Courses
               </a>
             </li>
-          {% endif %}              
+          {% endif %}       
+
+          {% if active_url == 'quest_listing.html' %}
+            <li class="active text">
+              <a href="/test/quest_listing/" class="pagination-centered">
+                <i class="icon-shield"></i><br>Quests
+              </a>
+            </li>
+          {% else %}
+            <li class="text">
+              <a href="/test/quest_listing/" class="pagination-centered">
+                <i class="icon-shield"></i><br>Quests
+              </a>
+            </li>
+          {% endif %}         
           </ul>
 
           <div class="row">

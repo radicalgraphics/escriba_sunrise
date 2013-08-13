@@ -115,18 +115,22 @@
               </form>
             </div>
 
-
-          </div> <!-- row pull-right line 60-->
-      </div> <!-- div container line 4 -->
-
-    </div> <!-- div navbar-inner line 3 -->
-            <div class="span2menu pull-right">
+            <div class="span2menu pull-right admin-box">
                  
               <a class="btn btn-mini btn-warning" href="/test/admin"><i class="icon-cog"></i> ADMIN</a>
               <span class="version"><br>QUBAL {{ QUBAL_VERSION }}</span><br>
-			  <a href='/test/logout/'><i class="icon-signout"></i> logout</a>
+              
+              <a href='/test/logout/'><i class="icon-signout"></i> logout</a>
                 
             </div>
+
+          </div> <!-- row pull-right line 60-->
+
+      </div> <!-- div container line 4 -->
+
+
+    </div> <!-- div navbar-inner line 3 -->
+
   </div> <!-- div navbar navbar-inverse line 2 -->
 
 </div> <!-- div container line 1 -->

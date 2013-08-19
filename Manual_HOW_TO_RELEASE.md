@@ -78,7 +78,7 @@ var/www/qubal_public/static
 ===========================
 
 copy -> default_images (folder (if needed))
-copy -> css
+copy -> css 																	**** Font Awesome FIXX Check fontawesome.css and bootstrap-flatly.css put the path from http://qubal.eu
 copy -> js
 copy -> img (i.e. logo.png)
 copy -> main_engine (folder)

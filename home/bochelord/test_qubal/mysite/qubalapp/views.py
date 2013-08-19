@@ -378,7 +378,9 @@ def landing(request):
 
 
 	context = { 'mensaje_de_mierda':mensaje_puerco,
-				'QUBAL_VERSION': settings.QUBAL_VERSION }
+				'QUBAL_VERSION': settings.QUBAL_VERSION,
+				'SUNRISE_URL': settings.SUNRISE_URL,
+			  }
 
 	return render(request, 'qubalapp/landing.html', context)
 
@@ -620,7 +622,8 @@ def quest_listing(request):
 				   		'current_level' : current_level,
 				   		'local_student_quests_status' : local_student_quests_status,
 				   		'local_student_quests_completed_list': local_student_quests_completed_list,
-				   		'local_student_active_courses_list': local_student_active_courses_list, 
+				   		'local_student_active_courses_list': local_student_active_courses_list,
+				   		'SUNRISE_URL': settings.SUNRISE_URL,
 				   		'navbar_content': html }
 
 			return render(request, 'qubalapp/quest_listing.html', context)
@@ -668,6 +671,7 @@ def quest(request, quest_id):
 			context = { 'navbar_content': html,
 						'quest': quest,
 						'course' : course_with_that_quest,
+						'SUNRISE_URL': settings.SUNRISE_URL,
 						 }
 
 			return render(request, 'qubalapp/quest.html', context)

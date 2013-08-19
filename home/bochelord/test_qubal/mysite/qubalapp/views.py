@@ -744,6 +744,7 @@ def task(request, task_id):
 						'deliverable_form': Deliverable_Form(),
 						'task_material_list': has_material_list,
 						'task_support_material_list': has_support_material_list,
+						'SUNRISE_URL': settings.SUNRISE_URL,
 						}
 						
 						 
@@ -793,7 +794,7 @@ def task_completed (request):
 	# Llamamos a la regla de puntos por completar una task
 	qubal_rules.task_completed_rule(local_user)
 
-	return  HttpResponseRedirect("/task/"+ task_id)
+	return  HttpResponseRedirect(settings.SUNRISE_URL+"task/"+ task_id)
 
 #############
 # ORacle views

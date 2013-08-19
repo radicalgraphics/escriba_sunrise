@@ -74,6 +74,12 @@ border: 0px solid #d4d4d4;
   font-size: 12px;
 }
 
+.admin-box {
+  position: absolute;
+  right: 0;
+
+}
+
 input[type="text"],
 input[type="password"]
 {
@@ -134,7 +140,7 @@ form {
 
 
 .icon-dashboard:hover {
-  color: #ffffff;
+  color: #E8E8E8;
 
 }
 
@@ -149,7 +155,7 @@ form {
 }
 
 .icon-user:hover {
-  color: #ffffff;
+  color: #E8E8E8;
 }
 
 .icon-group:before {
@@ -163,7 +169,7 @@ form {
 }
 
 .icon-group:hover {
-  color: #ffffff;
+  color: #E8E8E8;
 }
 
 .icon-tasks:before {
@@ -177,8 +183,23 @@ form {
 }
 
 .icon-tasks:hover {
-  color: #ffffff;
+  color: #E8E8E8;
 }
+
+.icon-shield {
+  content: "\f0ae";
+  font-size: 24px;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease; 
+}
+
+.icon-shield:hover {
+  color: #E8E8E8;
+}
+
 
 /* ================================= */
 /* Nav animations END ============== */

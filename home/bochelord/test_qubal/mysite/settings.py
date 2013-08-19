@@ -7,6 +7,9 @@ ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 
+QUBAL_VERSION = 'v0.5.8 Angry Panda'
+SUNRISE_URL = '/test/'
+
 MANAGERS = ADMINS
 
 DATABASES = {
@@ -100,6 +103,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     # other context processors....
     'django.core.context_processors.static',
     'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.tz',
+    'social_auth.context_processors.social_auth_by_type_backends'
     # other context processors....
 )
 
@@ -129,13 +134,59 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
-QUBAL_VERSION = 'v0.3.0 Toro'
 
+# SOCIAL AUTH configuration and Authentication backends for social register and login
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/qubal_character_init/'
+LOGIN_ERROR_URL = '/login-error/'
+
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.twitter.TwitterBackend',
+    'social_auth.backends.facebook.FacebookBackend',
+    #'social_auth.backends.contrib.linkedin.LinkedinBackend',
+    'django.contrib.auth.backends.ModelBackend',
+    )
+
+# SECRET and KEYS for SOCIAL AUTH
+TWITTER_CONSUMER_KEY              = 'UGqsQ8Kc2dEjGOsPFHoKBA'
+TWITTER_CONSUMER_SECRET           = 'Af7yp6GhUQHywCBXCcaM3Gwe1zAVfcSZLF0KHVXUk7k'
+FACEBOOK_APP_ID                   = '681368278559322'
+FACEBOOK_API_SECRET               = '0c44b3698010f95456e6c8834f77a200'
+LINKEDIN_CONSUMER_KEY             = ''
+LINKEDIN_CONSUMER_SECRET          = ''
+
+
+FACEBOOK_EXTENDED_PERMISSIONS = ['email']
+
+
+SOCIAL_AUTH_DEFAULT_USERNAME = 'new_social_auth_user'
+SOCIAL_AUTH_UID_LENGTH = 16
+SOCIAL_AUTH_ASSOCIATION_HANDLE_LENGTH = 16
+SOCIAL_AUTH_NONCE_SERVER_URL_LENGTH = 16
+SOCIAL_AUTH_ASSOCIATION_SERVER_URL_LENGTH = 16
+SOCIAL_AUTH_ASSOCIATION_HANDLE_LENGTH = 16
+
+    
+SOCIAL_AUTH_ENABLED_BACKENDS = ('twitter', 'facebook')
+
+
+# Setting for registration link to be active...
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
+
+# Settings for mail
+# Trying to send through our account on gmail
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = ''
+# EMAIL_HOST_USER = ''
+# EMAIL_HOST_PASSWORD = ''
+# EMAIL_PORT = 
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
+	'registration',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
@@ -146,6 +197,9 @@ INSTALLED_APPS = (
 	'qubalapp',
     'imagekit',
 	'actstream',
+	'crispy_forms',
+    'datetimewidget',
+    'social_auth',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -178,7 +232,7 @@ LOGGING = {
 }
 
 ACTSTREAM_SETTINGS = {
-    'MODELS': ('auth.user', 'comments.comment'),
+    'MODELS': ('auth.user', 'comments.comment', 'qubalapp.task_deliverable', 'qubalapp.task_video'),
     'MANAGER': 'actstream.managers.ActionManager',
     'FETCH_RELATIONS': True,
     'USE_PREFETCH': True,

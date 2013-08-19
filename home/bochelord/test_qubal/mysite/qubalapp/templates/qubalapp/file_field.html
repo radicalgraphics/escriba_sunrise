@@ -1,0 +1,35 @@
+{% load crispy_forms_field %}
+
+<div id="div_{{ field.auto_id }}" class="control-group{% if form_show_errors%}{% if field.errors %} error{% endif %}{% endif %}{% if field.css_classes %} {{ field.css_classes }}{% endif %}">
+    {% if field.label %}
+        <label for="{{ field.id_for_label }}" class="control-label {% if field.field.required %}requiredField{% endif %}">
+            {{ field.label|safe }}{% if field.field.required %}<span class="asteriskField">*</span>{% endif %}
+        </label>
+    {% endif %}
+
+    
+<div class='row'>
+    <div class="span5">
+        <div class="fileupload fileupload-new " data-provides="fileupload">
+          <div class="fileupload-new thumbnail" style="width: 150px; height: 150px;"><img src="http://www.placehold.it/150x150/EFEFEF/AAAAAA" /></div>
+          <div class="fileupload-preview fileupload-exists thumbnail" style="width: 150px; height: 150px;"></div>&nbsp;
+
+          <div>
+            <span class="fileupload-new">
+              <span class="btn btn-info btn-file"><i class='icon-upload'></i> Upload image: <!-- <span class="fileupload-exists">Change</span> --><input type="file" name="{{ field.html_name }}" id="id_{{ field.html_name }}" value="{{ field.value }}" /></span></span>
+            </span>
+         
+            <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class='icon-remove'></i> Remove and change</a>
+          </div>
+
+          
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+</div>

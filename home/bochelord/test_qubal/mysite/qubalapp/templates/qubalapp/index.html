@@ -8,6 +8,7 @@
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/navbar.css">
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/index.css" />
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/opentip.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-notify.css" />
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/alert-notification-animations.css" />
 
 
@@ -99,7 +100,7 @@
 
         <h4 class='opensans-bold'>{{ student.name }} {{ student.lastname }}</h4>
         
-        <div class='span1ymedio pull-right push-up label label-inverse profile_level'><div class='opensans-bold offset-cuarto'><br><span class='totalxp_text pull-right'>{{ total_xp }}</span> <div class='push-up20 totalxp_text offset-medio'>XP</div><br><span class='pagination-centered current_level_text'>{{ current_level }}&nbsp;</span></div><p class='opensans-bold pagination-centered '>EXPLORER</p>
+        <div class='span1ymedio pull-right push-up label label-inverse profile_level'><div class='opensans-bold offset-cuarto'><br><span class='totalxp_text pull-right'>{{ total_xp }}</span> <div class='push-up20 totalxp_text offset-medio'>XP</div><br><span class='pagination-centered current_level_text'>{{ current_level }}&nbsp;</span></div><p class='opensans-bold pagination-centered '>{{ student.get_character_class_display|upper }}</p>
 
 
 
@@ -108,9 +109,9 @@
         {% if student.image %}
 
           {% generateimage 'qubalapp:thumbnail150x150' source=student.image as tn2 %}
-          <div class='push-down profile_image'><img src='{{ tn2.url }}' class='img-circle' title='{{ student.name}} {{ student.lastname }} - level {{ current_level }} - explorer' rel="tooltip-left"/></div>
+          <div class='push-down profile_image'><img src='{{ tn2.url }}' class='img-circle' title='{{ student.name}} {{ student.lastname }} - level {{ current_level }} - {{ student.get_character_class_display }}' rel="tooltip-left"/></div>
         {% else %}
-          <div class='push-down profile_image'><img src='{{ STATIC_URL }}default_images/default_avatar_grey.jpg' width='150' class='img-circle' title='{{ student.name}} {{ student.lastname }} - level {{ current_level }} - explorer' rel="tooltip-left"/></div>
+          <div class='push-down profile_image'><img src='{{ STATIC_URL }}default_images/default_avatar_grey.jpg' width='150' class='img-circle' title='{{ student.name}} {{ student.lastname }} - level {{ current_level }} - {{ student.get_character_class_display }}' rel="tooltip-left"/></div>
         {% endif %}
         <br><br>
       </div>
@@ -245,7 +246,7 @@
                             <p class='opensans'>Your latest activity</p>
                           </h3>
                           <p>
-                            <div class="notifications top-right span5"></div>
+                            <div class="notifications top-right"></div>
                           </p>
                           <hr>
                         </div>
@@ -371,15 +372,170 @@
 
 
 <div class="row box_curses bg-grey">
-                  <div class="span5">
+                  <div class="span6">
                       
                       
-                      <div class='row latest_activity_box'>
+                      <div class='row your_courses_box'>
                         <div class='span6'>
                           <h3>
                             <p class='opensans'>Learn courses</p>
                           </h3>
                           <p>
+                                  <p>
+                                    {{ student.name }} | level {{ current_level }} | {{ total_xp }} totalxp
+                                  </p>
+                                  <div class="span3 progress progress-striped active">
+                                    <div class="bar" style="width:{{ percent_xp }}%;"></div>
+                                  </div><br>
+                                  <div class="progress progress-striped active">
+                                    <div class="bar" style="width:{{ percent }}%;"></div>
+                                  </div>
+                                  
+                                  
+
+
+
+                                  <div class="row carousel-box">
+
+                
+                                    <div class="span5">
+                                      <div id="myCarousel" class="carousel slide">
+                                        <ol class="carousel-indicators">
+                                          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                          <li data-target="#myCarousel" data-slide-to="1"></li>
+                                          <li data-target="#myCarousel" data-slide-to="2"></li>
+                                          <li data-target="#myCarousel" data-slide-to="3"></li>
+                                        </ol>
+                                        <!-- Carousel items -->
+                                        <div class="carousel-inner carousel-rounded">
+
+                                          <div class="active item">
+                                            <img src="{{ STATIC_URL}}qubalapp/main_engine/img/carousel1.jpg" alt"">
+                                            
+                                              <div class="carousel-caption">
+                                                
+                                                <div class="row">
+                                                  <div class="span2 available-course">
+                                                    Available Courses
+                                                  </div>
+                                                </div>
+                                                
+                                                <div class="row pb20">
+                                                  <div class="span1 available-course-icon">
+                                                    <i class="icon-desktop big-icon"></i>
+                                                  </div>
+                                                  <div class"span2">
+                                                    <span class="text-blue">CSS3! NEW </span><br>
+                                                    Learn CSS3<br>
+                                                    <span class="text-small">Learn CSS3 with the new <span class="text-blue">QuBAL</span> system.</span>
+
+                                                  </div>
+                                                </div>
+
+                                              </div>
+                                            
+
+                                          </div> <!-- div active item -->
+
+                                          <div class="item">
+                                            <img src="{{ STATIC_URL}}qubalapp/main_engine/img/carousel2.jpg" alt"">
+                                              
+                                              <div class="carousel-caption">
+                                                
+                                                <div class="row">
+                                                  <div class="span2 available-course">
+                                                    Available Courses
+                                                  </div>
+                                                </div>
+                                                
+                                                <div class="row pb20">
+                                                  <div class="span1 available-course-icon">
+                                                    <i class="icon-desktop big-icon"></i>
+                                                  </div>
+                                                  <div class"span2">
+                                                    <span class="text-blue">jquery</span><br>
+                                                    The jquery path!<br>
+                                                    <span class="text-small">10 quest, 50 challenges and 100 new tasks!.</span>
+                                                  </div>
+                                                </div>
+
+                                              </div>
+                                              
+                                            </div>
+                                          <div class="item">
+                                            <img src="{{ STATIC_URL}}qubalapp/main_engine/img/carousel3.jpg" alt"">
+                                              
+                                              <div class="carousel-caption">
+                                                
+                                                <div class="row">
+                                                  <div class="span2 available-course">
+                                                    Available Courses3
+                                                  </div>
+                                                </div>
+                                                
+                                                <div class="row pb20">
+                                                  <div class="span1 available-course-icon">
+                                                    <i class="icon-desktop big-icon"></i>
+                                                  </div>
+                                                  <div class"span2">
+                                                    <span class="text-blue">CourseTitle3</span><br>
+                                                    CourseInformation3<br>
+                                                    <span class="text-small">Ut wise enim ad minim veniam quis nostrud ipsum 3.</span>
+
+                                                  </div>
+                                                </div>
+                                  <!--               <div class="row">
+                                                  <p class="negro"> CSS cross coutry! Join now to this exciting course!</p>
+                                                </div>  -->
+                                              </div>
+                                              
+                                          </div> <!-- div item -->
+                                          <div class="item">
+                                            <img src="{{ STATIC_URL}}qubalapp/main_engine/img/carousel4.jpg" alt"">
+
+                                             <div class="carousel-caption">
+                                                
+                                                <div class="row">
+                                                  <div class="span2 available-course">
+                                                    <span class="text-white">Available Courses4</span>
+                                                  </div>
+                                                </div>
+                                                
+                                                <div class="row pb20">
+                                                  <div class="span1 available-course-icon">
+                                                    <i class="icon-desktop big-icon text-white"></i>
+                                                  </div>
+                                                  <div class"span2">
+                                                    <span class="text-blue">CourseTitle4</span><br>
+                                                    <span class="text-white">CourseInformation4</span><br>
+                                                    <span class="text-small text-white">Ut wise enim ad minim veniam quis nostrud ipsum 4.</span>
+
+                                                  </div>
+                                                </div>
+                                  <!--               <div class="row">
+                                                  <p class="negro"> CSS cross coutry! Join now to this exciting course!</p>
+                                                </div>  -->
+                                              </div>
+                                              
+
+                                              
+                                          </div> <!-- div item -->
+                                        </div> <!-- div carousel-inener -->
+                                      <!-- Carousel nav -->
+
+                                      <a class="carousel-control left jcarousel-prev-disabled" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                                      <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+
+                                      </div> <!-- div myCarousel -->
+                                    </div> <!-- div span5 (doing as container)-->
+                                  
+
+                              </div> <!-- div from the carousel box-->
+
+
+
+
+
                           </p>
                           <hr>
                         </div>
@@ -388,156 +544,7 @@
 
 
 
-                      <p>
-                        {{ student.name }} | level {{ current_level }} | {{ total_xp }} totalxp
-                      </p>
-                      <div class="span3 progress progress-striped active">
-                        <div class="bar" style="width:{{ percent_xp }}%;"></div>
-                      </div><br>
-                      <div class="progress progress-striped active">
-                        <div class="bar" style="width:{{ percent }}%;"></div>
-                      </div>
                       
-                      
-
-
-
-                      <div class="row carousel-box">
-
-    
-                        <div class="span5">
-                          <div id="myCarousel" class="carousel slide">
-                            <ol class="carousel-indicators">
-                              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                              <li data-target="#myCarousel" data-slide-to="1"></li>
-                              <li data-target="#myCarousel" data-slide-to="2"></li>
-                              <li data-target="#myCarousel" data-slide-to="3"></li>
-                            </ol>
-                            <!-- Carousel items -->
-                            <div class="carousel-inner carousel-rounded">
-
-                              <div class="active item">
-                                <img src="{{ STATIC_URL}}qubalapp/main_engine/img/carousel1.jpg" alt"">
-                                
-                                  <div class="carousel-caption">
-                                    
-                                    <div class="row">
-                                      <div class="span2 available-course">
-                                        Available Courses
-                                      </div>
-                                    </div>
-                                    
-                                    <div class="row pb20">
-                                      <div class="span1 available-course-icon">
-                                        <i class="icon-desktop big-icon"></i>
-                                      </div>
-                                      <div class"span2">
-                                        <span class="text-blue">CSS3! NEW </span><br>
-                                        Learn CSS3<br>
-                                        <span class="text-small">Learn CSS3 with the new <span class="text-blue">QuBAL</span> system.</span>
-
-                                      </div>
-                                    </div>
-
-                                  </div>
-                                
-
-                              </div> <!-- div active item -->
-
-                              <div class="item">
-                                <img src="{{ STATIC_URL}}qubalapp/main_engine/img/carousel2.jpg" alt"">
-                                  
-                                  <div class="carousel-caption">
-                                    
-                                    <div class="row">
-                                      <div class="span2 available-course">
-                                        Available Courses
-                                      </div>
-                                    </div>
-                                    
-                                    <div class="row pb20">
-                                      <div class="span1 available-course-icon">
-                                        <i class="icon-desktop big-icon"></i>
-                                      </div>
-                                      <div class"span2">
-                                        <span class="text-blue">jquery</span><br>
-                                        The jquery path!<br>
-                                        <span class="text-small">10 quest, 50 challenges and 100 new tasks!.</span>
-                                      </div>
-                                    </div>
-
-                                  </div>
-                                  
-                                </div>
-                              <div class="item">
-                                <img src="{{ STATIC_URL}}qubalapp/main_engine/img/carousel3.jpg" alt"">
-                                  
-                                  <div class="carousel-caption">
-                                    
-                                    <div class="row">
-                                      <div class="span2 available-course">
-                                        Available Courses3
-                                      </div>
-                                    </div>
-                                    
-                                    <div class="row pb20">
-                                      <div class="span1 available-course-icon">
-                                        <i class="icon-desktop big-icon"></i>
-                                      </div>
-                                      <div class"span2">
-                                        <span class="text-blue">CourseTitle3</span><br>
-                                        CourseInformation3<br>
-                                        <span class="text-small">Ut wise enim ad minim veniam quis nostrud ipsum 3.</span>
-
-                                      </div>
-                                    </div>
-                      <!--               <div class="row">
-                                      <p class="negro"> CSS cross coutry! Join now to this exciting course!</p>
-                                    </div>  -->
-                                  </div>
-                                  
-                              </div> <!-- div item -->
-                              <div class="item">
-                                <img src="{{ STATIC_URL}}qubalapp/main_engine/img/carousel4.jpg" alt"">
-
-                                 <div class="carousel-caption">
-                                    
-                                    <div class="row">
-                                      <div class="span2 available-course">
-                                        <span class="text-white">Available Courses4</span>
-                                      </div>
-                                    </div>
-                                    
-                                    <div class="row pb20">
-                                      <div class="span1 available-course-icon">
-                                        <i class="icon-desktop big-icon text-white"></i>
-                                      </div>
-                                      <div class"span2">
-                                        <span class="text-blue">CourseTitle4</span><br>
-                                        <span class="text-white">CourseInformation4</span><br>
-                                        <span class="text-small text-white">Ut wise enim ad minim veniam quis nostrud ipsum 4.</span>
-
-                                      </div>
-                                    </div>
-                      <!--               <div class="row">
-                                      <p class="negro"> CSS cross coutry! Join now to this exciting course!</p>
-                                    </div>  -->
-                                  </div>
-                                  
-
-                                  
-                              </div> <!-- div item -->
-                            </div> <!-- div carousel-inener -->
-                          <!-- Carousel nav -->
-
-                          <a class="carousel-control left jcarousel-prev-disabled" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-                          <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-
-                          </div> <!-- div myCarousel -->
-                        </div> <!-- div span5 (doing as container)-->
-                      
-
-                  </div> <!-- div from the carousel box-->
 
 
 
@@ -555,9 +562,16 @@
             </div> <!-- row box_continue -->
 
 
+            <!-- Oracle Ad start  -->
+            <div class='oraclead'>
+              <div class='row oracle_box'>
+                <div class='span8'>
+                  <a href='{{ SUNRISE_URL }}oracle_landing/'><img src='{{ STATIC_URL}}qubalapp/main_engine/img/oracle.jpg' class='img-rounded' title='The Oracle'></a>
+                </div>
+              </div>
+            </div>
 
-
-
+            <!-- Oracle Ad end-->
 
   </div>
 </div>

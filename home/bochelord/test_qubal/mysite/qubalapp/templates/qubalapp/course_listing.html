@@ -35,7 +35,7 @@
                 <span class="label label-info pull-right">badge</span>
               
                 <div class="course-box-title">
-                  <a href="/courses/{{ course.id }}/">{{ course.name }}</a>
+                  <a href="{{ SUNRISE_URL }}courses/{{ course.id }}/">{{ course.name }}</a>
                 </div>
 
                 <div class="course-box-date">
@@ -74,7 +74,7 @@
                 <span class="label label-info pull-right">badge</span>
               
                 <div class="course-box-title">
-                  <a href="/courses/{{ course.id }}/">{{ course.name }}</a>
+                  <a href="{{ SUNRISE_URL }}courses/{{ course.id }}/">{{ course.name }}</a>
                 </div>
 
                 <div class="course-box-date">
@@ -95,23 +95,12 @@
 </div>
 <hr class="mini-hr">
 
-<br><br><br><br><br><br><br><br>
-  <p>CRAP CRAP CRAP CRAP CRAP</p>
 
-<br><br><br><br><br><br><br><br>
-<p>CRAP CRAP CRAP CRAP CRAP</p>
-
-<br><br><br><br><br><br><br><br>
-<p>CRAP CRAP CRAP CRAP CRAP</p>
 </div>
 
 <script src="{{ STATIC_URL }}qubalapp/main_engine/js/jquery.js"></script>
 <script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap.js"></script>
 
-    <script>
-      $('#myCarousel').carousel()
-      interval: 1000
-    </script>
 
 
 </body>

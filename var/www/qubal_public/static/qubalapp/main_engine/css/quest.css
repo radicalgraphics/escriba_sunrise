@@ -1,0 +1,106 @@
+.quest-nav-box {
+  width: 220px;
+  padding: 5px;
+  margin-left: 5px;
+  margin-top: 10px;
+  padding-bottom: 60px;
+  border:1px solid #c2c2c2;
+    -webkit-border-radius: 10px 10px 10px 10px;
+     -moz-border-radius: 10px 10px 10px 10px;
+          border-radius: 10px 10px 10px 10px;
+}
+
+.breadcrumb {
+	margin-top: -40px;
+}
+
+.hr-format {
+	margin-top: -5px;
+}
+
+.course-title-name {
+	margin-top: -20px;
+}
+
+.quests-tab-title {
+	font-size: 18px;
+	margin-top: -5px;
+}
+
+.quest-tab-menu {
+	margin-top: -10px;
+	font-size: 16px;
+}
+
+.quest-image {
+	float: left;
+}
+
+.quest-title {
+	font-size: 24px;
+	font-weight: bold;
+	padding-left: 35px;
+}
+
+.quest-description {
+	font-size: 16px;
+	margin-top: -8px;
+}
+
+.quest-instruction {
+	font-size: 13px;
+}
+
+.quest-narrative {
+	font-size: 13px;
+}
+
+.quest-goals {
+	font-size: 13px;
+	font-style: italic;
+}
+
+.challenge-tab-menu {
+	margin-top: -10px;
+}
+
+.challenge-tab-title {
+	font-size: 16px;
+	margin-top: -5px;
+	margin-left: 8px;
+	font-weight: bold;
+}
+
+.challenge-description {
+	font-size: 14px;
+	margin-top: -5px;
+	margin-left: 20px;
+}
+
+.challenge-instruction {
+	font-size: 13px;
+	margin-top: -5px;
+	margin-left: 20px;
+}
+
+.challenge-narrative {
+	font-size: 13px;
+	margin-top: -5px;
+	margin-left: 20px;
+}
+
+.challenge-goals {
+	font-size: 13px;
+	margin-top: -5px;
+	margin-left: 20px;
+}
+
+.task-title {
+	font-size: 16px;
+	font-weight: bold;
+	margin-left: 1px;
+}
+
+.task-name {
+	font-size: 14px;
+}

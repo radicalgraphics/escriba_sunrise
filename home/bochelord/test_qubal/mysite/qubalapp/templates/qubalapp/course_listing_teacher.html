@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<title>Qubal | Courses Teacher</title>
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-flatly.css">
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/navbar.css">
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/course_listing.css">
+</head>
+
+<body>
+
+{% autoescape off %}{{ navbar_content }}{% endautoescape %}
+
+<div class="container">
+<span class="your-courses-title"> Courses authored by you</span><br><br><br>
+<div class='row'>
+    {% load imagekit %}
+    
+      {% if authored_course_list %}
+        
+          {% for course in authored_course_list.all %}
+
+              {% if course.image %}
+                  {% generateimage 'qubalapp:thumbnail100x100' source=course.image as imagen %}
+                    <div class='course-box'>
+                    <div class='well'>
+                    <img class="img-format img-circle pull-left" src='{{ imagen.url }}' />
+              {% else %}
+                    <div class='course-box'>
+                    <div class='well'>
+                    <img class="img-format img-circle pull-left" src='{{ STATIC_URL }}default_images/default_course_dark.jpg' width='100' />
+              {% endif %}
+
+              {% if course.is_live %}
+                <span class="label label-success pull-right">live</span>
+              {% else %}
+                <span class="label label-important pull-right">NOT LIVE!</span>
+              {% endif %}
+              
+                <div class="course-box-title">
+                  <a href="{{ SUNRISE_URL }}courses/{{ course.id }}/">{{ course.name }}</a>
+                </div>
+
+                <div class="course-box-date">
+                  <span class>{{ course.starting_date|date:"d M Y" }}</span>
+                </div>
+
+                <div class="course-box-description">
+                  {% if course.description|length > 125 %}
+                    <span>{{ course.description|truncatechars:125 }}</span>
+                  {% else %} 
+                    <span>{{ course.description }}</span>
+                  {% endif %}
+                </div>
+
+              </div>
+            </div>
+
+          {% endfor %}
+      {% else %}
+              <p class="your-courses">You have not created any Course yet! Check some courses here below!</p>
+      {% endif %}
+<div class="clearfix"></div>
+<hr class="central-hr"><br>
+<span class="all-courses-title"> Other Courses </span><br><br><br>
+      {% for course in not_authored_course_list.all %}
+              {% if course.image %}
+                  {% generateimage 'qubalapp:thumbnail100x100' source=course.image as imagen %}
+                    <div class='course-box'>
+                    <div class='well'>
+                    <img class="img-format img-circle pull-left" src='{{ imagen.url }}' />
+              {% else %}
+                    <div class='course-box'>
+                    <div class='well'>
+                    <img class="img-format img-circle pull-left" src='{{ STATIC_URL }}default_images/default_course_dark.jpg' width='100'/>
+              {% endif %}
+
+              {% if course.is_live %}
+                <span class="label label-success pull-right">live</span>
+              {% else %}
+                <span class="label label-important pull-right">NOT LIVE!</span>
+              {% endif %}
+              
+              
+                <div class="course-box-title">
+                  <a href="{{ SUNRISE_URL }}courses/{{ course.id }}/">{{ course.name }}</a>
+                </div>
+
+                <div class="course-box-date">
+                  <span class>{{ course.starting_date|date:"d M Y" }}</span>
+                </div>
+
+                <div class="course-box-description">
+                  {% if course.description|length > 125 %}
+                    <span>{{ course.description|truncatechars:125 }}</span>
+                  {% else %}
+                    <span>{{ course.description }}</span>
+                  {% endif %}
+                </div>
+
+              </div>
+            </div>
+      {% endfor %}
+</div>
+<hr class="mini-hr">
+
+
+</div>
+
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/jquery.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap.js"></script>
+
+
+
+</body>
+</html>

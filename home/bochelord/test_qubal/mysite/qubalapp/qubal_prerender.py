@@ -83,6 +83,7 @@ def prerender_nav(local_person, active_url, level, settings, request):
 	
 	c = Context({'student': local_person,
 				 'STATIC_URL': settings.STATIC_URL,
+				 'SUNRISE_URL': settings.SUNRISE_URL,
 				 'active_url': active_url,
 				 'current_level': level,
 				 'QUBAL_VERSION': settings.QUBAL_VERSION,

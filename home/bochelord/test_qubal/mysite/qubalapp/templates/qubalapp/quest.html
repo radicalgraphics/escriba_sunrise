@@ -18,12 +18,12 @@
 
 	<ul class="breadcrumb">
   		<li>
-  			<a href="/">Dashboard</a>
+  			<a href="{{ SUNRISE_URL }}">Dashboard</a>
   			<span class="divider">></span>
   		</li>
 
   		<li>
-  			<a href="/quest_listing/">Quests</a>
+  			<a href="{{ SUNRISE_URL }}quest_listing/">Quests</a>
   			<span class="divider">></span>
   		</li>
   		<li class="active">Quests available</li>
@@ -137,7 +137,7 @@
 
 											
 												{% for task in challenge.has_tasks.all %}
-													<a href="/test/task/{{ task.id }}/"><p class="task-name">
+													<a href="{{ SUNRISE_URL }}task/{{ task.id }}/"><p class="task-name">
 														{% if task.task_type == "type_test" %}
 															<i class="icon-list-ul"></i>
 														{% elif task.task_type == "type_deliverable" %}

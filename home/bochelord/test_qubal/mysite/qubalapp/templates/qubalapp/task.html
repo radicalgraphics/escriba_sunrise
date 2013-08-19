@@ -21,12 +21,12 @@
 
 	<ul class="breadcrumb">
   		<li>
-  			<a href="/test/">Dashboard</a>
+  			<a href="{{ SUNRISE_URL }}">Dashboard</a>
   			<span class="divider">></span>
   		</li>
 
   		<li>
-  			<a href="/test/quest/{{quest.id}}">Quests & Challenges</a>
+  			<a href="{{ SUNRISE_URL }}quest/{{quest.id}}">Quests & Challenges</a>
   			<span class="divider">></span>
   		</li>
   		<li class="active">Task</li>
@@ -57,7 +57,7 @@
           {% for task_material in task_material_list %}
         
             <div class="span3">
-              <i class="icon-download"></i><a href="/test/media/{{ task_material.educational_file }}"> {{ task_material.name }}</a>
+              <i class="icon-download"></i><a href="{{ SUNRISE_URL }}media/{{ task_material.educational_file }}"> {{ task_material.name }}</a>
             </div>
 
           {% endfor %}
@@ -75,7 +75,7 @@
           {% for task_support_material in task_support_material_list %}
         
             <div class="span3">
-              <i class="icon-download"></i><a href="/test/media/{{ task_support_material.educational_file }}"> {{ task_support_material.name }}</a>
+              <i class="icon-download"></i><a href="{{ SUNRISE_URL }}media/{{ task_support_material.educational_file }}"> {{ task_support_material.name }}</a>
             </div>
 
           {% endfor %}
@@ -116,7 +116,7 @@
               {% if task.task_type == "type_deliverable" %}
                 <p>Click on the 'Send your files' button to complete your task!</p>
               {% else %}
-                <form action="/task_completed/" method="POST" >
+                <form action="{{ SUNRISE_URL }}task_completed/" method="POST" >
                     <input type="hidden" name="task_sent" value="{{ task.id }}" />
                     <button type="submit" class="btn btn-info">Done!<i class="icon-ok pull-right"></i></button> 
                     <i class="icon-arrow-left"></i> Click on the button to complete your task!

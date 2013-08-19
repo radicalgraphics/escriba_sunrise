@@ -6,6 +6,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field, Fieldset, ButtonHolder
 from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions, Accordion, AccordionGroup, Tab, FormActions
 import datetime
+from django.conf import settings
 
 
 class MessageForm(forms.Form):
@@ -138,7 +139,7 @@ class Register_Character_Landing_Form(forms.Form):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_class = 'form-inline' # the css class applied to the form apart from the .uniform
-        self.helper.form_action = '/test/register_character/'
+        self.helper.form_action = settings.SUNRISE_URL+'register_character/'
         # Layout field definition (order is important)
         self.helper.layout = Layout(
             Fieldset(
@@ -196,7 +197,7 @@ class Deliverable_Form(forms.Form):
 
         self.helper = FormHelper()
         self.helper.form_class = 'form-inline'
-        self.helper.form_action = '/test/task_completed/'
+        self.helper.form_action = settings.SUNRISE_URL+'task_completed/'
         self.helper.layout = Layout(
             FileField('deliverable_button'),
 
@@ -283,7 +284,7 @@ class Oracle_Form(forms.Form):
 
         super(Oracle_Form, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.form_action = '/test/oracle_process/'
+        self.helper.form_action = settings.SUNRISE_URL+'oracle_process/'
         self.helper.layout = Layout(
             Fieldset(
                 'The ORACLE',

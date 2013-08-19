@@ -33,44 +33,46 @@ qubalapp
 Compare urls.py --------	"       "	        - OK / OK
 Compare admin.py -------	"	"				- OK / OK
 
+											   LOCAL			SERVER
+											================================
+Compare - views.py               note ->	(/landing/)		(/test/landing/)    - OK / OK - (settings.SUNRISE_URL)
+
 Copy -> models.py
-copy -> qubal_forms.py
-Copy -> qubal_check_image.py
-Copy -> qubal_images.py
-Copy -> qubal_init.py
-Copy -> qubal_prerender.py
-Copy -> qubal_rules.py
-Copy -> qubal_xp.py
+copy -> qubal_forms.py 							- OK - (settings.SUNRISE_URL)
+Copy -> qubal_check_image.py 					- OK
+Copy -> qubal_images.py 						- OK
+Copy -> qubal_init.py 							- OK
+Copy -> qubal_prerender.py 						- OK - (settings.SUNRISE_URL in context)
+Copy -> qubal_reward.py 						- OK
+Copy -> qubal_rules.py 							- OK
+Copy -> qubal_xp.py 							- OK
 Copy -> tests.py 								- OK / OK
 
-						   LOCAL		SERVER
-						================================
-Compare - views.py               note ->	(/landing/)		(/test/landing/)    - OK / OK
 
 qubalapp/templates
 ==================
 
-compare -> navbar.inc				(/)			(/test)                         - OK / OK
+compare -> navbar.inc				(/)			(/test)                         - OK / OK (settings.SUNRISE_URL)
  
 compare -> index.html 															- OK / Ok
 compare -> index_teacher.html 													- OK / Ok
 
-Compare -> landing.html															- OK / Ok
+Compare -> landing.html															- OK / Ok (SUNRISE_URL)
 
-compare -> teams.html 															- OK / Ok
-compare -> course_listing.html 													- OK / OK
-compare -> notifications.inc 													- OK / Ok
-compare -> profile.html 														- OK / Ok
-compare -> search_results.html 													- OK / Ok
-compare -> file_field.html 														- OK / OK
-compare -> quest.html 															- OK / Ok
-compare -> quest_listing.html 													- OK / Ok
-compare -> register_character.html 												- OK / Ok
-compare -> course_listing_teacher.html 											- 
-compare -> deliverable_field.html 												- 
-compare -> oracle_landing.html 													- 
-compare -> task.html 															-
-compare -> teams_teacher.html 													- 
+compare -> teams.html 															- OK / Ok - (SUNRISE_URL)
+compare -> course_listing.html 													- OK / OK - (SUNRISE_URL)
+compare -> notifications.inc 													- OK / Ok - 
+compare -> profile.html 														- OK / Ok - (SUNRISE_URL)
+compare -> search_results.html 													- OK / Ok - (SUNRISE_URL)
+compare -> file_field.html 														- OK / OK - 
+compare -> quest.html 															- OK / Ok - (SUNRISE_URL)
+compare -> quest_listing.html 													- OK / Ok - (SUNRISE_URL)
+compare -> register_character.html 												- OK / Ok - 
+compare -> course_listing_teacher.html 											- -
+compare -> deliverable_field.html 												- - 
+compare -> oracle_landing.html 													- -
+compare -> task.html 															- - (SUNRISE_URL)
+compare -> teams_teacher.html 													- - (SUNRISE_URL)
 
 
 ===========================

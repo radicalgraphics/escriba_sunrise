@@ -8,7 +8,7 @@ ADMINS = (
 )
 
 QUBAL_VERSION = 'v0.5.8 Angry Panda'
-
+SUNRISE_URL = '/test/'
 
 MANAGERS = ADMINS
 

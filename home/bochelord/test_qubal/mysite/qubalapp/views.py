@@ -133,6 +133,7 @@ def index(request):
 					   'student_powers': student_powers,
 					   'navbar_content': html,
 					   'notifications_content': notifications_script,
+					   'SUNRISE_URL': settings.SUNRISE_URL,
 					   'QUBAL_VERSION': settings.QUBAL_VERSION }
 
 			
@@ -182,11 +183,11 @@ def index(request):
 
 			# we temporarily (for the moment) redirect to create Student if you're not decided yet (only a user)
 			# still we have to implement a switch for the teacher or use the old pen and paper tactic...
-			return HttpResponseRedirect("/test/register_character_landing/")
+			return HttpResponseRedirect(settings.SUNRISE_URL+"register_character_landing/")
 
 		
 	else: #Drop him to landing if he's not authenticated
-		return HttpResponseRedirect("/test/landing/")
+		return HttpResponseRedirect(settings.SUNRISE_URL+"landing/")
 
 
 
@@ -270,7 +271,7 @@ def qubal_character_init(request):
 			local_teacher = get_object_or_404(Teacher, pk=local_user.id)
 			qubal_init.check_powers(local_teacher)
 		
-	return HttpResponseRedirect("/test/")
+	return HttpResponseRedirect(settings.SUNRISE_URL)
 
 
 def register_person(request):
@@ -338,7 +339,7 @@ def register_character(request):
 	# we save the person, let's see...
 	character.save()
 
-	return  HttpResponse("You have been summoned!!: <a href='/test/qubal_character_init/'>Now invoke your character!</a>")
+	return  HttpResponse("You have been summoned!!: <a href='" + settings.SUNRISE_URL + "qubal_character_init/'>Now invoke your character!</a>")
 
 	# print "Student Name"
 	# print student_name
@@ -415,14 +416,14 @@ def login(request):
 				local_teacher = get_object_or_404(Teacher, pk=user.id)
 				qubal_init.check_powers(local_teacher)
 			
-			return HttpResponseRedirect("/test")
+			return HttpResponseRedirect(settings.SUNRISE_URL)
 
 		else:
 			# Aun no tiene el personaje creado asi que lo redirigimos a register_character_landing
-			return HttpResponseRedirect("/test/register_character_landing/")
+			return HttpResponseRedirect(settings.SUNRISE_URL+"register_character_landing/")
 
 	else:
-		return HttpResponseRedirect("/test/landing/?error")
+		return HttpResponseRedirect(settings.SUNRISE_URL+"landing/?error")
 
 
 
@@ -434,7 +435,7 @@ def logout(request):
 
 	auth.logout(request)
 
-	return HttpResponseRedirect('/test')
+	return HttpResponseRedirect(settings.SUNRISE_URL)
 
 
 
@@ -502,7 +503,7 @@ def teams(request):
 			HttpResponse('oh oh what are you doing here? mister: '+real_person.name)
 
 	else:
-		return HttpResponseRedirect("/test/landing/")
+		return HttpResponseRedirect(settings.SUNRISE_URL+"landing/")
 
 
 def course_listing(request):
@@ -579,7 +580,7 @@ def course_listing(request):
 
 		
 	else:
-		return HttpResponseRedirect("/test/landing/")
+		return HttpResponseRedirect(settings.SUNRISE_URL+"landing/")
 
 
 def quest_listing(request):
@@ -631,11 +632,11 @@ def quest_listing(request):
 
 
 
-			return HttpResponseRedirect("/test/course_listing/")
+			return HttpResponseRedirect(settings.SUNRISE_URL+"course_listing/")
 
 	else:
 		
-		return HttpResponseRedirect("/test/landing/")
+		return HttpResponseRedirect(settings.SUNRISE_URL+"landing/")
 
 
 def quest(request, quest_id):
@@ -674,7 +675,7 @@ def quest(request, quest_id):
 
 	else:
 
-		return HttpResponseRedirect("/test/landing/")
+		return HttpResponseRedirect(settings.SUNRISE_URL+"landing/")
 
 def task(request, task_id):
 
@@ -747,7 +748,7 @@ def task(request, task_id):
 
 	else:
 
-		return HttpResponseRedirect("/test/landing/")
+		return HttpResponseRedirect(settings.SUNRISE_URL+"landing/")
 
 
 def task_completed (request):
@@ -819,7 +820,7 @@ def oracle_process(request):
 
 	local_student.save()
 
-	return HttpResponseRedirect("/test/")
+	return HttpResponseRedirect(settings.SUNRISE_URL)
 
 
 	

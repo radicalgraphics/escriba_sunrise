@@ -41,7 +41,7 @@
 
 				<div class="row">
 					<div class="span5 borde-raya"><h3>Member log in</h3>
-						<form name="login" action="/test/login/" method="POST">
+						<form name="login" action="{{ SUNRISE_URL }}login/" method="POST">
 							{% csrf_token %}
 							<div class="row">
 								<div class="span1-5">
@@ -62,7 +62,7 @@
 						</form>
 
 						
-						<h5 class="register">Wanna try Qubal? <a href="/test/accounts/register/">get in and register! <i class='icon-rocket register-icon'></i></a> </h5>
+						<h5 class="register">Wanna try Qubal? <a href="{{ SUNRISE_URL }}accounts/register/">get in and register! <i class='icon-rocket register-icon'></i></a> </h5>
 						
 
 					</div>

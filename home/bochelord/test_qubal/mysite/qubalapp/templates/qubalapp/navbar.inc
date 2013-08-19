@@ -2,7 +2,7 @@
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner show-g">
       <div class="container">
-        <a class="brand" href="/test"><img src="{{ STATIC_URL }}qubalapp/main_engine/img/qubal_logo.png" width="64" height="64"/><span class="logo_text">QUBAL</span></a>
+        <a class="brand" href="{{ SUNRISE_URL }}"><img src="{{ STATIC_URL }}qubalapp/main_engine/img/qubal_logo.png" width="64" height="64"/><span class="logo_text">QUBAL</span></a>
           <ul class="nav">
 
             <li>
@@ -35,23 +35,23 @@
 
           {% if active_url == 'index.html' %}
             <li class="active text">
-              <a href="/test" class="pagination-centered"><i class="icon-dashboard"></i><br>Dashboard</a>
+              <a href="{{ SUNRISE_URL }}" class="pagination-centered"><i class="icon-dashboard"></i><br>Dashboard</a>
             </li>
           {% else %}
             <li class="text">
-              <a href="/test" class="pagination-centered"><i class="icon-dashboard"></i><br>Dashboard</a>
+              <a href="{{ SUNRISE_URL }}" class="pagination-centered"><i class="icon-dashboard"></i><br>Dashboard</a>
             </li>
           {% endif %}
               
           {% if active_url == 'profile.html' %}
             <li class="active text">
-              <a href="/test/profile/{{ student.user_id }}" class="pagination-centered">
+              <a href="{{ SUNRISE_URL }}profile/{{ student.user_id }}" class="pagination-centered">
                 <i class="icon-user"></i><br>Profile
               </a>
             </li>
           {% else %}
             <li class="text">
-              <a href="/test/profile/{{ student.user_id }}" class="pagination-centered">
+              <a href="{{ SUNRISE_URL }}profile/{{ student.user_id }}" class="pagination-centered">
                 <i class="icon-user"></i><br>Profile
               </a>
             </li>
@@ -59,13 +59,13 @@
 
           {% if active_url == 'teams.html' %}
             <li class="active text">
-              <a href="/test/teams/" class="pagination-centered">
+              <a href="{{ SUNRISE_URL }}teams/" class="pagination-centered">
                 <i class="icon-group"></i><br>Teams
               </a>
             </li>
           {% else %}
             <li class="text">
-              <a href="/test/teams/" class="pagination-centered">
+              <a href="{{ SUNRISE_URL }}teams/" class="pagination-centered">
                 <i class="icon-group"></i><br>Teams
               </a>
             </li>
@@ -73,13 +73,13 @@
 
           {% if active_url == 'course_listing.html' %}
             <li class="active text">
-              <a href="/test/course_listing/" class="pagination-centered">
+              <a href="{{ SUNRISE_URL }}course_listing/" class="pagination-centered">
                 <i class="icon-tasks"></i><br>Courses
               </a>
             </li>
           {% else %}
             <li class="text">
-              <a href="/test/course_listing/" class="pagination-centered">
+              <a href="{{ SUNRISE_URL }}course_listing/" class="pagination-centered">
                 <i class="icon-tasks"></i><br>Courses
               </a>
             </li>
@@ -87,13 +87,13 @@
 
           {% if active_url == 'quest_listing.html' %}
             <li class="active text">
-              <a href="/test/quest_listing/" class="pagination-centered">
+              <a href="{{ SUNRISE_URL }}quest_listing/" class="pagination-centered">
                 <i class="icon-shield"></i><br>Quests
               </a>
             </li>
           {% else %}
             <li class="text">
-              <a href="/test/quest_listing/" class="pagination-centered">
+              <a href="{{ SUNRISE_URL }}quest_listing/" class="pagination-centered">
                 <i class="icon-shield"></i><br>Quests
               </a>
             </li>
@@ -104,7 +104,7 @@
 
               <!-- AQUI VA EL FORMULARIO en vez de en otra pagina diferente...-->
             <div class="span2menu">
-              <form action="/test/search/" method="get">
+              <form action="{{ SUNRISE_URL }}search/" method="get">
                 
                 <input type="text" name="q"  placeholder="search..."/>
                  
@@ -117,10 +117,10 @@
 
             <div class="span2menu pull-right admin-box">
                  
-              <a class="btn btn-mini btn-warning" href="/test/admin"><i class="icon-cog"></i> ADMIN</a>
+              <a class="btn btn-mini btn-warning" href="{{ SUNRISE_URL }}admin"><i class="icon-cog"></i> ADMIN</a>
               <span class="version"><br>QUBAL {{ QUBAL_VERSION }}</span><br>
               
-              <a href='/test/logout/'><i class="icon-signout"></i> logout</a>
+              <a href='{{ SUNRISE_URL }}logout/'><i class="icon-signout"></i> logout</a>
                 
             </div>
 

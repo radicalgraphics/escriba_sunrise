@@ -44,10 +44,10 @@
 		<h4>Cursos</h4>
     <ul>
 		{% for n in courses_list %}
-			<li><a href='/courses/{{n.user_id}}/'>{{n.name}}</a></li>
+			<li><a href='{{ SUNRISE_URL }}courses/{{n.user_id}}/'>{{n.name}}</a></li>
 		{% endfor %}
     </ul>
-		<a class="btn" href="/">Home</a>
+		<a class="btn" href="{{ SUNRISE_URL }}">Home</a>
 
 		</div>
 

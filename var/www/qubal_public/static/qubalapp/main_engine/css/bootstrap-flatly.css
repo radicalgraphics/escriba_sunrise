@@ -6852,7 +6852,7 @@ legend {
 
 @font-face {
     font-family: 'corpuscare';
-    src: url('../fonts/corpuscare.ttf') format('truetype');
+    src: url('http://qubal.eu/test/static/qubalapp/main_engine/fonts/corpuscare.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 
@@ -6860,7 +6860,7 @@ legend {
 
 @font-face {
     font-family: 'OpenSans-Light';
-    src: url('../fonts/OpenSans-Light.ttf') format('truetype');
+    src: url('http://qubal.eu/test/static/qubalapp/main_engine/fonts/OpenSans-Light.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 
@@ -6868,14 +6868,14 @@ legend {
 
 @font-face{
     font-family: 'OpenSans';
-    src: url('../fonts/OpenSans-Regular.ttf') format('truetype');
+    src: url('http://qubal.eu/test/static/qubalapp/main_engine/fonts/OpenSans-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face{
     font-family: 'OpenSans';
-    src: url('../fonts/OpenSans-Bold.ttf') format('truetype');
+    src: url('http://qubal.eu/test/static/qubalapp/main_engine/fonts/OpenSans-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: bold;
 }

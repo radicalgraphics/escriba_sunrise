@@ -1,0 +1,245 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<title>Qubal | Quests</title>
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-flatly.css">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/navbar.css">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/quest_listing.css">
+</head>
+
+<body>
+
+{% autoescape off %}{{ navbar_content }}{% endautoescape %}
+
+<div class="container">
+  
+<div class="accordion" id="accordion2">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+        <span class="your-quests-title"> Active Quests </span><br><br>
+      </a>
+    </div>
+    <div id="collapseOne" class="accordion-body collapse in">
+      <div class="accordion-inner">
+          <div class='row'>
+        {% load imagekit %}
+
+        {% if local_student_active_courses_list %}    
+          
+            {% if local_student_quests_status %}
+              
+                {% for quest_status in local_student_quests_status.all %}
+                  <div class='quest-box'>
+                  <div class='well'>
+                    {% if local_student_course_quest.image %}
+                      {% generateimage 'qubalapp:thumbnail100x100' source=local_student_course_quest.image as imagen %}
+                        <img class="img-format img-circle pull-left" src='{{ imagen.url }}' />
+                    {% else %}
+                        <img class="img-format img-circle pull-left" src='{{ STATIC_URL }}default_images/default_quest.png' width='100' />
+                    {% endif %}
+                      <span class="label label-success pull-right"><i class="icon-shield"></i> Quest</span>
+                    
+                      <div class="quest-box-title">
+                        <a href="{{ SUNRISE_URL }}quest/{{ quest_status.quest.id }}/">{{ quest_status.quest.name }}</a>
+                      </div>
+
+                      <div class="quest-box-date">
+                        <span class>{{ quest_status.started_on_date|date:"d M Y" }}</span>
+                      </div>
+
+                      <div class="quest-box-description">
+                        {% if quest_status.quest.description|length > 125 %}
+                          <span>{{ quest_status.quest.description|truncatechars:125 }}</span>
+                        {% else %} 
+                          <span>{{ quest_status.quest.description }}</span>
+                        {% endif %}
+                      </div>
+                        {% if quest_status.quest.has_challenges %}
+                          <span class="label-achievement label-warning pull-right" title="Achievements: {{ quest_status.quest.has_challenges.count }}"><i class="icon-trophy"></i> {{ quest_status.quest.has_challenges.count }}</span>
+                        {% endif %}
+
+                        {% if quest_status.quest.has_rewards %}
+                          <span class="label-reward label-info pull-right" title="Rewards: {{ quest_status.quest.has_rewards.count }}"><i class="icon-asterisk"></i> {{ quest_status.quest.has_rewards.count }}</span>
+                        {% endif %}
+
+                    </div>
+                  </div>
+
+                {% endfor %}
+            {% else %}
+                    <p class="your-courses">You are not enrolled in any Quest! Try and check some courses here below!</p>
+            {% endif %}
+        <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+          <span class="your-quests-title"> Quests Completed</span><br><br>
+      </a>
+    </div>
+    <div id="collapseTwo" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <div class="row">
+        {% for local_student_quest_completed in local_student_quests_completed_list.all %}
+
+            <div class='quest-box'>
+              <div class='well'>
+                {% if local_student_quest_completed.image %}
+                  {% generateimage 'qubalapp:thumbnail100x100' source=local_student_quest_completed.image as imagen %}
+                  <img class="img-format img-circle pull-left" src='{{ imagen.url }}' />
+                {% else %}
+                  <img class="img-format img-circle pull-left" src='{{ STATIC_URL }}default_images/default_quest.png' width='100' />
+                {% endif %}
+                
+                <span class="label label-warning pull-right"><i class="icon-shield"></i> Quest</span>
+                
+                <div class="quest-box-title">
+                  <a href="{{ SUNRISE_URL }}quest/{{ local_student_quest_completed.id }}/">{{ local_student_quest_completed.name }}</a>
+                </div>
+
+                <div class="quest-box-date">
+                  <span class>{{ local_student_quest_completed.duration|date:"d M Y" }}</span>
+                </div>
+
+                <div class="quest-box-description">
+                  {% if local_student_quest_completed.description|length > 125 %}
+                    <span>{{ local_student_quest_completed.description|truncatechars:125 }}</span>
+                  {% else %} 
+                    <span>{{ local_student_quest_completed.description }}</span>
+                  {% endif %}
+                </div>
+
+                {% if local_student_quest_completed.has_challenges %}
+                    <span class="label-achievement label-warning pull-right" title="Achievements: {{ local_student_quest_completed.has_challenges.count }}"><i class="icon-trophy"></i> {{ local_student_quest_completed.has_challenges.count }}</span>
+                {% endif %}
+
+                {% if local_student_quest_completed.has_rewards %}
+                    <span class="label-reward label-info pull-right" title="Rewards: {{ local_student_quest_completed.has_rewards.count }}"><i class="icon-asterisk"></i> {{ local_student_quest_completed.has_rewards.count }}</span>
+                {% endif %}
+
+              </div>
+            </div>
+
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+        <span class="your-quests-title"> Quests to Complete </span><br><br>
+      </a>
+    </div>
+    <div id="collapseThree" class="accordion-body collapse">
+      <div class="accordion-inner">
+
+
+          <div class='row'>
+
+            {% for local_student_active_course in local_student_active_courses_list.all %}
+                <div class="course-title">
+                <a href="{{ SUNRISE_URL }}course/{{ local_student_active_course.id }}/"><span>{{ local_student_active_course.name }}</span></a><br><br><br>
+                </div>
+                
+                {% for local_student_course_quest in local_student_active_course.has_quests.all %}
+
+                <div class='quest-box'>
+                  <div class='well'>
+                    {% if local_student_course_quest.image %}
+                      {% generateimage 'qubalapp:thumbnail100x100' source=local_student_course_quest.image as imagen %}
+                      <img class="img-format img-circle pull-left" src='{{ imagen.url }}' />
+                    {% else %}
+                      <img class="img-format img-circle pull-left" src='{{ STATIC_URL }}default_images/default_quest.png' width='100' />
+                    {% endif %}
+                    
+                    <span class="label label-warning pull-right"><i class="icon-shield"></i> Quest</span>
+                    
+                    <div class="quest-box-title">
+                      <a href="{{ SUNRISE_URL }}quest/{{ local_student_course_quest.id }}/">{{ local_student_course_quest.name }}</a>
+                    </div>
+
+                    <div class="quest-box-date">
+                      <span class>{{ local_student_course_quest.duration|date:"d M Y" }}</span>
+                    </div>
+
+                    <div class="quest-box-description">
+                      {% if local_student_course_quest.description|length > 125 %}
+                        <span>{{ local_student_course_quest.description|truncatechars:125 }}</span>
+                      {% else %} 
+                        <span>{{ local_student_course_quest.description }}</span>
+                      {% endif %}
+                    </div>
+
+                    {% if local_student_course_quest.has_challenges %}
+                        <span class="label-achievement label-warning pull-right" title="Achievements: {{ local_student_course_quest.has_challenges.count }}"><i class="icon-trophy"></i> {{ local_student_course_quest.has_challenges.count }}</span>
+                    {% endif %}
+
+                    {% if local_student_course_quest.has_rewards %}
+                        <span class="label-reward label-info pull-right" title="Rewards: {{ local_student_course_quest.has_rewards.count }}"><i class="icon-asterisk"></i> {{ local_student_course_quest.has_rewards.count }}</span>
+                    {% endif %}
+
+
+                  </div>
+                </div>
+              
+
+                {% endfor %}
+                
+
+            {% endfor %}
+
+          {% endif %} <!-- first if -->
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/jquery.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap.js"></script>
+
+<script>
+  $(".collapse").collapse()
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</body>
+</html>

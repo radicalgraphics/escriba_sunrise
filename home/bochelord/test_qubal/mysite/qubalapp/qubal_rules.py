@@ -53,3 +53,14 @@ def login_rule (local_user):
 			local_persona.xp += + login_rule_xp_amount
 			local_persona.save()
 			action.send(local_user, verb='notification_got_welcome_xp', description='You got some XP!', mostrado='no')
+
+def task_completed_rule(local_user):
+
+	task_completed_rule_xp_amount = 10
+
+	local_persona = Person.objects.get_subclass(user=local_user.id)
+
+	# ultima_notification_task_completed_xp = Action.objects.filter(actor_object_id=local_user.id,verb='notification_task_completed')[0].get()
+
+	local_persona.xp += + task_completed_rule_xp_amount
+	local_persona.save()

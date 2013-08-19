@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-flatly.css">
 	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/font-awesome.css">
 	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/landing.css">
-	<title>QUBALAPP login</title>
+	<title>QUBALAPP login | {{ QUBAL_VERSION }}</title>
 </head>
 <body>
 <!-- <div class="wrapper"> -->
@@ -41,7 +41,7 @@
 
 				<div class="row">
 					<div class="span5 borde-raya"><h3>Member log in</h3>
-						<form name="login" action="/test/login/" method="POST">
+						<form name="login" action="{{ SUNRISE_URL }}login/" method="POST">
 							{% csrf_token %}
 							<div class="row">
 								<div class="span1-5">
@@ -61,28 +61,32 @@
 				 			<!-- <a class="btn btn-success" type="submit" href="../search/?q="><i class="icon-search icon-white"></i>Buscar</a> -->
 						</form>
 
+						
+						<h5 class="register">Wanna try Qubal? <a href="{{ SUNRISE_URL }}accounts/register/">get in and register! <i class='icon-rocket register-icon'></i></a> </h5>
+						
+
 					</div>
 					<div class="row">
 						<div class="span5"><h3>Or just log in using:</h3>
 							<div class="row row-button">
 								<div class="span3">
-									<a class="btn btn-primary" href="#">
+									<a class="btn btn-primary" href="{% url 'socialauth_begin' 'facebook' %}">
 									<span class="medium-icon"><i class="icon-facebook-sign"></i></span> 
 									Facebook
 									</a>
 								</div>
 							</div>
-							<div class="row row-button">
+							<!-- <div class="row row-button">
 								<div class="span3">
 									<a class="btn btn-info" href="#">
 									<span class="medium-icon"><i class="icon-linkedin-sign"></i></span> 
 									Linkedin
 									</a>
 								</div>
-							</div>
+							</div> -->
 							<div class="row row-button">
 								<div class="span3">
-									<a class="btn btn-info" href="#">
+									<a class="btn btn-info disabled" href="#">
 									<span class="medium-icon"><i class="icon-twitter-sign"></i></span> 
 									Twitter
 									</a>
@@ -106,7 +110,7 @@
 	
 		
 		<div class="row" id='footer'>
-			<div class="span2 pull-left pagination-centered">
+			<div class="span3 pull-left pagination-centered">
 				<p class='qubal_logo_text'><span class="letter-blue">Q</span>ubal {{ QUBAL_VERSION }}</p>
 				<p>(c)2013 Studiesoft</p>
 				<p class='pagination-centered'><a href='http://www.studiesoft.nl'><img src="{{ STATIC_URL }}qubalapp/main_engine/img/Studiesoft-logo.png"  title="©2013 StudieSoft"></a></p>

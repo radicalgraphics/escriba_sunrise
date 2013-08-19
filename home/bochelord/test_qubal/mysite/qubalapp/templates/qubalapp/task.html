@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<title>Qubal | Quests</title>
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-flatly.css">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/navbar.css">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/task.css">
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-notify.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/alert-notification-animations.css" />
+  
+</head>
+
+<body>
+
+{% load imagekit %}
+{% autoescape off %}{{ navbar_content }}{% endautoescape %}
+<div class="notifications top-right"></div>
+<div class="container">
+
+	<ul class="breadcrumb">
+  		<li>
+  			<a href="{{ SUNRISE_URL }}">Dashboard</a>
+  			<span class="divider">></span>
+  		</li>
+
+  		<li>
+  			<a href="{{ SUNRISE_URL }}quest/{{quest.id}}">Quests & Challenges</a>
+  			<span class="divider">></span>
+  		</li>
+  		<li class="active">Task</li>
+	</ul>
+
+	<hr class="hr-format">
+  
+    <div class="row">
+      <div class="well span3">
+        <div class="row span3">
+          <div class="span3"><p> Course - {{ course.name }} </p></div>
+        </div>
+        <div class="row span3">
+          <div class="span3"><p> Quest - {{ quest.name }} </p></div>
+        </div>
+        <div class="row span3">
+          <div class="span3"><p> Challenge - {{ challenge.name }} </p></div>
+        </div>
+        <div class="row span3">
+          <div class="span3"><p> Task - {{ task.name }} </p></div>
+        </div>
+        
+        {% if task_material_list %}
+          
+          <div class="row span3">
+            <p> Task Material: </p>
+            
+          {% for task_material in task_material_list %}
+        
+            <div class="span3">
+              <i class="icon-download"></i><a href="{{ SUNRISE_URL }}media/{{ task_material.educational_file }}"> {{ task_material.name }}</a>
+            </div>
+
+          {% endfor %}
+
+          </div>
+        {% endif %}
+
+        <!-- has_support_material html -->
+        {% if task_support_material_list %}
+          
+          <div class="row span3">
+            <br>
+            <p> Task Support Material: </p>
+            
+          {% for task_support_material in task_support_material_list %}
+        
+            <div class="span3">
+              <i class="icon-download"></i><a href="{{ SUNRISE_URL }}media/{{ task_support_material.educational_file }}"> {{ task_support_material.name }}</a>
+            </div>
+
+          {% endfor %}
+
+          </div>
+        {% endif %}
+
+
+
+      </div>
+
+      <div class="span9">
+          <!-- En funcion del tipo de task renderizamos su contenido -->
+          {% if task.task_type == "type_video" %}
+            <iframe width="560" height="315" src="//www.youtube.com/embed/{{ task.video_url }}" frameborder="0" allowfullscreen></iframe>
+            <p>{{ task.description }}</p>
+            <p>{{ task.instruction }}</p>
+            <p>{{ task.narrative }}</p>
+          {% elif task.task_type == "type_deliverable" %}
+            <p>{{ task.description }}</p>
+            <p>{{ task.instruction }}</p>
+            <p>{{ task.narrative }}</p>
+
+            {% if task_status.completed != True %}
+              {% load crispy_forms_tags %}
+ 
+              {% block content %}
+                {% crispy deliverable_form %}
+              {% endblock %}
+            {% endif %}
+
+          {% endif %}
+          <!-- Si la task esta completada anulamos el boton de enviar, si no se muestra. -->
+          {% if task_status.completed == True %}
+              <button class="btn btn-success disabled">Completed on: {{ task_status.completed_on_date }}<i class="icon-ok pull-right"></i></button>
+          {% else %}
+
+              {% if task.task_type == "type_deliverable" %}
+                <p>Click on the 'Send your files' button to complete your task!</p>
+              {% else %}
+                <form action="{{ SUNRISE_URL }}task_completed/" method="POST" >
+                    <input type="hidden" name="task_sent" value="{{ task.id }}" />
+                    <button type="submit" class="btn btn-info">Done!<i class="icon-ok pull-right"></i></button> 
+                    <i class="icon-arrow-left"></i> Click on the button to complete your task!
+                    {% csrf_token %}
+                </form>
+              {% endif %}
+
+
+          {% endif %}
+
+      </div>
+    </div> <!-- row end -->
+    
+</div> <!-- container end --> 
+
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/jquery.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap-fileupload.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap-notify.js"></script>
+
+{% autoescape off %}{{ notifications_content }}{% endautoescape %}
+
+</body>
+</html>

@@ -1,7 +1,7 @@
 __author__ = 'Leunam'
 
 from django.contrib import admin
-from qubalapp.models import Nickname, Achievement, Power, Course, Team, Courses_Completed_By_Student, Student, Teacher, Address, Quest, Challenge, Task, Edu_Skill, Reward, Educational_Document, Rules_Xp_per_Level
+from qubalapp.models import Nickname, Achievement, Power, Course, Team, Courses_Completed_By_Student, Student, Teacher, Address, Quest, Challenge, Task, Edu_Skill, Reward, Educational_Document, Rules_Xp_per_Level, Quest_Status, Challenge_Status, Task_Status, Task_Video, Task_Deliverable
 
 # class StudentInline(admin.TabularInline):
 # 	model = Student
@@ -9,7 +9,7 @@ from qubalapp.models import Nickname, Achievement, Power, Course, Team, Courses_
 
 #A lo mejor se puede arreglar cambiando el TabularInline to 
 # class StudentInline(admin.TabularInline):
-#      model = Student.is_enrolled_in_courses.through
+#      model = Student.active_courses.through
 #      extra=1
 
 # class CourseAdmin(admin.ModelAdmin):
@@ -43,11 +43,15 @@ admin.site.register(Team)
 admin.site.register(Teacher)
 admin.site.register(Quest)
 admin.site.register(Challenge)
-admin.site.register(Task)
 admin.site.register(Edu_Skill)
 admin.site.register(Reward)
 admin.site.register(Educational_Document)
 admin.site.register(Rules_Xp_per_Level)
+admin.site.register(Quest_Status)
+admin.site.register(Challenge_Status)
+admin.site.register(Task_Status)
+admin.site.register(Task_Video)
+admin.site.register(Task_Deliverable)
 
 
 #admin.site.register(Students_in_Course)

@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<title>Qubal | Teams</title>
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-flatly.css">
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/teams.css">
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/navbar.css">
+</head>
+
+<body>
+{% autoescape off %}{{ navbar_content }}{% endautoescape %}
+
+<div class="container">
+
+<span class="your-teams-title"> Teams you guide: </span><br><br><br>
+
+<div class='row'>
+    {% load imagekit %}
+    
+      {% if local_teacher_mentor_teams %}
+        
+          {% for team in local_teacher_mentor_teams.all %}
+
+            {% if team.image %}
+            
+              {% generateimage 'qubalapp:thumbnail100x100' source=team.image as imagen %}         
+                <div class='team-box'>
+                  <div class='well'>
+
+                    <img class="img-format img-polaroid pull-left" src='{{ imagen.url }}' />
+                    <span class="label label-info pull-right">badge</span>
+            {% else %}
+                <div class='team-box'>
+                  <div class='well'>
+
+                    <img class="img-format img-polaroid pull-left" src='{{ STATIC_URL }}default_images/default_team_avatar.jpg' width=100 />
+                    <span class="label label-info pull-right">badge</span>
+            {% endif%}
+
+                <div class="team-box-title">
+                  <a href="{{ SUNRISE_URL }}teams/{{ team.id }}/">{{ team.name }}</a>
+                </div>
+
+                <div class="team-box-course-name">
+                  <span class>{{ team.is_in_course.name }}</span>
+                </div>
+
+                <div class="course-box-description">
+                  {% if course.description|length > 125 %}
+                    <span>{{ course.description|truncatechars:125 }}</span>
+                  {% else %} 
+                    <span>{{ course.description }}</span>
+                  {% endif %}
+                </div>
+
+              </div>
+            </div>
+
+          {% endfor %}
+      {% else %}
+              <p class="your-courses">You are not tutor of any team. </p>
+      {% endif %}
+
+</div> <!-- first div "row" -->
+
+
+
+</div> <!-- First div container -->
+</body>
+</html>

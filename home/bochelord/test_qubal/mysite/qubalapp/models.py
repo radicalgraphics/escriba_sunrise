@@ -36,9 +36,9 @@ class Achievement(models.Model):
 
 
 class Power(models.Model):
+    # quubs earned can be calculated
     teamwork = models.IntegerField(default=0)
     teamwork_quubs = models.IntegerField(default=0)
-    # quubs earned can be calculated
     communication = models.IntegerField(default=0)
     communication_quubs = models.IntegerField(default=0)
     responsability = models.IntegerField(default=0)
@@ -81,8 +81,18 @@ class Course(models.Model):
     what_should_i_learn_list = models.ManyToManyField('Course', blank=True, null=True, related_name='what_should_i_learn_courses_list')
     what_should_i_learn_description = models.TextField()
 
+    author = models.ForeignKey('Teacher')
+
+    is_live = models.BooleanField(default=False)
+
     def __unicode__(self):
-        return self.name
+
+        if self.is_live:
+            live_text = 'live!'
+        else:
+            live_text = 'not live :('
+
+        return self.name + ' Author: ' + self.author.user.username + ' and is ' + live_text
 
     def long_course(self):
         duration = self.ending_date - self.starting_date 
@@ -135,6 +145,7 @@ class Person(models.Model):
     lastname = models.CharField(max_length=100)
     birth = models.DateTimeField('Birthdate')
     email = models.EmailField(max_length=75)
+    phone_number = models.CharField(max_length=13)
     image = models.ImageField(upload_to="images/persons",default="default_images/default_avatar_grey.jpg")
     image_thumbnail = ImageSpecField(source='image',
                                       processors=[ResizeToFill(50, 50)],
@@ -170,10 +181,10 @@ class Courses_Completed_By_Student(models.Model):
 class Student(Person):
 
     CHARACTER_CLASS = (
-        ('no_class', 'No Character Class'),
+        ('no_class', 'No Class!'),
         ('explorer', 'Explorer'),
         ('competitor', 'Competitor'),
-        ('colaborator', 'Colaborator'),
+        ('collaborator', 'Collaborator'),
         ('inventor', 'Inventor'),
         )
 
@@ -183,11 +194,11 @@ class Student(Person):
     quests_completed = models.ManyToManyField('Quest', related_name='Quests_Completed_By_Student', blank=True, null=True)
     challenged_completed = models.ManyToManyField('Challenge', related_name='Challenges_Completed_By_Student', blank=True, null=True)
     tasks_completed = models.ManyToManyField('Task', related_name='Tasks_Completed_By_Student', blank=True, null=True)
-    active_courses = models.ManyToManyField('Course', blank=True, null=True) # , through='Students_in_Course'
+    active_courses = models.ManyToManyField('Course', blank=True, null=True)
     active_quests = models.ManyToManyField('Quest', blank=True, null=True)
     active_challenges = models.ManyToManyField('Challenge', blank=True, null=True)
     active_tasks = models.ManyToManyField('Task', blank=True, null=True)
-    character_class = models.CharField(max_length=11, choices=CHARACTER_CLASS)
+    character_class = models.CharField(max_length=12, choices=CHARACTER_CLASS)
     # Add abilities for February.
 
 class Teacher(Person):
@@ -195,6 +206,16 @@ class Teacher(Person):
     is_tutor_of_teams = models.ManyToManyField('Team', blank=True, null=True)
     teach_in_courses = models.ManyToManyField('Course', blank=True, null=True)
     background_cv = models.TextField()
+
+
+
+
+# School
+class School(models.Model):
+    name = models.CharField(max_length=250)
+    has_address = models.OneToOneField('Address')
+    has_students = models.ForeignKey('Student')
+    has_teachers = models.ForeignKey('Teacher')
 
 
 # Address
@@ -213,7 +234,7 @@ class Address(models.Model):
 
 class Quest_Status(models.Model):
     student = models.ForeignKey('Student') # ForeignKey is Many to One
-    quest = models.OneToOneField('Quest')
+    quest = models.ForeignKey('Quest')
     started_on_date = models.DateTimeField()
     completed_on_date = models.DateTimeField(blank=True, null=True)
     unlocked = models.BooleanField(default=True)
@@ -230,6 +251,9 @@ class Quest(models.Model):
                                       options={'quality': 100})
     name = models.CharField(max_length=250)
     description = models.TextField()
+    instruction = models.TextField()
+    narrative = models.TextField()
+    goals = models.TextField()
     has_documents = models.ManyToManyField('Educational_Document', blank=True, null=True)
     has_challenges = models.ManyToManyField('Challenge')
     has_rewards = models.ManyToManyField('Reward')
@@ -243,8 +267,8 @@ class Quest(models.Model):
 
 
 class Challenge_Status(models.Model):
-    student = models.OneToOneField('Student')
-    challenge = models.OneToOneField('Challenge')
+    student = models.ForeignKey('Student')
+    challenge = models.ForeignKey('Challenge')
     started_on_date = models.DateTimeField()
     completed_on_date = models.DateTimeField(blank=True, null=True)
     
@@ -256,6 +280,9 @@ class Challenge(models.Model):
 
     name = models.CharField(max_length=250)
     description = models.TextField()
+    instruction = models.TextField()
+    narrative = models.TextField()
+    goals = models.TextField()
     has_documents = models.ManyToManyField('Educational_Document', blank=True, null=True)
     has_tasks = models.ManyToManyField('Task')
     has_rewards = models.ManyToManyField('Reward', related_name='challenge_has_rewards')
@@ -274,6 +301,7 @@ class Challenge(models.Model):
 class Task_Status(models.Model):
 
     STARS = (
+        ('not_set', 'not_set_yet'),
         ('zero_star', 'zero'),
         ('half_star', 'half'),
         ('one_star', 'one'),
@@ -287,14 +315,14 @@ class Task_Status(models.Model):
         ('five_stars', 'five'),
         )
 
-    student = models.OneToOneField('Student', primary_key=True)
-    task = models.OneToOneField('Task')
+    student = models.ForeignKey('Student')
+    task = models.ForeignKey('Task')
     started_on_date = models.DateTimeField()
     completed_on_date = models.DateTimeField(blank=True, null=True)
-    deliverables = models.ForeignKey('Educational_Document', blank=True, null=True)
     send_for_evaluation = models.BooleanField(default=False)
     rating = models.CharField(max_length=10, choices=STARS) # si no funciona, crear tipo enumerado zero
     feedback = models.TextField(blank=True, null=True)
+    completed = models.BooleanField(default=False)
 
 
     def __unicode__(self):
@@ -303,22 +331,35 @@ class Task_Status(models.Model):
 
 class Task(models.Model):
 
+    TASK_TYPE = (
+        ('type_quiz', 'quiz'),
+        ('type_deliverable', 'deliverable'),
+        ('type_video', 'video'),
+        )
+
     name = models.CharField(max_length=250)
     description = models.TextField() # task details
+    instruction = models.TextField()
+    narrative = models.TextField()
+    goals = models.TextField()
     has_material = models.ManyToManyField('Educational_Document', blank=True, null=True)
     has_support_material = models.ManyToManyField('Educational_Document', blank=True, null=True, related_name='Support_Material')
-    goals = models.TextField()
-    narrative = models.TextField()
-    instructions = models.TextField()
-
     has_rewards = models.ManyToManyField('Reward')
+    task_type = models.CharField(max_length=16, choices=TASK_TYPE) # Este tipo parece que ya no es necesario
+
+    objects = InheritanceManager()
     
-
-
-
     def __unicode__(self):
         return str(self.id)+": "+self.name
 
+class Task_Video(Task):
+    video_url = models.CharField(max_length=255, blank=True, null=True)
+
+class Task_Deliverable(Task):
+    deliverables = models.ForeignKey('Educational_Document', blank=True, null=True)
+
+# class Task_Quiz(Task):
+#     quiz = models.ForeignKey('Quiz')
 
 class Edu_Skill(models.Model):
     name = models.CharField(max_length=250)
@@ -352,11 +393,15 @@ class Reward(models.Model):
         return unicode(self.id)+": "+self.name+" - "+unicode(self.xp)
 
 
+def content_file_name(instance, filename):
+    return '/'.join(['docs', instance.is_from_person.user.username, filename])
+
+
 class Educational_Document(models.Model):
     name = models.CharField(max_length=250)
-    path = models.FilePathField(path="qubalapp/docs")
-    is_from_team = models.OneToOneField('Team', primary_key=False, blank=True, null=True)
-    is_from_person = models.OneToOneField('Person', primary_key=False, blank=True, null=True)
+    educational_file = models.FileField(upload_to=content_file_name)
+    is_from_team = models.ForeignKey('Team', primary_key=False, blank=True, null=True)
+    is_from_person = models.ForeignKey('Person', primary_key=False, blank=True, null=True)
     
 
     def __unicode__(self):

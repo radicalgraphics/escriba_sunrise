@@ -37,7 +37,9 @@
 
 <script>
 {% for notification in notifications.all %}
-    $('.top-right').notify({ message: { text: '{{ notification.description }}' }, type: 'success' }).show();
+    $('.top-right').notify({
+      message: { text: '{{ notification.description }}' }, type: 'success' 
+    }).show();
 {% endfor %}
 
 </script>

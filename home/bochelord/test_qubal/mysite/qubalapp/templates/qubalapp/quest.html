@@ -37,7 +37,7 @@
 	<div class="row">
 		<div class="span12">
 			<h3 class="course-title-name">Course: {{ course.name }}</h3>
-			<p class="quests-tab-title">Quests available </p>
+			<p class="quests-tab-title"><i class="icon-shield"></i> Quests available </p>
 
 
 				{% generateimage 'qubalapp:thumbnail150x150' source=student.image as tn2 %}
@@ -46,9 +46,9 @@
 					<ul class="nav nav-tabs" id="myTab">
 					{% for quest in course.has_quests.all %}
 						{% if quest == course.has_quests.all|first %}
-					  		<li class="active"><a href="#{{ quest.id }}" data-toggle="pill"><i class="icon-shield"></i> {{ quest.name }}</a></li>
+					  		<li class="active"><a href="#{{ quest.id }}" data-toggle="pill">{{ quest.name }}</a></li>
 					  	{% else %}
-					  		<li class=""><a href="#{{ quest.id }}" data-toggle="pill"><i class="icon-shield"></i> {{ quest.name }}</a></li>
+					  		<li class=""><a href="#{{ quest.id }}" data-toggle="pill">{{ quest.name }}</a></li>
 					  	{% endif %}
 					{% endfor %}
 					</ul>
@@ -67,8 +67,12 @@
 								<p class="quest-image"><img class="img-circle" src="{{ STATIC_URL }}default_images/default_quest.png" width="30" /></p>
 							{% endif %}
 
-									<p class="quest-title">{{quest.name}}</p>
-									<p class="quest-description">{{quest.description}}</p>
+									<p class="quest-title">{{ quest.name }}</p>
+									<p class="quest-description">{{ quest.description }}</p>
+									<p class="quest-instruction">{{ quest.instruction }}</p>
+									<p class="quest-narrative">{{ quest.narrative }}</p>
+									<p class="quest-goals">{{ quest.goals }}</p>
+
 									<!-- QUEST DATA in the tab-content END <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
 							<hr class="hr-format">
 
@@ -92,6 +96,9 @@
 							
 							<p class="quest-title">{{quest.name}}</p>
 							<p class="quest-description">{{quest.description}}</p>
+							<p class="quest-instruction">{{ quest.instruction }}</p>
+							<p class="quest-narrative">{{ quest.narrative }}</p>
+							<p class="quest-goals">{{ quest.goals }}</p>
 							<!-- QUEST DATA in the tab-content END <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
 							<hr class="hr-format">
 
@@ -101,24 +108,20 @@
 								
 					{% endif %}
 
-
 										<ul class="nav nav-tabs"> 
 										{% for challenge in quest.has_challenges.all %}
 										
 											{% if challenge == quest.has_challenges.all|first  %}
 										  		<li class="active challenge-tab-title"><a href="#{{quest.id}}{{challenge.id}}" data-toggle="pill"><i class="icon-trophy"></i> {{ challenge.name }}</a></li>
-										  		<p class="challenge-tab-description">{{ challenge.description }}</p>
 										  	{% else %}
 										  		<li class=" challenge-tab-title"><a href="#{{quest.id}}{{challenge.id}}" data-toggle="pill"><i class="icon-trophy"></i> {{ challenge.name }}</a></li>
-										  		<p class="challenge-tab-description">{{ challenge.description }}</p>
 										  	{% endif %}
-
+										  		<p class="challenge-description">{{ challenge.description }}</p>							  			
+										  		<p class="challenge-narrative">{{ challenge.narrative }}</p>
+										  		
 										{% endfor %}
 										</ul>
-										
 
-									
-										
 									</div>
 								</div>
 								<div class="span3">
@@ -129,15 +132,23 @@
 												{% else %}
 													<div class="tab-pane" id="{{quest.id}}{{ challenge.id }}">
 												{% endif %}
-												<p class="task-title">Tasks</p>
+												<p class="task-title"><i class="icon-puzzle-piece"></i> Tasks</p>
 
 
 											
 												{% for task in challenge.has_tasks.all %}
-													<a href="#"><p class="task-name"><i class="icon-puzzle-piece"></i> {{ task.name }}</p></a>
+													<a href="/test/task/{{ task.id }}/"><p class="task-name">
+														{% if task.task_type == "type_test" %}
+															<i class="icon-list-ul"></i>
+														{% elif task.task_type == "type_deliverable" %}
+															<i class="icon-upload-alt"></i>
+														{% elif task.task_type == "type_video" %}
+															<i class="icon-play-sign"></i>
+														{% endif %}
+													{{ task.name }}</p></a>
 												{% endfor %}
 													</div>
-											{% endfor%}
+											{% endfor %}
 										</div>
 
 								</div>

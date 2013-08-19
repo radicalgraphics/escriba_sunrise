@@ -24,14 +24,14 @@ home/bochelord...
 
 mysite
 ======
-Compare for changes in settings.py ---- escriba - escriba-sunrise - OK
-Compare for changes in urls.py --------    "            "         - OK
+Compare for changes in settings.py ---- escriba - escriba-sunrise - OK / OK
+Compare for changes in urls.py --------    "            "         - OK / OK
 
 
 qubalapp
 ========
-Compare urls.py --------	"       "	        - OK
-Compare admin.py -------	"	"		- OK
+Compare urls.py --------	"       "	        - OK / OK
+Compare admin.py -------	"	"				- OK / OK
 
 Copy -> models.py
 copy -> qubal_forms.py
@@ -41,32 +41,37 @@ Copy -> qubal_init.py
 Copy -> qubal_prerender.py
 Copy -> qubal_rules.py
 Copy -> qubal_xp.py
-Copy -> tests.py
+Copy -> tests.py 								- OK / OK
 
 						   LOCAL		SERVER
 						================================
-Compare - views.py               note ->	(/landing/)		(/test/landing/)    - OK
+Compare - views.py               note ->	(/landing/)		(/test/landing/)    - OK / OK
 
 qubalapp/templates
 ==================
 
-compare -> navbar.inc				(/)			(/test)                         - OK
+compare -> navbar.inc				(/)			(/test)                         - OK / OK
  
-copy -> index.html 																- OK
-copy -> index_teacher.html 														- OK
+compare -> index.html 															- OK / Ok
+compare -> index_teacher.html 													- OK / Ok
 
-Compare -> landing.html															- OK
+Compare -> landing.html															- OK / Ok
 
-copy -> teams.html 																- OK
-copy -> course_listing.html 													- OK
-copy -> notifications.inc 														- OK
-copy -> profile.html 															- OK
-copy -> search_results.html 													- OK
-copy -> file_field.html 														- OK
-copy -> quest.html 																- OK
-copy -> quest_listing.html 														- OK
-copy -> register_character.html 												- OK
-copy -> search_results.html 													- OK
+compare -> teams.html 															- OK / Ok
+compare -> course_listing.html 													- OK / OK
+compare -> notifications.inc 													- OK / Ok
+compare -> profile.html 														- OK / Ok
+compare -> search_results.html 													- OK / Ok
+compare -> file_field.html 														- OK / OK
+compare -> quest.html 															- OK / Ok
+compare -> quest_listing.html 													- OK / Ok
+compare -> register_character.html 												- OK / Ok
+compare -> course_listing_teacher.html 											- 
+compare -> deliverable_field.html 												- 
+compare -> oracle_landing.html 													- 
+compare -> task.html 															-
+compare -> teams_teacher.html 													- 
+
 
 ===========================
 var/www/qubal_public/static

@@ -47,6 +47,19 @@
 	margin-top: -8px;
 }
 
+.quest-instruction {
+	font-size: 13px;
+}
+
+.quest-narrative {
+	font-size: 13px;
+}
+
+.quest-goals {
+	font-size: 13px;
+	font-style: italic;
+}
+
 .challenge-tab-menu {
 	margin-top: -10px;
 }
@@ -58,8 +71,26 @@
 	font-weight: bold;
 }
 
-.challenge-tab-description {
+.challenge-description {
 	font-size: 14px;
+	margin-top: -5px;
+	margin-left: 20px;
+}
+
+.challenge-instruction {
+	font-size: 13px;
+	margin-top: -5px;
+	margin-left: 20px;
+}
+
+.challenge-narrative {
+	font-size: 13px;
+	margin-top: -5px;
+	margin-left: 20px;
+}
+
+.challenge-goals {
+	font-size: 13px;
 	margin-top: -5px;
 	margin-left: 20px;
 }

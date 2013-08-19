@@ -35,6 +35,8 @@ urlpatterns = patterns('',
 
     url(r'^quest/(?P<quest_id>\d+)/$', views.quest),
 
+    url(r'^task/(?P<task_id>\d+)/$', views.task),
+
     # //this gets you to index: qubal/
     url(r'^$', views.index, name='index'),
 
@@ -43,4 +45,28 @@ urlpatterns = patterns('',
     url(r'^register_character_landing/$', views.register_character_landing),
 
     url(r'^register_character/$', views.register_character),
+
+    url(r'^qubal_character_init/$', views.qubal_character_init),
+
+    url(r'^task_completed/$', views.task_completed),
+
+    url(r'^oracle_landing/$', views.oracle_landing),
+
+    url(r'^oracle_process/$', views.oracle_process),
+
+
+    ## Social Auth views
+
+    # url(r'^$', home, name='home'),
+    # url(r'^done/$', done, name='done'),
+    # url(r'^error/$', error, name='error'),
+    # url(r'^logout/$', logout, name='logout'),
+    # url(r'^form/$', form, name='form'),
+    # url(r'^form2/$', form2, name='form2'),
+    # #url(r'^admin/', include(admin.site.urls)),
+    # #url(r'^facebook/', facebook_view, name='fb_app'),
+    # #url(r'^ok/$', ok_app, name='ok_app'),
+    # #url(r'^ok/info/$', ok_app_info, name='ok_app_info'),
+    # url(r'^close_login_popup/$', close_login_popup, name='login_popup_close'),
+    
 )

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Qubal | Courses</title>
+	<title>Qubal | Courses Teacher</title>
 	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-flatly.css">
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/font-awesome.css">
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/navbar.css">
@@ -14,13 +14,13 @@
 {% autoescape off %}{{ navbar_content }}{% endautoescape %}
 
 <div class="container">
-<span class="your-courses-title"> Your Courses </span><br><br><br>
+<span class="your-courses-title"> Courses authored by you</span><br><br><br>
 <div class='row'>
     {% load imagekit %}
     
-      {% if local_student_courses %}
+      {% if authored_course_list %}
         
-          {% for course in local_student_courses.all %}
+          {% for course in authored_course_list.all %}
 
               {% if course.image %}
                   {% generateimage 'qubalapp:thumbnail100x100' source=course.image as imagen %}
@@ -32,10 +32,15 @@
                     <div class='well'>
                     <img class="img-format img-circle pull-left" src='{{ STATIC_URL }}default_images/default_course_dark.jpg' width='100' />
               {% endif %}
-                <span class="label label-info pull-right">badge</span>
+
+              {% if course.is_live %}
+                <span class="label label-success pull-right">live</span>
+              {% else %}
+                <span class="label label-important pull-right">NOT LIVE!</span>
+              {% endif %}
               
                 <div class="course-box-title">
-                  <a href="/courses/{{ course.id }}/">{{ course.name }}</a>
+                  <a href="/test/courses/{{ course.id }}/">{{ course.name }}</a>
                 </div>
 
                 <div class="course-box-date">
@@ -55,12 +60,12 @@
 
           {% endfor %}
       {% else %}
-              <p class="your-courses">You are not enrolled in any Course! Try and check some courses here below!</p>
+              <p class="your-courses">You have not created any Course yet! Check some courses here below!</p>
       {% endif %}
 <div class="clearfix"></div>
 <hr class="central-hr"><br>
-<span class="all-courses-title"> All Courses </span><br><br><br>
-      {% for course in course_list.all %}
+<span class="all-courses-title"> Other Courses </span><br><br><br>
+      {% for course in not_authored_course_list.all %}
               {% if course.image %}
                   {% generateimage 'qubalapp:thumbnail100x100' source=course.image as imagen %}
                     <div class='course-box'>
@@ -71,10 +76,16 @@
                     <div class='well'>
                     <img class="img-format img-circle pull-left" src='{{ STATIC_URL }}default_images/default_course_dark.jpg' width='100'/>
               {% endif %}
-                <span class="label label-info pull-right">badge</span>
+
+              {% if course.is_live %}
+                <span class="label label-success pull-right">live</span>
+              {% else %}
+                <span class="label label-important pull-right">NOT LIVE!</span>
+              {% endif %}
+              
               
                 <div class="course-box-title">
-                  <a href="/courses/{{ course.id }}/">{{ course.name }}</a>
+                  <a href="/test/courses/{{ course.id }}/">{{ course.name }}</a>
                 </div>
 
                 <div class="course-box-date">

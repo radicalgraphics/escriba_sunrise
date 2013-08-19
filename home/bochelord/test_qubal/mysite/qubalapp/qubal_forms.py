@@ -1,11 +1,13 @@
 from django import forms
-from qubalapp.models import Person
+from django.forms.widgets import DateTimeInput
+from qubalapp.models import Person, Task_Deliverable
 from datetimewidget.widgets import DateTimeWidget
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field, Fieldset, ButtonHolder
 from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions, Accordion, AccordionGroup, Tab, FormActions
+import datetime
 
- 
+
 class MessageForm(forms.Form):
     text_input = forms.CharField()
  
@@ -121,34 +123,15 @@ class Register_Character_Landing_Form(forms.Form):
 
     student_image = forms.FileField(label='Profile Image')
 
-    student_birthdate = forms.DateTimeField()
 
-    student_email = forms.EmailField()
+    student_birthdate = forms.DateTimeField(initial=datetime.datetime.now)
 
-    # student_address_street = forms.CharField(
-    #     label= "Street",
-    #     max_length = 120,
-    #     required = True,
-    #     )
+    student_phone = forms.CharField(
+        label = "Phone",
+        max_length = 13,
+        required = True,
+    )
 
-    # student_address_number = forms.IntegerField(
-    #     label= "Number"
-    #     )
-    
-    # student_twitter = forms.CharField(
-    #     label= 'Twitter url',
-    #     required=False,
-    #     )
-
-    # student_facebook = forms.CharField(
-    #     label= 'Facebook url',
-    #     required=False,
-    #     )
-
-    # student_dropbox = forms.CharField(
-    #     label= 'Dropbox url',
-    #     required=False,
-    #     )
 
     
     #Here you define the Layout of the fields you have declared before
@@ -165,8 +148,10 @@ class Register_Character_Landing_Form(forms.Form):
                 'student_birthdate',
             ),
             #DateTimeWidget('student_birthdate'),
+            AppendedText('student_phone', '<i class="icon-phone"></i>'),    
             FileField('student_image'),
-            Field('student_email'),
+            
+            #Field('student_phone'),
             # Fieldset(
             #     'social links', #remember the first one is the header (label)         
             #     'student_twitter',
@@ -181,13 +166,46 @@ class Register_Character_Landing_Form(forms.Form):
         )
         super(Register_Character_Landing_Form, self).__init__(*args, **kwargs)
         dateTimeOptions = {
-        'format': 'dd/mm/yyyy HH:ii',
+        #'format': 'dd/mm/yyyy HH:ii',
+        #'format' : 'yyyy-mm-dd HH:MM',
         'autoclose': 'true',
         'startView': '4',
         'weekStart':'1',
-        'startDate':'01/01/1990',
+        #'startDate':'01/01/1990',
         }
         self.fields['student_birthdate'].widget = DateTimeWidget(options = dateTimeOptions)
+
+
+class FileField(Field):
+    template = 'qubalapp/deliverable_field.html'
+
+
+class Deliverable_Form(forms.Form):
+    """
+        Creamos un formulario especial para enviar los deliverables del estudiante que 
+        manda a la view de task_completed, la cual comprueba y registra la task completada 
+    """
+    class Meta:
+        model = Task_Deliverable
+
+    deliverable_button = forms.FileField(label='')
+
+    def __init__(self, *args, **kwargs):
+
+        super(Deliverable_Form, self).__init__(*args, **kwargs)
+
+        self.helper = FormHelper()
+        self.helper.form_class = 'form-inline'
+        self.helper.form_action = '/test/task_completed/'
+        self.helper.layout = Layout(
+            FileField('deliverable_button'),
+
+            HTML('<input type="hidden" name="task_sent" value="{{ task.id }}" />'),
+
+            FormActions(
+                Submit('save', 'Send your files!'),
+            )
+        )
 
 
 class ExampleForm(forms.Form):
@@ -242,7 +260,39 @@ class ExampleForm(forms.Form):
         super(ExampleForm, self).__init__(*args, **kwargs)
 
 
+class Oracle_Form(forms.Form):
 
+    character_class_choice = forms.ChoiceField(
+        label = 'Choose your path through a Qubal Character Class',
+        choices = (('competitor','Competitor'),('explorer','Explorer'),('inventor','Inventor'),('collaborator','Collaborator')),
+        widget = forms.RadioSelect,
+        required = True,
+    )
+
+    radio_buttons = forms.ChoiceField(
+        choices = (
+            ('option_one', "Option one is this and that be sure to include why it's great"), 
+            ('option_two', "Option two can is something else and selecting it will deselect option one")
+        ),
+        widget = forms.RadioSelect,
+        initial = 'option_two',
+    )
+
+
+    def __init__(self, *args, **kwargs):
+
+        super(Oracle_Form, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_action = '/test/oracle_process/'
+        self.helper.layout = Layout(
+            Fieldset(
+                'The ORACLE',
+                'character_class_choice',
+            ),
+            ButtonHolder(
+                Submit('submit', 'Submit', css_class='button info')
+            )
+        )
 
 
    

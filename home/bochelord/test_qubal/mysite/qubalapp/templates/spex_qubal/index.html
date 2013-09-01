@@ -81,7 +81,7 @@
 
 						<!-- Top Navigation -->
 						<div class="codrops-top clearfix">
-							<span class="right"><a href="{{ SUNRISE_URL}}"><span class='OpenSans-Light student-name'><i class="icon-beer"></i>&nbsp;&nbsp;Original taste</span></a></span>
+							<span class="right"><a href="{{ SUNRISE_URL }}"><span class='OpenSans-Light student-name'><i class="icon-beer"></i>&nbsp;&nbsp;Original taste</span></a></span>
 						</div> 
 						<div id="st-trigger-effects" class="">
 								<button data-effect="st-effect-6"><i class=''></i>menu</button>
@@ -256,10 +256,10 @@
                             {% if deadline.image %}
 
                                 {% generateimage 'qubalapp:thumbnail50x50' source=deadline.image as image_holder %}
-                                <a href="/{{ settings.SUNRISE_URL }}course/{{ deadline.id }}/" rel='tooltip' title='{{deadline.name}} ending in {{ deadline.ending_date|timeuntil }}'><img src='{{ image_holder.url }}' class='img-circle'></a>
+                                <a href="/{{ SUNRISE_URL }}course/{{ deadline.id }}/" rel='tooltip' title='{{deadline.name}} ending in {{ deadline.ending_date|timeuntil }}'><img src='{{ image_holder.url }}' class='img-circle'></a>
                             {% else %}
-                                <a href="/{{ settings.SUNRISE_URL }}course/{{ deadline.id }}/" rel="tooltip" title='Course ending in {{ deadline.ending_date|timeuntil }}'>
-                                  <img src='{{ STATIC_URL }}default_images/default_achievement.jpg' width="30" class='img-polaroid'/>
+                                <a href="/{{ SUNRISE_URL }}course/{{ deadline.id }}/" rel="tooltip" title='{{deadline.name}} ending in {{ deadline.ending_date|timeuntil }}'>
+                                  <img src='{{ STATIC_URL }}default_images/default_achievement.jpg' style="width:50px;" class='img-circle'/>
                                 </a>
 
                             {% endif %}

@@ -1112,12 +1112,12 @@ def spex_index(request):
 
 			# we temporarily (for the moment) redirect to create Student if you're not decided yet (only a user)
 			# still we have to implement a switch for the teacher or use the old pen and paper tactic...
-			return HttpResponseRedirect("{{ SUNRISE_URL }}register_character_landing/")
+			return HttpResponseRedirect(settings.SUNRISE_URL+"register_character_landing/")
 
 
 		
 	else: #Drop him to landing if he's not authenticated
-		return HttpResponseRedirect("{{ SUNRISE_URL }}landing/")
+		return HttpResponseRedirect(settings.SUNRISE_URL+"landing/")
 
 
 #############

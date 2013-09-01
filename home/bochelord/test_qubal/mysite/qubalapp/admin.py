@@ -1,7 +1,9 @@
 __author__ = 'Leunam'
 
 from django.contrib import admin
-from qubalapp.models import Nickname, Achievement, Power, Course, Team, Courses_Completed_By_Student, Student, Teacher, Address, Quest, Challenge, Task, Edu_Skill, Reward, Educational_Document, Rules_Xp_per_Level, Quest_Status, Challenge_Status, Task_Status, Task_Video, Task_Deliverable
+
+from qubalapp.models import Nickname, Achievement, Power, Course, Team, Courses_Completed_By_Student, Student, Teacher, Address, Quest, Challenge, Task, Edu_Skill, Reward, Educational_Document, Rules_Xp_per_Level, Quest_Status, Challenge_Status, Task_Status, Task_Video, Task_Deliverable, Task_Quiz, Quiz, Answer, Rules_Class_Power_Distribution, School
+
 
 # class StudentInline(admin.TabularInline):
 # 	model = Student
@@ -52,6 +54,11 @@ admin.site.register(Challenge_Status)
 admin.site.register(Task_Status)
 admin.site.register(Task_Video)
 admin.site.register(Task_Deliverable)
+admin.site.register(School)
+admin.site.register(Rules_Class_Power_Distribution)
+admin.site.register(Task_Quiz)
+admin.site.register(Quiz)
+admin.site.register(Answer)
 
 
 #admin.site.register(Students_in_Course)

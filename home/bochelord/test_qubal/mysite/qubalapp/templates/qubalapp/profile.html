@@ -11,50 +11,147 @@
 
 <body>
 
-{% autoescape off %}{{ navbar_content }}{% endautoescape %}
+{% autoescape on %}{{ navbar_content }}{% endautoescape %}
 
 <div class="container">
 {% load imagekit %}
+{% load humanize %}
 
 <div class='row'>
-	<div class='span12'>
+	<!-- <div class='span12'>
 
 
-	<h4>Profile</h4>
-	<hr><br>
-	<div class='text_name_title'>
-		{{ student.name|upper }} {{ student.lastname}}
-	</div>
-
-	
-		<hr>
-
-		<div class='row'>
-			<div class='span3 offset2'>
-				<p>STATUS: <span class='label label-mini label-warning'>placeholder</span>
-				</p>
-			</div>
-			<div class='span1 offset8'>
-				FOO
-			</div>
-
+		<h4>Profile</h4>
+		<hr><br>
+		<div class='text_name_title'>
+			{{ student.name|upper }} {{ student.lastname}}
 		</div>
 
+		
+			<hr>
 
-		<h4>Cursos</h4>
-    <ul>
-		{% for n in courses_list %}
-			<li><a href='{{ SUNRISE_URL }}courses/{{n.user_id}}/'>{{n.name}}</a></li>
-		{% endfor %}
-    </ul>
-		<a class="btn" href="{{ SUNRISE_URL }}">Home</a>
+			<div class='row'>
+				<div class='span3'>
+					<p>STATUS: <span class='label label-mini label-warning'>placeholder</span>
+					</p>
+				</div>
+				<div class='span1'>
+					FOO
+				</div>
 
+			</div>
+
+
+			<h4>Cursos</h4>
+	    <ul>
+			{% for n in courses_list %}
+				<li><a href='/courses/{{n.user_id}}/'>{{n.name}}</a></li>
+			{% endfor %}
+	    </ul>
+			<a class="btn" href="/">Home</a>
+
+		
+
+		<div class='span1'>
+			PORK
 		</div>
 
-	<div class='span1'>
-		PORK
-	</div>
+	</div> -->
 
+	<div class='span4'> <!-- sidebar on the left -->
+		<div class='text-name'>
+					{{ student.name }} {{ student.lastname }}
+		</div>
+		<div class='well'>
+			<div class='level-box pull-right'>
+				
+				<div class='pull-right label label-inverse profile_level'>
+					<div class='opensans-bold offset-cuarto'>
+						<span class='totalxp_text pull-right'>{{ total_xp }}</span> 
+						<div class='totalxp_text'>XP</div>
+						<br><br>
+						<span class='level-label'>level</span>
+						<span class='pagination-centered current_level_text'>{{ current_level }}&nbsp;</span>
+					</div>
+					<br>
+					<p class='class-text pagination-centered '>{{ student.get_character_class_display|upper }}</p>
+				</div>
+				<div class='clearfix'>
+				</div>
+				<div class=''>
+					<span class='pull-right'>  {{ current_xp }}/{{ xp_needed_for_level_up }} XP <i class='icon-level-up letter-large' title='levelup to {{ next_level }} at: {{next_level_at}} XP'></i></span>
+                	<div class="span1ymedio progress progress-striped active pull-right">
+                  		<div class="bar bar-warning" style="width:{{ percent_current_xp }}%;" title='level {{ current_level}} to {{ next_level }} progress: {{ current_xp }}/{{ xp_needed_for_level_up }}xp - {{ percent_current_xp }}%'></div>
+                  	</div>
+                </div>
+                
+
+			</div>
+
+			<!-- <div class='sidebar_profile'> -->
+				
+				<div class='profile-image'>
+					{% if student.image %}
+
+			          {% generateimage 'qubalapp:thumbnail150x150' source=student.image as tn2 %}
+			          <img src='{{ tn2.url }}' class='img-circle' title='{{ student.name}} {{ student.lastname }} - level {{ current_level }} - {{ student.get_character_class_display }}' rel="tooltip-left"/>
+			        {% else %}
+			          <img src='{{ STATIC_URL }}default_images/default_avatar_grey.jpg' width='150' class='img-circle' title='{{ student.name}} {{ student.lastname }} - level {{ current_level }} - {{ student.get_character_class_display }}' rel="tooltip-left"/>
+			        {% endif %}
+				</div>
+			<!-- </div> -->
+
+			<br>
+			<div class='row'>
+				<div class=''>
+					<i class='icon-map-marker iconbig'></i>
+				</div>
+				<div class='span3'>
+					<p class='opensans-bold gray-text'>{{ student.birth|timesince }} old {{ student.get_gender_display }} from {{ student.has_address.city}}, {{ student.has_address.country}}</p>
+				</div>
+			</div>
+			<div class='row'>
+				<div class=''>
+					<i class='icon-book iconbig'></i>
+				</div>
+				<div class='span3'>
+					<p class='info-widget-text'>Studying {{ courses_list.0.name }} at {{ student.is_in_school.name }} in {{ student.is_in_school.has_address.city }}, {{ student.is_in_school.has_address.country}}</p>
+				</div>
+			</div>
+			<div class='row'>
+				<div class=''>
+					<i class='icon-comment iconbig'></i>
+				</div>
+				<div class='span3'>
+					<p class='info-widget-text'>"{{student.personal_quote}}"</p>
+				</div>
+			</div>
+			<div class='row'>
+				<div class='span3 pagination-centered'>
+					<strong>Find me here</strong>
+				</div>
+			</div>
+			<div class='row'>
+				<div class='span3 pagination-centered'>
+					<i class='icon-facebook-sign iconbig'></i> <i class='icon-twitter-sign iconbig'></i> <i class='icon-linkedin-sign iconbig'></i>
+				</div>
+			</div>
+<!-- 			<div class="media-box">
+				<i class='icon-map-marker iconbig'></i>
+				<strong>This is a title</strong> 
+				<p>this is some text, lalalala </p>
+			</div> -->
+
+
+		</div>
+	</div> <!-- sidebar on the left END -->
+
+
+	<div class='span8'> <!-- main container on the right -->
+		<div class='well'>
+			PLACEHOLDER
+		</div>
+	</div>
 
 </div>
 

@@ -75,3 +75,4 @@ def quests():
             if quest.image != "":
                 quest.image = ""
                 quest.save()
+

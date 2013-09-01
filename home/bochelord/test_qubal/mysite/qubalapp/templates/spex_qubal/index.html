@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+
+{% load dajaxice_templatetags %}
+
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>QubalSPEX {{ QUBAL_VERSION }}</title>
+		<meta name="description" content="Multi-Level Push Menu: Off-screen navigation with multiple levels" />
+		<meta name="keywords" content="multi-level, menu, navigation, off-canvas, off-screen, mobile, levels, nested, transform" />
+		<meta name="author" content="Radical Graphics" />
+		<link rel="shortcut icon" href="../favicon.ico">
+
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-flatly.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/font-awesome.css" />
+		<!-- <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/icons.css" /> -->
+		<!-- <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/component.css" /> -->
+    	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-notify.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/index_spex.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/alert-notification-animations.css" />
+    	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/index.css" />
+
+    	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/sidebareffect/component.css" />
+    	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/sidebareffect/demo.css" />
+    	
+
+		
+
+		{% dajaxice_js_import %}
+
+
+	</head>
+	<body>
+
+		<div id="st-container" class="st-container">
+			<!-- 	
+				example menus 
+				these menus will be on top of the push wrapper
+			-->
+	<!-- 		<nav class="st-menu st-effect-13" id="menu-13">
+				<h2 class="icon icon-stack">Sidebar</h2>
+				<ul>
+					<li><a class="icon icon-data" href="#">Data Management</a></li>
+					<li><a class="icon icon-location" href="#">Location</a></li>
+					<li><a class="icon icon-study" href="#">Study</a></li>
+					<li><a class="icon icon-photo" href="#">Collections</a></li>
+					<li><a class="icon icon-wallet" href="#">Credits</a></li>
+				</ul>
+			</nav>
+ -->
+			<!-- content push wrapper -->
+			<div class="st-pusher">
+				<!-- 	
+					example menus 
+					these menus will be under the push wrapper
+				-->
+
+				<nav class="st-menu st-effect-6" id="menu-6">
+					<h2 class="iconcodec icon-sitemap"><div class='sidemenu-text'>QUBAL SPEX</div></h2>
+
+					<ul>
+						<li><a class="iconcodec icon-dashboard" href="{{ SUNRISE_URL }}spex_/"><div class='sidemenu-text'>Dashboard</div></a></li>
+						<li><a class="iconcodec icon-user" href="{{ SUNRISE_URL }}spex_/profile/"><div class='sidemenu-text'>Profile</div></a></li>
+						<li><a class="iconcodec icon-group" href="{{ SUNRISE_URL }}spex_/teams/"><div class='sidemenu-text'>Teams</div></a></li>
+						<li><a class="iconcodec icon-tasks" href="{{ SUNRISE_URL }}spex_/courses/"><div class='sidemenu-text'>Courses</div></a></li>
+						<li><a class="iconcodec icon-shield" href="{{ SUNRISE_URL }}spex_/quests/"><div class='sidemenu-text'>Quests</div></a></li>
+						<li><a class="iconcodec icon-inbox" href="{{ SUNRISE_URL }}spex_/inbox/"><div class='sidemenu-text'>Inbox</div></a></li>
+						<li><a class="iconcodec icon-keyboard" href="{{ SUNRISE_URL }}spex_/notes/"><div class='sidemenu-text'>Notes</div></a></li>
+
+					</ul>
+					<h5 class='version-text'>{{ QUBAL_VERSION }}</h5>
+				</nav>
+
+
+				<div class="st-content"><!-- this is the wrapper for the content -->
+					<div class="st-content-inner"><!-- extra div for emulating position:fixed of the menu -->
+
+						<!-- Top Navigation -->
+						<div class="codrops-top clearfix">
+							<span class="right"><a href="{{ SUNRISE_URL}}"><span class='OpenSans-Light student-name'><i class="icon-beer"></i>&nbsp;&nbsp;Original taste</span></a></span>
+						</div> 
+						<div id="st-trigger-effects" class="">
+								<button data-effect="st-effect-6"><i class=''></i>menu</button>
+						</div>
+							<!-- <a href="#" id="st-trigger-effects" data-effect='st-effect-6'>Menu</a> -->
+						
+
+						<header class="codrops-header">
+              <img style="width:120px; height: 135px;" src="{{ STATIC_URL }}qubalapp/main_engine/img/qubal_logo.png" />
+							<h3 class="qubal-header-title">QUBAL SPEX <span>{{ QUBAL_VERSION }}</span><span><a href='{{ SUNRISE_URL }}admin' class='btn btn-min btn-warning'><i class='icon-cog'></i>&nbsp;ADMIN</a></span><span><a href='{{ SUNRISE_URL }}logout' class='btn btn-min btn-inverse'><i class='icon-signout'></i>&nbsp;LOGOUT</a></span></h3>
+
+							
+						</header>
+
+
+<div class="container clearfix">
+
+{% load imagekit %}
+             
+
+  <div class='row offset-cuarto'>
+
+    <div class='span3'>
+      <div class='row'><!-- ROW from profilewidget start -->
+      
+      <div class='span5'>        
+
+        <h4 class='opensans-bold student-name'>{{ student.name }} {{ student.lastname }}</h4>
+        
+        <div class='span1ymedio pull-right push-up label label-inverse profile_level_details'><div class='opensans-bold offset-cuarto'><br><span class='totalxp_text pull-right'>{{ total_xp }}</span> <div class='push-up20 totalxp_text offset-medio'>XP</div><br><span class='pagination-centered current_level_text'>{{ current_level }}&nbsp;</span></div><p class='opensans-bold student-class-centered'>{{ student.get_character_class_display|upper }}</p>
+
+        </div>
+
+        {% if student.image %}
+
+          {% generateimage 'qubalapp:thumbnail150x150' source=student.image as tn2 %}
+          <div class='push-down profile_image'><img src='{{ tn2.url }}' class='img-circle' title='{{ student.name}} {{ student.lastname }} - level {{ current_level }} - {{ student.get_character_class_display }}' rel="tooltip-left"/></div>
+        {% else %}
+          <div class='push-down profile_image'><img src='{{ STATIC_URL }}default_images/default_avatar_grey.jpg' width='150' class='img-circle' title='{{ student.name}} {{ student.lastname }} - level {{ current_level }} - {{ student.get_character_class_display }}' rel="tooltip-left"/></div>
+        {% endif %}
+        <br><br>
+      </div>
+
+<div class='clearfix'></div>
+
+
+  
+  <div class='span4ymedio profile_widget bg-grey'>
+
+       <div class='row pull-right push-up'>
+            <div class='offset2 span2'>
+                <!-- <span class=''> level {{current_level}}</span><br> -->
+                <div class='current_student_xp'> <i class='icon-level-up letter-large' rel='tooltip' title='levelup to {{ next_level }} at: {{next_level_at}} XP'></i> {{ current_xp }}/{{ xp_needed_for_level_up }} XP</div>
+                <div class="span1ymedio progress progress-striped active">
+                  <div class="bar" style="width:{{ percent_current_xp }}%;" rel='tooltip-bottom' title='level {{ current_level}} to {{ next_level }} progress: {{ current_xp }}/{{ xp_needed_for_level_up }}xp - {{ percent_current_xp }}%'></div>
+
+                </div>
+
+
+
+                <p class='container'>
+                <div class="last_achievement_title">Last Achievement</div>
+                  {% if last_achievement_list %}
+                    {% for last_achievement in last_achievement_list.all %}
+
+                      {% if last_achievement.image %}
+                        {% generateimage 'qubalapp:thumbnail100x100' source=last_achievement.image as last_achievement_holder %}
+                        <img src='{{ last_achievement_holder.url }}' class='img-polaroid' rel="tooltip" title='{{ last_achievement.name }} : {{ last_achievement.description }}'/><br><div class='last_achievement_name'>{{ last_achievement.name }}</div>
+                      {% else %}
+                        <img src='{{ STATIC_URL }}default_images/default_achievement.jpg' width="100" class='img-polaroid' rel="tooltip" title='{{ last_achievement.name }} : {{ last_achievement.description }}'/><br><div class='last_achievement_name'>{{ last_achievement.name }}</div>
+                      {% endif %}
+
+                    {% endfor %}
+                  {% else %}
+                  <p>No hay ultimo logro</p>
+                  {% endif %}
+                </p>
+            </div>
+
+            <div class='clearfix'></div>
+      </div><!-- Last achievement div -->
+
+    
+  <div class='row '>
+    <h4> <i class="icon-group"></i> <span class="logo_text">Teams</span></h4>
+    
+
+      <div class='span2ycuarto well-small'>
+         
+            {% if student_teams_list %}
+                
+                {% for team in student_teams_list.all %}
+                
+                  {% if team.image %}
+
+                    {% generateimage 'qubalapp:thumbnail30x30' source=team.image as team_holder %}
+                      <a href="/team/{{ team.id }}/" rel="tooltip" title='{{team.name}}' >
+                        <img src='{{ team_holder.url }}' class='img-polaroid'/>
+                      </a>
+                  {% else %}
+                      <a href="/team/{{ team.id }}/" rel="tooltip" title='{{team.name}}' >
+                        <img src='{{ STATIC_URL }}default_images/default_team_avatar.jpg' width="30" class='img-polaroid'/>
+                      </a>
+                  {% endif %}
+
+                {% endfor %}
+                  <i class='icon-chevron-sign-right button_viewmore'></i>
+            {% else %}
+                <p>No team</p>
+            {% endif %}
+        
+      </div>
+
+     
+
+
+
+    </div>
+
+    <div class='row push-up90'>
+      <h4> <i class="icon-star"></i> <span class="logo_text">Achievements</span></h4>
+        <div class='span2ycuarto well-small'>
+          {% if student_achievement_list %}
+                
+                {% for achievement in student_achievement_list.all %}
+                
+                {% if achievement.image %}
+
+                  {% generateimage 'qubalapp:thumbnail30x30' source=achievement.image as achievement_holder %}
+                  
+                    <a href="/achievement/{{ achievement.id }}/" rel="tooltip" title='{{achievement.name}}'>
+                      <img src='{{ achievement_holder.url }}' class='img-polaroid'/>
+                    </a>
+                {% else %}
+                    <a href="/achievement/{{ achievement.id }}/" rel="tooltip" title='{{achievement.name}}'>
+                      <img src='{{ STATIC_URL }}default_images/default_achievement.jpg' width="30" class='img-polaroid'/>
+                    </a>
+                {% endif %}
+
+                {% endfor %}
+                  <i class='icon-chevron-sign-right button_viewmore'></i>
+            {% else %}
+                <p>No Achievements!</p>
+
+            {% endif %}
+        </div>
+
+        
+
+    </div>
+    
+<br>
+  </div>
+
+
+  </div><!-- ROW profilewidget ends -->
+</div>
+
+  
+    <div class='span6 spano'>
+                <h3>
+                  <i class='icon-asterisk' id='bouncy'></i> <span class="opensans student-name">Hi {{ student.name }}, Welcome back!</span>
+                  <p class='OpenSans-Light deadlines-text'>
+                    
+
+                  {% if latest_activity_deadlines_list %}
+
+                            You've got {{ latest_activity_deadlines_list|length }} deadlines coming up:
+
+                        {% for deadline in latest_activity_deadlines_list %}
+
+                            {% if deadline.image %}
+
+                                {% generateimage 'qubalapp:thumbnail50x50' source=deadline.image as image_holder %}
+                                <a href="/{{ settings.SUNRISE_URL }}course/{{ deadline.id }}/" rel='tooltip' title='{{deadline.name}} ending in {{ deadline.ending_date|timeuntil }}'><img src='{{ image_holder.url }}' class='img-circle'></a>
+                            {% else %}
+                                <a href="/{{ settings.SUNRISE_URL }}course/{{ deadline.id }}/" rel="tooltip" title='Course ending in {{ deadline.ending_date|timeuntil }}'>
+                                  <img src='{{ STATIC_URL }}default_images/default_achievement.jpg' width="30" class='img-polaroid'/>
+                                </a>
+
+                            {% endif %}
+                        {% empty %}
+
+                            No deadlines , yay! <i class='icon-meh'></i>
+
+                        {% endfor %}
+                  
+                  {% endif %}
+                    
+                  </p>
+
+                </h3>
+            <div class="row box_continue bg-grey">
+                  <div class="span5">
+                      
+                      
+                      <div class='row latest_activity_box'>
+                        <div class='span6'>
+                          <h3>
+                            <p class='opensans'>Your latest activity</p>
+                            
+                          </h3>
+                          <p>
+                            <div class="notifications top-right"></div>
+                          </p>
+                          <hr>
+                        </div>
+                      </div>
+
+
+
+
+                      <p>
+                        {{ student.name }} | level {{ current_level }} | {{ total_xp }} totalxp
+                      </p>
+                      <div class="span3 progress progress-striped active">
+                        <div class="bar" style="width:{{ percent_xp }}%;"></div>
+                      </div><br>
+                      <div class="progress progress-striped active">
+                        <div class="bar" style="width:{{ percent }}%;"></div>
+                      </div>
+                      
+                      
+
+
+
+
+
+
+
+
+                  </div> <!-- div span5 -->
+
+
+            </div> <!-- row box_continue -->
+    </div> <!-- span6 spano -->
+
+  </div> <!-- row offset-cuarto -->
+
+
+  
+
+
+
+
+<div class='row offset-cuarto'>
+
+  <div class='span6'>
+
+    <!-- QuBal Knob Box -->
+  <div class="knob-box bg-grey">
+    <div class="row">
+      <div class="span3 knob-box-icon">
+        <i class="icon-fire big-icon"></i><span class="text-18 opensans-bold">   Your Powers!</span>
+      </div>
+    </div>
+    <hr class="dark-hr">
+
+    <div class="row">
+      <div class="radius radius-box-top"> <!-- radius-box 1 the magenta one -->
+        
+          <input type="text" rel="tooltip" title="Mastery {{ student_powers.mastery }}%" data-width="150" class="dial1">
+          <div class="row radius-box-text">
+            <span class="text-18 opensans-bold">Improve Skill <i class="icon-chevron-sign-up radius-text-magenta"></i></span> 
+          </div>
+
+      </div>
+      <div class="radius radius-box-top"> <!-- radius-box 2 the grey one -->
+
+        <input type="text" rel="tooltip" title="Focus {{ student_powers.focus }}%" data-width="150" class="dial2">
+        <div class="row radius-box-text">
+            <span class="text-18 opensans-bold">Improve Skill <i class="icon-chevron-sign-up radius-text-grey"></i></span> 
+          </div>
+
+      </div>
+
+    </div>
+
+
+
+
+    <div class="row">
+      <div class="radius radius-box"> <!-- radius-box 3 the green one -->
+        
+          <input type="text" rel="tooltip" title="Teamwork {{ student_powers.teamwork }}%" data-width="150" class="dial3">
+          <div class="row radius-box-text">
+            <span class="text-18 opensans-bold">Improve Skill <i class="icon-chevron-sign-up radius-text-green"></i></span> 
+          </div>
+
+      </div>
+      <div class="radius radius-box">
+
+        <input type="text" rel="tooltip" title="Communication {{ student_powers.communication }}%" data-width="150" class="dial4">
+        <div class="row radius-box-text">
+            <span class="text-18 opensans-bold">Improve Skill <i class="icon-chevron-sign-up radius-text-blue"></i></span> 
+          </div>
+
+      </div>
+
+    </div>
+    <div class="row">
+
+      <div class="radius lower-radius-box">
+
+        <input type="text" rel="tooltip" title="Responsability {{ student_powers.responsability }}%" data-width="150" class="dial5">
+        <div class="row radius-box-text">
+            <span class="opensans-bold">Improve Skill <i class="icon-chevron-sign-up radius-text-purple"></i></span> 
+          </div>
+
+      </div>
+      <div class="radius lower-radius-box">
+
+        <input type="text" rel="tooltip" title="Perseverance {{ student_powers.perseverance }}%"data-width="150" class="dial6">
+        <div class="row radius-box-text">
+            <span class="text-18 opensans-bold">Improve Skill <i class="icon-chevron-sign-up radius-text-orange"></i></span> 
+        </div>
+
+      </div>
+    </div> <!-- row --> 
+
+  </div> <!-- knob-box -->
+
+  </div>
+
+
+
+  <div class='span5'>
+
+
+<div class="row  bg-grey">
+                  <div class="span5">
+                      
+                      
+                      <div class='row your_courses_box '>
+                        
+                          <h3>
+                            <p class='opensans'>Learn courses</p>
+                          </h3>
+                          <p>
+                                  <p>
+                                    {{ student.name }} | level {{ current_level }} | {{ total_xp }} totalxp
+                                  </p>
+                                  <div class="span3 progress progress-striped active">
+                                    <div class="bar" style="width:{{ percent_xp }}%;"></div>
+                                  </div><br>
+                                  <div class="progress progress-striped active">
+                                    <div class="bar" style="width:{{ percent }}%;"></div>
+                                  </div>
+                                  
+                                  
+
+
+
+                                  <div class="row carousel-box">
+
+                
+                                    <div class="span5">
+                                      <div id="myCarousel" class="carousel slide">
+                                        <ol class="carousel-indicators">
+                                          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                          <li data-target="#myCarousel" data-slide-to="1"></li>
+                                          <li data-target="#myCarousel" data-slide-to="2"></li>
+                                          <li data-target="#myCarousel" data-slide-to="3"></li>
+                                        </ol>
+                                        <!-- Carousel items -->
+                                        <div class="carousel-inner carousel-rounded">
+
+                                          <div class="active item">
+                                            <img src="{{ STATIC_URL}}qubalapp/main_engine/img/carousel1.jpg" alt"">
+                                            
+                                              <div class="carousel-caption">
+                                                
+                                                <div class="row">
+                                                  <div class="span2 available-course">
+                                                    Available Courses
+                                                  </div>
+                                                </div>
+                                                
+                                                <div class="row pb20">
+                                                  <div class="span1 available-course-icon">
+                                                    <i class="icon-desktop big-icon"></i>
+                                                  </div>
+                                                  <div class"span2">
+                                                    <span class="text-blue">CSS3! NEW </span><br>
+                                                    Learn CSS3<br>
+                                                    <span class="text-small">Learn CSS3 with the new <span class="text-blue">QuBAL</span> system.</span>
+
+                                                  </div>
+                                                </div>
+
+                                              </div>
+                                            
+
+                                          </div> <!-- div active item -->
+
+                                          <div class="item">
+                                            <img src="{{ STATIC_URL}}qubalapp/main_engine/img/carousel2.jpg" alt"">
+                                              
+                                              <div class="carousel-caption">
+                                                
+                                                <div class="row">
+                                                  <div class="span2 available-course">
+                                                    Available Courses
+                                                  </div>
+                                                </div>
+                                                
+                                                <div class="row pb20">
+                                                  <div class="span1 available-course-icon">
+                                                    <i class="icon-desktop big-icon"></i>
+                                                  </div>
+                                                  <div class"span2">
+                                                    <span class="text-blue">jquery</span><br>
+                                                    The jquery path!<br>
+                                                    <span class="text-small">10 quest, 50 challenges and 100 new tasks!.</span>
+                                                  </div>
+                                                </div>
+
+                                              </div>
+                                              
+                                            </div>
+                                          <div class="item">
+                                            <img src="{{ STATIC_URL}}qubalapp/main_engine/img/carousel3.jpg" alt"">
+                                              
+                                              <div class="carousel-caption">
+                                                
+                                                <div class="row">
+                                                  <div class="span2 available-course">
+                                                    Available Courses3
+                                                  </div>
+                                                </div>
+                                                
+                                                <div class="row pb20">
+                                                  <div class="span1 available-course-icon">
+                                                    <i class="icon-desktop big-icon"></i>
+                                                  </div>
+                                                  <div class"span2">
+                                                    <span class="text-blue">CourseTitle3</span><br>
+                                                    CourseInformation3<br>
+                                                    <span class="text-small">Ut wise enim ad minim veniam quis nostrud ipsum 3.</span>
+
+                                                  </div>
+                                                </div>
+                                  <!--               <div class="row">
+                                                  <p class="negro"> CSS cross coutry! Join now to this exciting course!</p>
+                                                </div>  -->
+                                              </div>
+                                              
+                                          </div> <!-- div item -->
+                                          <div class="item">
+                                            <img src="{{ STATIC_URL}}qubalapp/main_engine/img/carousel4.jpg" alt"">
+
+                                             <div class="carousel-caption">
+                                                
+                                                <div class="row">
+                                                  <div class="span2 available-course">
+                                                    <span class="text-white">Available Courses4</span>
+                                                  </div>
+                                                </div>
+                                                
+                                                <div class="row pb20">
+                                                  <div class="span1 available-course-icon">
+                                                    <i class="icon-desktop big-icon text-white"></i>
+                                                  </div>
+                                                  <div class"span2">
+                                                    <span class="text-blue">CourseTitle4</span><br>
+                                                    <span class="text-white">CourseInformation4</span><br>
+                                                    <span class="text-small text-white">Ut wise enim ad minim veniam quis nostrud ipsum 4.</span>
+
+                                                  </div>
+                                                </div>
+                                  <!--               <div class="row">
+                                                  <p class="negro"> CSS cross coutry! Join now to this exciting course!</p>
+                                                </div>  -->
+                                              </div>
+                                              
+
+                                              
+                                          </div> <!-- div item -->
+                                        </div> <!-- div carousel-inener -->
+                                      <!-- Carousel nav -->
+
+                                      <a class="carousel-control left jcarousel-prev-disabled" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                                      <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+
+                                      </div> <!-- div myCarousel -->
+                                    </div> <!-- div span5 (doing as container)-->
+                                  
+
+                              </div> <!-- div from the carousel box-->
+
+
+
+
+
+                          </p>
+                          <hr>
+                        
+                      </div>
+
+
+
+
+                      
+
+
+
+
+
+                      
+
+
+
+
+
+                  </div> <!-- div span5 -->
+
+
+            </div> <!-- row box_continue -->
+
+
+            <!-- Oracle Ad start  -->
+            <div class='oraclead'>
+              <div class='row oracle_box'>
+                <div class='span8'>
+                  <a href='{{ SUNRISE_URL }}spex_/spex_oracle_landing/'><img src='{{ STATIC_URL}}qubalapp/main_engine/img/oracle.jpg' class='img-rounded' title='The Oracle'></a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Oracle Ad end-->
+
+  </div>
+</div>
+
+{% autoescape off %}{{ footer_block }}{% endautoescape %}
+</div> <!-- main container end div -->
+
+					</div><!-- /st-content-inner -->
+				</div><!-- /st-content -->
+			</div><!-- /st-pusher -->
+
+		</div><!-- /st-container -->
+
+
+
+
+
+
+
+
+
+
+
+
+		
+						
+
+
+
+<!-- =================================================== -->
+<!-- =================== javascripts =================== -->
+<!-- =================================================== -->
+
+<script src="{{ STATIC_URL }}spex_qubal/js/modernizr.custom.js"></script>
+<script src="{{ STATIC_URL }}spex_qubal/js/classie.js"></script>
+<script src="{{ STATIC_URL }}spex_qubal/js/sidebarEffects.js"></script>
+<script src='{{ STATIC_URL }}spex_qubal/js/jquery.dajax.core.js'></script>
+
+
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/jquery.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/jquery.knob.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/opentip-jquery-excanvas.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/opentip.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/adapter-jquery.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap-notify.js"></script>
+
+
+
+    <script>
+      $('#myCarousel').carousel()
+      interval: 1000
+    </script>
+
+    <script>
+    // $(function() {
+    //     $(".dial").knob({
+    //          'min':0,
+    //          'max':100,
+    //          'step':1,
+    //          'readOnly': true,
+    //          'lineCap': 'round',
+    //          'fgColor': 'c2c2c2',
+    //          'change' : function (v) { console.log(v); },
+    //        });
+
+    // });
+
+// Mastery knob
+
+    $(document).ready(function (){
+    $('.dial1').val(0).trigger('change').delay(1000);
+    $(".dial1").knob({
+        // 'min':0,
+        // 'max':100,
+        // 'readOnly': true,
+        'width': 150,
+        'height': 150,
+        // 'fgColor': '#b9e672',
+        // 'step': 1,
+        // 'dynamicDraw': true,
+        // //'displayInput': false,
+        'thickness': 0.20,
+        // //'tickColorizeValues': true,
+        // 'lineCap': 'round',
+        // //'cursor': true
+    'min':0,
+    'max':100,
+    'fgColor': '#d3004d',
+    'inputColor':'#d3004d',
+    'step':1,
+    'readOnly': true,
+    'lineCap': 'round',
+    'skin': 'tron',
+    })         
+    
+        var tmr = self.setInterval(function(){myDelay()},40);        
+        var m = 0;
+        function myDelay(){
+            m += 1;
+            $('.dial1').val(m).trigger('change');
+            if(m=={{ student_powers.mastery }}) {            
+                window.clearInterval(tmr);
+            }
+        }    
+    });
+
+// Focus knob
+
+    $(document).ready(function (){
+    $('.dial2').val(0).trigger('change').delay(1000);
+    $(".dial2").knob({
+        // 'min':0,
+        // 'max':100,
+        // 'readOnly': true,
+        'width': 150,
+        'height': 150,
+        // 'fgColor': '#b9e672',
+        // 'step': 1,
+        // 'dynamicDraw': true,
+        // //'displayInput': false,
+        'thickness': 0.20,
+        // //'tickColorizeValues': true,
+        // 'lineCap': 'round',
+        // //'cursor': true
+    'min':0,
+    'max':100,
+    'fgColor': '#3b3b3b',
+    'inputColor':'#3b3b3b',
+    'step':1,
+    'readOnly': true,
+    'lineCap': 'round',
+    'skin': 'tron',
+    })         
+    
+        var tmr = self.setInterval(function(){myDelay()},40);        
+        var m = 0;
+        function myDelay(){
+            m += 1;
+            $('.dial2').val(m).trigger('change');
+            if(m=={{ student_powers.focus }}) {            
+                window.clearInterval(tmr);
+            }
+        }    
+    });
+
+
+
+
+
+
+    $(document).ready(function (){
+    $('.dial3').val(0).trigger('change').delay(1000);
+    $(".dial3").knob({
+        // 'min':0,
+        // 'max':100,
+        // 'readOnly': true,
+        'width': 150,
+        'height': 150,
+        // 'fgColor': '#b9e672',
+        // 'step': 1,
+        // 'dynamicDraw': true,
+        // //'displayInput': false,
+        'thickness': 0.20,
+        // //'tickColorizeValues': true,
+        // 'lineCap': 'round',
+        // //'cursor': true
+    'min':0,
+    'max':100,
+    'fgColor': '#99cc00',
+    'inputColor':'#99cc00',
+    'step':1,
+    'readOnly': true,
+    'lineCap': 'round',
+    'skin': 'tron',
+    })         
+    
+        var tmr = self.setInterval(function(){myDelay()},40);        
+        var m = 0;
+        function myDelay(){
+            m += 1;
+            $('.dial3').val(m).trigger('change');
+            if(m=={{ student_powers.teamwork }}) {            
+                window.clearInterval(tmr);
+            }
+        }    
+    });
+
+
+
+    $(document).ready(function (){
+    $('.dial4').val(0).trigger('change').delay(1000);
+    $(".dial4").knob({
+        // 'min':0,
+        // 'max':100,
+        // 'readOnly': true,
+        'width': 150,
+        'height': 150,
+        // 'fgColor': '#b9e672',
+        // 'step': 1,
+        // 'dynamicDraw': true,
+        // //'displayInput': false,
+        'thickness': 0.20,
+        // //'tickColorizeValues': true,
+        // 'lineCap': 'round',
+        // //'cursor': true
+      'min':0,
+    'max':100,
+    'fgColor': '#0199ff',
+    'inputColor':'#0199ff',
+    'step':1,
+    'readOnly': true,
+    'lineCap': 'round'
+    })         
+    
+        var tmr = self.setInterval(function(){myDelay()},40);        
+        var m = 0;
+        function myDelay(){
+            m += 1;
+            $('.dial4').val(m).trigger('change');
+            if(m=={{ student_powers.communication }}) {            
+                window.clearInterval(tmr);
+            }
+        }    
+    });
+
+
+
+    $(document).ready(function (){
+    $('.dial5').val(0).trigger('change').delay(1000);
+    $(".dial5").knob({
+        // 'min':0,
+        // 'max':100,
+        // 'readOnly': true,
+        'width': 150,
+        'height': 150,
+        // 'fgColor': '#b9e672',
+        // 'step': 1,
+        // 'dynamicDraw': true,
+        // //'displayInput': false,
+        'thickness': 0.20,
+        // //'tickColorizeValues': true,
+        // 'lineCap': 'round',
+        // //'cursor': true
+      'min':0,
+    'max':100,
+    'fgColor': '#9966cc',
+    'inputColor':'#9966cc',
+    'step':1,
+    'readOnly': true,
+    'lineCap': 'round'
+    })         
+    
+        var tmr = self.setInterval(function(){myDelay()},40);        
+        var m = 0;
+        function myDelay(){
+            m += 1;
+            $('.dial5').val(m).trigger('change');
+            if(m=={{ student_powers.responsability }}) {            
+                window.clearInterval(tmr);
+            }
+        }    
+    });
+
+
+
+    $(document).ready(function (){
+    $('.dial6').val(0).trigger('change').delay(1000);
+    $(".dial6").knob({
+        // 'min':0,
+        // 'max':100,
+        // 'readOnly': true,
+        'width': 150,
+        'height': 150,
+        // 'fgColor': '#b9e672',
+        // 'step': 1,
+        // 'dynamicDraw': true,
+        // //'displayInput': false,
+        'thickness': 0.20,
+        // //'tickColorizeValues': true,
+        // 'lineCap': 'round',
+        // //'cursor': true
+      'min':0,
+    'max':100,
+    'fgColor': '#ff9901',
+    'inputColor':'#ff9901',
+    'step':1,
+    'readOnly': true,
+    'lineCap': 'round'
+    })         
+    
+        var tmr = self.setInterval(function(){myDelay()},40);        
+        var m = 0;
+        function myDelay(){
+            m += 1;
+            $('.dial6').val(m).trigger('change');
+            if(m=={{ student_powers.perseverance }}) {            
+                window.clearInterval(tmr);
+            }
+        }    
+    });
+
+
+    $("[rel=tooltip]").tooltip({ placement: 'top'});
+    $("[rel=tooltip-left]").tooltip({ placement: 'left'});
+    $("[rel=tooltip-bottom]").tooltip({ placement: 'bottom'});
+
+    $(document).ready(function() {
+    $('#bouncy')
+        .css({"font-size":10})   // Set to 0 as soon as possible – may result in flicker, but it's not hidden for users with no JS (Googlebot for instance!)
+        .delay(2000)           // Wait for a bit so the user notices it fade in
+        .css({"font-size":36});
+        //.delay(1000)     // Fade it back in. Swap css for animate in legacy browsers if required.
+        //.css({"font-size":32});
+    });
+
+    </script>
+
+{% autoescape off %}{{ notifications_content }}{% endautoescape %}
+
+</body>
+</html>

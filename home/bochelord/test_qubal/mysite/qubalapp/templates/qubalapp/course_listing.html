@@ -7,6 +7,8 @@
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/font-awesome.css">
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/navbar.css">
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/course_listing.css">
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-notify.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/alert-notification-animations.css" />
 </head>
 
 <body>
@@ -35,7 +37,9 @@
                 <span class="label label-info pull-right">badge</span>
               
                 <div class="course-box-title">
-                  <a href="{{ SUNRISE_URL }}courses/{{ course.id }}/">{{ course.name }}</a>
+
+                  <a href="{{ SUNRISE_URL }}course/{{ course.id }}/">{{ course.name }}</a>
+                  
                 </div>
 
                 <div class="course-box-date">
@@ -61,6 +65,7 @@
 <hr class="central-hr"><br>
 <span class="all-courses-title"> All Courses </span><br><br><br>
       {% for course in course_list.all %}
+          {% if course not in local_student_courses %}
               {% if course.image %}
                   {% generateimage 'qubalapp:thumbnail100x100' source=course.image as imagen %}
                     <div class='course-box'>
@@ -71,7 +76,18 @@
                     <div class='well'>
                     <img class="img-format img-circle pull-left" src='{{ STATIC_URL }}default_images/default_course_dark.jpg' width='100'/>
               {% endif %}
-                <span class="label label-info pull-right">badge</span>
+
+              
+                  {% if course in local_student_courses %}
+                    <span class="label label-success pull-right">Enrolled</span>
+                  {% else %}
+                    <form action="{{ SUNRISE_URL }}enroll/" method="POST" >
+
+                      <input type="hidden" name="course_id" value="{{ course.id }}" />
+                      <button type="submit" class="btn btn-small btn-warning pull-right">Enroll!</button> 
+                      {% csrf_token %}
+                    </form>
+                  {% endif %}
               
                 <div class="course-box-title">
                   <a href="{{ SUNRISE_URL }}courses/{{ course.id }}/">{{ course.name }}</a>
@@ -91,17 +107,19 @@
 
               </div>
             </div>
+          {% endif %}
       {% endfor %}
 </div>
 <hr class="mini-hr">
 
-
+<div class="notifications top-right"></div>
 </div>
 
 <script src="{{ STATIC_URL }}qubalapp/main_engine/js/jquery.js"></script>
 <script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap-notify.js"></script>
 
-
+{% autoescape off %}{{ notifications_content }}{% endautoescape %}
 
 </body>
 </html>

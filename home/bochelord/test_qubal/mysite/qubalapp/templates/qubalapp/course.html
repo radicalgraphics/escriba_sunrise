@@ -1,0 +1,215 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<title>Qubal | Quests</title>
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-flatly.css">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/navbar.css">
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/course.css">
+</head>
+
+<body>
+
+{% load imagekit %}
+{% autoescape off %}{{ navbar_content }}{% endautoescape %}
+
+<div class="container">
+
+	<ul class="breadcrumb">
+  		<li>
+  			<a href="{{ SUNRISE_URL }}">Dashboard</a>
+  			<span class="divider">></span>
+  		</li>
+
+  		<li>
+  			<a href="{{ SUNRISE_URL }}quest_listing/">Quests</a>
+  			<span class="divider">></span>
+  		</li>
+  		<li class="active">Quests available</li>
+	</ul>
+
+	<hr class="hr-format">
+
+
+<!-- SAMPLEEEE -->
+
+	<div class="row">
+		<div class="span12">
+			<h3 class="course-title-name">Course: {{ course.name }}</h3>
+			<p class="quests-tab-title"><i class="icon-shield"></i> Quests available </p>
+
+
+				{% generateimage 'qubalapp:thumbnail150x150' source=student.image as tn2 %}
+
+			<div class="tabbable tabs-left quest-tab-menu"> <!-- QUESTS TABS MENU starts <<<<<<<<<<<<<<<<<<<<<<<<< -->
+					<ul class="nav nav-tabs" id="myTab">
+					{% for quest in course.has_quests.all %}
+						{% if quest == course.has_quests.all|first %}
+					  		<li class="active"><a href="#{{ quest.id }}" data-toggle="pill">{{ quest.name }}</a></li>
+					  	{% else %}
+					  		<li class=""><a href="#{{ quest.id }}" data-toggle="pill">{{ quest.name }}</a></li>
+					  	{% endif %}
+					{% endfor %}
+					</ul>
+
+				<div class="tab-content">
+				
+				{% for quest in course.has_quests.all %}
+					{% if quest == course.has_quests.all|first %}
+						<div class="tab-pane active" id="{{ quest.id }}">
+
+							{% if quest.image %}
+								{% generateimage 'qubalapp:thumbnail30x30' source=quest.image as quest_image %}
+									<!-- QUEST DATA in the tab-content <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+								<p class="quest-image"><img class="img-circle" src="{{ quest_image.url }}" /></p>
+							{% else %}
+								<p class="quest-image"><img class="img-circle" src="{{ STATIC_URL }}default_images/default_quest.png" width="30" /></p>
+							{% endif %}
+								<div class="row">
+									<p class="quest-title">{{ quest.name }} </p>
+									
+										{% if quest.name in quests_started %}
+											<p class="label label-success disabled">Quest Started <i class="icon-ok"></i></p>
+										
+										{% else %}
+							                <form action="{{ SUNRISE_URL }}quest_started/" method="POST" >
+							                    <input type="hidden" name="quest_id_sent" value="{{ quest.id }}" />
+							                    <button type="submit" class="btn btn-small btn-info">Start Quest! <i class="icon-compass"></i></button>                    
+							                    {% csrf_token %}
+							                </form><br>
+							            {% endif %}
+							        
+						        </div>
+									<p class="quest-description">{{ quest.description }}</p>
+									<p class="quest-instruction">{{ quest.instruction }}</p>
+									<p class="quest-narrative">{{ quest.narrative }}</p>
+									<p class="quest-goals">{{ quest.goals }}</p>
+
+									<!-- QUEST DATA in the tab-content END <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+							<hr class="hr-format">
+
+							<div class='row'>
+								<div class='span5'>
+									<div class="tabbable tabs-left challenge-tab-menu">
+								
+					{% else %}
+						<div class="tab-pane" id="{{ quest.id }}">
+
+							<!-- QUEST DATA in the tab-content <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+
+							{% if quest.image %}
+								{% generateimage 'qubalapp:thumbnail30x30' source=quest.image as quest_image %}
+									<!-- QUEST DATA in the tab-content <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+								<p class="quest-image"><img class="img-circle" src="{{ quest_image.url }}" /></p>
+							{% else %}
+								<p class="quest-image"><img class="img-circle" src="{{ STATIC_URL }}default_images/default_quest.png" width="30" /></p>
+							{% endif %}
+
+							<div class="row">
+							<p class="quest-title">{{quest.name}}</p>
+
+										{% if quest.name in quests_started %}
+											<p class="label label-success disabled">Quest Started <i class="icon-ok"></i></p>
+										
+										{% else %}
+							                <form action="{{ SUNRISE_URL }}quest_started/" method="POST" >
+							                    <input type="hidden" name="quest_id_sent" value="{{ quest.id }}" />
+							                    <button type="submit" class="btn btn-small btn-info">Start Quest! <i class="icon-compass"></i></button>                    
+							                    {% csrf_token %}
+							                </form><br>
+							            {% endif %}
+							        
+					        </div>
+
+							<p class="quest-description">{{quest.description}}</p>
+							<p class="quest-instruction">{{ quest.instruction }}</p>
+							<p class="quest-narrative">{{ quest.narrative }}</p>
+							<p class="quest-goals">{{ quest.goals }}</p>
+							<!-- QUEST DATA in the tab-content END <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+							<hr class="hr-format">
+
+							<div class='row'>
+								<div class='span5'>
+									<div class="tabbable tabs-left challenge-tab-menu"> <!-- CHALLENGE TABS MENU starts <<<<<<<<<<<<< -->
+								
+					{% endif %}
+
+										<ul class="nav nav-tabs"> 
+										{% for challenge in quest.has_challenges.all %}
+										
+											{% if challenge == quest.has_challenges.all|first  %}
+										  		<li class="active challenge-tab-title"><a href="#{{quest.id}}{{challenge.id}}" data-toggle="pill"><i class="icon-trophy"></i> {{ challenge.name }}</a></li>
+										  	{% else %}
+										  		<li class=" challenge-tab-title"><a href="#{{quest.id}}{{challenge.id}}" data-toggle="pill"><i class="icon-trophy"></i> {{ challenge.name }}</a></li>
+										  	{% endif %}
+										  		<p class="challenge-description">{{ challenge.description }}</p>							  			
+										  		<p class="challenge-narrative">{{ challenge.narrative }}</p>
+										  		
+										{% endfor %}
+										</ul>
+
+									</div>
+								</div>
+								<div class="span3">
+										<div class="tab-content">
+											{% for challenge in quest.has_challenges.all %}
+												{% if challenge == quest.has_challenges.all|first  %}
+													<div class="tab-pane active" id="{{quest.id}}{{ challenge.id }}">
+												{% else %}
+													<div class="tab-pane" id="{{quest.id}}{{ challenge.id }}">
+												{% endif %}
+												<p class="task-title"><i class="icon-puzzle-piece"></i> Tasks</p>
+
+
+											
+												{% for task in challenge.has_tasks.all %}
+													<a href="{{ SUNRISE_URL }}task/{{ task.id }}/"><p class="task-name">
+														{% if task.task_type == "type_quiz" %}
+															<i class="icon-list-ul"></i>
+														{% elif task.task_type == "type_deliverable" %}
+															<i class="icon-upload-alt"></i>
+														{% elif task.task_type == "type_video" %}
+															<i class="icon-play-sign"></i>
+														{% endif %}
+													{{ task.name }}</p></a>
+												{% endfor %}
+													</div>
+											{% endfor %}
+										</div>
+
+								</div>
+							</div>
+						</div>										
+
+				{% endfor %}
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div> <!-- container div -->
+
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/jquery.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap.js"></script>
+
+<script>
+	
+	$('#myTab a[href="#1"]').click(function(e){
+		e.preventDefault();
+		$(this).tab('show');
+	}
+
+  	$('#myTab2 a[href="#11"]').click(function(e){
+		e.preventDefault();
+		$(this).tab('show');
+	}
+
+
+})
+
+</script>
+
+</body>
+</html>

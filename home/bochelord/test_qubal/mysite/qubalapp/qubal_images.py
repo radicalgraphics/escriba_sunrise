@@ -34,3 +34,9 @@ class Thumbnail30x30(ImageSpec):
     format = 'JPEG'
     options = {'quality': 100}
     
+
+class Thumbnail220x220(ImageSpec):
+    
+    processors = [ResizeToFill(220, 220)]
+    format = 'JPEG'
+    options = {'quality': 100}

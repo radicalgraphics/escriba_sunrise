@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>The Oracle</title>
+		<meta name="description" content="Blueprint: Responsive Content Slider" />
+		<meta name="keywords" content="responsive, content, slider, jquery, css3, fluid, template" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/default.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/oracle.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/oracle-text-effect.css" />
+		<script src="{{ STATIC_URL }}spex_qubal/js/modernizr.custom_oracle.js"></script>
+	</head>
+	<body>
+		<div class="container">
+
+				<div class="os-phrases" id="os-phrases">
+					<h2>The Oracle</h2>
+				</div>
+
+			<div class="main">
+				<div id="cbp-contentslider" class="cbp-contentslider">
+					<ul>
+						<li id="slide1">
+							<h3 class="icon-quest">The Oracle</h3>
+							<div>
+								<div class="cbp-content">
+									<p>The Oracle will guide you to choose your path, every path has special abilities and different ways to show the Qubal information.</p>
+									<p>There are four classes, the explorer, the activist, the unifier and the inventor, take some minutes of your time to read the pros and cons of every class and decide what you want to be... choose wisely as The Oracle will give some hints about how and who you are, but the final decision is yours...</p>
+								</div>
+							</div>
+						</li>
+						<li id="slide2">
+							<h3 class="icon-explorer">Explorer</h3>
+							<div>
+								<div class="cbp-content">
+									<p>As an explorer you are resourceful and able to adapt to most situations. You are a self-assured strategic thinker with eyes on the future.</p>
+									<p>You enjoy puzzles as long as they are practical, but when it comes to working or learning you need clear goals and logical instructions.</p>
+									<p>You want to be treated fair and are quite capable of self-eveluation. This is why you dislike hard criticism.
+									</p><p>You hate unclear goals. They put you in a passive state, which is a waste of your talents. If instructed properly, you will always come up with an answer.</p>
+								</div>
+							</div>
+						</li>
+						<li id="slide3">
+							<h3 class="icon-activist">Activist</h3>
+							<div>
+								<div class="cbp-content">
+									<p>As an activist you thrive on new ideas and social creation.</p>
+									<p>You enjoy a good challenge. If you get general guidelines and the freedom to address the challenge in your own creative way you will find an answer.</p>
+									<p>You want to be around enthusiastic people that recognize your individual strength and skills. Peer evaluation is important and you like to get a clear picture of where you stand compared to others.</p>
+									<p>You hate it when people keep confirming you on what you already know. To much positive feedback stops you from working hard and puts you in a lazy state. Humor, symbolism and metaphors will always get you back on track.</p>
+								</div>
+							</div>
+						</li>
+						<li id="slide4">
+							<h3 class="icon-unifier">Unifier</h3>
+							<div>
+								<div class="cbp-content">
+									<p>As an unifier you are a team player. You will stand up for whats right and motivate or help people whenever you can.</p>
+									<p>You enjoy social collaboration and like to engage in practical social activities. When given relevant practical information and step by step instructions you will come up with a solution.</p>
+									<p>You want to be treated with warmth and given support when needed. A friendly and social environment with equally shared tasks and clear goals, brings out the best in you.</p>
+									<p>You hate negativity and solitude. It makes you unhappy and gives you the urge to quit. Positive, personal feedback always gets you back on track.</p>
+								</div>
+							</div>
+						</li>
+						<li id="slide5">
+							<h3 class="icon-inventor">Inventor</h3>
+							<div>
+								<div class="cbp-content">
+									<p>As an inventor you are a creative innovative thinker with strong analytical skills that doesn't back down from a big challenge.</p>
+									<p>You enjoy intellectual real world problems, theories and general explanations that you can sink your teeth in. Regularly discussing your ideas with peers helps you to create your own vision, but its you who comes up with the best solution. Off course backed up by a proper theory.</p>
+									<p>You want to be treated with respect and respect others if they are competent at what they do and honest about their shortcomings. You prefer extensive ruthless feedback to social courtesy.</p>
+									<p>You hate boring lectures and wasting time. Inspirational and original lectures, and asking for your expert opinion, always get you back on track.</p>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<nav>
+						<a href="#slide1" class="icon-quest"><span>Oracle</span></a>
+						<a href="#slide2" class="icon-explorer"><span>Explorer</span></a>
+						<a href="#slide3" class="icon-activist"><span>Activist</span></a>
+						<a href="#slide4" class="icon-unifier"><span>Unifer</span></a>
+						<a href="#slide5" class="icon-inventor"><span>Inventor</span></a>
+					</nav>
+
+				</div>
+				{% load crispy_forms_tags %}
+ 				{% block content %}
+			   		{% crispy form %}
+				{% endblock %}
+			</div>
+
+
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="{{ STATIC_URL }}spex_qubal/js/jquery.cbpContentSlider.min.js"></script>
+		<script src="{{ STATIC_URL }}spex_qubal/js/jquery.lettering.js"></script>
+		<script>
+			$(function() {
+				/*
+				- how to call the plugin:
+				$( selector ).cbpContentSlider( [options] );
+				- options:
+				{
+					// default transition speed (ms)
+					speed : 500,
+					// default transition easing
+					easing : 'ease-in-out',
+					// current item's index
+					current : 0
+				}
+				- destroy:
+				$( selector ).cbpContentSlider( 'destroy' );
+				*/
+
+				$( '#cbp-contentslider' ).cbpContentSlider();
+			});
+		</script>
+
+		<script>
+			$(document).ready(function() {
+				$("#os-phrases > h2").lettering('words').children("span").lettering().children("span").lettering(); 
+			})
+		</script>
+
+	</body>
+</html>

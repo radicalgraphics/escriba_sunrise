@@ -1,13 +1,13 @@
 from django import forms
 from django.forms.widgets import DateTimeInput
-from qubalapp.models import Person, Task_Deliverable
+from qubalapp.models import Person, Task_Deliverable, Task_Quiz
 from datetimewidget.widgets import DateTimeWidget
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field, Fieldset, ButtonHolder
 from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions, Accordion, AccordionGroup, Tab, FormActions
 import datetime
 from django.conf import settings
-
+from django.shortcuts import get_object_or_404
 
 class MessageForm(forms.Form):
     text_input = forms.CharField()
@@ -75,8 +75,6 @@ class MessageForm(forms.Form):
     )
 
 
-
-
 class FileField(Field):
     template = 'qubalapp/file_field.html'
 
@@ -122,6 +120,12 @@ class Register_Character_Landing_Form(forms.Form):
         required = True,
     )
 
+    student_gender = forms.ChoiceField(
+        choices=(
+                ('m', "male"),
+                ('f', 'female'),
+        )
+    )
     student_image = forms.FileField(label='Profile Image')
 
 
@@ -147,6 +151,7 @@ class Register_Character_Landing_Form(forms.Form):
                 'student_name',
                 'student_lastname',
                 'student_birthdate',
+                'student_gender',
             ),
             #DateTimeWidget('student_birthdate'),
             AppendedText('student_phone', '<i class="icon-phone"></i>'),    
@@ -265,18 +270,10 @@ class Oracle_Form(forms.Form):
 
     character_class_choice = forms.ChoiceField(
         label = 'Choose your path through a Qubal Character Class',
-        choices = (('competitor','Competitor'),('explorer','Explorer'),('inventor','Inventor'),('collaborator','Collaborator')),
+        choices = (('no_class','No Class!'),('competitor','Competitor'),('explorer','Explorer'),('inventor','Inventor'),('collaborator','Collaborator')),
         widget = forms.RadioSelect,
+        initial = 'no_class',
         required = True,
-    )
-
-    radio_buttons = forms.ChoiceField(
-        choices = (
-            ('option_one', "Option one is this and that be sure to include why it's great"), 
-            ('option_two', "Option two can is something else and selecting it will deselect option one")
-        ),
-        widget = forms.RadioSelect,
-        initial = 'option_two',
     )
 
 
@@ -294,6 +291,53 @@ class Oracle_Form(forms.Form):
                 Submit('submit', 'Submit', css_class='button info')
             )
         )
+
+class Spex_Oracle_Form(forms.Form):
+
+    character_class_choice = forms.ChoiceField(
+        label = 'Choose your path through a Qubal Character Class',
+        choices = (('no_class','No Class!'),('explorer','Explorer'),('activist','Activist'),('unifier','Unifier'),('inventor','Inventor')),
+        widget = forms.RadioSelect,
+        initial = 'no_class',
+        required = True,
+    )
+
+
+    def __init__(self, *args, **kwargs):
+
+        super(Spex_Oracle_Form, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_action = settings.SUNRISE_URL+'spex_oracle_process/'
+        self.helper.form_class = 'formcampeon'
+        self.helper.layout = Layout(
+            Fieldset(
+                'The ORACLE',
+                'character_class_choice',
+            ),
+            ButtonHolder(
+                Submit('submit', 'Resummon Character', css_class='button info')
+            )
+        )
+
+# def get_quiz_answers(task_quiz):
+
+#     task = get_object_or_404(Task_Quiz, pk=task_quiz[0])
+    
+#     # for answer_key, answer_value in task.quiz.answers:
+#     #     answers_data += answer_value
+#     # print answers_data
+
+#     return task.quiz.answers.all()
+
+
+# class Quiz_Form(forms.Form):
+
+#     def __init__(self, *args, **kwargs):
+#         super(Quiz_Form, self).__init__(*args, **kwargs)
+#         self.fields['quiz_choices'] = forms.ChoiceField(choices=get_quiz_answers(args))
+
+
+
 
 
    

@@ -112,7 +112,7 @@ h1{
 
 .profile_image{
   position: absolute;
-  z-index: 100;
+  /*z-index: 0;*/
 }
 
 .profile_level{
@@ -466,4 +466,9 @@ h1{
 
 .navbar-margin {
   margin-bottom: 100px;
+}
+
+.containerfoot { 
+  margin-top: 20px;
+  *zoom: 1;
 }

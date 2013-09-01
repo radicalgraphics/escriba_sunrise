@@ -76,6 +76,7 @@ class Course(models.Model):
     has_teams = models.ManyToManyField('Team', blank=True, null=True)
     has_achievements = models.ManyToManyField('Achievement')
     has_documents = models.ManyToManyField('Educational_Document', blank=True, null=True) #through educational_documents_in_course? hay que probar el manytomany sin el through
+    has_rewards = models.ManyToManyField('Reward')
     what_should_i_know_list = models.ManyToManyField('Course', blank=True, null=True)
     what_should_i_know_description = models.TextField()
     what_should_i_learn_list = models.ManyToManyField('Course', blank=True, null=True, related_name='what_should_i_learn_courses_list')
@@ -139,6 +140,11 @@ class Team(models.Model):
 # Student that have been enrolled in a course :D
 class Person(models.Model):
     
+    GENDER = (
+        ('m', 'male'),
+        ('f', 'female')
+        )
+
     # role = Student, Teacher
     user = models.OneToOneField(User, primary_key=True)
     name = models.CharField(max_length=100)
@@ -166,6 +172,9 @@ class Person(models.Model):
     # has_edu_skills = models.ManyToManyField('Edu_Skill')
     # has_personal_skills = models.ManyToManyField('Personal_Skill')
     has_documents = models.ForeignKey('Educational_Document', blank=True, null=True)
+    is_in_school = models.ForeignKey('School', blank=True, null=True)
+    gender = models.CharField(max_length=1, choices=GENDER)
+    personal_quote = models.CharField(max_length=125)
 
     objects = InheritanceManager()
 
@@ -214,8 +223,11 @@ class Teacher(Person):
 class School(models.Model):
     name = models.CharField(max_length=250)
     has_address = models.OneToOneField('Address')
-    has_students = models.ForeignKey('Student')
-    has_teachers = models.ForeignKey('Teacher')
+    has_students = models.ManyToManyField('Student')
+    has_teachers = models.ManyToManyField('Teacher')
+
+    def __unicode__(self):
+        return self.name
 
 
 # Address
@@ -238,9 +250,10 @@ class Quest_Status(models.Model):
     started_on_date = models.DateTimeField()
     completed_on_date = models.DateTimeField(blank=True, null=True)
     unlocked = models.BooleanField(default=True)
+    completed = models.BooleanField(default=False)
 
     def __unicode__(self):
-        return self.student.name+" - "+self.quest.name
+        return self.student.name + " - " + self.quest.name +" - "+  str(self.quest.id)
 
 
 class Quest(models.Model):
@@ -271,6 +284,7 @@ class Challenge_Status(models.Model):
     challenge = models.ForeignKey('Challenge')
     started_on_date = models.DateTimeField()
     completed_on_date = models.DateTimeField(blank=True, null=True)
+    completed = models.BooleanField(default=False)
     
     def __unicode__(self):
         return self.student.name+" - "+self.challenge.name
@@ -286,7 +300,7 @@ class Challenge(models.Model):
     has_documents = models.ManyToManyField('Educational_Document', blank=True, null=True)
     has_tasks = models.ManyToManyField('Task')
     has_rewards = models.ManyToManyField('Reward', related_name='challenge_has_rewards')
-    has_key = models.ManyToManyField('Reward', blank=True, null=True)
+    has_key = models.ManyToManyField('Reward', blank=True, null=True) # keys can unlocks other challenges and quests.
     duration = models.DateTimeField() # used to calculate the deadlines.
     team_challenge = models.BooleanField(default=False)
 
@@ -352,14 +366,33 @@ class Task(models.Model):
     def __unicode__(self):
         return str(self.id)+": "+self.name
 
+
 class Task_Video(Task):
     video_url = models.CharField(max_length=255, blank=True, null=True)
+
 
 class Task_Deliverable(Task):
     deliverables = models.ForeignKey('Educational_Document', blank=True, null=True)
 
-# class Task_Quiz(Task):
-#     quiz = models.ForeignKey('Quiz')
+
+class Task_Quiz(Task):
+    quiz = models.ForeignKey('Quiz')
+
+
+class Answer(models.Model):
+    text = models.TextField()
+
+    def __unicode__(self):
+        return str(self.id)+": "+self.text
+
+class Quiz(models.Model):
+    question = models.TextField()
+    answers = models.ManyToManyField('Answer')
+    right_answer = models.ForeignKey('Answer', related_name='right_answer')
+
+    def __unicode__(self):
+        return str(self.id)+": "+self.question
+
 
 class Edu_Skill(models.Model):
     name = models.CharField(max_length=250)
@@ -421,3 +454,24 @@ class Rules_Edu_Skills_per_Course(models.Model):
 
     def __unicode__(self):
         return str(self.is_from_edu_skill)+": "+str(self.is_from_course)
+
+
+class Rules_Class_Power_Distribution(models.Model):
+
+    CHARACTER_CLASS = (
+        ('no_class', 'No Class!'),
+        ('explorer', 'Explorer'),
+        ('activist', 'Activist'),
+        ('unifier', 'Unifier'),
+        ('inventor', 'Inventor'),
+        )
+    character_class = models.CharField(max_length=12, choices=CHARACTER_CLASS)
+    teamwork_points = models.IntegerField()
+    communication_points = models.IntegerField()
+    responsability_points = models.IntegerField()
+    perseverance_points = models.IntegerField()
+    mastery_points = models.IntegerField()
+    focus_points = models.IntegerField()
+
+    def __unicode__(self):
+        return "Class: " + str(self.character_class) + " points:" + " teamwork: " + str(self.teamwork_points) + " communication: " + str(self.communication_points) + " responsability: " + str(self.responsability_points) + " perseverance: " + str(self.perseverance_points) + " mastery: " + str(self.mastery_points) + " focus: " + str(self.focus_points)

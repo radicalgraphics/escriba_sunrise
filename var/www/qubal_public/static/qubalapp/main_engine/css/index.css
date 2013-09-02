@@ -171,11 +171,16 @@ h1{
 .oracle_box{
   /*margin: 5px;
   margin-left: -10px;*/
+  margin-left: 26px;
   padding: 10px;
   border:1px solid #c2c2c2;
     -webkit-border-radius: 10px 10px 10px 10px;
      -moz-border-radius: 10px 10px 10px 10px;
           border-radius: 10px 10px 10px 10px;
+}
+
+.oracle_box img {
+  margin-left: -6px;
 }
 
 .oraclead{
@@ -270,7 +275,7 @@ h1{
 .carousel-box {
   width: 380px;
   padding: 5px;
-  margin-left: 0px;
+  margin-left: -25px;
   border:0px solid #999999;
     -webkit-border-radius: 10px 10px 10px 10px;
      -moz-border-radius: 10px 10px 10px 10px;

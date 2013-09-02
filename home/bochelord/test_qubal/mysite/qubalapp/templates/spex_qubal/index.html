@@ -287,49 +287,43 @@
 
                           <h3>
                             <p class='opensans'>Your latest activity</p>
-                            <hr>
+                            
                           </h3>
-                          {% generateimage 'qubalapp:thumbnail70x70' source=latest_activity_deadlines_list.1.image as image_holder_2 %}
+
+                          {% generateimage 'qubalapp:thumbnail70x70' source=latest_activity_deadlines_list.0.image as image_holder_2 %}
 
                          
 
                           <div class='row '>
                             <div class='span5'>
                                <h4>
-                                <p class='opensans'><img src='{{ image_holder_2.url }}' class='img-circle' rel='tooltip' title='Course: {{ latest_activity_deadlines_list.1.name }}'/>&nbsp;{{ latest_activity_deadlines_list.1.name }}</p>
+                                <p class='opensans'><img src='{{ image_holder_2.url }}' class='img-circle' rel='tooltip' title='Course: {{ latest_activity_deadlines_list.0.name }}'/>&nbsp;{{ latest_activity_deadlines_list.0.name }}</p>
                                </h4>
+                               <div class='pull-left'>
+                                  COURSE PROGRESS
+                                  <div class="progress progress-striped active">
+                                   <div class="bar" style="width:{{ percent }}%;"></div>
+                                  </div>
+                               </div>
                             </div>
                           </div>
-                            <div class='row offset-medio questline'>
+                            <div class='row questline'>
                               <div class='span4'>
                                 <i class='icon-quest bigger-font green' rel='tooltip-left' title='Quest I : Introduction to course'></i>&nbsp; <span class='medium-font green'>Introduction to course</span> &nbsp;<i class='icon-check-sign medium-font green' rel='tooltip-right' title='Done!'></i>
                               </div>
                             </div>
-                            <div class='row offset-medio questline'>
+                            <div class='row questline'>
                               <div class='span4'>
                                 <i class='icon-quest bigger-font green' rel='tooltip-left' title='Quest II : Get to know the basics'></i>&nbsp; <span class='medium-font green'>Get to know the basics</span> &nbsp;<i class='icon-check-sign medium-font green' rel='tooltip-right' title='Done!'></i>
                               </div>
                             </div>
-                            <div class='row offset-medio questline'>
+                            <div class='row questline'>
                               <div class='span4'>
                                 <i class='icon-quest bigger-font blue' rel='tooltip-left' title='Quest III : Find your muse adhoc'></i>&nbsp; <span class='medium-font blue'>Find your muse adhoc</span> &nbsp;<i class='icon-chevron-sign-right medium-font blue' rel='tooltip-right' title='Ongoing!'></i>
                               </div>
                             </div>
                             <hr>
-                        </div>
-
-                        <div class='span2 offset1'>
-                          COURSE PROGRESS
-                          <div class="progress progress-striped active">
-                           <div class="bar" style="width:{{ percent }}%;"></div>
-                          </div>
-                        </div>
-
-                          
-                          <p>
-                            <div class="notifications top-right"></div>
-                          </p>
-                          
+                        </div>                         
                         
                       </div>
 
@@ -353,13 +347,13 @@
 
 <div class='row offset-cuarto'>
 
-  <div class='span5'>
+  
 
-<div class="row  bg-grey">
+<div class="row span5 bg-grey">
                   <div class="span5">
                       
                       
-                      <div class='row your_courses_box '>
+                      <div class='row your_courses_box bg-grey'>
                         
                           <h3>
                             <p class='opensans'>Learn courses</p>
@@ -622,14 +616,14 @@
 
   <!-- </div> --> <!-- knob-box -->
 
-  </div>
+  
 
 
 
-  <div class='span5'>
+  <div class='span6'>
 <!-- Oracle Ad start  -->
             <div class='oraclead'>
-              <div class='row oracle_box'>
+              <div class='row oracle_box bg-grey'>
                 <div class='span8'>
                   <a href='{{ SUNRISE_URL }}spex_/spex_oracle_landing/'><img src='{{ STATIC_URL}}qubalapp/main_engine/img/oracle.jpg' class='img-rounded' title='The Oracle'></a>
                 </div>

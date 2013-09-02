@@ -69,6 +69,12 @@ urlpatterns = patterns('',
 
     url(r'^spex_oracle_process/$', views.spex_oracle_process),
 
+    url(r'^spex_/courses/$', views.spex_course_listing),
+
+    url(r'^spex_/teams/$', views.spex_teams),
+
+    url(r'^spex_/quests/$', views.spex_quests),    
+
     ## Social Auth views
 
     # url(r'^$', home, name='home'),

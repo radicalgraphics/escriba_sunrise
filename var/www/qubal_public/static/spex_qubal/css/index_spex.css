@@ -178,3 +178,26 @@ Fin de MINI TRONCHO DE BOOTSTRAP
   font-size: 14px;
 
 }
+
+.bigger-font{
+  font-size: 30px;
+  
+  margin-bottom: -5px;
+}
+
+.green{
+  color:#648f2f;
+}
+
+.blue{
+  color:#378181;
+}
+
+.medium-font{
+  font-size: 18px;
+  
+}
+
+.questline{
+  padding-bottom: 5px;
+}

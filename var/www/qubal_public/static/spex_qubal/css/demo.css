@@ -11,7 +11,7 @@
 }
 
 body {
-	background: #34495e;
+	background: #444;
 /*	color: #fff;*/
 	font-weight: 300;
 	font-family: 'Lato', Calibri, Arial, sans-serif;
@@ -19,7 +19,7 @@ body {
 
 a {
 	text-decoration: none;
-	color: #f7f7f7;
+/*	color: #f7f7f7;*/
 	outline: none;
 }
 

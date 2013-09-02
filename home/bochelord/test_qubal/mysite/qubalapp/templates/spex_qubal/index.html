@@ -17,18 +17,17 @@
 		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/demo.css" />
 		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/qubal-icons.css" />
 		<!-- <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/icons.css" /> -->
 		<!-- <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/component.css" /> -->
     	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-notify.css" />
 		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/index_spex.css" />
 		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/alert-notification-animations.css" />
-    	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/index.css" />
 
-    	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/sidebareffect/component.css" />
-    	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/sidebareffect/demo.css" />
-    	
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/sidebareffect/component.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/sidebareffect/demo.css" />
 
-		
 
 		{% dajaxice_js_import %}
 
@@ -41,17 +40,22 @@
 				example menus 
 				these menus will be on top of the push wrapper
 			-->
-	<!-- 		<nav class="st-menu st-effect-13" id="menu-13">
-				<h2 class="icon icon-stack">Sidebar</h2>
-				<ul>
-					<li><a class="icon icon-data" href="#">Data Management</a></li>
-					<li><a class="icon icon-location" href="#">Location</a></li>
-					<li><a class="icon icon-study" href="#">Study</a></li>
-					<li><a class="icon icon-photo" href="#">Collections</a></li>
-					<li><a class="icon icon-wallet" href="#">Credits</a></li>
-				</ul>
-			</nav>
- -->
+			<nav class="st-menu st-effect-11" id="menu-11">
+          <h2 class="iconcodec icon-sitemap"><div class='sidemenu-text'>QUBAL SPEX</div></h2>
+
+          <ul>
+            <li><a class="iconcodec icon-dashboard" href="{{ SUNRISE_URL }}spex_/"><div class='sidemenu-text'>Dashboard</div></a></li>
+            <li><a class="iconcodec icon-user" href="{{ SUNRISE_URL }}spex_/profile/"><div class='sidemenu-text'>Profile</div></a></li>
+            <li><a class="iconcodec icon-group" href="{{ SUNRISE_URL }}spex_/teams/"><div class='sidemenu-text'>Teams</div></a></li>
+            <li><a class="iconcodec icon-tasks" href="{{ SUNRISE_URL }}spex_/courses/"><div class='sidemenu-text'>Courses</div></a></li>
+            <li><a class="iconcodec icon-shield" href="{{ SUNRISE_URL }}spex_/quests/"><div class='sidemenu-text'>Quests</div></a></li>
+            <li><a class="iconcodec icon-inbox" href="{{ SUNRISE_URL }}spex_/inbox/"><div class='sidemenu-text'>Inbox</div></a></li>
+            <li><a class="iconcodec icon-keyboard" href="{{ SUNRISE_URL }}spex_/notes/"><div class='sidemenu-text'>Notes</div></a></li>
+
+          </ul>
+          <h5 class='version-text'>{{ QUBAL_VERSION }}</h5>
+      </nav>
+
 			<!-- content push wrapper -->
 			<div class="st-pusher">
 				<!-- 	
@@ -59,7 +63,7 @@
 					these menus will be under the push wrapper
 				-->
 
-				<nav class="st-menu st-effect-6" id="menu-6">
+				<!-- <nav class="st-menu st-effect-11" id="menu-11">
 					<h2 class="iconcodec icon-sitemap"><div class='sidemenu-text'>QUBAL SPEX</div></h2>
 
 					<ul>
@@ -73,7 +77,7 @@
 
 					</ul>
 					<h5 class='version-text'>{{ QUBAL_VERSION }}</h5>
-				</nav>
+				</nav> -->
 
 
 				<div class="st-content"><!-- this is the wrapper for the content -->
@@ -84,9 +88,9 @@
 							<span class="right"><a href="{{ SUNRISE_URL }}"><span class='OpenSans-Light student-name'><i class="icon-beer"></i>&nbsp;&nbsp;Original taste</span></a></span>
 						</div> 
 						<div id="st-trigger-effects" class="">
-								<button data-effect="st-effect-6"><i class=''></i>menu</button>
+								<button data-effect="st-effect-11"><i class=''></i>menu</button>
 						</div>
-							<!-- <a href="#" id="st-trigger-effects" data-effect='st-effect-6'>Menu</a> -->
+							<!-- <a href="#" id="st-trigger-effects" data-effect='st-effect-11'>Menu</a> -->
 						
 
 						<header class="codrops-header">
@@ -256,9 +260,9 @@
                             {% if deadline.image %}
 
                                 {% generateimage 'qubalapp:thumbnail50x50' source=deadline.image as image_holder %}
-                                <a href="/{{ SUNRISE_URL }}course/{{ deadline.id }}/" rel='tooltip' title='{{deadline.name}} ending in {{ deadline.ending_date|timeuntil }}'><img src='{{ image_holder.url }}' class='img-circle'></a>
+                                <a href="#" rel='tooltip' title='{{deadline.name}} ending in {{ deadline.ending_date|timeuntil }}'><img src='{{ image_holder.url }}' class='img-circle'></a>
                             {% else %}
-                                <a href="/{{ SUNRISE_URL }}course/{{ deadline.id }}/" rel="tooltip" title='{{deadline.name}} ending in {{ deadline.ending_date|timeuntil }}'>
+                                <a href="#" rel="tooltip" title='{{deadline.name}} ending in {{ deadline.ending_date|timeuntil }}'><!--/{{ SUNRISE_URL }}course/{{ deadline.id }}/-->
                                   <img src='{{ STATIC_URL }}default_images/default_achievement.jpg' style="width:50px;" class='img-circle'/>
                                 </a>
 
@@ -275,39 +279,59 @@
 
                 </h3>
             <div class="row box_continue bg-grey">
-                  <div class="span5">
+                  <div class="span6">
                       
                       
                       <div class='row latest_activity_box'>
-                        <div class='span6'>
+                        <div class='span5'>
+
                           <h3>
                             <p class='opensans'>Your latest activity</p>
-                            
+                            <hr>
                           </h3>
+                          {% generateimage 'qubalapp:thumbnail70x70' source=latest_activity_deadlines_list.1.image as image_holder_2 %}
+
+                         
+
+                          <div class='row '>
+                            <div class='span5'>
+                               <h4>
+                                <p class='opensans'><img src='{{ image_holder_2.url }}' class='img-circle' rel='tooltip' title='Course: {{ latest_activity_deadlines_list.1.name }}'/>&nbsp;{{ latest_activity_deadlines_list.1.name }}</p>
+                               </h4>
+                            </div>
+                          </div>
+                            <div class='row offset-medio questline'>
+                              <div class='span4'>
+                                <i class='icon-quest bigger-font green' rel='tooltip-left' title='Quest I : Introduction to course'></i>&nbsp; <span class='medium-font green'>Introduction to course</span> &nbsp;<i class='icon-check-sign medium-font green' rel='tooltip-right' title='Done!'></i>
+                              </div>
+                            </div>
+                            <div class='row offset-medio questline'>
+                              <div class='span4'>
+                                <i class='icon-quest bigger-font green' rel='tooltip-left' title='Quest II : Get to know the basics'></i>&nbsp; <span class='medium-font green'>Get to know the basics</span> &nbsp;<i class='icon-check-sign medium-font green' rel='tooltip-right' title='Done!'></i>
+                              </div>
+                            </div>
+                            <div class='row offset-medio questline'>
+                              <div class='span4'>
+                                <i class='icon-quest bigger-font blue' rel='tooltip-left' title='Quest III : Find your muse adhoc'></i>&nbsp; <span class='medium-font blue'>Find your muse adhoc</span> &nbsp;<i class='icon-chevron-sign-right medium-font blue' rel='tooltip-right' title='Ongoing!'></i>
+                              </div>
+                            </div>
+                            <hr>
+                        </div>
+
+                        <div class='span2 offset1'>
+                          COURSE PROGRESS
+                          <div class="progress progress-striped active">
+                           <div class="bar" style="width:{{ percent }}%;"></div>
+                          </div>
+                        </div>
+
+                          
                           <p>
                             <div class="notifications top-right"></div>
                           </p>
-                          <hr>
-                        </div>
+                          
+                        
                       </div>
-
-
-
-
-                      <p>
-                        {{ student.name }} | level {{ current_level }} | {{ total_xp }} totalxp
-                      </p>
-                      <div class="span3 progress progress-striped active">
-                        <div class="bar" style="width:{{ percent_xp }}%;"></div>
-                      </div><br>
-                      <div class="progress progress-striped active">
-                        <div class="bar" style="width:{{ percent }}%;"></div>
-                      </div>
-                      
-                      
-
-
-
 
 
 
@@ -329,87 +353,7 @@
 
 <div class='row offset-cuarto'>
 
-  <div class='span6'>
-
-    <!-- QuBal Knob Box -->
-  <div class="knob-box bg-grey">
-    <div class="row">
-      <div class="span3 knob-box-icon">
-        <i class="icon-fire big-icon"></i><span class="text-18 opensans-bold">   Your Powers!</span>
-      </div>
-    </div>
-    <hr class="dark-hr">
-
-    <div class="row">
-      <div class="radius radius-box-top"> <!-- radius-box 1 the magenta one -->
-        
-          <input type="text" rel="tooltip" title="Mastery {{ student_powers.mastery }}%" data-width="150" class="dial1">
-          <div class="row radius-box-text">
-            <span class="text-18 opensans-bold">Improve Skill <i class="icon-chevron-sign-up radius-text-magenta"></i></span> 
-          </div>
-
-      </div>
-      <div class="radius radius-box-top"> <!-- radius-box 2 the grey one -->
-
-        <input type="text" rel="tooltip" title="Focus {{ student_powers.focus }}%" data-width="150" class="dial2">
-        <div class="row radius-box-text">
-            <span class="text-18 opensans-bold">Improve Skill <i class="icon-chevron-sign-up radius-text-grey"></i></span> 
-          </div>
-
-      </div>
-
-    </div>
-
-
-
-
-    <div class="row">
-      <div class="radius radius-box"> <!-- radius-box 3 the green one -->
-        
-          <input type="text" rel="tooltip" title="Teamwork {{ student_powers.teamwork }}%" data-width="150" class="dial3">
-          <div class="row radius-box-text">
-            <span class="text-18 opensans-bold">Improve Skill <i class="icon-chevron-sign-up radius-text-green"></i></span> 
-          </div>
-
-      </div>
-      <div class="radius radius-box">
-
-        <input type="text" rel="tooltip" title="Communication {{ student_powers.communication }}%" data-width="150" class="dial4">
-        <div class="row radius-box-text">
-            <span class="text-18 opensans-bold">Improve Skill <i class="icon-chevron-sign-up radius-text-blue"></i></span> 
-          </div>
-
-      </div>
-
-    </div>
-    <div class="row">
-
-      <div class="radius lower-radius-box">
-
-        <input type="text" rel="tooltip" title="Responsability {{ student_powers.responsability }}%" data-width="150" class="dial5">
-        <div class="row radius-box-text">
-            <span class="opensans-bold">Improve Skill <i class="icon-chevron-sign-up radius-text-purple"></i></span> 
-          </div>
-
-      </div>
-      <div class="radius lower-radius-box">
-
-        <input type="text" rel="tooltip" title="Perseverance {{ student_powers.perseverance }}%"data-width="150" class="dial6">
-        <div class="row radius-box-text">
-            <span class="text-18 opensans-bold">Improve Skill <i class="icon-chevron-sign-up radius-text-orange"></i></span> 
-        </div>
-
-      </div>
-    </div> <!-- row --> 
-
-  </div> <!-- knob-box -->
-
-  </div>
-
-
-
   <div class='span5'>
-
 
 <div class="row  bg-grey">
                   <div class="span5">
@@ -602,7 +546,88 @@
             </div> <!-- row box_continue -->
 
 
-            <!-- Oracle Ad start  -->
+
+
+
+    <!-- QuBal Knob Box -->
+ <!--  <div class="knob-box bg-grey">
+    <div class="row">
+      <div class="span3 knob-box-icon">
+        <i class="icon-fire big-icon"></i><span class="text-18 opensans-bold">   Your Powers!</span>
+      </div>
+    </div>
+    <hr class="dark-hr">
+
+    <div class="row">
+      <div class="radius radius-box-top">  --><!-- radius-box 1 the magenta one -->
+        
+         <!--  <input type="text" rel="tooltip" title="Mastery {{ student_powers.mastery }}%" data-width="150" class="dial1">
+          <div class="row radius-box-text">
+            <span class="text-18 opensans-bold">Improve Skill <i class="icon-chevron-sign-up radius-text-magenta"></i></span> 
+          </div>
+
+      </div>
+      <div class="radius radius-box-top"> --> <!-- radius-box 2 the grey one -->
+
+        <!-- <input type="text" rel="tooltip" title="Focus {{ student_powers.focus }}%" data-width="150" class="dial2">
+        <div class="row radius-box-text">
+            <span class="text-18 opensans-bold">Improve Skill <i class="icon-chevron-sign-up radius-text-grey"></i></span> 
+          </div>
+
+      </div>
+
+    </div>
+
+
+
+
+    <div class="row">
+      <div class="radius radius-box"> --> <!-- radius-box 3 the green one -->
+        
+          <!-- <input type="text" rel="tooltip" title="Teamwork {{ student_powers.teamwork }}%" data-width="150" class="dial3">
+          <div class="row radius-box-text">
+            <span class="text-18 opensans-bold">Improve Skill <i class="icon-chevron-sign-up radius-text-green"></i></span> 
+          </div>
+
+      </div>
+      <div class="radius radius-box">
+
+        <input type="text" rel="tooltip" title="Communication {{ student_powers.communication }}%" data-width="150" class="dial4">
+        <div class="row radius-box-text">
+            <span class="text-18 opensans-bold">Improve Skill <i class="icon-chevron-sign-up radius-text-blue"></i></span> 
+          </div>
+
+      </div>
+
+    </div>
+    <div class="row">
+
+      <div class="radius lower-radius-box">
+
+        <input type="text" rel="tooltip" title="Responsability {{ student_powers.responsability }}%" data-width="150" class="dial5">
+        <div class="row radius-box-text">
+            <span class="opensans-bold">Improve Skill <i class="icon-chevron-sign-up radius-text-purple"></i></span> 
+          </div>
+
+      </div>
+      <div class="radius lower-radius-box">
+
+        <input type="text" rel="tooltip" title="Perseverance {{ student_powers.perseverance }}%"data-width="150" class="dial6">
+        <div class="row radius-box-text">
+            <span class="text-18 opensans-bold">Improve Skill <i class="icon-chevron-sign-up radius-text-orange"></i></span> 
+        </div>
+
+      </div>
+    </div> --> <!-- row --> 
+
+  <!-- </div> --> <!-- knob-box -->
+
+  </div>
+
+
+
+  <div class='span5'>
+<!-- Oracle Ad start  -->
             <div class='oraclead'>
               <div class='row oracle_box'>
                 <div class='span8'>
@@ -612,6 +637,12 @@
             </div>
 
             <!-- Oracle Ad end-->
+            
+
+
+
+
+
 
   </div>
 </div>
@@ -647,23 +678,24 @@
 
 <script src="{{ STATIC_URL }}spex_qubal/js/modernizr.custom.js"></script>
 <script src="{{ STATIC_URL }}spex_qubal/js/classie.js"></script>
-<script src="{{ STATIC_URL }}spex_qubal/js/sidebarEffects.js"></script>
-<script src='{{ STATIC_URL }}spex_qubal/js/jquery.dajax.core.js'></script>
+<script src="{{ STATIC_URL }}spex_qubal/js/sidebareffect/sidebarEffects.js"></script>
+
 
 
 <script src="{{ STATIC_URL }}qubalapp/main_engine/js/jquery.js"></script>
 <script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap.js"></script>
-<script src="{{ STATIC_URL }}qubalapp/main_engine/js/jquery.knob.js"></script>
-<script src="{{ STATIC_URL }}qubalapp/main_engine/js/opentip-jquery-excanvas.js"></script>
+<script src='{{ STATIC_URL }}spex_qubal/js/jquery.dajax.core.js'></script>
+<!-- <script src="{{ STATIC_URL }}qubalapp/main_engine/js/jquery.knob.js"></script> -->
+<!-- <script src="{{ STATIC_URL }}qubalapp/main_engine/js/opentip-jquery-excanvas.js"></script>
 <script src="{{ STATIC_URL }}qubalapp/main_engine/js/opentip.js"></script>
-<script src="{{ STATIC_URL }}qubalapp/main_engine/js/adapter-jquery.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/adapter-jquery.js"></script> -->
 <script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap-notify.js"></script>
 
 
 
     <script>
-      $('#myCarousel').carousel()
-      interval: 1000
+      // $('#myCarousel').carousel()
+      // interval: 1000
     </script>
 
     <script>
@@ -682,242 +714,243 @@
 
 // Mastery knob
 
-    $(document).ready(function (){
-    $('.dial1').val(0).trigger('change').delay(1000);
-    $(".dial1").knob({
-        // 'min':0,
-        // 'max':100,
-        // 'readOnly': true,
-        'width': 150,
-        'height': 150,
-        // 'fgColor': '#b9e672',
-        // 'step': 1,
-        // 'dynamicDraw': true,
-        // //'displayInput': false,
-        'thickness': 0.20,
-        // //'tickColorizeValues': true,
-        // 'lineCap': 'round',
-        // //'cursor': true
-    'min':0,
-    'max':100,
-    'fgColor': '#d3004d',
-    'inputColor':'#d3004d',
-    'step':1,
-    'readOnly': true,
-    'lineCap': 'round',
-    'skin': 'tron',
-    })         
+    // $(document).ready(function (){
+    // $('.dial1').val(0).trigger('change').delay(1000);
+    // $(".dial1").knob({
+    //     // 'min':0,
+    //     // 'max':100,
+    //     // 'readOnly': true,
+    //     'width': 150,
+    //     'height': 150,
+    //     // 'fgColor': '#b9e672',
+    //     // 'step': 1,
+    //     // 'dynamicDraw': true,
+    //     // //'displayInput': false,
+    //     'thickness': 0.20,
+    //     // //'tickColorizeValues': true,
+    //     // 'lineCap': 'round',
+    //     // //'cursor': true
+    // 'min':0,
+    // 'max':100,
+    // 'fgColor': '#d3004d',
+    // 'inputColor':'#d3004d',
+    // 'step':1,
+    // 'readOnly': true,
+    // 'lineCap': 'round',
+    // 'skin': 'tron',
+    // })         
     
-        var tmr = self.setInterval(function(){myDelay()},40);        
-        var m = 0;
-        function myDelay(){
-            m += 1;
-            $('.dial1').val(m).trigger('change');
-            if(m=={{ student_powers.mastery }}) {            
-                window.clearInterval(tmr);
-            }
-        }    
-    });
+    //     var tmr = self.setInterval(function(){myDelay()},40);        
+    //     var m = 0;
+    //     function myDelay(){
+    //         m += 1;
+    //         $('.dial1').val(m).trigger('change');
+    //         if(m=={{ student_powers.mastery }}) {            
+    //             window.clearInterval(tmr);
+    //         }
+    //     }    
+    // });
 
 // Focus knob
 
-    $(document).ready(function (){
-    $('.dial2').val(0).trigger('change').delay(1000);
-    $(".dial2").knob({
-        // 'min':0,
-        // 'max':100,
-        // 'readOnly': true,
-        'width': 150,
-        'height': 150,
-        // 'fgColor': '#b9e672',
-        // 'step': 1,
-        // 'dynamicDraw': true,
-        // //'displayInput': false,
-        'thickness': 0.20,
-        // //'tickColorizeValues': true,
-        // 'lineCap': 'round',
-        // //'cursor': true
-    'min':0,
-    'max':100,
-    'fgColor': '#3b3b3b',
-    'inputColor':'#3b3b3b',
-    'step':1,
-    'readOnly': true,
-    'lineCap': 'round',
-    'skin': 'tron',
-    })         
+    // $(document).ready(function (){
+    // $('.dial2').val(0).trigger('change').delay(1000);
+    // $(".dial2").knob({
+    //     // 'min':0,
+    //     // 'max':100,
+    //     // 'readOnly': true,
+    //     'width': 150,
+    //     'height': 150,
+    //     // 'fgColor': '#b9e672',
+    //     // 'step': 1,
+    //     // 'dynamicDraw': true,
+    //     // //'displayInput': false,
+    //     'thickness': 0.20,
+    //     // //'tickColorizeValues': true,
+    //     // 'lineCap': 'round',
+    //     // //'cursor': true
+    // 'min':0,
+    // 'max':100,
+    // 'fgColor': '#3b3b3b',
+    // 'inputColor':'#3b3b3b',
+    // 'step':1,
+    // 'readOnly': true,
+    // 'lineCap': 'round',
+    // 'skin': 'tron',
+    // })         
     
-        var tmr = self.setInterval(function(){myDelay()},40);        
-        var m = 0;
-        function myDelay(){
-            m += 1;
-            $('.dial2').val(m).trigger('change');
-            if(m=={{ student_powers.focus }}) {            
-                window.clearInterval(tmr);
-            }
-        }    
-    });
+    //     var tmr = self.setInterval(function(){myDelay()},40);        
+    //     var m = 0;
+    //     function myDelay(){
+    //         m += 1;
+    //         $('.dial2').val(m).trigger('change');
+    //         if(m=={{ student_powers.focus }}) {            
+    //             window.clearInterval(tmr);
+    //         }
+    //     }    
+    // });
 
 
 
 
 
 
-    $(document).ready(function (){
-    $('.dial3').val(0).trigger('change').delay(1000);
-    $(".dial3").knob({
-        // 'min':0,
-        // 'max':100,
-        // 'readOnly': true,
-        'width': 150,
-        'height': 150,
-        // 'fgColor': '#b9e672',
-        // 'step': 1,
-        // 'dynamicDraw': true,
-        // //'displayInput': false,
-        'thickness': 0.20,
-        // //'tickColorizeValues': true,
-        // 'lineCap': 'round',
-        // //'cursor': true
-    'min':0,
-    'max':100,
-    'fgColor': '#99cc00',
-    'inputColor':'#99cc00',
-    'step':1,
-    'readOnly': true,
-    'lineCap': 'round',
-    'skin': 'tron',
-    })         
+    // $(document).ready(function (){
+    // $('.dial3').val(0).trigger('change').delay(1000);
+    // $(".dial3").knob({
+    //     // 'min':0,
+    //     // 'max':100,
+    //     // 'readOnly': true,
+    //     'width': 150,
+    //     'height': 150,
+    //     // 'fgColor': '#b9e672',
+    //     // 'step': 1,
+    //     // 'dynamicDraw': true,
+    //     // //'displayInput': false,
+    //     'thickness': 0.20,
+    //     // //'tickColorizeValues': true,
+    //     // 'lineCap': 'round',
+    //     // //'cursor': true
+    // 'min':0,
+    // 'max':100,
+    // 'fgColor': '#99cc00',
+    // 'inputColor':'#99cc00',
+    // 'step':1,
+    // 'readOnly': true,
+    // 'lineCap': 'round',
+    // 'skin': 'tron',
+    // })         
     
-        var tmr = self.setInterval(function(){myDelay()},40);        
-        var m = 0;
-        function myDelay(){
-            m += 1;
-            $('.dial3').val(m).trigger('change');
-            if(m=={{ student_powers.teamwork }}) {            
-                window.clearInterval(tmr);
-            }
-        }    
-    });
+    //     var tmr = self.setInterval(function(){myDelay()},40);        
+    //     var m = 0;
+    //     function myDelay(){
+    //         m += 1;
+    //         $('.dial3').val(m).trigger('change');
+    //         if(m=={{ student_powers.teamwork }}) {            
+    //             window.clearInterval(tmr);
+    //         }
+    //     }    
+    // });
 
 
 
-    $(document).ready(function (){
-    $('.dial4').val(0).trigger('change').delay(1000);
-    $(".dial4").knob({
-        // 'min':0,
-        // 'max':100,
-        // 'readOnly': true,
-        'width': 150,
-        'height': 150,
-        // 'fgColor': '#b9e672',
-        // 'step': 1,
-        // 'dynamicDraw': true,
-        // //'displayInput': false,
-        'thickness': 0.20,
-        // //'tickColorizeValues': true,
-        // 'lineCap': 'round',
-        // //'cursor': true
-      'min':0,
-    'max':100,
-    'fgColor': '#0199ff',
-    'inputColor':'#0199ff',
-    'step':1,
-    'readOnly': true,
-    'lineCap': 'round'
-    })         
+    // $(document).ready(function (){
+    // $('.dial4').val(0).trigger('change').delay(1000);
+    // $(".dial4").knob({
+    //     // 'min':0,
+    //     // 'max':100,
+    //     // 'readOnly': true,
+    //     'width': 150,
+    //     'height': 150,
+    //     // 'fgColor': '#b9e672',
+    //     // 'step': 1,
+    //     // 'dynamicDraw': true,
+    //     // //'displayInput': false,
+    //     'thickness': 0.20,
+    //     // //'tickColorizeValues': true,
+    //     // 'lineCap': 'round',
+    //     // //'cursor': true
+    //   'min':0,
+    // 'max':100,
+    // 'fgColor': '#0199ff',
+    // 'inputColor':'#0199ff',
+    // 'step':1,
+    // 'readOnly': true,
+    // 'lineCap': 'round'
+    // })         
     
-        var tmr = self.setInterval(function(){myDelay()},40);        
-        var m = 0;
-        function myDelay(){
-            m += 1;
-            $('.dial4').val(m).trigger('change');
-            if(m=={{ student_powers.communication }}) {            
-                window.clearInterval(tmr);
-            }
-        }    
-    });
+    //     var tmr = self.setInterval(function(){myDelay()},40);        
+    //     var m = 0;
+    //     function myDelay(){
+    //         m += 1;
+    //         $('.dial4').val(m).trigger('change');
+    //         if(m=={{ student_powers.communication }}) {            
+    //             window.clearInterval(tmr);
+    //         }
+    //     }    
+    // });
 
 
 
-    $(document).ready(function (){
-    $('.dial5').val(0).trigger('change').delay(1000);
-    $(".dial5").knob({
-        // 'min':0,
-        // 'max':100,
-        // 'readOnly': true,
-        'width': 150,
-        'height': 150,
-        // 'fgColor': '#b9e672',
-        // 'step': 1,
-        // 'dynamicDraw': true,
-        // //'displayInput': false,
-        'thickness': 0.20,
-        // //'tickColorizeValues': true,
-        // 'lineCap': 'round',
-        // //'cursor': true
-      'min':0,
-    'max':100,
-    'fgColor': '#9966cc',
-    'inputColor':'#9966cc',
-    'step':1,
-    'readOnly': true,
-    'lineCap': 'round'
-    })         
+    // $(document).ready(function (){
+    // $('.dial5').val(0).trigger('change').delay(1000);
+    // $(".dial5").knob({
+    //     // 'min':0,
+    //     // 'max':100,
+    //     // 'readOnly': true,
+    //     'width': 150,
+    //     'height': 150,
+    //     // 'fgColor': '#b9e672',
+    //     // 'step': 1,
+    //     // 'dynamicDraw': true,
+    //     // //'displayInput': false,
+    //     'thickness': 0.20,
+    //     // //'tickColorizeValues': true,
+    //     // 'lineCap': 'round',
+    //     // //'cursor': true
+    //   'min':0,
+    // 'max':100,
+    // 'fgColor': '#9966cc',
+    // 'inputColor':'#9966cc',
+    // 'step':1,
+    // 'readOnly': true,
+    // 'lineCap': 'round'
+    // })         
     
-        var tmr = self.setInterval(function(){myDelay()},40);        
-        var m = 0;
-        function myDelay(){
-            m += 1;
-            $('.dial5').val(m).trigger('change');
-            if(m=={{ student_powers.responsability }}) {            
-                window.clearInterval(tmr);
-            }
-        }    
-    });
+    //     var tmr = self.setInterval(function(){myDelay()},40);        
+    //     var m = 0;
+    //     function myDelay(){
+    //         m += 1;
+    //         $('.dial5').val(m).trigger('change');
+    //         if(m=={{ student_powers.responsability }}) {            
+    //             window.clearInterval(tmr);
+    //         }
+    //     }    
+    // });
 
 
 
-    $(document).ready(function (){
-    $('.dial6').val(0).trigger('change').delay(1000);
-    $(".dial6").knob({
-        // 'min':0,
-        // 'max':100,
-        // 'readOnly': true,
-        'width': 150,
-        'height': 150,
-        // 'fgColor': '#b9e672',
-        // 'step': 1,
-        // 'dynamicDraw': true,
-        // //'displayInput': false,
-        'thickness': 0.20,
-        // //'tickColorizeValues': true,
-        // 'lineCap': 'round',
-        // //'cursor': true
-      'min':0,
-    'max':100,
-    'fgColor': '#ff9901',
-    'inputColor':'#ff9901',
-    'step':1,
-    'readOnly': true,
-    'lineCap': 'round'
-    })         
+    // $(document).ready(function (){
+    // $('.dial6').val(0).trigger('change').delay(1000);
+    // $(".dial6").knob({
+    //     // 'min':0,
+    //     // 'max':100,
+    //     // 'readOnly': true,
+    //     'width': 150,
+    //     'height': 150,
+    //     // 'fgColor': '#b9e672',
+    //     // 'step': 1,
+    //     // 'dynamicDraw': true,
+    //     // //'displayInput': false,
+    //     'thickness': 0.20,
+    //     // //'tickColorizeValues': true,
+    //     // 'lineCap': 'round',
+    //     // //'cursor': true
+    //   'min':0,
+    // 'max':100,
+    // 'fgColor': '#ff9901',
+    // 'inputColor':'#ff9901',
+    // 'step':1,
+    // 'readOnly': true,
+    // 'lineCap': 'round'
+    // })         
     
-        var tmr = self.setInterval(function(){myDelay()},40);        
-        var m = 0;
-        function myDelay(){
-            m += 1;
-            $('.dial6').val(m).trigger('change');
-            if(m=={{ student_powers.perseverance }}) {            
-                window.clearInterval(tmr);
-            }
-        }    
-    });
+    //     var tmr = self.setInterval(function(){myDelay()},40);        
+    //     var m = 0;
+    //     function myDelay(){
+    //         m += 1;
+    //         $('.dial6').val(m).trigger('change');
+    //         if(m=={{ student_powers.perseverance }}) {            
+    //             window.clearInterval(tmr);
+    //         }
+    //     }    
+    // });
 
 
     $("[rel=tooltip]").tooltip({ placement: 'top'});
     $("[rel=tooltip-left]").tooltip({ placement: 'left'});
     $("[rel=tooltip-bottom]").tooltip({ placement: 'bottom'});
+    $("[rel=tooltip-right]").tooltip({ placement: 'right'});
 
     $(document).ready(function() {
     $('#bouncy')

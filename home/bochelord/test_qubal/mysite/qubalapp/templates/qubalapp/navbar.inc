@@ -6,6 +6,7 @@
           <ul class="nav">
 
             <li>
+
               {% load imagekit %}
               {% load staticfiles %}
               {% load session_keep_alive %}
@@ -120,7 +121,7 @@
             <div class="span2menu pull-right admin-box">
                  
               <a class="btn btn-mini btn-warning" href="{{ SUNRISE_URL }}admin"><i class="icon-cog"></i> ADMIN</a>
-              <a class="btn btn-mini btn-inverse" href="{{ SUNRISE_URL }}spex_/"><i class="icon-lemon"></i> SPEX</a>
+              <a class="btn btn-mini btn-inverse" href="/spex_/"><i class="icon-lemon"></i> SPEX</a>
               <span class="version"><br>QUBAL {{ QUBAL_VERSION }}</span><br>
               
               <a href='{{ SUNRISE_URL }}logout/'><i class="icon-signout"></i> logout</a>

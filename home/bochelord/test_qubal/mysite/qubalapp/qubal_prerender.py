@@ -88,7 +88,6 @@ def prerender_nav(local_person, active_url, level, settings, request):
 				 'active_url': active_url,
 				 'current_level': level,
 				 'QUBAL_VERSION': settings.QUBAL_VERSION,
-				 'SUNRISE_URL': settings.SUNRISE_URL,
 				 'debug_placeholder': debug_placeholder })
 		
 	html = render(request, 'qubalapp/navbar.inc', c)

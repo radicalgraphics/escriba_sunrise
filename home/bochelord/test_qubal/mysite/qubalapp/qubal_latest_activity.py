@@ -52,3 +52,5 @@ def calculate_deadlines(student):
 
 def calculate_your_journey():
 	pass
+	# check the notifications from the student
+	# Look for the verbs 

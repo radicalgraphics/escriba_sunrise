@@ -24,18 +24,18 @@ home/bochelord...
 
 mysite
 ======
-Compare for changes in settings.py ---- escriba - escriba-sunrise - OK / OK / OK
-Compare for changes in urls.py --------    "            "         - OK / OK / OK
+Compare for changes in settings.py ---- escriba - escriba-sunrise - OK / OK / OK - OK
+Compare for changes in urls.py --------    "            "         - OK / OK / OK ' OK'
 
 
 qubalapp
 ========
-Compare urls.py --------	"       "	        - OK / OK / OK
-Compare admin.py -------	"	"				- OK / OK / OK
+Compare urls.py --------	"       "	        - OK / OK / OK - OK
+Compare admin.py -------	"	"				- OK / OK / OK - OK
 
 											   LOCAL			SERVER
 											================================
-Compare - views.py               note ->	(/landing/)		(/test/landing/)    - OK / OK / OK - (settings.SUNRISE_URL)
+Compare - views.py               note ->	(/landing/)		(/test/landing/)    - OK / OK / OK - OK(settings.SUNRISE_URL)
 
 Copy -> models.py 								- OK
 copy -> qubal_forms.py 							- OK / Ok (settings.SUNRISE_URL)
@@ -57,12 +57,12 @@ compare -> navbar.inc				(/)			(/test)                         - OK / OK / OK(se
 compare -> index.html 															- OK / Ok / OK
 compare -> index_teacher.html 													- OK / Ok / OK
 
-Compare -> landing.html															- OK / Ok / OK (SUNRISE_URL)
+Compare -> landing.html															- OK / Ok / OK - (SUNRISE_URL)
 
 compare -> teams.html 															- OK / Ok / Ok - (SUNRISE_URL)
-compare -> course_listing.html 													- OK / OK / OK- (SUNRISE_URL)
-compare -> notifications.inc 													- OK / Ok / OK- 
-compare -> profile.html 														- OK / Ok / OK- (SUNRISE_URL)
+compare -> course_listing.html 													- OK / OK / OK - (SUNRISE_URL)
+compare -> notifications.inc 													- OK / Ok / OK - 
+compare -> profile.html 														- OK / Ok / OK - (SUNRISE_URL)
 compare -> search_results.html 													- OK / Ok / OK - (SUNRISE_URL)
 compare -> file_field.html 														- OK / OK / OK - 
 compare -> quest.html 															- OK / Ok / OK - (SUNRISE_URL)

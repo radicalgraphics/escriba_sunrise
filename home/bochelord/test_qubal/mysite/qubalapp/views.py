@@ -33,11 +33,15 @@ from actstream.models import Action
 import datetime
 from django.utils import timezone
 
+
+
 register.generator('qubalapp:thumbnail30x30', Thumbnail30x30)
 register.generator('qubalapp:thumbnail50x50', Thumbnail50x50)
+register.generator('qubalapp:thumbnail70x70', Thumbnail70x70)
 register.generator('qubalapp:thumbnail100x100', Thumbnail100x100)
 register.generator('qubalapp:thumbnail150x150', Thumbnail150x150)
 register.generator('qubalapp:thumbnail220x220', Thumbnail220x220)
+
 
 
 def index(request):
@@ -183,6 +187,7 @@ def index(request):
 		else:
 
 			# we know you're a user, and not yet decided if student or teacher
+			# return  HttpResponse("You should choose what to be!!! you're just thi user: " + local_user.username )		
 
 			# we temporarily (for the moment) redirect to create Student if you're not decided yet (only a user)
 			# still we have to implement a switch for the teacher or use the old pen and paper tactic...
@@ -397,8 +402,6 @@ def register_character_landing(request):
 
 	return render(request, 'qubalapp/register_character_landing.html', context)
 
-
-
 def landing(request):
 
 	if 'error' in request.GET:
@@ -411,9 +414,8 @@ def landing(request):
 
 
 	context = { 'mensaje_de_mierda':mensaje_puerco,
-				'QUBAL_VERSION': settings.QUBAL_VERSION,
 				'SUNRISE_URL': settings.SUNRISE_URL,
-			  }
+				'QUBAL_VERSION': settings.QUBAL_VERSION }
 
 	return render(request, 'qubalapp/landing.html', context)
 
@@ -562,14 +564,12 @@ def course_listing(request):
 				total_xp = local_student.xp
 				current_level = calculate_level(total_xp)
 
+
 				#####
 				# Check for avoid a crash when the image doesn't exist
 		
 				if not os.path.isfile(settings.MEDIA_ROOT +str(local_student.image)):
 					local_student.image = ""
-
-				
-
 
 				url = 'course_listing.html'
 
@@ -648,10 +648,8 @@ def quest_listing(request):
 
 			local_student_quests_status = Quest_Status.objects.filter(student=local_student.user_id).order_by('started_on_date')
 
-			# Check for avoid a crash when the image doesn't exist
 			if not os.path.isfile(settings.MEDIA_ROOT +str(local_student.image)):
 				local_student.image = ""
-
 
 			url = 'quest_listing.html'
 
@@ -661,7 +659,7 @@ def quest_listing(request):
 				   		'current_level' : current_level,
 				   		'local_student_quests_status' : local_student_quests_status,
 				   		'local_student_quests_completed_list': local_student_quests_completed_list,
-				   		'local_student_active_courses_list': local_student_active_courses_list,
+				   		'local_student_active_courses_list': local_student_active_courses_list, 
 				   		'SUNRISE_URL': settings.SUNRISE_URL,
 				   		'navbar_content': html }
 
@@ -740,7 +738,7 @@ def quest_started(request):
 
 	if (quest_status_exist == 0):
 		qubal_init.create_quest_status(local_student, quest)
-		action.send(request.user, verb='quest_started', description='Quest started!', target=quest, mostrado='no')
+		action.send(request.user, verb='started_quest', description='Quest started!', target=quest, mostrado='no')
 
 	
 	course_with_that_quest = get_object_or_404(Course, has_quests=quest_id)
@@ -763,6 +761,7 @@ def task(request, task_id):
 
 			real_task = Task.objects.get_subclass(id=task_id)
 
+			# assign_task_to_student(local_student)
 
 			# Comprobamos de que instancia es la task, tipo video, deliverable o quiz
 			if isinstance(real_task, Task_Video):
@@ -785,28 +784,27 @@ def task(request, task_id):
 			# if (task_status_exist == 0):
 			# 	# Si no existe la task_status inicializamos task_status pasandole el student y task
 			# 	qubal_init.create_task_status(local_student, task)
-			# 	action.send(request.user, verb='task_started', description='Task started!', target=task, mostrado='no')
+			# 	action.send(request.user, verb='started_task', description='Task started!', target=task, mostrado='no')
 			# elif (challenge_status_exist == 0) and (task_status_exist == 0):
 			# 	qubal_init.create_task_status(local_student, task)
 			# 	qubal_init.create_challenge_status(local_student, challenge)
-			# 	action.send(request.user, verb='task_started', description='Task started!', target=task, mostrado='no')
-			# 	action.send(request.user, verb='challenge_started', description='Challenge started!', target=challenge, mostrado='no')
+			# 	action.send(request.user, verb='started_task', description='Task started!', target=task, mostrado='no')
+			# 	action.send(request.user, verb='started_challenge', description='Challenge started!', target=challenge, mostrado='no')
 
 
 			if (challenge_status_exist == 0) and (task_status_exist == 0):
 
 				qubal_init.create_task_status(local_student, task)
 				qubal_init.create_challenge_status(local_student, challenge)
-				action.send(request.user, verb='task_started', description='Task started!', target=task, mostrado='no')
-				action.send(request.user, verb='challenge_started', description='Challenge started!', target=challenge, mostrado='no')
+				action.send(request.user, verb='started_task', description='Task started!', target=task, mostrado='no')
+				action.send(request.user, verb='started_challenge', description='Challenge started!', target=challenge, mostrado='no')
 
 			elif (task_status_exist == 0) and (challenge_status_exist != 0):
 				# Si no existe la task_status inicializamos task_status pasandole el student y task
 				qubal_init.create_task_status(local_student, task)
-				action.send(request.user, verb='task_started', description='Task started!', target=task, mostrado='no')
+				action.send(request.user, verb='started_task', description='Task started!', target=task, mostrado='no')
 
 			task_status = get_object_or_404(Task_Status, student=local_student, task=task)
-			
 
 			challenge_with_that_task = get_object_or_404(Challenge, has_tasks=task_id)
 			quest_with_that_challenge = get_object_or_404(Quest, has_challenges=challenge_with_that_task.id)
@@ -922,15 +920,16 @@ def enroll(request):
 
 	return HttpResponseRedirect(settings.SUNRISE_URL+"course_listing/")
 
+
+
+
 #############
 # ORacle views
 
 def oracle_landing(request):
 
 
-
 	context = {'QUBAL_VERSION': settings.QUBAL_VERSION,
-				#'form': ExampleForm(),
 			   'form': Oracle_Form(), 
 			   }
 
@@ -1112,12 +1111,12 @@ def spex_index(request):
 
 			# we temporarily (for the moment) redirect to create Student if you're not decided yet (only a user)
 			# still we have to implement a switch for the teacher or use the old pen and paper tactic...
-			return HttpResponseRedirect(settings.SUNRISE_URL+"register_character_landing/")
+			return HttpResponseRedirect( settings.SUNRISE_URL  + "register_character_landing/")
 
 
 		
 	else: #Drop him to landing if he's not authenticated
-		return HttpResponseRedirect(settings.SUNRISE_URL+"landing/")
+		return HttpResponseRedirect( settings.SUNRISE_URL  + "landing/")
 
 
 #############
@@ -1146,3 +1145,207 @@ def spex_oracle_process(request):
 	action.send(local_user, verb='notification_character_class_reset', description='Your class has been reset to: ' + str(student_class), target=local_user, mostrado='no')
 
 	return HttpResponseRedirect(settings.SUNRISE_URL+"spex_/")
+
+
+
+def spex_course_listing(request):
+
+	if request.user.is_authenticated():
+
+		local_person = request.user
+
+		real_person = Person.objects.get_subclass(user=local_person.id)
+
+		if isinstance(real_person, Student):
+
+			if Student.objects.get(pk=local_person.id):
+
+				local_student = get_object_or_404 (Student, pk=local_person.id)
+				local_student_courses = local_student.active_courses.all().order_by('-starting_date')
+
+				course_list = Course.objects.all().order_by('-starting_date')[:10]
+
+				total_xp = local_student.xp
+				current_level = calculate_level(total_xp)
+
+
+				#####
+				# Check for avoid a crash when the image doesn't exist
+		
+				if not os.path.isfile(settings.MEDIA_ROOT +str(local_student.image)):
+					local_student.image = ""
+
+				url = 'spex_course_listing.html'
+
+				html = prerender_nav(local_student, url, current_level, settings, request)
+
+				notifications_script = prerender_notifications(local_student)
+
+				context = { 'local_student' : local_student,
+							'local_student_courses': local_student_courses,
+				   			'course_list': course_list,
+				   			'SUNRISE_URL': settings.SUNRISE_URL,
+				   			'notifications_content': notifications_script,
+				   			'navbar_content': html }
+			
+			return render(request, 'spex_qubal/spex_course_listing.html', context)
+
+
+		elif isinstance(real_person, Teacher):
+
+			if Teacher.objects.get(pk=local_person.id):
+
+				local_teacher = get_object_or_404(Teacher, pk=local_person.id)
+				total_xp = local_teacher.xp
+				current_level = calculate_level(total_xp)
+				#####
+				# Check for avoid a crash when the image doesn't exist
+				if not os.path.isfile(settings.MEDIA_ROOT +str(local_teacher.image)):
+					local_teacher.image = ""
+
+				authored_course_list = Course.objects.filter(author=local_person.id)
+				not_authored_course_list = Course.objects.exclude(author=local_person.id)
+
+
+
+				url = 'course_listing.html'
+
+				html = prerender_nav(local_teacher, url, current_level, settings, request)
+
+
+				context = { 'local_teacher' : local_teacher,
+							'authored_course_list' : authored_course_list,
+							'not_authored_course_list' : not_authored_course_list,
+							'SUNRISE_URL': settings.SUNRISE_URL,
+							'navbar_content' : html	}
+
+			return render(request, 'spex_qubal/spex_course_listing.html', context)
+
+
+
+		
+	else:
+		return HttpResponseRedirect(settings.SUNRISE_URL+"landing/")
+
+def spex_teams(request):
+
+	if request.user.is_authenticated():
+
+		local_person = request.user
+
+		real_person = real_person = Person.objects.get_subclass(user=local_person.id)
+
+		if isinstance(real_person,Student):
+
+			if Student.objects.get(pk=local_person.id):
+
+				local_student = get_object_or_404 (Student, pk=local_person.id)
+				local_student_teams = local_student.is_team_member_of.all().order_by('id')
+
+				total_xp = local_student.xp
+				current_level = calculate_level(total_xp)
+
+				#####
+				# Check for avoid a crash when the image doesn't exist
+		
+				if not os.path.isfile(settings.MEDIA_ROOT +str(local_student.image)):
+					local_student.image = ""
+
+				url = 'spex_teams.html'
+
+				html = prerender_nav(local_student, url, current_level, settings, request)
+
+				context = { 'local_student' : local_student,
+							'local_student_teams': local_student_teams,
+							'SUNRISE_URL': settings.SUNRISE_URL,
+				   			'navbar_content': html }
+
+			return render(request, 'spex_qubal/spex_teams.html', context)
+
+		elif isinstance(real_person, Teacher):
+
+			if Teacher.objects.get(pk=local_person.id):
+
+				local_teacher = get_object_or_404(Teacher, pk=local_person.id)
+				
+				local_teacher_mentor_teams = local_teacher.is_tutor_of_teams.all()
+
+				# We get the xp to calculate the current level for the navbar			
+				total_xp = local_teacher.xp
+				current_level = calculate_level(total_xp)
+				#####
+				# Check for avoid a crash when the image doesn't exist
+		
+				if not os.path.isfile(settings.MEDIA_ROOT +str(local_teacher.image)):
+					local_teacher.image = ""
+
+				url = 'teams.html'
+
+				html = prerender_nav(local_teacher, url, current_level, settings, request)
+
+				context = { 'local_teacher' : local_teacher,
+							'local_teacher_mentor_teams': local_teacher_mentor_teams,
+				   			'navbar_content': html }
+
+			return render(request, 'qubalapp/teams_teacher.html', context)
+		else:
+			HttpResponse('oh oh what are you doing here? mister: '+real_person.name)
+
+	else:
+		return HttpResponseRedirect(settings.SUNRISE_URL+"landing/")
+
+
+def spex_quests(request):
+
+	if request.user.is_authenticated():
+
+		local_user = request.user
+
+		real_person = Person.objects.get_subclass(user=local_user.id)
+		
+		# If local_person is a Student
+		if isinstance(real_person, Student):
+					
+			local_student = get_object_or_404(Student, pk=local_user.id)
+			
+			# We get the xp to calculate the current level for the navbar			
+			total_xp = local_student.xp
+			current_level = calculate_level(total_xp) 
+
+			# We get all the courses where the student is enrolled.
+			local_student_active_courses_list = local_student.active_courses.all().order_by('id')
+			
+			local_student_quests_completed_list = local_student.quests_completed.all().order_by('id')
+
+			local_student_quests_status = Quest_Status.objects.filter(student=local_student.user_id).order_by('started_on_date')
+
+			if not os.path.isfile(settings.MEDIA_ROOT +str(local_student.image)):
+				local_student.image = ""
+
+			url = 'quest_listing.html'
+
+			html = prerender_nav(local_student, url, current_level, settings, request)
+
+			context = { 'student' : local_student,
+				   		'current_level' : current_level,
+				   		'local_student_quests_status' : local_student_quests_status,
+				   		'local_student_quests_completed_list': local_student_quests_completed_list,
+				   		'local_student_active_courses_list': local_student_active_courses_list, 
+				   		'SUNRISE_URL': settings.SUNRISE_URL,
+				   		'navbar_content': html }
+
+			return render(request, 'spex_qubal/spex_quest_listing.html', context)
+		
+		elif isinstance(real_person, Teacher):
+
+			
+
+
+
+
+			return HttpResponseRedirect(settings.SUNRISE_URL+"course_listing/")
+
+	else:
+		
+		return HttpResponseRedirect(settings.SUNRISE_URL+"landing/")	
+

@@ -26,21 +26,14 @@
 <body>
 
     <div id="st-container" class="st-container">
-      <!-- content push wrapper -->
-      <div class="st-pusher">
-        <!--  
-          example menus 
-          these menus will be under the push wrapper
-        -->
-
-        <nav class="st-menu st-effect-6" id="menu-6">
+      <nav class="st-menu st-effect-11" id="menu-11">
           <h2 class="iconcodec icon-sitemap"><div class='sidemenu-text'>QUBAL SPEX</div></h2>
 
           <ul>
             <li><a class="iconcodec icon-dashboard" href="{{ SUNRISE_URL }}spex_/"><div class='sidemenu-text'>Dashboard</div></a></li>
             <li><a class="iconcodec icon-user" href="{{ SUNRISE_URL }}spex_/profile/"><div class='sidemenu-text'>Profile</div></a></li>
             <li><a class="iconcodec icon-group" href="{{ SUNRISE_URL }}spex_/teams/"><div class='sidemenu-text'>Teams</div></a></li>
-            <li><a class="iconcodec icon-tasks" href="{{ SUNRISE_URL }}spex_/spex_course_listing/"><div class='sidemenu-text'>Courses</div></a></li>
+            <li><a class="iconcodec icon-tasks" href="{{ SUNRISE_URL }}spex_/courses/"><div class='sidemenu-text'>Courses</div></a></li>
             <li><a class="iconcodec icon-shield" href="{{ SUNRISE_URL }}spex_/quests/"><div class='sidemenu-text'>Quests</div></a></li>
             <li><a class="iconcodec icon-inbox" href="{{ SUNRISE_URL }}spex_/inbox/"><div class='sidemenu-text'>Inbox</div></a></li>
             <li><a class="iconcodec icon-keyboard" href="{{ SUNRISE_URL }}spex_/notes/"><div class='sidemenu-text'>Notes</div></a></li>
@@ -48,6 +41,14 @@
           </ul>
           <h5 class='version-text'>{{ QUBAL_VERSION }}</h5>
         </nav>
+      <!-- content push wrapper -->
+      <div class="st-pusher">
+        <!--  
+          example menus 
+          these menus will be under the push wrapper
+        -->
+
+        
 
 
         <div class="st-content"><!-- this is the wrapper for the content -->
@@ -55,10 +56,10 @@
 
             <!-- Top Navigation -->
             <div class="codrops-top clearfix">
-              <span class="right"><a href="/"><span class='OpenSans-Light student-name'><i class="icon-beer"></i>&nbsp;&nbsp;Original taste</span></a></span>
+              <span class="right"><a href="{{ SUNRISE_URL }}"><span class='OpenSans-Light student-name'><i class="icon-beer"></i>&nbsp;&nbsp;Original taste</span></a></span>
             </div> 
             <div id="st-trigger-effects" class="">
-                <button data-effect="st-effect-6">menu</button>
+                <button data-effect="st-effect-11">menu</button>
             </div>
 
             <header class="codrops-header">
@@ -69,13 +70,90 @@
 
 
 <div class="container clearfix">
-<!-- 
-============================================================  
-============================================================  
-=============== PLACE YOUR CONTENT HERE!!!!! ===============
-============================================================
-============================================================
--->
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+  <title>Qubal | Teams</title>
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-flatly.css">
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/teams.css">
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/navbar.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<span class="your-teams-title"> Your Teams </span><br><br><br>
+
+<div class='row'>
+    {% load imagekit %}
+    
+      {% if local_student_teams %}
+        
+          {% for team in local_student_teams.all %}
+
+            {% if team.image %}
+            
+              {% generateimage 'qubalapp:thumbnail100x100' source=team.image as imagen %}         
+                <div class='team-box'>
+                  <div class='well'>
+
+                    <img class="img-format img-polaroid pull-left" src='{{ imagen.url }}' />
+                    <span class="label label-info pull-right" title="Team members: {{ team.has_students.count }}"><i class="icon-gamepad"></i> {{ team.has_students.count }}</span>
+
+            {% else %}
+                <div class='team-box'>
+                  <div class='well'>
+
+                    <img class="img-format img-polaroid pull-left" src='{{ STATIC_URL }}default_images/default_team_avatar.jpg' width=100 />
+                    <span class="label label-info pull-right" title="Team members: {{ team.has_students.count }}"><i class="icon-gamepad"></i> {{ team.has_students.count }}</span>
+            {% endif%}
+
+                <div class="team-box-title">
+                  <a href="#">{{ team.name }}</a>
+                </div>
+
+                <div class="team-box-course-name">
+                  <span class>{{ team.is_in_course.name }}</span>
+                </div>
+
+                <div class="team-box-description">
+                  {% if team.description|length > 125 %}
+                    <span>{{ team.description|truncatechars:125 }}</span>
+                  {% else %} 
+                    <span>{{ team.description }}</span>
+                  {% endif %}
+
+                </div>
+                    {% if team.happiness == 'normal' %}
+                      <span class="label-happiness label-info pull-right" title="Happiness: {{ team.happiness }}"><i class="icon-meh"></i></span>
+                    {% endif %}
+
+                    {% if team.happiness == 'unhappy' %}
+                      <span class="label-happiness label-important pull-right" title="Happiness: {{ team.happiness }}"><i class="icon-frown"></i></span>
+                    {% endif %}
+
+                    {% if team.happiness == 'happy' %}
+                      <span class="label-happiness label-success pull-right" title="Happiness: {{ team.happiness }}"><i class="icon-smile"></i></span>
+                    {% endif %}  
+              </div>
+
+            </div>
+
+          {% endfor %}
+      {% else %}
+              <p class="your-courses">You are not enrolled in any Course! Try and check some courses here below!</p>
+      {% endif %}
+
+</div> <!-- first div "row" -->
+
+
+</div> <!-- First div container -->
+</body>
+</html>
+
 </div>
 
 {% autoescape off %}{{ footer_block }}{% endautoescape %}

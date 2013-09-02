@@ -1,3 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>QubalSPEX {{ QUBAL_VERSION }}</title>
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="Radical Graphics" />
+
+  <link rel="shortcut icon" href="../favicon.ico">
+
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-flatly.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/demo.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-notify.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/index_spex.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/alert-notification-animations.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/sidebareffect/component.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/sidebareffect/demo.css" />
+
+</head>
+<body>
+
+    <div id="st-container" class="st-container">
+      <nav class="st-menu st-effect-11" id="menu-11">
+          <h2 class="iconcodec icon-sitemap"><div class='sidemenu-text'>QUBAL SPEX</div></h2>
+
+          <ul>
+            <li><a class="iconcodec icon-dashboard" href="{{ SUNRISE_URL }}spex_/"><div class='sidemenu-text'>Dashboard</div></a></li>
+            <li><a class="iconcodec icon-user" href="{{ SUNRISE_URL }}spex_/profile/"><div class='sidemenu-text'>Profile</div></a></li>
+            <li><a class="iconcodec icon-group" href="{{ SUNRISE_URL }}spex_/teams/"><div class='sidemenu-text'>Teams</div></a></li>
+            <li><a class="iconcodec icon-tasks" href="{{ SUNRISE_URL }}spex_/courses/"><div class='sidemenu-text'>Courses</div></a></li>
+            <li><a class="iconcodec icon-shield" href="{{ SUNRISE_URL }}spex_/quests/"><div class='sidemenu-text'>Quests</div></a></li>
+            <li><a class="iconcodec icon-inbox" href="{{ SUNRISE_URL }}spex_/inbox/"><div class='sidemenu-text'>Inbox</div></a></li>
+            <li><a class="iconcodec icon-keyboard" href="{{ SUNRISE_URL }}spex_/notes/"><div class='sidemenu-text'>Notes</div></a></li>
+
+          </ul>
+          <h5 class='version-text'>{{ QUBAL_VERSION }}</h5>
+        </nav>
+      <!-- content push wrapper -->
+      <div class="st-pusher">
+        <!--  
+          example menus 
+          these menus will be under the push wrapper
+        -->
+
+        
+
+
+        <div class="st-content"><!-- this is the wrapper for the content -->
+          <div class="st-content-inner"><!-- extra div for emulating position:fixed of the menu -->
+
+            <!-- Top Navigation -->
+            <div class="codrops-top clearfix">
+              <span class="right"><a href="{{ SUNRISE_URL }}"><span class='OpenSans-Light student-name'><i class="icon-beer"></i>&nbsp;&nbsp;Original taste</span></a></span>
+            </div> 
+            <div id="st-trigger-effects" class="">
+                <button data-effect="st-effect-11">menu</button>
+            </div>
+
+            <header class="codrops-header">
+              <img style="width:71px; height: 80px;" src="{{ STATIC_URL }}qubalapp/main_engine/img/qubal_logo.png" />
+              <h3 class="qubal-header-title">QUBAL SPEX <span>{{ QUBAL_VERSION }}</span></h3>
+              
+            </header>
+
+
+<div class="container clearfix">
 
 
 
@@ -131,4 +203,50 @@
 <script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap.js"></script>
 <script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap-notify.js"></script>
 
-{% block notifications_content %}{% endblock %}
+
+</div>
+
+{% autoescape off %}{{ footer_block }}{% endautoescape %}
+
+          </div><!-- /st-content-inner -->
+        </div><!-- /st-content -->
+      </div><!-- /st-pusher -->
+
+</div><!-- /st-container -->
+
+
+<!-- =================================================== -->
+<!-- =================== javascripts =================== -->
+<!-- =================================================== -->
+
+<script src="{{ STATIC_URL }}spex_qubal/js/modernizr.custom.js"></script>
+<script src="{{ STATIC_URL }}spex_qubal/js/classie.js"></script>
+<script src="{{ STATIC_URL }}spex_qubal/js/sidebarEffects.js"></script>
+
+
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/jquery.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/adapter-jquery.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap-notify.js"></script>
+
+
+<script>
+
+    $("[rel=tooltip]").tooltip({ placement: 'top'});
+    $("[rel=tooltip-left]").tooltip({ placement: 'left'});
+
+    $(document).ready(function() {
+    $('#bouncy')
+        .css({"font-size":10})   // Set to 0 as soon as possible – may result in flicker, but it's not hidden for users with no JS (Googlebot for instance!)
+        .delay(2000)           // Wait for a bit so the user notices it fade in
+        .css({"font-size":36});
+        //.delay(1000)     // Fade it back in. Swap css for animate in legacy browsers if required.
+        //.css({"font-size":32});
+    });
+
+    </script>
+
+{% autoescape off %}{{ notifications_content }}{% endautoescape %}
+
+</body>
+</html>

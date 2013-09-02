@@ -39,6 +39,7 @@ register.generator('qubalapp:thumbnail30x30', Thumbnail30x30)
 register.generator('qubalapp:thumbnail50x50', Thumbnail50x50)
 register.generator('qubalapp:thumbnail70x70', Thumbnail70x70)
 register.generator('qubalapp:thumbnail100x100', Thumbnail100x100)
+register.generator('qubalapp:thumbnail120x120', Thumbnail120x120)
 register.generator('qubalapp:thumbnail150x150', Thumbnail150x150)
 register.generator('qubalapp:thumbnail220x220', Thumbnail220x220)
 
@@ -1347,5 +1348,59 @@ def spex_quests(request):
 
 	else:
 		
-		return HttpResponseRedirect(settings.SUNRISE_URL+"landing/")	
+		return HttpResponseRedirect(settings.SUNRISE_URL+"landing/")
 
+
+def spex_profile(request):	
+
+	if request.user.is_authenticated():
+
+		local_user = request.user
+
+		real_person = Person.objects.get_subclass(user=local_user.id)
+		
+		# If local_person is a Student
+		if isinstance(real_person, Student):
+					
+			local_student = get_object_or_404(Student, pk=local_user.id)
+			
+			# We get the xp to calculate the current level for the navbar			
+			total_xp = local_student.xp
+			current_level = calculate_level(total_xp) 
+
+			# We get all the courses where the student is enrolled.
+			local_student_active_courses_list = local_student.active_courses.all().order_by('id')
+			
+			local_student_quests_completed_list = local_student.quests_completed.all().order_by('id')
+
+			local_student_quests_status = Quest_Status.objects.filter(student=local_student.user_id).order_by('started_on_date')
+
+			if not os.path.isfile(settings.MEDIA_ROOT +str(local_student.image)):
+				local_student.image = ""
+
+			url = 'quest_listing.html'
+
+			html = prerender_nav(local_student, url, current_level, settings, request)
+
+			context = { 'student' : local_student,
+				   		'current_level' : current_level,
+				   		'local_student_quests_status' : local_student_quests_status,
+				   		'local_student_quests_completed_list': local_student_quests_completed_list,
+				   		'local_student_active_courses_list': local_student_active_courses_list, 
+				   		'SUNRISE_URL': settings.SUNRISE_URL,
+				   		'navbar_content': html }
+
+			return render(request, 'spex_qubal/spex_profile.html', context)
+		
+		elif isinstance(real_person, Teacher):
+
+			
+
+
+
+
+			return HttpResponseRedirect(settings.SUNRISE_URL+"course_listing/")
+
+	else:
+		
+		return HttpResponseRedirect(settings.SUNRISE_URL+"landing/")

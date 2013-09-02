@@ -73,7 +73,9 @@ urlpatterns = patterns('',
 
     url(r'^spex_/teams/$', views.spex_teams),
 
-    url(r'^spex_/quests/$', views.spex_quests),    
+    url(r'^spex_/quests/$', views.spex_quests),
+
+    url(r'^spex_/profile/$', views.spex_profile),        
 
     ## Social Auth views
 

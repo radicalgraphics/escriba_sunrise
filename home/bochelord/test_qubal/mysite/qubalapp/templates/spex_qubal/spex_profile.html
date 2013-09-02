@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <title>QubalSPEX {{ QUBAL_VERSION }}</title>
+  <title>Profile | QubalSPEX {{ QUBAL_VERSION }}</title>
   <meta name="description" content="" />
   <meta name="keywords" content="" />
   <meta name="author" content="Radical Graphics" />
@@ -21,6 +21,7 @@
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/alert-notification-animations.css" />
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/sidebareffect/component.css" />
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/sidebareffect/demo.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/profile.css">
 
 </head>
 <body>
@@ -74,78 +75,39 @@
 <html lang="en">
 
 <head>
-  <title>Qubal | Teams</title>
+  
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-flatly.css">
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/font-awesome.css">
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/teams.css">
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/navbar.css">
 </head>
 
+{% load imagekit %}
 <body>
 
 <div class="container">
 
-<span class="your-teams-title"> Your Teams </span><br><br><br>
+<!-- <span class="your-teams-title"> Your Teams </span><br><br><br> -->
+
+<br><br>
 
 <div class='row'>
-    {% load imagekit %}
     
-      {% if local_student_teams %}
-        
-          {% for team in local_student_teams.all %}
+    <div class='fake-image'>
 
-            {% if team.image %}
-            
-              {% generateimage 'qubalapp:thumbnail100x100' source=team.image as imagen %}         
-                <div class='team-box'>
-                  <div class='well'>
+      {% if student.image %}
 
-                    <img class="img-format img-polaroid pull-left" src='{{ imagen.url }}' />
-                    <span class="label label-info pull-right" title="Team members: {{ team.has_students.count }}"><i class="icon-gamepad"></i> {{ team.has_students.count }}</span>
+          {% generateimage 'qubalapp:thumbnail120x120' source=student.image as tn2 %}
+          <img src='{{ tn2.url }}' class='img-circle' title='{{ student.name}} {{ student.lastname }} - level {{ current_level }} - {{ student.get_character_class_display }}' rel="tooltip-left"/>
+        {% else %}
+          <img src='{{ STATIC_URL }}default_images/default_avatar_grey.jpg' width='150' class='img-circle' title='{{ student.name}} {{ student.lastname }} - level {{ current_level }} - {{ student.get_character_class_display }}' rel="tooltip-left"/>
+        {% endif %}
 
-            {% else %}
-                <div class='team-box'>
-                  <div class='well'>
+    </div>
 
-                    <img class="img-format img-polaroid pull-left" src='{{ STATIC_URL }}default_images/default_team_avatar.jpg' width=100 />
-                    <span class="label label-info pull-right" title="Team members: {{ team.has_students.count }}"><i class="icon-gamepad"></i> {{ team.has_students.count }}</span>
-            {% endif%}
 
-                <div class="team-box-title">
-                  <a href="#">{{ team.name }}</a>
-                </div>
-
-                <div class="team-box-course-name">
-                  <span class>{{ team.is_in_course.name }}</span>
-                </div>
-
-                <div class="team-box-description">
-                  {% if team.description|length > 125 %}
-                    <span>{{ team.description|truncatechars:125 }}</span>
-                  {% else %} 
-                    <span>{{ team.description }}</span>
-                  {% endif %}
-
-                </div>
-                    {% if team.happiness == 'normal' %}
-                      <span class="label-happiness label-info pull-right" title="Happiness: {{ team.happiness }}"><i class="icon-meh"></i></span>
-                    {% endif %}
-
-                    {% if team.happiness == 'unhappy' %}
-                      <span class="label-happiness label-important pull-right" title="Happiness: {{ team.happiness }}"><i class="icon-frown"></i></span>
-                    {% endif %}
-
-                    {% if team.happiness == 'happy' %}
-                      <span class="label-happiness label-success pull-right" title="Happiness: {{ team.happiness }}"><i class="icon-smile"></i></span>
-                    {% endif %}  
-              </div>
-
-            </div>
-
-          {% endfor %}
-      {% else %}
-              <p class="your-courses">You are not enrolled in any Course! Try and check some courses here below!</p>
-      {% endif %}
+    <img src='{{ STATIC_URL }}spex_qubal/img/profile_placeholder.png'>
+    
 
 </div> <!-- first div "row" -->
 

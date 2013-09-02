@@ -162,6 +162,7 @@ h1{
 
 .your_courses_box{
   padding:10px;
+  margin-top: -65px;
   border:1px solid #c2c2c2;
     -webkit-border-radius: 10px 20px 10px 10px;
      -moz-border-radius: 10px 20px 10px 10px;
@@ -171,7 +172,7 @@ h1{
 .oracle_box{
   /*margin: 5px;
   margin-left: -10px;*/
-  margin-left: 26px;
+  margin-left: 30px;
   padding: 10px;
   border:1px solid #c2c2c2;
     -webkit-border-radius: 10px 10px 10px 10px;
@@ -179,12 +180,16 @@ h1{
           border-radius: 10px 10px 10px 10px;
 }
 
+.span-oracle {
+  width: 500px;
+  margin-left: 35px;
+}
+
 .oracle_box img {
-  margin-left: -6px;
+  margin-left: 10px;
 }
 
 .oraclead{
-  
   margin:10px;
   margin-left: -20px;
 }
@@ -273,7 +278,7 @@ h1{
 }
 
 .carousel-box {
-  width: 380px;
+  width: 340px;
   padding: 5px;
   margin-left: -25px;
   border:0px solid #999999;

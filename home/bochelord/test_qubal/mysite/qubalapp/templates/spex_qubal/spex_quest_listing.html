@@ -58,7 +58,7 @@
 
             <!-- Top Navigation -->
             <div class="codrops-top clearfix">
-              <span class="right"><a href="{{ SUNRISE_URL }}"><span class='OpenSans-Light student-name'><i class="icon-beer"></i>&nbsp;&nbsp;Original taste</span></a></span>
+              <span class="right"><a href="/"><span class='OpenSans-Light student-name'><i class="icon-beer"></i>&nbsp;&nbsp;Original taste</span></a></span>
             </div> 
             <div id="st-trigger-effects" class="">
                 <button data-effect="st-effect-11">menu</button>
@@ -92,8 +92,8 @@
                 {% for quest_status in local_student_quests_status.all %}
                   <div class='quest-box'>
                   <div class='well'>
-                    {% if local_student_course_quest.image %}
-                      {% generateimage 'qubalapp:thumbnail100x100' source=local_student_course_quest.image as imagen %}
+                    {% if quest_status.quest.image %}
+                      {% generateimage 'qubalapp:thumbnail100x100' source=quest_status.quest.image as imagen %}
                         <img class="img-format img-circle pull-left" src='{{ imagen.url }}' />
                     {% else %}
                         <img class="img-format img-circle pull-left" src='{{ STATIC_URL }}default_images/default_quest.png' width='100' />

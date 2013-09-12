@@ -34,11 +34,11 @@
       };
 
 </script> -->
-
+<div class="notifications mid-right"></div>
 <script>
 {% for notification in notifications.all %}
-    $('.top-right').notify({
-      message: { text: '{{ notification.description }}' }, type: 'success' 
+    $('.notifications').notify({
+      message: { text: '{{ notification.description }}' }, type: 'success' , fadeOut: {enabled: true, delay: {{ forloop.counter }} * 3000 }
     }).show();
 {% endfor %}
 

@@ -192,8 +192,8 @@ class Student(Person):
     CHARACTER_CLASS = (
         ('no_class', 'No Class!'),
         ('explorer', 'Explorer'),
-        ('competitor', 'Competitor'),
-        ('collaborator', 'Collaborator'),
+        ('activist', 'Activist'),
+        ('unifier', 'Unifier'),
         ('inventor', 'Inventor'),
         )
 
@@ -475,3 +475,19 @@ class Rules_Class_Power_Distribution(models.Model):
 
     def __unicode__(self):
         return "Class: " + str(self.character_class) + " points:" + " teamwork: " + str(self.teamwork_points) + " communication: " + str(self.communication_points) + " responsability: " + str(self.responsability_points) + " perseverance: " + str(self.perseverance_points) + " mastery: " + str(self.mastery_points) + " focus: " + str(self.focus_points)
+
+class Rules_Points_Distribution(models.Model):
+
+    action = models.CharField(max_length=255)
+    power1 = models.IntegerField() # Social power
+    power2 = models.IntegerField() # Responsability power
+    power3 = models.IntegerField() # Perseverance power
+    power4 = models.IntegerField() # Communication power
+    power5 = models.IntegerField() # Focus power
+    power6 = models.IntegerField() # Mastery power
+    xp = models.IntegerField()
+    motivating = models.CharField(max_length=255, blank=True, null=True)
+    Baseline = models.IntegerField(blank=True, null=True)
+
+    def __unicode__(self):
+        return str(self.id) + " - " + str(self.action)

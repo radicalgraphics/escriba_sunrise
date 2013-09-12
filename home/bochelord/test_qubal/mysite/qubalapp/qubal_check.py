@@ -41,5 +41,5 @@ def check_challenge (local_student, student_challenge):
 
 		qubal_reward.process_challenge_reward (local_student, student_challenge)
 		reward_xp = qubal_reward.return_challenge_xp(student_challenge)
-		action.send(local_student.user, verb='notification_challenge_completed', description='Challenge completed! +'+ str(reward_xp) +'XP', target=student_challenge, mostrado='no')
+		action.send(local_student.user, verb='action_finish_challenge', description='Challenge completed! +'+ str(reward_xp) +'XP', target=student_challenge, mostrado='no')
 

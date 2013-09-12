@@ -1,0 +1,134 @@
+
+
+
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/course_listing.css">
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-notify.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/alert-notification-animations.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/demo.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/common.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/style6.css" />
+  <script src='{{ STATIC_URL }}spex_qubal/js/modernizr.custom.79639.js'></script>
+  
+<div class="container">
+<span class="your-courses-title"> Your Courses </span><br><br><br>
+
+    {% load imagekit %}
+    
+      {% if local_student_courses %}
+      <section class="main">
+          <ul class="ch-grid" >
+
+          {% for course in local_student_courses.all %}
+            {% generateimage 'qubalapp:thumbnail220x220' source=course.image as imagen %}
+            <style type="text/css">
+              .ch-img-{{ forloop.counter }} {
+                background-image: url({{ imagen.url }});
+              }
+              
+            </style>
+            <li>
+              {% if course.image %}
+                  
+                  <div class="ch-item ch-img-{{ forloop.counter }}">
+                    <div class="ch-info-wrap">
+<!--                     <img class="img-format img-circle pull-left" src='{{ imagen.url }}' /> -->
+              {% else %}
+                  <div class="ch-item ch-img-{{ forloop.counter }}">
+                    <div class="ch-info-wrap">
+<!--                     <img class="img-format img-circle pull-left" src='{{ STATIC_URL }}default_images/default_course_dark.jpg' width='100' /> -->
+              {% endif %}
+<!--                 <span class="label label-info pull-right">badge</span> -->
+                    <div class="ch-info">
+                      <div class="ch-info-front ch-img-{{ forloop.counter }}"></div>
+                      <div class="ch-info-back">
+
+    <!--                 <div class="course-box-title"> -->
+
+                      <div class="course-title">{{ course.name }}</div>
+                      <p>by {{ course.author }}<a href="{{ SUNRISE_URL }}course/{{ course.id }}/">View course details</a></p>
+                      
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+<!--                 <div class="course-box-date">
+                  <span class>{{ course.starting_date|date:"d M Y" }}</span>
+                </div>
+
+                <div class="course-box-description">
+                  {% if course.description|length > 125 %}
+                    <span>{{ course.description|truncatechars:125 }}</span>
+                  {% else %} 
+                    <span>{{ course.description }}</span>
+                  {% endif %}
+                </div> -->
+
+            </li>
+          {% endfor %}
+          </ul>
+        </section>
+      {% else %}
+              <p class="your-courses">You are not enrolled in any Course! Try and check some courses here below!</p>
+      {% endif %}
+<div class="clearfix"></div>
+<hr class="central-hr"><br>
+<span class="all-courses-title"> All Courses </span><br><br><br>
+      {% for course in course_list.all %}
+          {% if course not in local_student_courses %}
+              {% if course.image %}
+                  {% generateimage 'qubalapp:thumbnail100x100' source=course.image as imagen %}
+                    <div class='course-box'>
+                    <div class='well'>
+                    <img class="img-format img-circle pull-left" src='{{ imagen.url }}' />
+              {% else %}
+                    <div class='course-box'>
+                    <div class='well'>
+                    <img class="img-format img-circle pull-left" src='{{ STATIC_URL }}default_images/default_course_dark.jpg' width='100'/>
+              {% endif %}
+
+              
+                  {% if course in local_student_courses %}
+                    <span class="label label-success pull-right">Enrolled</span>
+                  {% else %}
+                    <form action="{{ SUNRISE_URL }}enroll/" method="POST" >
+
+                      <input type="hidden" name="course_id" value="{{ course.id }}" />
+                      <button type="submit" class="btn btn-small btn-warning pull-right">Enroll!</button> 
+                      {% csrf_token %}
+                    </form>
+                  {% endif %}
+              
+
+                <div class="course-box-title">
+                  <a href="{{ SUNRISE_URL }}courses/{{ course.id }}/">{{ course.name }}</a>
+                </div>
+
+                <div class="course-box-date">
+                  <span class>{{ course.starting_date|date:"d M Y" }}</span>
+                </div>
+
+                <div class="course-box-description">
+                  {% if course.description|length > 125 %}
+                    <span>{{ course.description|truncatechars:125 }}</span>
+                  {% else %}
+                    <span>{{ course.description }}</span>
+                  {% endif %}
+                </div>
+
+              </div>
+            </div>
+          {% endif %}
+      {% endfor %}
+</div>
+<hr class="mini-hr">
+
+<div class="notifications top-right"></div>
+</div>
+
+
+
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap-notify.js"></script>
+
+{% block notifications_content %}{% endblock %}

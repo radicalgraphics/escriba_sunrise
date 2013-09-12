@@ -8,9 +8,11 @@ import qubal_xp
 # Used by the DEBUG menu.
 from django.contrib.auth.models import User
 from qubalapp.models import Student, Teacher, Team, Course, Quest, Challenge, Task, Achievement, Person, Rules_Xp_per_Level
-import qubal_rules, qubal_init, qubal_reward
+import qubal_rules, qubal_init, qubal_reward, qubal_xp
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect
+from qubal_forms import Spex_Oracle_Form
+
 # libs for the DEBUG menu end.
 
 # ============================================
@@ -127,6 +129,7 @@ def prerender_notifications(request):
 
 	return fixed_html
 
+
 def prerender_footer():
 
 	context_footer = {'QUBAL_VERSION': settings.QUBAL_VERSION}
@@ -136,6 +139,96 @@ def prerender_footer():
 	fixed_footer = footer_block.replace("Content-Type: text/html; charset=utf-8","")
 
 	return fixed_footer
+
+
+def prerender_admin_logout():
+
+	context_admin_logout = {'QUBAL_VERSION': settings.QUBAL_VERSION,
+							'SUNRISE_URL' : settings.SUNRISE_URL
+						   }
+	
+	admin_logout_block = render ('','spex_qubal/admin_logout_menu.inc', context_admin_logout)
+	admin_logout_block = str(admin_logout_block)
+	fixed_admin_logout_block = admin_logout_block.replace("Content-Type: text/html; charset=utf-8","")
+
+	return fixed_admin_logout_block
+
+
+def prerender_navbar_top():
+
+	context_navbar_top = {'QUBAL_VERSION': settings.QUBAL_VERSION,
+				          'SUNRISE_URL' : settings.SUNRISE_URL
+					     }
+	
+	navbar_top_block = render ('','spex_qubal/navbar_top_code.inc', context_navbar_top)
+	navbar_top_block = str(navbar_top_block)
+	fixed_navbar_top_block = navbar_top_block.replace("Content-Type: text/html; charset=utf-8","")
+
+	return fixed_navbar_top_block
+
+
+def prerender_navbar_bottom():
+
+	context_navbar_bottom = {'QUBAL_VERSION': settings.QUBAL_VERSION,
+				             'SUNRISE_URL' : settings.SUNRISE_URL
+					        }
+	
+	navbar_bottom_block = render ('','spex_qubal/navbar_bottom_code.inc', context_navbar_bottom)
+	navbar_bottom_block = str(navbar_bottom_block)
+	fixed_navbar_bottom_block = navbar_bottom_block.replace("Content-Type: text/html; charset=utf-8","")
+
+	return fixed_navbar_bottom_block
+
+
+
+def prerender_profile_widget(request):
+
+		local_user = request.user
+
+		real_person = Person.objects.get_subclass(user=local_user.id)
+		
+		# If local_person is a Student
+		if isinstance(real_person, Student):
+					
+			local_student = get_object_or_404(Student, pk=local_user.id)
+			
+			# We get the xp to calculate the current level for the navbar			
+			total_xp = local_student.xp
+			
+			current_level = qubal_xp.calculate_level(total_xp) 
+
+			current_xp = qubal_xp.calculate_current_xp(total_xp)
+
+			xp_needed = Rules_Xp_per_Level.objects.get(level=current_level).xp 
+
+			background_img = prerender_profile_widget_background(local_student)
+			background_color = prerender_profile_widget_backgoround_color(local_student)
+
+			context = { 'student' : local_student,
+			    		'current_level' : current_level,
+			    		'current_xp' : current_xp,
+			    		'xp_needed' : xp_needed,
+						'background_img': background_img,
+						'background_color': background_color
+			    	  }
+
+			profile_widget_block = render (request,'jawa_qubal/jawa_profile_widget.inc', context)
+			profile_widget_block = str(profile_widget_block)
+			fixed_profile_widget_block = profile_widget_block.replace("Content-Type: text/html; charset=utf-8","")
+
+			return fixed_profile_widget_block
+
+def prerender_nexus_menu():
+
+	context={'SUNRISE_URL' : settings.SUNRISE_URL,
+			 'QUBAL_VERSION' : settings.QUBAL_VERSION}
+
+	nexus_menu_block = render ('', 'jawa_qubal/jawa_nexus_menu.inc',context)
+	nexus_menu_block = str(nexus_menu_block)
+	fixed_nexus_menu_block = nexus_menu_block.replace("Content-Type: text/html; charset=utf-8","")
+
+	return fixed_nexus_menu_block
+
 
 def prerender_ajax_course_listing(request):
 
@@ -374,11 +467,76 @@ def prerender_ajax_dashboard(request):
 		return HttpResponseRedirect("/landing/")
 
 
+def prerender_ajax_oracle(request):
 
 
+	context = {'QUBAL_VERSION': settings.QUBAL_VERSION,
+			   'form': Spex_Oracle_Form(), 
+			   }
+
+	return render(request, 'spex_qubal/spex_oracle_landing.html', context)
+
+def prerender_classtype_color(local_student):
+
+	if local_student.character_class == 'explorer':
+
+		class_color = "style='background-color: #648f2f;'"
+
+	elif local_student.character_class == 'inventor':
+
+		class_color = "style='background-color: #b38c2f;'"
+
+	elif local_student.character_class == 'unifier':
+
+		class_color = "style='background-color: #a24a26;'"
+
+	elif local_student.character_class == 'activist':
+
+		class_color = "style='background-color: #378181;'"
+
+	return class_color
 
 
+def prerender_profile_widget_background(local_student):
 
+	if local_student.character_class == 'explorer':
+
+		class_color = "style='background: url("+ settings.STATIC_URL +"/jawa_qubal/img/profile_background_explorer.png); background-size: 260px 248px;'"
+
+	elif local_student.character_class == 'inventor':
+
+		class_color = "style='background: url("+ settings.STATIC_URL +"/jawa_qubal/img/profile_background_inventor.png); background-size: 260px 248px;'"
+
+	elif local_student.character_class == 'unifier':
+
+		class_color = "style='background: url("+ settings.STATIC_URL +"/jawa_qubal/img/profile_background_unifier.png); background-size: 260px 248px;'"
+
+	elif local_student.character_class == 'activist':
+
+		class_color = "style='background: url("+ settings.STATIC_URL +"/jawa_qubal/img/profile_background_activist.png); background-size: 260px 248px;'"
+
+	return class_color
+
+
+def prerender_profile_widget_backgoround_color(local_student):
+
+	if local_student.character_class == 'explorer':
+
+		class_color = "style='background-color: #648f2f;'"
+
+	elif local_student.character_class == 'inventor':
+
+		class_color = "style='background-color: #b38c2f;'"
+
+	elif local_student.character_class == 'unifier':
+
+		class_color = "style='background-color: #a24a26;'"
+
+	elif local_student.character_class == 'activist':
+
+		class_color = "style='background-color: #378181;'"
+
+	return class_color
 
 
 

@@ -17,12 +17,16 @@ var Dajaxice = {
         return Dajaxice.call('qubalapp.get_dashboard', 'POST', callback_function, argv, custom_settings);
     },
 
+    get_student: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('qubalapp.get_student', 'POST', callback_function, argv, custom_settings);
+    },
+
     get_courses: function(callback_function, argv, custom_settings){
         return Dajaxice.call('qubalapp.get_courses', 'POST', callback_function, argv, custom_settings);
     },
 
-    get_student: function(callback_function, argv, custom_settings){
-        return Dajaxice.call('qubalapp.get_student', 'POST', callback_function, argv, custom_settings);
+    get_oracle_modal: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('qubalapp.get_oracle_modal', 'POST', callback_function, argv, custom_settings);
     }
 
 

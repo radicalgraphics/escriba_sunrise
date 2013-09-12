@@ -24,18 +24,18 @@ home/bochelord...
 
 mysite
 ======
-Compare for changes in settings.py ---- escriba - escriba-sunrise - OK / OK / OK - OK
-Compare for changes in urls.py --------    "            "         - OK / OK / OK ' OK'
+Compare for changes in settings.py ---- escriba - escriba-sunrise - OK / OK / OK - OK - OK
+Compare for changes in urls.py --------    "            "         - OK / OK / OK - OK - OK
 
 
 qubalapp
 ========
-Compare urls.py --------	"       "	        - OK / OK / OK - OK
-Compare admin.py -------	"	"				- OK / OK / OK - OK
+Compare urls.py --------	"       "	        - OK / OK / OK - OK - OK
+Compare admin.py -------	"	"				- OK / OK / OK - OK - Ok
 
 											   LOCAL			SERVER
 											================================
-Compare - views.py               note ->	(/landing/)		(/test/landing/)    - OK / OK / OK - OK(settings.SUNRISE_URL)
+Compare - views.py               note ->	(/landing/)		(/test/landing/)    - OK / OK / OK - OK - OK(settings.SUNRISE_URL) (Can be copied)
 
 Copy -> models.py 								- OK
 copy -> qubal_forms.py 							- OK / Ok (settings.SUNRISE_URL)

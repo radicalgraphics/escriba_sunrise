@@ -44,7 +44,7 @@
 
 			menuClick = function(){
 				resetMenu();
-				document.removeEventListener (eventtype, menuClick);
+				document.removeEventListener ( eventtype, menuClick );
 			}
 
 			bodyClickFn = function(evt) {

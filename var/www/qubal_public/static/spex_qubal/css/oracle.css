@@ -8,11 +8,14 @@
 	font-weight: normal;
 	font-style: normal;
 }
+body {
+	background-color: #f3efe0;
+}
 
 /* Needed for a fluid height: */
  html, body, .container, .main { 
  	height: 100%;
- 	background-color: #f3efe0;
+ 	
  }
 
 /* main wrapper */

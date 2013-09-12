@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+{% load dajaxice_templatetags %}
+
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>QubalSPEX {{ QUBAL_VERSION }}</title>
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="author" content="Radical Graphics" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-flatly.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jawa_qubal/css/nexus-menu/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jawa_qubal/css/nexus-menu/demo.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jawa_qubal/css/nexus-menu/component.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/font-awesome.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jawa_qubal/css/qubal-icons.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jawa_qubal/css/jawa_index.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jawa_qubal/css/jawa_powers.css" />
+
+		<script src="{{ STATIC_URL }}jawa_qubal/js/nexus-menu/modernizr.custom.js"></script>
+
+	</head>
+
+<body>
+	<div class="container">
+		{% autoescape off %}{{ nexus_menu_block }}{% endautoescape %}
+
+		{% autoescape off %}{{ profile_widget }}{% endautoescape %}
+		
+		<div class="row powers-container-box">
+			<div class="span10">
+				<div class="powers-header-icon" {{ classtype_color|safe }}><i class='qubal_icon_master_powers medbig-icon'></i></div>
+				<div class="row powers-classtype-box">
+					<div class="powers-classtype-header" {{classtype_color|safe}}>{{ student.get_character_class_display|upper }}</div>
+					<div class="powers-classtype-text">
+					{% if student.character_class == 'explorer' %}
+						<p>As an explorer you are resourceful and able to adapt to most situations. You are a self-assured strategic thinker with eyes on the future.<br><br>
+						You enjoy puzzles as long as they are practical, but when it comes to working or learning you need clear goals and logical instructions.<br><br>
+						You want to be treated fair and are quite capable of self-eveluation. This is why you dislike hard criticism.<br><br>
+						You hate unclear goals. They put you in a passive state, which is a waste of your talents. If instructed properly, you will always come up with an answer.</p>
+					{% elif student.character_class == 'activist' %}
+						<p>As an activist you thrive on new ideas and social creation.
+						You enjoy a good challenge. If you get general guidelines and the freedom to address the challenge in your own creative way you will find an answer.<br><br>
+						You want to be around enthusiastic people that recognize your individual strength and skills. Peer evaluation is important and you like to get a clear picture of where you stand compared to others.<br><br>
+						You hate it when people keep confirming you on what you already know. To much positive feedback stops you from working hard and puts you in a lazy state. Humor, symbolism and metaphors will always get you back on track.</p>
+					{% elif student.character_class == 'unifier' %}
+						<p>As an unifier you are a team player. You will stand up for whats right and motivate or help people whenever you can.<br><br>
+						You enjoy social collaboration and like to engage in practical social activities. When given relevant practical information and step by step instructions you will come up with a solution.<br><br>
+						You want to be treated with warmth and given support when needed. A friendly and social environment with equally shared tasks and clear goals, brings out the best in you.<br><br>
+						You hate negativity and solitude. It makes you unhappy and gives you the urge to quit. Positive, personal feedback always gets you back on track.</p>
+					{% elif student.character_class == 'inventor' %}
+						<p>As an inventor you are a creative innovative thinker with strong analytical skills that doesn't back down from a big challenge.<br><br>
+						You enjoy intellectual real world problems, theories and general explanations that you can sink your teeth in. Regularly discussing your ideas with peers helps you to create your own vision, but its you who comes up with the best solution. Off course backed up by a proper theory.<br><br>
+						You want to be treated with respect and respect others if they are competent at what they do and honest about their shortcomings. You prefer extensive ruthless feedback to social courtesy.<br><br>
+						You hate boring lectures and wasting time. Inspirational and original lectures, and asking for your expert opinion, always get you back on track.</p>
+					{% else %}
+						<div class="powers-classtype-oraclead">
+                  			<a href='{{ SUNRISE_URL }}spex_/spex_oracle_landing/'>
+                  				<img src='{{ STATIC_URL}}qubalapp/main_engine/img/oracle.jpg' class='img-rounded' title='The Oracle'>
+                  			</a>
+							<p>Talk with The Oracle, she will guide you to choose your path.</p>
+                		</div>
+					{% endif %}
+					</div> <!-- powers-classtype-text div -->
+
+				</div> <!-- powers-classtype-box div -->
+				
+				<div class="row powers-your-powers-box">
+					<div class="powers-your-powers-header" {{classtype_color|safe}}>YOUR POWERS</div>
+					<div class="powers-your-powers-power-icons"><i class='qubal_icon_master_mastery mediumbig-icon'></i></div>
+					<div class="powers-your-powers-power-icons"><i class='qubal_icon_master_focus mediumbig-icon'></i></div>
+					<div class="powers-your-powers-power-icons"><i class='qubal_icon_master_teamwork mediumbig-icon'></i></div>
+					<div class="powers-your-powers-power-icons"><i class='qubal_icon_master_communication mediumbig-icon'></i></div>
+					<div class="powers-your-powers-power-icons"><i class='qubal_icon_master_responsability mediumbig-icon'></i></div>
+					<div class="powers-your-powers-power-icons"><i class='qubal_icon_master_perserverance mediumbig-icon'></i></div>
+					<div class="powers-your-powers-power-name">Mastery</div>
+					<div class="powers-your-powers-power-name">Focus</div>
+					<div class="powers-your-powers-power-name">Teamwork</div>
+					<div class="powers-your-powers-power-name">Communication</div>
+					<div class="powers-your-powers-power-name">Responsability</div>
+					<div class="powers-your-powers-power-name">Perseverance</div>
+					
+					<div class="powers-your-powers-knob">
+						<div class="radius radius-box-top"> <!-- radius-box 1 Mastery -->
+          					<input type="text" rel="tooltip" title="Mastery {{ student.has_powers.mastery }}%" data-width="120" class="dial1" data-displayInput=false>
+          					<div class="row radius-box-text">
+          					</div>
+      					</div>
+					</div>
+					<div class="powers-your-powers-knob">
+						<div class="radius radius-box-top"> <!-- radius-box 2 Focus-->
+          					<input type="text" rel="tooltip" title="Focus {{ student.has_powers.focus }}%" data-width="120" class="dial2" data-displayInput=false>
+          					<div class="row radius-box-text">
+          					</div>
+      					</div>
+					</div>
+					<div class="powers-your-powers-knob">
+						<div class="radius radius-box-top"> <!-- radius-box 3 Teamwork -->
+          					<input type="text" rel="tooltip" title="Teamwork {{ student.has_powers.teamwork }}%" data-width="120" class="dial3" data-displayInput=false>
+          					<div class="row radius-box-text">
+          					</div>
+      					</div>
+					</div>
+					<div class="powers-your-powers-knob">
+						<div class="radius radius-box-top"> <!-- radius-box 4 Communication -->
+          					<input type="text" rel="tooltip" title="Teamwork {{ student.has_powers.communication }}%" data-width="120" class="dial4" data-displayInput=false>
+          					<div class="row radius-box-text">
+          					</div>
+      					</div>
+					</div>
+					<div class="powers-your-powers-knob">
+						<div class="radius radius-box-top"> <!-- radius-box 5 Responsability -->
+          					<input type="text" rel="tooltip" title="Teamwork {{ student.has_powers.responsability }}%" data-width="120" class="dial5" data-displayInput=false>
+          					<div class="row radius-box-text">
+          					</div>
+      					</div>
+					</div>
+					<div class="powers-your-powers-knob">
+						<div class="radius radius-box-top"> <!-- radius-box 6 Teamwork -->
+          					<input type="text" rel="tooltip" title="Teamwork {{ student.has_powers.perserverance }}%" data-width="120" class="dial6" data-displayInput=false>
+          					<div class="row radius-box-text">
+          					</div>
+      					</div>
+					</div>
+
+					<div class="powers-your-powers-mastery-quub">{{ student.has_powers.mastery_quubs }}</div>
+					<div class="powers-your-powers-focus-quub">{{ student.has_powers.focus_quubs }}</div>
+					<div class="powers-your-powers-teamwork-quub">{{ student.has_powers.teamwork_quubs }}</div>
+					<div class="powers-your-powers-communication-quub">{{ student.has_powers.communication_quubs }}</div>
+					<div class="powers-your-powers-responsability-quub">{{ student.has_powers.responsability_quubs }}</div>
+					<div class="powers-your-powers-perseverance-quub">{{ student.has_powers.perseverance_quubs }}</div>
+
+					<div class="powers-your-powers-quubs-mastery-text">Quubs</div>
+					<div class="powers-your-powers-quubs-focus-text">Quubs</div>
+					<div class="powers-your-powers-quubs-teamwork-text">Quubs</div>
+					<div class="powers-your-powers-quubs-communication-text">Quubs</div>
+					<div class="powers-your-powers-quubs-responsability-text">Quubs</div>
+					<div class="powers-your-powers-quubs-perseverance-text">Quubs</div>
+
+					<div class="powers-your-powers-mastery-percent">{{ student.has_powers.mastery }}%</div>
+					<div class="powers-your-powers-focus-percent">{{ student.has_powers.focus }}%</div>
+					<div class="powers-your-powers-teamwork-percent">{{ student.has_powers.teamwork }}%</div>
+					<div class="powers-your-powers-communication-percent">{{ student.has_powers.communication }}%</div>
+					<div class="powers-your-powers-responsability-percent">{{ student.has_powers.responsability }}%</div>
+					<div class="powers-your-powers-perseverance-percent">{{ student.has_powers.perseverance }}%</div>
+
+					<div class="powers-your-powers-rating">
+						<i class='icon-star small-icon'></i>
+						<i class='icon-star small-icon'></i>
+						<i class='icon-star-half-empty small-icon'></i>
+						<i class='icon-star-empty small-icon'></i>
+						<i class='icon-star-empty small-icon'></i>
+					</div>
+					<div class="powers-your-powers-rating">
+						<i class='icon-star small-icon'></i>
+						<i class='icon-star small-icon'></i>
+						<i class='icon-star-empty small-icon'></i>
+						<i class='icon-star-empty small-icon'></i>
+						<i class='icon-star-empty small-icon'></i>
+					</div>
+					<div class="powers-your-powers-rating">
+						<i class='icon-star small-icon'></i>
+						<i class='icon-star small-icon'></i>
+						<i class='icon-star small-icon'></i>
+						<i class='icon-star small-icon'></i>
+						<i class='icon-star-empty small-icon'></i>
+					</div>
+					<div class="powers-your-powers-rating">
+						<i class='icon-star small-icon'></i>
+						<i class='icon-star small-icon'></i>
+						<i class='icon-star small-icon'></i>
+						<i class='icon-star-empty small-icon'></i>
+						<i class='icon-star-empty small-icon'></i>
+					</div>
+					<div class="powers-your-powers-rating">
+						<i class='icon-star small-icon'></i>
+						<i class='icon-star-empty small-icon'></i>
+						<i class='icon-star-empty small-icon'></i>
+						<i class='icon-star-empty small-icon'></i>
+						<i class='icon-star-empty small-icon'></i>
+					</div>
+					<div class="powers-your-powers-rating">
+						<i class='icon-star small-icon'></i>
+						<i class='icon-star small-icon'></i>
+						<i class='icon-star small-icon'></i>
+						<i class='icon-star small-icon'></i>
+						<i class='icon-star-half-empty small-icon'></i>
+					</div>
+
+				</div> <!-- powers-your-powers-box -->
+
+				<div class="row powers-skills-box">
+					<div class="powers-skills-header" {{classtype_color|safe}}>SKILLS & ABILITIES</div>
+					<div class="powers-skills-content"></div>
+				</div> <!-- powers-skills-box div -->
+
+			</div> <!-- span10 div -->
+		</div> <!-- row powers-container-box div -->
+	</div><!-- /container -->
+
+	<script src="{{ STATIC_URL }}jawa_qubal/js/nexus-menu/classie.js"></script>
+	<script src="{{ STATIC_URL }}jawa_qubal/js/nexus-menu/gnmenu.js"></script>
+	<script src="{{ STATIC_URL }}qubalapp/main_engine/js/jquery.js"></script>
+	<script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap.js"></script>
+	<script src="{{ STATIC_URL }}qubalapp/main_engine/js/jquery.knob.js"></script>
+	<script src="{{ STATIC_URL }}qubalapp/main_engine/js/adapter-jquery.js"></script>
+
+
+	<script>
+		new gnMenu( document.getElementById( 'gn-menu' ) );
+	</script>
+
+	<script>
+		$("[rel=tooltip]").tooltip({ placement: 'top'});
+		$("[rel=tooltip-left]").tooltip({ placement: 'left'});
+		$("[rel=tooltip-bottom]").tooltip({ placement: 'bottom'});
+		$("[rel=tooltip-right]").tooltip({ placement: 'right'});
+	</script>
+
+	<script>
+	
+	// Mastery knob
+
+    $(document).ready(function (){
+    $('.dial1').val(0).trigger('change').delay(1000);
+    $(".dial1").knob({
+        'width': 100,
+        'height': 100,
+        'thickness': 0.18,
+	    'min':0,
+    	'max':100,
+    	'fgColor': '#b13e35',
+    	'inputColor':'#b13e35',
+    	'step':1,
+    	'readOnly': true,
+    	'lineCap': 'round',
+    	'skin': 'tron',
+    	})         
+    
+        var tmr = self.setInterval(function(){myDelay()},40);        
+        var m = 0;
+        function myDelay(){
+            m += 1;
+            $('.dial1').val(m).trigger('change');
+            if(m=={{ student.has_powers.mastery }}) {            
+                window.clearInterval(tmr);
+            }
+        }    
+    });
+
+	// Focus knob
+
+    $(document).ready(function (){
+    $('.dial2').val(0).trigger('change').delay(1000);
+    $(".dial2").knob({
+        'width': 100,
+        'height': 100,
+        'thickness': 0.18,
+	    'min':0,
+    	'max':100,
+    	'fgColor': '#3c4f92',
+    	'inputColor':'#3c4f92',
+    	'step':1,
+    	'readOnly': true,
+    	'lineCap': 'round',
+    	'skin': 'tron',
+	    })         
+    
+        var tmr = self.setInterval(function(){myDelay()},40);        
+        var m = 0;
+        function myDelay(){
+            m += 1;
+            $('.dial2').val(m).trigger('change');
+            if(m=={{ student.has_powers.focus }}) {            
+                window.clearInterval(tmr);
+            }
+        }    
+    });
+
+    // Teamwork knob
+
+    $(document).ready(function (){
+    $('.dial3').val(0).trigger('change').delay(1000);
+    $(".dial3").knob({
+        'width': 100,
+        'height': 100,
+        'thickness': 0.18,
+	    'min':0,
+    	'max':100,
+    	'fgColor': '#4ba1bf',
+    	'inputColor':'#4ba1bf',
+    	'step':1,
+    	'readOnly': true,
+    	'lineCap': 'round',
+    	'skin': 'tron',
+    })         
+    
+        var tmr = self.setInterval(function(){myDelay()},40);        
+        var m = 0;
+        function myDelay(){
+            m += 1;
+            $('.dial3').val(m).trigger('change');
+            if(m=={{ student.has_powers.teamwork }}) {            
+                window.clearInterval(tmr);
+            }
+        }    
+    });
+
+    // Communication knob
+
+    $(document).ready(function (){
+    $('.dial4').val(0).trigger('change').delay(1000);
+    $(".dial4").knob({
+        'width': 100,
+        'height': 100,
+        'thickness': 0.18,
+	    'min':0,
+    	'max':100,
+    	'fgColor': '#838234',
+    	'inputColor':'#838234',
+    	'step':1,
+    	'readOnly': true,
+    	'lineCap': 'round'
+    	})         
+    
+        var tmr = self.setInterval(function(){myDelay()},40);        
+        var m = 0;
+        function myDelay(){
+            m += 1;
+            $('.dial4').val(m).trigger('change');
+            if(m=={{ student.has_powers.communication }}) {            
+                window.clearInterval(tmr);
+            }
+        }    
+    });
+
+    // Responsability knob
+
+    $(document).ready(function (){
+    $('.dial5').val(0).trigger('change').delay(1000);
+    $(".dial5").knob({
+        'width': 100,
+        'height': 100,
+        'thickness': 0.18,
+	    'min':0,
+    	'max':100,
+    	'fgColor': '#29697d',
+    	'inputColor':'#29697d',
+    	'step':1,
+    	'readOnly': true,
+    	'lineCap': 'round'
+    	})         
+    
+        var tmr = self.setInterval(function(){myDelay()},40);        
+        var m = 0;
+        function myDelay(){
+            m += 1;
+            $('.dial5').val(m).trigger('change');
+            if(m=={{ student.has_powers.responsability }}) {            
+                window.clearInterval(tmr);
+            }
+        }    
+    });
+
+    // Perseverance knob
+
+    $(document).ready(function (){
+    $('.dial6').val(0).trigger('change').delay(1000);
+    $(".dial6").knob({
+        'width': 100,
+        'height': 100,
+        'thickness': 0.18,
+	    'min':0,
+    	'max':100,
+    	'fgColor': '#c67c33',
+    	'inputColor':'#c67c33',
+    	'step':1,
+    	'readOnly': true,
+    	'lineCap': 'round'
+    	})         
+    
+        var tmr = self.setInterval(function(){myDelay()},40);        
+        var m = 0;
+        function myDelay(){
+            m += 1;
+            $('.dial6').val(m).trigger('change');
+            if(m=={{ student.has_powers.perseverance }}) {            
+                window.clearInterval(tmr);
+            }
+        }    
+    });
+
+    </script>
+
+</body>
+</html>

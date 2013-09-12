@@ -75,7 +75,17 @@ urlpatterns = patterns('',
 
     url(r'^spex_/quests/$', views.spex_quests),
 
-    url(r'^spex_/profile/$', views.spex_profile),        
+    url(r'^spex_/profile/$', views.spex_profile),
+
+    ## JAWA qubal views
+
+    url(r'^jawa_/$', views.jawa_index),
+
+    url(r'^jawa_/powers/$', views.jawa_powers),
+
+    url(r'^jawa_/quests/$', views.jawa_quests),
+
+
 
     ## Social Auth views
 

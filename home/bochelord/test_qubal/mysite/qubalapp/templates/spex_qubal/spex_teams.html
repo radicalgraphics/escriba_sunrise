@@ -14,74 +14,22 @@
 
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-flatly.css" />
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/normalize.css" />
-  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/demo.css" />
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/font-awesome.css" />
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-notify.css" />
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/index_spex.css" />
-  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/alert-notification-animations.css" />
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/sidebareffect/component.css" />
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/sidebareffect/demo.css" />
-
-</head>
-<body>
-
-    <div id="st-container" class="st-container">
-      <nav class="st-menu st-effect-11" id="menu-11">
-          <h2 class="iconcodec icon-sitemap"><div class='sidemenu-text'>QUBAL SPEX</div></h2>
-
-          <ul>
-            <li><a class="iconcodec icon-dashboard" href="{{ SUNRISE_URL }}spex_/"><div class='sidemenu-text'>Dashboard</div></a></li>
-            <li><a class="iconcodec icon-user" href="{{ SUNRISE_URL }}spex_/profile/"><div class='sidemenu-text'>Profile</div></a></li>
-            <li><a class="iconcodec icon-group" href="{{ SUNRISE_URL }}spex_/teams/"><div class='sidemenu-text'>Teams</div></a></li>
-            <li><a class="iconcodec icon-tasks" href="{{ SUNRISE_URL }}spex_/courses/"><div class='sidemenu-text'>Courses</div></a></li>
-            <li><a class="iconcodec icon-shield" href="{{ SUNRISE_URL }}spex_/quests/"><div class='sidemenu-text'>Quests</div></a></li>
-            <li><a class="iconcodec icon-inbox" href="#"><div class='sidemenu-text'>Inbox</div></a></li>
-            <li><a class="iconcodec icon-keyboard" href="#"><div class='sidemenu-text'>Notes</div></a></li>
-
-          </ul>
-          <h5 class='version-text'>{{ QUBAL_VERSION }}</h5>
-        </nav>
-      <!-- content push wrapper -->
-      <div class="st-pusher">
-        <!--  
-          example menus 
-          these menus will be under the push wrapper
-        -->
-
-        
-
-
-        <div class="st-content"><!-- this is the wrapper for the content -->
-          <div class="st-content-inner"><!-- extra div for emulating position:fixed of the menu -->
-
-            <!-- Top Navigation -->
-            <div class="codrops-top clearfix">
-              <span class="right"><a href="{{ SUNRISE_URL }}"><span class='OpenSans-Light student-name'><i class="icon-beer"></i>&nbsp;&nbsp;Original taste</span></a></span>
-            </div> 
-            <div id="st-trigger-effects" class="">
-                <button data-effect="st-effect-11">menu</button>
-            </div>
-
-            <header class="codrops-header">
-              <img style="width:71px; height: 80px;" src="{{ STATIC_URL }}qubalapp/main_engine/img/qubal_logo.png" />
-              <h3 class="qubal-header-title">QUBAL SPEX <span>{{ QUBAL_VERSION }}</span><span><a href='{{ SUNRISE_URL }}logout' class='btn btn-min btn-inverse'><i class='icon-signout'></i>&nbsp;LOGOUT</a></span></h3>
-              
-            </header>
-
-
-<div class="container clearfix">
-<!DOCTYPE HTML>
-<html lang="en">
-
-<head>
-  <title>Qubal | Teams</title>
-  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-flatly.css">
-  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/font-awesome.css">
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/teams.css">
-  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/navbar.css">
 </head>
-
 <body>
+
+<!-- TOP NAVBAR CODE -->
+{% autoescape off %}{{ navbar_top_block }}{% endautoescape %}
+<!-- A BOTTOM_NAVBAR_CODE IS NECESSARY AT THE END OF THE HTML DOCUMENT -->
+
+
+<!-- UNCOMMENT ADMIN_LOGOUT_BLOCK IF NEEDED -->
+{% autoescape off %}{{ admin_logout_block }}{% endautoescape %}
+<!-- END OF ADMIN_LOGOUT_BLOCK -->
 
 <div class="container">
 
@@ -151,19 +99,12 @@
 
 
 </div> <!-- First div container -->
-</body>
-</html>
 
 </div>
 
 {% autoescape off %}{{ footer_block }}{% endautoescape %}
 
-          </div><!-- /st-content-inner -->
-        </div><!-- /st-content -->
-      </div><!-- /st-pusher -->
-
-</div><!-- /st-container -->
-
+{% autoescape off %}{{ navbar_bottom_block }}{% endautoescape %}
 
 <!-- =================================================== -->
 <!-- =================== javascripts =================== -->
@@ -172,7 +113,6 @@
 <script src="{{ STATIC_URL }}spex_qubal/js/modernizr.custom.js"></script>
 <script src="{{ STATIC_URL }}spex_qubal/js/classie.js"></script>
 <script src="{{ STATIC_URL }}spex_qubal/js/sidebarEffects.js"></script>
-
 
 <script src="{{ STATIC_URL }}qubalapp/main_engine/js/jquery.js"></script>
 <script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap.js"></script>

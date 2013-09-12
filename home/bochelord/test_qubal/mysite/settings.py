@@ -9,7 +9,7 @@ ADMINS = (
 
 SUNRISE_URL = '/test/'
 
-QUBAL_VERSION = 'v0.6.5 Chicken Unleashed'
+QUBAL_VERSION = 'v0.7.1 Puccini'
 
 
 

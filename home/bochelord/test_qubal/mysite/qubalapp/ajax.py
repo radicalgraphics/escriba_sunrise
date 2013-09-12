@@ -74,3 +74,16 @@ def get_courses(request, student_id):
 
 	return dajax.json()
 
+@dajaxice_register
+def get_oracle_modal(request):
+
+	dajax = Dajax()
+
+	html = qubal_prerender.prerender_ajax_oracle(request)
+	html = str(html)
+
+	fixed_html = html.replace("Content-Type: text/html; charset=utf-8","")
+
+	dajax.assign('#idAjaxOracle', 'innerHTML', fixed_html)
+
+	return dajax.json()

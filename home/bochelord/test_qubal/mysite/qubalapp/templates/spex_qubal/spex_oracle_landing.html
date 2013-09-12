@@ -14,8 +14,8 @@
 		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/oracle-text-effect.css" />
 		<script src="{{ STATIC_URL }}spex_qubal/js/modernizr.custom_oracle.js"></script>
 	</head>
-	<body>
-		<div class="container">
+	<body id="idbody">
+		<div id="idcontainer" class="container">
 
 				<div class="os-phrases" id="os-phrases">
 					<h2>The Oracle</h2>
@@ -34,6 +34,7 @@
 							</div>
 						</li>
 						<li id="slide2">
+						
 							<h3 class="icon-explorer">Explorer</h3>
 							<div>
 								<div class="cbp-content">
@@ -80,10 +81,10 @@
 					</ul>
 					<nav>
 						<a href="#slide1" class="icon-quest"><span>Oracle</span></a>
-						<a href="#slide2" class="icon-explorer"><span>Explorer</span></a>
-						<a href="#slide3" class="icon-activist"><span>Activist</span></a>
-						<a href="#slide4" class="icon-unifier"><span>Unifer</span></a>
-						<a href="#slide5" class="icon-inventor"><span>Inventor</span></a>
+						<a href="#slide2" onclick="changeToExplorer()" class="icon-explorer"><span>Explorer</span></a>
+						<a href="#slide3" onclick="changeToActivist()" class="icon-activist"><span>Activist</span></a>
+						<a href="#slide4" onclick="changeToUnifier()" class="icon-unifier"><span>Unifer</span></a>
+						<a href="#slide5" onclick="changeToInventor()" class="icon-inventor"><span>Inventor</span></a>
 					</nav>
 
 				</div>
@@ -98,6 +99,55 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script src="{{ STATIC_URL }}spex_qubal/js/jquery.cbpContentSlider.min.js"></script>
 		<script src="{{ STATIC_URL }}spex_qubal/js/jquery.lettering.js"></script>
+
+		<script type="text/javascript">
+
+			function changeToExplorer()
+			{
+				var explorer = document.getElementById('idcontainer');
+				explorer.style.backgroundColor = "#648f2f";
+				explorer.style.background = "#648f2f";
+				
+				explorer = document.getElementById('idbody');
+				explorer.style.backgroundColor = "#648f2f";
+				explorer.style.background = "#648f2f";
+			};
+
+			function changeToActivist()
+			{
+				var activist = document.getElementById('idcontainer');
+				activist.style.backgroundColor = "#378181";
+				activist.style.background = "#378181";
+
+				activist = document.getElementById('idbody');
+				activist.style.backgroundColor = "#378181";
+				activist.style.background = "#378181";
+			};
+
+			function changeToUnifier()
+			{
+				var unifier = document.getElementById('idcontainer');
+				unifier.style.backgroundColor = "#a24a26";
+				unifier.style.background = "#a24a26";
+				
+				unifier = document.getElementById('idbody');
+				unifier.style.backgroundColor = "#a24a26";
+				unifier.style.background = "#a24a26";
+			};			
+
+			function changeToInventor()
+			{
+				var inventor = document.getElementById('idcontainer');
+				inventor.style.backgroundColor = "#b38c2f";
+				inventor.style.background = "#b38c2f";
+
+				inventor = document.getElementById('idbody');
+				inventor.style.backgroundColor = "#b38c2f";
+				inventor.style.background = "#b38c2f";
+			};
+
+		</script>
+
 		<script>
 			$(function() {
 				/*

@@ -35,70 +35,13 @@
 	</head>
 	<body>
 
-		<div id="st-container" class="st-container">
-			<!-- 	
-				example menus 
-				these menus will be on top of the push wrapper
-			-->
-			<nav class="st-menu st-effect-11" id="menu-11">
-          <h2 class="iconcodec icon-sitemap"><div class='sidemenu-text'>QUBAL SPEX</div></h2>
-
-          <ul>
-            <li><a class="iconcodec icon-dashboard" href="{{ SUNRISE_URL }}spex_/"><div class='sidemenu-text'>Dashboard</div></a></li>
-            <li><a class="iconcodec icon-user" href="{{ SUNRISE_URL }}spex_/profile/"><div class='sidemenu-text'>Profile</div></a></li>
-            <li><a class="iconcodec icon-group" href="{{ SUNRISE_URL }}spex_/teams/"><div class='sidemenu-text'>Teams</div></a></li>
-            <li><a class="iconcodec icon-tasks" href="{{ SUNRISE_URL }}spex_/courses/"><div class='sidemenu-text'>Courses</div></a></li>
-            <li><a class="iconcodec icon-shield" href="{{ SUNRISE_URL }}spex_/quests/"><div class='sidemenu-text'>Quests</div></a></li>
-            <li><a class="iconcodec icon-inbox" href="#"><div class='sidemenu-text'>Inbox</div></a></li>
-            <li><a class="iconcodec icon-keyboard" href="#"><div class='sidemenu-text'>Notes</div></a></li>
-
-          </ul>
-          <h5 class='version-text'>{{ QUBAL_VERSION }}</h5>
-      </nav>
-
-			<!-- content push wrapper -->
-			<div class="st-pusher">
-				<!-- 	
-					example menus 
-					these menus will be under the push wrapper
-				-->
-
-				<!-- <nav class="st-menu st-effect-11" id="menu-11">
-					<h2 class="iconcodec icon-sitemap"><div class='sidemenu-text'>QUBAL SPEX</div></h2>
-
-					<ul>
-						<li><a class="iconcodec icon-dashboard" href="{{ SUNRISE_URL }}spex_/"><div class='sidemenu-text'>Dashboard</div></a></li>
-						<li><a class="iconcodec icon-user" href="{{ SUNRISE_URL }}spex_/profile/"><div class='sidemenu-text'>Profile</div></a></li>
-						<li><a class="iconcodec icon-group" href="{{ SUNRISE_URL }}spex_/teams/"><div class='sidemenu-text'>Teams</div></a></li>
-						<li><a class="iconcodec icon-tasks" href="{{ SUNRISE_URL }}spex_/courses/"><div class='sidemenu-text'>Courses</div></a></li>
-						<li><a class="iconcodec icon-shield" href="{{ SUNRISE_URL }}spex_/quests/"><div class='sidemenu-text'>Quests</div></a></li>
-						<li><a class="iconcodec icon-inbox" href="{{ SUNRISE_URL }}spex_/inbox/"><div class='sidemenu-text'>Inbox</div></a></li>
-						<li><a class="iconcodec icon-keyboard" href="{{ SUNRISE_URL }}spex_/notes/"><div class='sidemenu-text'>Notes</div></a></li>
-
-					</ul>
-					<h5 class='version-text'>{{ QUBAL_VERSION }}</h5>
-				</nav> -->
-
-
-				<div class="st-content"><!-- this is the wrapper for the content -->
-					<div class="st-content-inner"><!-- extra div for emulating position:fixed of the menu -->
-
-						<!-- Top Navigation -->
-						<div class="codrops-top clearfix">
-							<span class="right"><a href="{{ SUNRISE_URL }}"><span class='OpenSans-Light student-name'><i class="icon-beer"></i>&nbsp;&nbsp;Original taste</span></a></span>
-						</div> 
-						<div id="st-trigger-effects" class="">
-								<button data-effect="st-effect-11"><i class=''></i>menu</button>
-						</div>
-							<!-- <a href="#" id="st-trigger-effects" data-effect='st-effect-11'>Menu</a> -->
-						
-
-						<header class="codrops-header">
-              <img style="width:120px; height: 135px;" src="{{ STATIC_URL }}qubalapp/main_engine/img/qubal_logo.png" />
-							<h3 class="qubal-header-title">QUBAL SPEX <span>{{ QUBAL_VERSION }}</span><span><a href='{{ SUNRISE_URL }}admin' class='btn btn-min btn-warning'><i class='icon-cog'></i>&nbsp;ADMIN</a></span><span><a href='{{ SUNRISE_URL }}logout' class='btn btn-min btn-inverse'><i class='icon-signout'></i>&nbsp;LOGOUT</a></span></h3>
-
-							
-						</header>
+<!-- TOP NAVBAR CODE -->
+{% autoescape off %}{{ navbar_top_block }}{% endautoescape %}
+<!-- A BOTTOM_NAVBAR_CODE IS NECESSARY AT THE END OF THE HTML DOCUMENT -->
+		
+<!-- UNCOMMENT ADMIN_LOGOUT_BLOCK IF NEEDED -->
+{% autoescape off %}{{ admin_logout_block }}{% endautoescape %}
+<!-- END OF ADMIN_LOGOUT_BLOCK -->
 
 
 <div class="container clearfix">
@@ -289,6 +232,11 @@
                             <p class='opensans'>Your latest activity</p>
                             
                           </h3>
+
+                          
+                            <div class="notifications top-right"></div>
+                          
+
 
                           {% generateimage 'qubalapp:thumbnail70x70' source=latest_activity_deadlines_list.0.image as image_holder_2 %}
 
@@ -644,27 +592,7 @@
 {% autoescape off %}{{ footer_block }}{% endautoescape %}
 </div> <!-- main container end div -->
 
-					</div><!-- /st-content-inner -->
-				</div><!-- /st-content -->
-			</div><!-- /st-pusher -->
-
-		</div><!-- /st-container -->
-
-
-
-
-
-
-
-
-
-
-
-
-		
-						
-
-
+{% autoescape off %}{{ navbar_bottom_block }}{% endautoescape %}
 
 <!-- =================================================== -->
 <!-- =================== javascripts =================== -->
@@ -682,7 +610,7 @@
 <!-- <script src="{{ STATIC_URL }}qubalapp/main_engine/js/jquery.knob.js"></script> -->
 <!-- <script src="{{ STATIC_URL }}qubalapp/main_engine/js/opentip-jquery-excanvas.js"></script>
 <script src="{{ STATIC_URL }}qubalapp/main_engine/js/opentip.js"></script>
-<script src="{{ STATIC_URL }}qubalapp/main_engine/js/adapter-jquery.js"></script> -->
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/adapter-jquery.js"></script>  -->
 <script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap-notify.js"></script>
 
 

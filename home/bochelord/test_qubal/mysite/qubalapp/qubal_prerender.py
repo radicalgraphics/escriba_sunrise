@@ -209,7 +209,8 @@ def prerender_profile_widget(request):
 			    		'current_xp' : current_xp,
 			    		'xp_needed' : xp_needed,
 						'background_img': background_img,
-						'background_color': background_color
+						'background_color': background_color,
+						'SUNRISE_URL':settings.SUNRISE_URL
 			    	  }
 
 			profile_widget_block = render (request,'jawa_qubal/jawa_profile_widget.inc', context)

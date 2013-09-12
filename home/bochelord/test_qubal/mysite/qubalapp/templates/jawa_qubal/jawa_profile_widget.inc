@@ -58,8 +58,8 @@
 
         		</div> <!-- main-profile-powers-box div -->
                 
-                <a href='/{{ SUNRISE_URL }}spex_/spex_oracle_landing/' class='widget-link'><i class="qubal_icon_master_oracle big-icon"  rel='tooltip' title='Oracle'></i></a>
-                <a href='/{{ SUNRISE_URL }}logout/' class='widget-link'><i class="icon-off medium-icon" style='float:right;' rel='tooltip' title='logout'></i></a>
+                <a href='{{ SUNRISE_URL }}spex_/spex_oracle_landing/' class='widget-link'><i class="qubal_icon_master_oracle big-icon"  rel='tooltip' title='Oracle'></i></a>
+                <a href='{{ SUNRISE_URL }}logout/' class='widget-link'><i class="icon-off medium-icon" style='float:right;' rel='tooltip' title='logout'></i></a>
 		</div> <!-- main-profile-box div-->
 
 	</div> <!-- containder div -->

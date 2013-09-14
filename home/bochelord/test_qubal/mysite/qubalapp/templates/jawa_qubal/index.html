@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>QUBAL JAWA {{ QUBAL_VERSION }}</title>
+		<meta name="description" content="Quest Based Adaptive Learning" />
+		<meta name="keywords" content="e-learning, quests, gamification, learn" />
+		<meta name="author" content="Radical Graphics" />
+		<link rel="shortcut icon" href="{{ STATIC_URL }}favicon.ico">
+
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jawa_qubal/css/bootstrap-flatly.css" /> <!-- We need to decide if using BOOTSTRAP -->
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jawa_qubal/css/nexus-menu/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jawa_qubal/css/nexus-menu/demo.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jawa_qubal/css/nexus-menu/component.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/font-awesome.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jawa_qubal/css/qubal-icons.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jawa_qubal/css/jawa_index.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-notify.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/alert-notification-animations.css" />
+
+
+
+		<script src="{{ STATIC_URL }}jawa_qubal/js/nexus-menu/modernizr.custom.js"></script>
+	</head>
+	<body>
+
+		{% load imagekit %}
+
+		<div class="container">
+			
+		{% autoescape off %}{{ nexus_menu_block }}{% endautoescape %}
+
+			<!-- <header> -->
+
+        {% autoescape off %}{{ profile_widget }}{% endautoescape %}
+
+				<!-- <h1><i class='qubal_icon_master_qubal-icon'></i>&nbsp;QUBAL JAWA {{ QUBAL_VERSION }} <span>New QUBAL flavour <a href="{{ SUNRISE_URL }}">original taste</a></span>
+				</h1>	
+
+			</header>  -->
+
+			<div class="row lobby-container-box">
+			<div class="span10">
+
+				<div class="lobby-header-icon" {{ classtype_color|safe }}>
+					<i class='qubal_icon_master_qubal_menu' rel='tooltip-right' title='QUBAL JAWA {{ QUBAL_VERSION }}'></i>
+				</div>
+				
+				<div>
+					<p></p>
+
+							
+		                    
+
+		                  
+		                  		<div class='row deadlines-box'>
+		                  			<div class='span3'>
+
+		                  				<!-- {% if latest_activity_deadlines_list.0.image %}
+											{% generateimage 'qubalapp:thumbnail30x30' source=latest_activity_deadlines_list.0.image as image_holder_progress %}
+										{% endif %} -->
+										<div class='span3 student-text'>{{ student.name }} {{ student.lastname }}</div>
+										<!--
+		                  				<p class='span3'><img src='{{ image_holder_progress.url }}' class='img-rounded'>&nbsp;&nbsp;{{latest_activity_deadlines_list.0.name}}</p> -->
+
+
+		                  				<p class='span3'>Study progress</p>
+		                            	<div class="span2 progress progress-info">
+		                                   <div class="bar" style="width:{{ percent }}%;"><span class='textoenlabarra'>{{percent}}%</span></div>
+		                                </div>
+		                            </div>
+
+		                            <div class='wellbump span6'>
+
+			                  			<div class='span1'>
+			                            	<div class='deadlines-text-number pagination-centered'>{{ latest_activity_deadlines_list|length }}</div><br><span class='deadlines-text'>DEADLINES</span>
+			                            </div>
+			                            <div class='span4'>
+			                        {% for deadline in latest_activity_deadlines_list %}
+
+			                            {% if deadline.image %}
+
+			                                {% generateimage 'qubalapp:thumbnail50x50' source=deadline.image as image_holder %}
+			                                <a href="#" rel='tooltip' title='{{deadline.name}} ending in {{ deadline.ending_date|timeuntil }}'><img src='{{ image_holder.url }}' class='img-rounded'></a>&nbsp;&nbsp;
+			                            {% else %}
+			                                <a href="#" rel="tooltip" title='{{deadline.name}} ending in {{ deadline.ending_date|timeuntil }}'><!--/{{ SUNRISE_URL }}course/{{ deadline.id }}/-->
+			                                  <img src='{{ STATIC_URL }}default_images/default_achievement.jpg' style="width:50px;" class='img-rounded'/>
+			                                </a>&nbsp;&nbsp;
+
+			                            {% endif %}
+			                        {% empty %}
+
+			                            No deadlines , yay! <i class='icon-meh'></i>
+
+			                        {% endfor %}
+			                  			</div>
+		                  			</div>
+
+		                    	</div><!--ROW-->
+		             
+		            <!-- <div class="row powers-your-powers-box">
+						<div class="powers-your-powers-header" {{ classtype_color|safe }}>DETAILS</div>
+					</div> --> <!-- powers-your-powers-box -->
+
+					<!-- <div class="row powers-skills-box">
+						<div class="powers-skills-header" {{ classtype_color|safe }}>ALL COURSES</div>
+					</div> --> <!-- powers-skills-box div -->     
+				                  
+		            <div class="row powers-your-powers-box">    
+
+			            {% if latest_activity_deadlines_list.0.image %}
+							{% generateimage 'qubalapp:thumbnail70x70' source=latest_activity_deadlines_list.0.image as image_holder_2 %}
+						{% endif %}
+                         
+						<div class="powers-your-powers-header" {{ classtype_color|safe }}>YOUR LATEST ACTIVITY</div>
+                          <div class='row welldark'>
+                            <div class='span5'>
+                               <h4>
+                                <p><img src='{{ image_holder_2.url }}' class='img-rounded' rel='tooltip' title='Course: {{ latest_activity_deadlines_list.0.name }}'/>&nbsp;{{ latest_activity_deadlines_list.0.name }}</p>
+                               </h4>
+                               <div class='course-desc-text'>{{ latest_activity_deadlines_list.0.description }}</div>
+                            </div>
+                            <div class='span3'>
+                            	<br>
+                               <div class='pull-right'>
+                                  COURSE PROGRESS
+                                  <div class="progress progress-striped progress-danger active">
+                                   <div class="bar" style="width:{{ percent }}%;"></div>
+                                  </div>
+                               </div>
+                            </div>
+                          </div>
+
+                            <div class='row questline'>
+                              <div class='span4'>
+                                <i class='icon-quest bigger-font green' rel='tooltip-left' title='Quest I : Introduction to course'></i>&nbsp; <span class='medium-font green'>Introduction to course</span> &nbsp;<i class='icon-check-sign medium-font green' rel='tooltip-right' title='Done!'></i>
+                              </div>
+                            </div>
+                            <div class='row questline'>
+                              <div class='span4'>
+                                <i class='icon-quest bigger-font green' rel='tooltip-left' title='Quest II : Get to know the basics'></i>&nbsp; <span class='medium-font green'>Get to know the basics</span> &nbsp;<i class='icon-check-sign medium-font green' rel='tooltip-right' title='Done!'></i>
+                              </div>
+                            </div>
+                            <div class='row questline'>
+                              <div class='span4'>
+                                <i class='icon-quest bigger-font blue' rel='tooltip-left' title='Quest III : Find your muse adhoc'></i>&nbsp; <span class='medium-font blue'>Find your muse adhoc</span> &nbsp;<i class='icon-chevron-sign-right medium-font blue' rel='tooltip-right' title='Ongoing!'></i>
+                              </div>
+                            </div>
+
+                    </div><!-- powers-classtype-box ENDS -->
+
+
+                    <br>
+					
+				</div>
+
+			</div>
+			</div>
+
+		</div><!-- /container -->
+
+		<script src="{{ STATIC_URL }}jawa_qubal/js/nexus-menu/classie.js"></script>
+		<script src="{{ STATIC_URL }}jawa_qubal/js/nexus-menu/gnmenu.js"></script>
+		<script src="{{ STATIC_URL }}qubalapp/main_engine/js/jquery.js"></script>
+		<script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap.js"></script>
+		<script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap-notify.js"></script>
+
+		<script>
+			new gnMenu( document.getElementById( 'gn-menu' ) );
+		</script>
+		<script>
+			$("[rel=tooltip]").tooltip({ placement: 'top'});
+    		$("[rel=tooltip-left]").tooltip({ placement: 'left'});
+    		$("[rel=tooltip-bottom]").tooltip({ placement: 'bottom'});
+    		$("[rel=tooltip-right]").tooltip({ placement: 'right'});
+    	</script>
+
+    	{% autoescape off %}{{ notifications_content }}{% endautoescape %}
+
+	</body>
+</html>

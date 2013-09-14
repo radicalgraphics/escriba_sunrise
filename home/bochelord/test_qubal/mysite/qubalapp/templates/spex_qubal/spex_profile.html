@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Profile | QubalSPEX {{ QUBAL_VERSION }}</title>
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="Radical Graphics" />
+
+  <link rel="shortcut icon" href="../favicon.ico">
+
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-flatly.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/demo.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-notify.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/index_spex.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/alert-notification-animations.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/sidebareffect/component.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/sidebareffect/demo.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/profile.css">
+
+</head>
+<body>
+
+<!-- TOP NAVBAR CODE -->
+{% autoescape off %}{{ navbar_top_block }}{% endautoescape %}
+<!-- A BOTTOM_NAVBAR_CODE IS NECESSARY AT THE END OF THE HTML DOCUMENT -->
+
+
+<!-- UNCOMMENT ADMIN_LOGOUT_BLOCK IF NEEDED -->
+{% autoescape off %}{{ admin_logout_block }}{% endautoescape %}
+<!-- END OF ADMIN_LOGOUT_BLOCK -->
+
+
+<div class="container clearfix">
+ 
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-flatly.css">
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/teams.css">
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/navbar.css">
+
+
+{% load imagekit %}
+
+<div class="container">
+
+<!-- <span class="your-teams-title"> Your Teams </span><br><br><br> -->
+
+<br><br>
+
+<div class='row'>
+    
+    <div class='fake-image'>
+
+      {% if student.image %}
+
+          {% generateimage 'qubalapp:thumbnail120x120' source=student.image as tn2 %}
+          <img src='{{ tn2.url }}' class='img-circle' title='{{ student.name}} {{ student.lastname }} - level {{ current_level }} - {{ student.get_character_class_display }}' rel="tooltip-left"/>
+        {% else %}
+          <img src='{{ STATIC_URL }}default_images/default_avatar_grey.jpg' width='150' class='img-circle' title='{{ student.name}} {{ student.lastname }} - level {{ current_level }} - {{ student.get_character_class_display }}' rel="tooltip-left"/>
+        {% endif %}
+
+    </div>
+
+
+    <img src='{{ STATIC_URL }}spex_qubal/img/profile_placeholder.png'>
+    
+
+</div> <!-- first div "row" -->
+
+
+</div> <!-- First div container -->
+
+</div>
+
+
+{% autoescape off %}{{ footer_block }}{% endautoescape %}
+
+<!-- BOTTOM NAVBAR CODE -->
+{% autoescape off %}{{ navbar_bottom_block }}{% endautoescape %}
+<!-- IF THIS IS NOT INCLUDED THE NAVBAR DOESN'T WORK -->
+
+<!-- =================================================== -->
+<!-- =================== javascripts =================== -->
+<!-- =================================================== -->
+
+<script src="{{ STATIC_URL }}spex_qubal/js/modernizr.custom.js"></script>
+<script src="{{ STATIC_URL }}spex_qubal/js/classie.js"></script>
+<script src="{{ STATIC_URL }}spex_qubal/js/sidebarEffects.js"></script>
+
+
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/jquery.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/adapter-jquery.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap-notify.js"></script>
+
+
+<script>
+
+    $("[rel=tooltip]").tooltip({ placement: 'top'});
+    $("[rel=tooltip-left]").tooltip({ placement: 'left'});
+
+    $(document).ready(function() {
+    $('#bouncy')
+        .css({"font-size":10})   // Set to 0 as soon as possible – may result in flicker, but it's not hidden for users with no JS (Googlebot for instance!)
+        .delay(2000)           // Wait for a bit so the user notices it fade in
+        .css({"font-size":36});
+        //.delay(1000)     // Fade it back in. Swap css for animate in legacy browsers if required.
+        //.css({"font-size":32});
+    });
+
+    </script>
+
+{% block notifications_content %}{% endblock %}
+
+</body>
+</html>

@@ -55,12 +55,68 @@ body{
 .team-box-title {
   width: 390px;
   margin-top: -6px;
-  margin-left: 80px;
+  margin-left: 90px;
   padding-bottom: 5px;
   font-size: 1.7em;
 }
 
 .team-box-course-name {
-  margin-left: 80px;
+  margin-left: 90px;
   font-size: 1em;
+}
+
+.team-box-description {
+  margin-left: 90px;
+  font-size: 1em;
+}
+
+.label-happiness {
+  display: inline-block;
+  position: absolute;
+  right: -8px;
+  bottom: -8px;
+  font-size: 11.844px;
+  font-weight: bold;
+  line-height: 14px;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+  vertical-align: baseline;
+  padding: 6px 10px;
+  text-shadow: none;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.well {
+  position: relative;
+  height: 96px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  -webkit-box-shadow: 0px 1px 5px rgba(50, 50, 50, 1);
+     -moz-box-shadow: 0px 1px 5px rgba(50, 50, 50, 1);
+          box-shadow: 0px 1px 5px rgba(50, 50, 50, 1);
+  transition: all 0.3s ease;
+}
+
+.well i{
+  font-size: 15px;
+}
+
+.well img {
+  transition: all 0.2s ease;
+}
+
+.well:hover img {
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -o-transform: scale(1.05);
+  transform: scale(1.05);
 }

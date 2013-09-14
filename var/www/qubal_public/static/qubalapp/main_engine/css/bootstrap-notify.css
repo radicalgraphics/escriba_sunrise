@@ -1,5 +1,6 @@
 .notifications{position:fixed;}.notifications.top-right{right:10px;top:100px;}
 .notifications.top-left{left:10px;top:25px;}
+.notifications.mid-right{left:87%;top:40%;width: 200px;}
 .notifications.bottom-left{left:10px;bottom:25px;}
 .notifications.bottom-right{right:10px;bottom:25px;}
 .notifications>div{position:relative;z-index:9999;margin:5px 0px;}

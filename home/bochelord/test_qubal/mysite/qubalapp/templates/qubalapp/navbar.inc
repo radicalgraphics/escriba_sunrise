@@ -2,13 +2,16 @@
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner show-g">
       <div class="container">
-        <a class="brand" href="{{ SUNRISE_URL }}"><img src="{{ STATIC_URL }}qubalapp/main_engine/img/qubal_logo.png" width="64" height="64"/><span class="logo_text">QUBAL</span></a>
+        <a class="brand" href="{{ SUNRISE_URL }}"><img style="width:64px; height: 72px;" src="{{ STATIC_URL }}qubalapp/main_engine/img/qubal_logo.png" /><span class="logo_text">QUBAL</span></a>
           <ul class="nav">
 
             <li>
+
               {% load imagekit %}
               {% load staticfiles %}
-              
+              {% load session_keep_alive %}
+              {% session_keep_alive %}
+
               <div class="navbar-student-image">
               {% if student.image %}
                 {% generateimage 'qubalapp:thumbnail50x50' source=student.image as student_image %}
@@ -118,6 +121,8 @@
             <div class="span2menu pull-right admin-box">
                  
               <a class="btn btn-mini btn-warning" href="{{ SUNRISE_URL }}admin"><i class="icon-cog"></i> ADMIN</a>
+              <a class="btn btn-mini btn-inverse" href="{{ SUNRISE_URL }}spex_/"><i class="icon-lemon"></i> SPEX</a>
+              <a class="btn btn-mini btn-info" href="{{ SUNRISE_URL }}jawa_/"><i class="icon-renren"></i> JAWA</a>
               <span class="version"><br>QUBAL {{ QUBAL_VERSION }}</span><br>
               
               <a href='{{ SUNRISE_URL }}logout/'><i class="icon-signout"></i> logout</a>

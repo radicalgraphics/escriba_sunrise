@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+{% load dajaxice_templatetags %}
+
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>QubalSPEX {{ QUBAL_VERSION }}</title>
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="author" content="Radical Graphics" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-flatly.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jawa_qubal/css/nexus-menu/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jawa_qubal/css/nexus-menu/demo.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jawa_qubal/css/nexus-menu/component.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/font-awesome.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jawa_qubal/css/qubal-icons.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jawa_qubal/css/jawa_index.css" />
+
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jawa_qubal/css/jawa_quests.css" />
+		
+		
+		<script src="{{ STATIC_URL }}jawa_qubal/js/nexus-menu/modernizr.custom.js"></script>
+
+	</head>
+
+<body>
+
+	{% load imagekit %}
+	<div class="container">
+		{% autoescape off %}{{ nexus_menu_block }}{% endautoescape %}
+
+		{% autoescape off %}{{ profile_widget }}{% endautoescape %}
+		
+		<div class="row quests-container-box">
+			<div class="span10">
+				<div class="quests-header-icon" {{ classtype_color|safe }}><i class='qubal_icon_master_quests big-icon'></i><span>QUESTS</span></div>
+
+				<div class="row quests-active-courses-box">
+					<div class="quests-active-courses-header" {{ classtype_color|safe }}>ACTIVE COURSES
+						<span>QUESTS</span>
+					</div>
+
+					<div class="quests-active-courses-column">
+						
+						{% if local_student_courses %}
+				        
+				            {% for course in local_student_courses.all %}
+				            	{% if forloop.counter <= 9 %}
+					          	    <div class="quests-active-courses-course-box">
+					              		<a href="{{ SUNRISE_URL }}course/{{ course.id }}/">
+					              	{% if course.image %}
+					                  	{% generateimage 'qubalapp:thumbnail50x50' source=course.image as imagen %}
+					                 	   <img class="img-rounded" src='{{ imagen.url }}' />
+					              	{% else %}
+		                            	   <img class="img-rounded" src='{{ STATIC_URL }}default_images/default_course_dark.jpg' width='50' />
+					              	{% endif %}
+
+						                	<div class="quests-active-courses-course-title">
+						                  		{{ course.name|truncatechars:24 }}
+						                	</div>
+					                	</a>
+					                </div> <!-- quests-active-courses-boxes div -->
+					            {% endif %}
+				            {% endfor %}
+
+				        {% else %}
+				            <p class="your-courses">You are not enrolled in any Course! Try and check some courses here below!</p>
+				        {% endif %}
+
+				        {% if local_student_courses.count > 9 %}
+							<div class="quests-actives-courses-view-more">view more <i class='icon-chevron-sign-right'></i></div>
+						{% endif %}
+
+					</div> <!-- quests-active-courses-column div -->
+
+				</div> <!-- quests-active-courses-box div -->
+				
+				<div class="row powers-your-powers-box">
+					<div class="powers-your-powers-header" {{ classtype_color|safe }}>DETAILS</div>
+				</div> <!-- powers-your-powers-box -->
+
+				<div class="row powers-skills-box">
+					<div class="powers-skills-header" {{ classtype_color|safe }}>ALL COURSES</div>
+				</div> <!-- powers-skills-box div -->
+
+			</div> <!-- span10 div -->
+		</div> <!-- row powers-container-box div -->
+	</div><!-- /container -->
+
+	<script src="{{ STATIC_URL }}jawa_qubal/js/nexus-menu/classie.js"></script>
+	<script src="{{ STATIC_URL }}jawa_qubal/js/nexus-menu/gnmenu.js"></script>
+	<script src="{{ STATIC_URL }}qubalapp/main_engine/js/jquery.js"></script>
+	<script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap.js"></script>
+
+	<script>
+		new gnMenu( document.getElementById( 'gn-menu' ) );
+	</script>
+	<script>
+		$("[rel=tooltip]").tooltip({ placement: 'top'});
+		$("[rel=tooltip-left]").tooltip({ placement: 'left'});
+		$("[rel=tooltip-bottom]").tooltip({ placement: 'bottom'});
+		$("[rel=tooltip-right]").tooltip({ placement: 'right'});
+	</script>
+
+	{% autoescape off %}{{ notifications_content }}{% endautoescape %}
+
+</body>
+</html>
+

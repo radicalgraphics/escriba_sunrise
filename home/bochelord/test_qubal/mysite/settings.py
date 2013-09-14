@@ -7,8 +7,11 @@ ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 
-QUBAL_VERSION = 'v0.5.8 Angry Panda'
 SUNRISE_URL = '/test/'
+
+QUBAL_VERSION = 'v0.7.1 Puccini'
+
+
 
 MANAGERS = ADMINS
 
@@ -85,7 +88,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'django.contrib.staticfiles.finders.FileSystemFinder',
-    
+    'dajaxice.finders.DajaxiceFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
@@ -96,13 +99,15 @@ SECRET_KEY = 'n%#8w^$#jx-hbo)zwt5^7uhu*@8^d-px!b0sg_@qeu&zhjlz^6'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    'django.template.loaders.eggs.Loader',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     # other context processors....
     'django.core.context_processors.static',
     'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.request',
+    'django.core.context_processors.media',    
     'django.core.context_processors.tz',
     'social_auth.context_processors.social_auth_by_type_backends'
     # other context processors....
@@ -115,6 +120,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django-session-idle-timeout.middleware.SessionIdleTimeout',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -176,19 +182,22 @@ ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, us
 
 # Settings for mail
 # Trying to send through our account on gmail
-# EMAIL_USE_TLS = True
-# EMAIL_HOST = ''
-# EMAIL_HOST_USER = ''
-# EMAIL_HOST_PASSWORD = ''
-# EMAIL_PORT = 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.strato.com'
+EMAIL_HOST_USER = 'noreply@qubal.eu'
+EMAIL_HOST_PASSWORD = 'quub$ar3N1c3'
+EMAIL_PORT = 587
+
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
-	'registration',
+    'registration',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     # Uncomment the next line to enable the admin:
     'grappelli',
     'django.contrib.admin',
@@ -196,11 +205,20 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
 	'qubalapp',
     'imagekit',
-	'actstream',
-	'crispy_forms',
+    'actstream',
+    'crispy_forms',
     'datetimewidget',
     'social_auth',
+    'django-session-idle-timeout',
+    'dajaxice',
+    'dajax'
 )
+
+SESSION_COOKIE_AGE = 604800 # In seconds (604800secs = 1 week)
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_IDLE_TIMEOUT = 1200 # In seconds (1200secs = 20 minutes)
+# SESSION_IDLE_TIMEOUT = 4
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -232,7 +250,7 @@ LOGGING = {
 }
 
 ACTSTREAM_SETTINGS = {
-    'MODELS': ('auth.user', 'comments.comment', 'qubalapp.task_deliverable', 'qubalapp.task_video'),
+    'MODELS': ('auth.user', 'comments.comment', 'qubalapp.task_deliverable', 'qubalapp.task_video', 'qubalapp.task_quiz', 'qubalapp.course', 'qubalapp.quest', 'qubalapp.challenge'),
     'MANAGER': 'actstream.managers.ActionManager',
     'FETCH_RELATIONS': True,
     'USE_PREFETCH': True,

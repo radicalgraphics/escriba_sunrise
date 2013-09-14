@@ -1,0 +1,29 @@
+.nexus-menu {
+		margin: 0;
+		padding: 0;
+		/*background: #c2c2c2;*/
+		color: #5f6f81;
+		list-style: none;
+		text-transform: none;
+		font-weight: 300;
+		font-family: 'Roboto', Arial, sans-serif;
+		line-height: 60px;
+}
+
+.nexus-menu-icon-space{
+
+
+		/*padding: 0.7em;*/
+		/*padding-top: 0.5em;*/
+		padding-left: 0.4em;
+		padding-right: 0.5em;
+		line-height: 2em;
+
+}
+
+.nexus-menu-version-text{
+		font-size: 0.8em;
+		color:#333333;
+		padding-left: 0.9em;
+		overflow: visible;
+}

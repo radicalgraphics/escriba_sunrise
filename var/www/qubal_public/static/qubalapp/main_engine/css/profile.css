@@ -15,3 +15,89 @@ body{
 .navbar-margin {
   margin-bottom: 100px;
 }
+
+/*.sidebar_profile{
+	  border:0px solid #c2c2c2;
+    -webkit-border-radius: 10px 20px 10px 10px;
+     -moz-border-radius: 10px 20px 10px 10px;
+          border-radius: 10px 20px 10px 10px;
+}*/
+
+.well{
+	margin-top: 10px;
+	-webkit-border-radius: 10px 20px 10px 10px;
+     -moz-border-radius: 10px 20px 10px 10px;
+          border-radius: 10px 20px 10px 10px;
+
+}
+
+.text-name{
+	font-family: 'OpenSans';
+	font-size: 24px;
+	color: #8a8a8a;
+	padding: 10px;
+}
+
+.level-box{
+	margin-top: -40px;
+	font-family: "OpenSans";
+  	font-weight: bold;
+}
+
+.current_level_text{
+  font-size: 70px;
+}
+
+.totalxp_text{
+  font-size: 14px
+}
+.class-text{
+	font-family: 'OpenSans';
+	font-weight: bold;
+}
+.level-label{
+	color: #c2c2c2;
+	font-size: 10px;
+}
+
+.profile-image{
+	margin-top: 0px;
+}
+
+.span1ymedio {
+  width: 90px;
+}
+
+.iconbig{
+	font-size: 40px;
+}
+
+.opensans-bold{
+  font-family: "OpenSans";
+  font-weight: bold;
+}
+
+.gray-text{
+	color:#a0a0a0;
+}
+
+.info-widget-text{
+	color:#a0a0a0;
+	font-family: "OpenSans";
+  	font-weight: bold;
+  	font-size: 13px;
+}
+
+div.media-box{
+        float:left;
+        margin-right:10px;
+        overflow: hidden;
+       
+        padding:3px;
+       
+
+        }
+.media-box img{
+        float:left;
+        margin-right:5px;
+        }

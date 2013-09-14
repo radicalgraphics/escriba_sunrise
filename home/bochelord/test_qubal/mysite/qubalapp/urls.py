@@ -33,9 +33,12 @@ urlpatterns = patterns('',
 
     url(r'^quest_listing/$', views.quest_listing, name='quest_listing'),
 
-    url(r'^quest/(?P<quest_id>\d+)/$', views.quest),
+    url(r'^course/(?P<course_id>\d+)/$', views.course),
 
     url(r'^task/(?P<task_id>\d+)/$', views.task),
+
+    # User starts a Quest
+    url(r'^quest_started/$', views.quest_started),
 
     # //this gets you to index: qubal/
     url(r'^$', views.index, name='index'),
@@ -50,9 +53,38 @@ urlpatterns = patterns('',
 
     url(r'^task_completed/$', views.task_completed),
 
+    url(r'^enroll/$', views.enroll),
+
     url(r'^oracle_landing/$', views.oracle_landing),
 
     url(r'^oracle_process/$', views.oracle_process),
+
+    url(r'^quiz_landing/$', views.quiz_landing),
+
+    ## SPEX qubal views
+
+    url(r'^spex_/$', views.spex_index),
+
+    url(r'^spex_/spex_oracle_landing/$', views.spex_oracle_landing),
+
+    url(r'^spex_oracle_process/$', views.spex_oracle_process),
+
+    url(r'^spex_/courses/$', views.spex_course_listing),
+
+    url(r'^spex_/teams/$', views.spex_teams),
+
+    url(r'^spex_/quests/$', views.spex_quests),
+
+    url(r'^spex_/profile/$', views.spex_profile),
+
+    ## JAWA qubal views
+
+    url(r'^jawa_/$', views.jawa_index),
+
+    url(r'^jawa_/powers/$', views.jawa_powers),
+
+    url(r'^jawa_/quests/$', views.jawa_quests),
+
 
 
     ## Social Auth views

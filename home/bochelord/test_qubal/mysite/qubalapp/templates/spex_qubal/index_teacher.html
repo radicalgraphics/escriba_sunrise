@@ -1,0 +1,181 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+
+  <title>Qubal {{ QUBAL_VERSION }}</title>
+
+
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-flatly.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/demo.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/font-awesome.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/component.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-notify.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/index_spex.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/alert-notification-animations.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/index.css" />
+
+
+  <script src="{{ STATIC_URL }}spex_qubal/js/modernizr.custom.js"></script>
+  <script src="{{ STATIC_URL }}spex_qubal/js/classie.js"></script>
+  <script src="{{ STATIC_URL }}spex_qubal/js/mlpushmenu.js"></script>
+  <script src='{{ STATIC_URL }}spex_qubal/js/jquery.dajax.core.js'></script>
+
+
+  </head>
+  <body>
+
+    <div class="spex_container">
+      <!-- Push Wrapper -->
+      <div class="mp-pusher {{ active_menu_dashboard }}" id="mp-pusher">
+
+        <!-- mp-menu -->
+        <nav id="mp-menu" class="mp-menu">
+          <div class="mp-level">
+            <h2 class="sidemenu-text iconcodec icon-sitemap"><i class='icon-sitemap icon-flip-vertical'></i> Qubal SPEX</h2>
+            <ul>
+              <li>
+                <a class="sidemenu-text" href="#" onclick="get_dashboard(2);"><i class='icon-dashboard'></i>&nbsp;&nbsp;Dashboard</a>
+              </li>
+              <li class="icon icon-chevron-left icon-big">
+                <a class="iconcodec icon-user" href="#"><span class='sidemenu-text'>Profile</span></a>
+                <div class="mp-level">
+                  <h2 class="iconcodec icon-news"> Profile</h2>
+                  <a class="mp-back" href="#">back</a>
+                  <ul>
+
+                    {% for student in student_list %}
+                    <li><a href="#" onclick='get_dashboard({{student.user.id}});' ><img class='img-circle' src='{{ MEDIA_URL }}{{ student.image }}' width='25'><span class='sidemenu-text'>{{ student.name }}</span></a></li>
+                    {% endfor %}
+
+                  </ul>
+                </div>
+              </li>
+              <li class="icon icon-arrow-left">
+                <a class="icon icon-shop" href="#">Store</a>
+                <div class="mp-level">
+                  <h2 class="icon icon-shop">Store</h2>
+                  <a class="mp-back" href="#">back</a>
+                  <ul>
+                    <li class="icon icon-arrow-left">
+                      <a class="icon icon-t-shirt" href="#">Clothes</a>
+                      <div class="mp-level">
+                        <h2 class="icon icon-t-shirt">Clothes</h2>
+                        <a class="mp-back" href="#">back</a>
+                        <ul>
+                          <li class="icon icon-arrow-left">
+                            <a class="icon icon-female" href="#">Women's Clothing</a>
+                            <div class="mp-level">
+                              <h2>Women's Clothing</h2>
+                              <a class="mp-back" href="#">back</a>
+                              <ul>
+                                <li><a href="#">Tops</a></li>
+                                <li><a href="#">Dresses</a></li>
+                                <li><a href="#">Trousers</a></li>
+                                <li><a href="#">Shoes</a></li>
+                                <li><a href="#">Sale</a></li>
+                              </ul>
+                            </div>
+                          </li>
+                          <li class="icon icon-arrow-left">
+                            <a class="icon icon-male" href="#">Men's Clothing</a>
+                            <div class="mp-level">
+                              <h2>Men's Clothing</h2>
+                              <a class="mp-back" href="#">back</a>
+                              <ul>
+                                <li><a href="#">Shirts</a></li>
+                                <li><a href="#">Trousers</a></li>
+                                <li><a href="#">Shoes</a></li>
+                                <li><a href="#">Sale</a></li>
+                              </ul>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li>
+                      <a class="icon icon-diamond" href="#">Jewelry</a>
+                    </li>
+                    <li>
+                      <a class="icon icon-music" href="#">Music</a>
+                    </li>
+                    <li>
+                      <a class="icon icon-food" href="#">Grocery</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li><a class="sidemenu-text"  href="#" onclick="get_courses(2);"><i class='iconcodec icon-tasks'></i>&nbsp;&nbsp;Courses</a></li>
+              <li><a class="sidemenu-text" href="#"><i class='icon-rocket'></i>&nbsp;&nbsp;DelTairon</a></li>
+            </ul>
+              
+          </div>
+        </nav>
+        <!-- /mp-menu -->
+
+        <div class="scroller"><!-- this is for emulating position fixed of the nav -->
+          <div class="scroller-inner">
+            <!-- Top Navigation -->
+            <div class="codrops-top clearfix">
+              <span class="right"><a class="icon-beer" href="/"><span class='OpenSans-Light'>&nbsp;&nbsp;Original taste</span></a></span>
+            </div> 
+            <p class='para-trigger'>
+              <a href="#" id="trigger" class="menu-trigger">Menu</a>
+            </p>
+            <header class="codrops-header">
+
+              <h1 class="qubal-header-title">QUBAL SPEX <span>{{ QUBAL_VERSION }}</span></h1>
+              <img id='idContentSideRight' src='' class=''>
+            </header>
+
+<div class="container">
+
+{% load imagekit %}
+
+ <div class="teacher-info-text">You are a Teacher!
+   <h4 class='opensans-bold'>{{ teacher.name }} {{ teacher.lastname }}</h4>
+</div>
+
+{% if teacher.image %}
+  {% generateimage 'qubalapp:thumbnail150x150' source=teacher.image as tn2 %}
+    <img src='{{ tn2.url }}' class='img-circle' title='{{ teacher.name}} {{ teacher.lastname }} - level {{ current_level }} - explorer' rel="tooltip-left"/>
+{% else %}
+    <img src='{{ STATIC_URL }}qubalapp/main_engine/img/default_avatar_grey.jpg' class='img-circle' title='{{ teacher.name}} {{ teacher.lastname }} - level {{ current_level }} - explorer' rel="tooltip-left"/>
+
+{% endif %}
+
+<span class='totalxp_text'>Total XP: {{ teacher.xp }}</span>
+
+
+
+ <br><br><br>
+
+<!-- {% block footer_block %}{% endblock %} -->
+{% autoescape off %}{{ footer_block }}{% endautoescape %}
+</div> <!-- main container end div -->
+
+
+<!-- =================================================== -->
+<!-- =================== javascripts =================== -->
+<!-- =================================================== -->
+
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/jquery.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/adapter-jquery.js"></script>
+<script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap-notify.js"></script>
+
+    <script>
+      new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ) );
+    </script>
+    <script>
+
+    $("[rel=tooltip]").tooltip({ placement: 'top'});
+    $("[rel=tooltip-left]").tooltip({ placement: 'left'});
+
+
+    </script>
+
+</body>
+</html>

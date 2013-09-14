@@ -138,7 +138,7 @@
 											
 												{% for task in challenge.has_tasks.all %}
 													<a href="{{ SUNRISE_URL }}task/{{ task.id }}/"><p class="task-name">
-														{% if task.task_type == "type_test" %}
+														{% if task.task_type == "type_quiz" %}
 															<i class="icon-list-ul"></i>
 														{% elif task.task_type == "type_deliverable" %}
 															<i class="icon-upload-alt"></i>

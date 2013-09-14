@@ -1,0 +1,224 @@
+
+@font-face {
+	font-family: 'qubal_icons';
+	src:url('../fonts/qubal_icons.eot');
+	src:url('../fonts/qubal_icons.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/qubal_icons.svg#icomoon') format('svg'),
+		url('../fonts/qubal_icons.woff') format('woff'),
+		url('../fonts/qubal_icons.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.icon-explorer, .icon-activist, .icon-inventor, .icon-unifier, .icon-quest {
+	font-family: 'qubal_icons';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
+
+.nexus-menu-icon::before {
+		display: inline-block;
+		width: 60px;
+		text-align: center;
+		text-transform: none;
+		font-weight: normal;
+		font-style: normal;
+		font-variant: normal;
+		font-family: 'FontAwesome';
+		line-height: 1;
+		speak: none;
+		-webkit-font-smoothing: antialiased;
+}
+
+.nexus-menu-icon span {
+		width: 0;
+		height: 0;
+		display: block;
+		overflow: hidden;
+}
+
+
+.icon-explorer:before {
+	content: "\21";
+}
+.icon-activist:before {
+	content: "\22";
+}
+.icon-inventor:before {
+	content: "\23";
+}
+.icon-unifier:before {
+	content: "\24";
+}
+.icon-quest:before {
+	content: "\25";
+}
+
+/* QUBAL NEXUS MENU ICONS DEFINITIONS */
+
+@font-face {
+	font-family: 'qubal_nexus_menu';
+	src:url('../fonts/qubal_nexus_menu.eot');
+	src:url('../fonts/qubal_nexus_menu.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/qubal_nexus_menu.woff') format('woff'),
+		url('../fonts/qubal_nexus_menu.ttf') format('truetype'),
+		url('../fonts/qubal_nexus_menu.svg#qubal_nexus_menu') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.icon_nexus_menu-qubal_logo_menu, .icon_nexus_menu-quest_menu, .icon_nexus_menu-factions_menu, .icon_nexus_menu-qubal_menu {
+	font-family: 'qubal_nexus_menu';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+.icon_nexus_menu-qubal_logo_menu:before {
+	content: "\e000";
+}
+.icon_nexus_menu-quest_menu:before {
+	content: "\e001";
+}
+.icon_nexus_menu-factions_menu:before {
+	content: "\e002";
+}
+.icon_nexus_menu-qubal_menu:before {
+	content: "\e003";
+}
+
+/* QUBAL MASTER ICONS DEFINITIONS */
+
+@font-face {
+	font-family: 'qubal_icon_master';
+	src:url('../fonts/qubal_icon_master.eot');
+	src:url('../fonts/qubal_icon_master.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/qubal_icon_master.woff') format('woff'),
+		url('../fonts/qubal_icon_master.ttf') format('truetype'),
+		url('../fonts/qubal_icon_master.svg#qubal_icon_master') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.qubal_icon_master_qubal_menu, .qubal_icon_master_quest_menu, .qubal_icon_master_factions_menu, .qubal_icon_master_qubal_logo_menu, .qubal_icon_master_activist, .qubal_icon_master_explorer, .qubal_icon_master_inventor, .qubal_icon_master_unifier, .qubal_icon_master_factions, .qubal_icon_master_lobby, .qubal_icon_master_menu, .qubal_icon_master_powers, .qubal_icon_master_quests, .qubal_icon_master_oracle, .qubal_icon_master_Profile-Widget, .qubal_icon_master_qubal-icon, .qubal_icon_master_communication, .qubal_icon_master_focus, .qubal_icon_master_mastery, .qubal_icon_master_perserverance, .qubal_icon_master_responsability, .qubal_icon_master_teamwork {
+	font-family: 'qubal_icon_master';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+.qubal_icon_master_qubal_menu:before {
+	content: "\e000";
+}
+.qubal_icon_master_quest_menu:before {
+	content: "\e001";
+}
+.qubal_icon_master_factions_menu:before {
+	content: "\e002";
+}
+.qubal_icon_master_qubal_logo_menu:before {
+	content: "\e003";
+}
+.qubal_icon_master_activist:before {
+	content: "\e004";
+}
+.qubal_icon_master_explorer:before {
+	content: "\e005";
+}
+.qubal_icon_master_inventor:before {
+	content: "\e006";
+}
+.qubal_icon_master_unifier:before {
+	content: "\e007";
+}
+.qubal_icon_master_factions:before {
+	content: "\e008";
+}
+.qubal_icon_master_lobby:before {
+	content: "\e009";
+}
+.qubal_icon_master_menu:before {
+	content: "\e00a";
+}
+.qubal_icon_master_powers:before {
+	content: "\e00b";
+}
+.qubal_icon_master_quests:before {
+	content: "\e00c";
+}
+.qubal_icon_master_oracle:before {
+	content: "\e00d";
+}
+.qubal_icon_master_Profile-Widget:before {
+	content: "\e00e";
+}
+.qubal_icon_master_qubal-icon:before {
+	content: "\e00f";
+}
+.qubal_icon_master_communication:before {
+	content: "\e010";
+}
+.qubal_icon_master_focus:before {
+	content: "\e011";
+}
+.qubal_icon_master_mastery:before {
+	content: "\e012";
+}
+.qubal_icon_master_perserverance:before {
+	content: "\e013";
+}
+.qubal_icon_master_responsability:before {
+	content: "\e014";
+}
+.qubal_icon_master_teamwork:before {
+	content: "\e015";
+}
+
+
+
+
+
+/* sizes*/
+
+.64-icon{
+	font-size: 64px;
+}
+
+.small-icon{
+	font-size: 1em;
+}
+
+.medium-icon{
+	font-size: 1.5em;
+}
+
+.medbig-icon{
+	font-size: 2em;
+}
+
+.mediumbig-icon{
+	font-size: 2.5em;
+}
+
+.big-icon {
+	font-size: 3em;
+}
+
+.bigger-icon{
+	font-size: 5em;
+}
+.huge-icon {
+	font-size: 10em;
+}

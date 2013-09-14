@@ -89,25 +89,48 @@
 
       <div class="span9">
           <!-- En funcion del tipo de task renderizamos su contenido -->
+          <p>{{ task.description }}</p>
+          <p>{{ task.instruction }}</p>
+          <p>{{ task.narrative }}</p>
+          
           {% if task.task_type == "type_video" %}
+            
             <iframe width="560" height="315" src="//www.youtube.com/embed/{{ task.video_url }}" frameborder="0" allowfullscreen></iframe>
-            <p>{{ task.description }}</p>
-            <p>{{ task.instruction }}</p>
-            <p>{{ task.narrative }}</p>
+          
           {% elif task.task_type == "type_deliverable" %}
-            <p>{{ task.description }}</p>
-            <p>{{ task.instruction }}</p>
-            <p>{{ task.narrative }}</p>
-
+            
             {% if task_status.completed != True %}
+            
               {% load crispy_forms_tags %}
  
               {% block content %}
                 {% crispy deliverable_form %}
               {% endblock %}
+
+            {% endif %}
+
+          {% else %}
+
+            {% if task_status.completed != True %}
+              <form action="{{ SUNRISE_URL }}task_completed/" method="POST" >
+
+                  {% for answer in task.quiz.answers.all %}
+                    <label class="radio">
+                      <input type="hidden" name="task_sent" value="{{ task.id }}" />
+                      <input type="radio" name="radioButton" id="optionsRadios{{forloop.counter}}" value="{{ answer.text }}">{{ answer.text }}                      
+                    </label>
+                    <br>
+                  {% endfor %}
+
+                    <button type="submit" class="btn btn-info">Answer!<i class="icon-ok pull-right"></i></button> 
+
+                    <i class="icon-arrow-left"></i> Click on the button to anwser this question!
+                  {% csrf_token %}
+              </form>   
             {% endif %}
 
           {% endif %}
+
           <!-- Si la task esta completada anulamos el boton de enviar, si no se muestra. -->
           {% if task_status.completed == True %}
               <button class="btn btn-success disabled">Completed on: {{ task_status.completed_on_date }}<i class="icon-ok pull-right"></i></button>
@@ -115,7 +138,7 @@
 
               {% if task.task_type == "type_deliverable" %}
                 <p>Click on the 'Send your files' button to complete your task!</p>
-              {% else %}
+              {% elif task.task_type == "type_video" %}
                 <form action="{{ SUNRISE_URL }}task_completed/" method="POST" >
                     <input type="hidden" name="task_sent" value="{{ task.id }}" />
                     <button type="submit" class="btn btn-info">Done!<i class="icon-ok pull-right"></i></button> 
@@ -123,7 +146,6 @@
                     {% csrf_token %}
                 </form>
               {% endif %}
-
 
           {% endif %}
 

@@ -20,17 +20,17 @@ def login_rule (local_user):
 
 
 	# We save a filtered list with all the local_user actions by 'actor_object_id'
-	ultima_notification_welcome = Action.objects.filter(actor_object_id=local_user.id,verb='notification_welcome')[0:1].get()
+	ultima_notification_welcome = Action.objects.filter(actor_object_id=local_user.id,verb='action_login')[0:1].get()
 	# We get the last user action from the filtered actions list
 	
-	list_temp = Action.objects.filter(actor_object_id=local_user.id,verb='notification_got_welcome_xp').reverse()[0:1]
+	list_temp = Action.objects.filter(actor_object_id=local_user.id,verb='reward_login').reverse()[0:1]
 
 	local_persona = Person.objects.get_subclass(user=local_user.id)
 
 	if list_temp:
 		
 
-		ultima_notification_got_welcome_xp = Action.objects.filter(actor_object_id=local_user.id,verb='notification_got_welcome_xp')[0:1].get()
+		ultima_notification_got_welcome_xp = Action.objects.filter(actor_object_id=local_user.id,verb='reward_login')[0:1].get()
 	
 		# To be sure that the last action is about to be loged, we check it,
 		# if true -> we add +login_rule_xp_amount to the localand .save
@@ -44,7 +44,7 @@ def login_rule (local_user):
 
 			local_persona.xp += + login_rule_xp_amount
 			local_persona.save()
-			action.send(local_user, verb='notification_got_welcome_xp', description='You got some XP!', mostrado='no')
+			action.send(local_user, verb='reward_login', description='You got some XP!', mostrado='no')
 
 
 	else:
@@ -52,15 +52,16 @@ def login_rule (local_user):
 		
 			local_persona.xp += + login_rule_xp_amount
 			local_persona.save()
-			action.send(local_user, verb='notification_got_welcome_xp', description='You got some XP!', mostrado='no')
+			action.send(local_user, verb='reward_login', description='You got some XP!', mostrado='no')
 
-def task_completed_rule(local_user):
 
-	task_completed_rule_xp_amount = 10
+# def task_completed_rule(local_user):
 
-	local_persona = Person.objects.get_subclass(user=local_user.id)
+# 	task_completed_rule_xp_amount = 10
 
-	# ultima_notification_task_completed_xp = Action.objects.filter(actor_object_id=local_user.id,verb='notification_task_completed')[0].get()
+# 	local_persona = Person.objects.get_subclass(user=local_user.id)
 
-	local_persona.xp += + task_completed_rule_xp_amount
-	local_persona.save()
+# 	# ultima_notification_task_completed_xp = Action.objects.filter(actor_object_id=local_user.id,verb='action_finish_task')[0].get()
+
+# 	local_persona.xp += + task_completed_rule_xp_amount
+# 	local_persona.save()

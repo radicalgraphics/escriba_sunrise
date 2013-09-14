@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+{% load dajaxice_templatetags %}
+
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>QubalSPEX {{ QUBAL_VERSION }}</title>
+		<meta name="description" content="Multi-Level Push Menu: Off-screen navigation with multiple levels" />
+		<meta name="keywords" content="multi-level, menu, navigation, off-canvas, off-screen, mobile, levels, nested, transform" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="../favicon.ico">
+
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/bootstrap-flatly.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}qubalapp/main_engine/css/font-awesome.css" />
+		<!-- <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/icons.css" /> -->
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/component.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}spex_qubal/css/index_spex.css" />
+		<script src="{{ STATIC_URL }}spex_qubal/js/modernizr.custom.js"></script>
+		<script src="{{ STATIC_URL }}spex_qubal/js/classie.js"></script>
+		<script src="{{ STATIC_URL }}spex_qubal/js/mlpushmenu.js"></script>
+		<script src="{{ STATIC_URL }}qubalapp/main_engine/js/jquery.js"></script>
+		<script src='{{ STATIC_URL }}spex_qubal/js/jquery.dajax.core.js'></script>
+		
+		{% dajaxice_js_import %}
+		
+
+	</head>
+	<body>
+		<div class="spex_container">
+			<!-- Push Wrapper -->
+			<div class="mp-pusher st-effect-6" id="mp-pusher">
+
+				<!-- mp-menu -->
+				<nav id="mp-menu" class="mp-menu">
+					<div class="mp-level">
+						<h2 class="sidemenu-text iconcodec icon-sitemap"><i class='icon-sitemap icon-flip-vertical'></i> Qubal SPEX</h2>
+						<ul>
+							<li>
+								<a class="sidemenu-text" href="/spex_/" onclick="get_dashboard(1);"><i class='icon-dashboard'></i>&nbsp;&nbsp;Dashboard</a>
+							</li>
+							<li class="icon icon-chevron-left icon-big">
+								<a class="iconcodec icon-user" href="#"><span class='sidemenu-text'>Profile</span></a>
+								<div class="mp-level">
+									<h2 class="iconcodec icon-news"> Profile</h2>
+									<a class="mp-back" href="#">back</a>
+									<ul>
+
+										{% for student in student_list %}
+										<li><a href="#" onclick='get_dashboard({{student.user.id}});' ><img class='img-circle' src='{{ MEDIA_URL }}{{ student.image }}' width='25'><span class='sidemenu-text'>{{ student.name }}</span></a></li>
+										{% endfor %}
+
+									</ul>
+								</div>
+							</li>
+							<li class="icon icon-arrow-left">
+								<a class="icon icon-shop" href="#">Store</a>
+								<div class="mp-level">
+									<h2 class="icon icon-shop">Store</h2>
+									<a class="mp-back" href="#">back</a>
+									<ul>
+										<li class="icon icon-arrow-left">
+											<a class="icon icon-t-shirt" href="#">Clothes</a>
+											<div class="mp-level">
+												<h2 class="icon icon-t-shirt">Clothes</h2>
+												<a class="mp-back" href="#">back</a>
+												<ul>
+													<li class="icon icon-arrow-left">
+														<a class="icon icon-female" href="#">Women's Clothing</a>
+														<div class="mp-level">
+															<h2>Women's Clothing</h2>
+															<a class="mp-back" href="#">back</a>
+															<ul>
+																<li><a href="#">Tops</a></li>
+																<li><a href="#">Dresses</a></li>
+																<li><a href="#">Trousers</a></li>
+																<li><a href="#">Shoes</a></li>
+																<li><a href="#">Sale</a></li>
+															</ul>
+														</div>
+													</li>
+													<li class="icon icon-arrow-left">
+														<a class="icon icon-male" href="#">Men's Clothing</a>
+														<div class="mp-level">
+															<h2>Men's Clothing</h2>
+															<a class="mp-back" href="#">back</a>
+															<ul>
+																<li><a href="#">Shirts</a></li>
+																<li><a href="#">Trousers</a></li>
+																<li><a href="#">Shoes</a></li>
+																<li><a href="#">Sale</a></li>
+															</ul>
+														</div>
+													</li>
+												</ul>
+											</div>
+										</li>
+										<li>
+											<a class="icon icon-diamond" href="#">Jewelry</a>
+										</li>
+										<li>
+											<a class="icon icon-music" href="#">Music</a>
+										</li>
+										<li>
+											<a class="icon icon-food" href="#">Grocery</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li><a class="sidemenu-text"  href="#" onclick="get_courses(2);"><i class='iconcodec icon-tasks'></i>&nbsp;&nbsp;Courses</a></li>
+							<li><a class="sidemenu-text" href="#"><i class='icon-rocket'></i>&nbsp;&nbsp;DelTairon</a></li>
+						</ul>
+							
+					</div>
+				</nav>
+				<!-- /mp-menu -->
+
+				<div class="scroller"><!-- this is for emulating position fixed of the nav -->
+					<div class="scroller-inner">
+						<!-- Top Navigation -->
+						<div class="codrops-top clearfix">
+							<span class="right"><a class="icon-beer" href="{{ SUNRISE_URL }}/"><span class='OpenSans-Light'>&nbsp;&nbsp;Original taste</span></a></span>
+						</div> 
+
+						<p class='para-trigger'>
+							<a href="#" id="trigger" class="menu-trigger">Menu</a>
+						</p>
+
+						<header class="codrops-header">
+							<h1>QUBAL SPEX <span>{{ QUBAL_VERSION }}</span></h1>
+							<img id='idContentSideRight' src='' class=''>
+						</header>
+
+						<div class="content clearfix">
+							<div class="block block-40 clearfix">
+								<!-- <p><a href="#" id="trigger" class="menu-trigger">Open/Close Menu</a></p> -->
+							</div>
+							<div class="block block-60">
+
+								
+								<div id='idCourses'></div>
+								
+								<!-- <span id='idName'></span>
+								<span id='idDay'></span>
+								<span id='idCabeza'></span>
+								<img id='idImage' src=''>
+								<input type="button" value="CARGA PERRA!" onclick="qubal_get_student();">
+
+
+								<p><strong>Qubal_Dajaxice:</strong> AJAX request to Python!</p>
+								<p> -->
+									<!-- <button onclick="Dajaxice.example.myexample(Dajax.process);">Click here!</button> -->
+									<!-- <input type="text" value="5" id="a"> x
+									<input type="text" value="6" id="b"> =
+									<input type="text" value="" id="result">
+									<input type="button" value="Multiply!" onclick="calculate();">
+									
+								</p> -->
+							</div>
+						</div>
+					</div><!-- /scroller-inner -->
+				</div><!-- /scroller -->
+
+			</div><!-- /pusher -->
+		</div><!-- /spex_container -->
+		
+		<script>
+			new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ) );
+		</script>
+
+		<script>
+		</script>
+
+		<script>
+			function qubal_get_student(){
+			Dajaxice.qubalapp.get_student(Dajax.process,{'student_id':1,});
+			}
+		</script>
+
+		<script>
+			function get_dashboard(stuid){
+			Dajaxice.qubalapp.get_dashboard(Dajax.process,{'student_id':stuid,});
+			mlPushMenu._closeMenu;
+			
+			}
+		</script>
+
+		<script>
+			function get_courses(stuid){
+			Dajaxice.qubalapp.get_courses(Dajax.process,{'student_id':stuid,});
+			}
+		</script>
+
+		<script>
+			function calculate(){
+    		Dajaxice.qubalapp.multiply(Dajax.process,{'a':$('#a').val(),'b':$('#b').val(), 'student_id':1});
+			}
+		</script>
+
+
+	</body>
+</html>

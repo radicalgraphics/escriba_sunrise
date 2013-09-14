@@ -221,6 +221,8 @@
 		$("[rel=tooltip-right]").tooltip({ placement: 'right'});
 	</script>
 
+	{% autoescape off %}{{ notifications_content }}{% endautoescape %}
+
 	<script>
 	
 	// Mastery knob

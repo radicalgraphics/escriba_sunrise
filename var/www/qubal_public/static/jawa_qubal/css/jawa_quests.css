@@ -1,11 +1,11 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700);
-
-
-
-.lobby-container-box{
+.quests-container-box {
 	width: 780px;
 	/* height: 200px; */
-	background-color: #c2c2c2; /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+	background-color: #333; /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+	background-image: url(../img/quests.svg);
+	background-size: 650px;
+	background-repeat: no-repeat;
+	background-position: center;
 	-webkit-border-top-left-radius:10px;
 	-webkit-border-top-right-radius:10px;
 	-webkit-border-bottom-left-radius:10px;
@@ -21,14 +21,9 @@
 	margin-top: 5%;
 }
 
-.lobby-container-box p{
-	font-size: 1em;
-	font-weight: bolder;
-}
-
-.lobby-header-icon{
+.quests-header-icon {
 	width: 780px;
-	height: 60px;
+	height: 65px;
 	background-color: #b38c2f; /* CLASSTYPE COLOR */
 	margin-left: -20px;
 	-webkit-border-top-left-radius:10px;
@@ -38,15 +33,30 @@
 	border-top-left-radius:10px;
 	border-top-right-radius:10px;
 	text-align: center;
-	font-size: 38px;
-	padding-top: 10px;
+	/*padding-top: 5px;*/
 	color: #fff;
+	padding: 10px;	
+	padding-left: 20px;
 }
 
-.lobby-journey-box{
+.quests-header-icon i {
+	float: left;
+}
+
+.quests-header-icon span {
+	float: left;
+	padding-left: 10px;
+	padding-top: 15px;
+	font-size: 16px;
+	font-family: 'Roboto', Arial, sans-serif;
+	font-size: 1.8em;
+	font-weight: 700;
+}
+
+.quests-active-courses-box {
 	width: 760px;
 	/* height: 100px; /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */ 
-	background-color: #929292;
+	background-color: rgba(146,146,146,0.8);
 	margin-top: 10px;
 	margin-left: -10px;
 	-webkit-border-top-left-radius:5px;
@@ -66,8 +76,81 @@
 	border-width:0px;
 }
 
+.quests-active-courses-header {
+	width: 760px;
+	background-color: #b38c2f; /* CLASSTYPE COLOR */
+	float: left;
+	-webkit-border-top-left-radius:5px;
+	-webkit-border-top-right-radius:5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright:5px;	
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+	color: #fff;
+	padding: 10px;	
+	padding-left: 20px;
+	font-family: 'Roboto', Arial, sans-serif;
+	font-size: 1.2em;
+	font-weight: 700;
+}
 
+.quests-active-courses-header span {
+	margin-left: 180px;
+}
 
+.quests-active-courses-column {
+	position: relative;
+	width: 300px;
+	height: 325px;
+	float: left;
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-right-color: #d3d3d3;
+	/*background-color: #929292;*/
+}
+
+.quests-active-courses-course-box {
+	float: left;
+	width: 80px;
+	height: 85px;
+	/*background-color: #fff; /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< REMOVE AFTER IT'S DONE */
+	margin-left: 15px;
+	margin-top: 15px;
+	padding-left: 15px;
+}
+
+.quests-active-courses-course-box img{
+}
+
+.quests-active-courses-course-title {
+	position: relative;
+	font-family: 'Roboto', Arial, sans-serif;
+	text-align: center;
+	padding-top: 4px;
+	font-size: 0.9em;
+	line-height: 1em;
+	margin-left: -15px;
+}
+
+.quests-active-courses-course-box a {
+	color: #333;
+	text-decoration: none;
+	font-weight: 500;
+}
+
+.quests-actives-courses-view-more {
+	position: absolute;
+	bottom: 0;
+	left: 110px;
+	font-family: 'Roboto', Arial, sans-serif;
+	color: #fff;
+	text-align: center;
+	font-size: 1em;
+	font-weight: 500;
+	padding-top: 1px;
+	margin-top: 15px;
+	margin-bottom: 5px;
+}
 
 .powers-your-powers-box {
 	width: 760px;
@@ -105,6 +188,42 @@
 	font-weight: 700;
 }
 
+.color-back-explorer {
+	background-color: #648f2f;
+}
+
+.powers-your-powers-power-icons {
+	float: left;
+	width: 120px;
+	margin-top: 10px;
+	margin-left: 5px;
+	text-align: center;
+	padding-top: 2px;
+}
+
+.powers-your-powers-power-name {
+	float: left;
+	width: 120px;
+	margin-top: 5px;
+	margin-left: 5px;
+	text-align: center;
+	font-family: 'Roboto', Arial, sans-serif;
+	/*font-size: 1.2em;*/
+	font-weight: 500;
+}
+
+
+.powers-your-powers-rating {
+	float: left;
+	width: 120px;
+	height: 28px;
+	margin-top: 8px;
+	margin-left: 5px;
+	text-align: center;
+	text-indent: -5px;
+	padding-top: 2px;
+	padding-left: 10px;
+}
 
 .powers-skills-box {
 	width: 760px;
@@ -142,115 +261,4 @@
 	font-family: 'Roboto', Arial, sans-serif;
 	font-size: 1.2em;
 	font-weight: 700;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.progress {
-  height: 30px;
-  background: #5e5e5e;
-  border-radius: 5px;
- 	-moz-box-shadow:    inset 0 0 8px #000000;
-  	-webkit-box-shadow: inset 0 0 8px #000000;
-   	box-shadow:         inset 0 0 8px #000000;
-}
-
-
-.progress-info .bar,
-.progress-info.progress-striped .bar,
-.progress .bar-info {
-  background-color: #3498db;
-  -moz-box-shadow:    inset 0 0 5px #3e3e3e;
-  	-webkit-box-shadow: inset 0 0 5px #3e3e3e;
-   	box-shadow:         inset 0 0 5px #3e3e3e;
-}
-
-
-
-
-.deadlines-text-number{
-	font-size: 3.5em;
-	font-weight: 700;
-	font-family: "Roboto";
-}
-
-.deadlines-text{
-	font-weight: normal;
-	font-family: "Roboto";
-}
-
-.deadlines-box{
-	padding-top: 3%;
-}
-
-.student-text{
-	font-family: 'Roboto';
-	font-weight: 700;
-	
-	font-size: 1.8em;
-	padding-bottom: 0.3em;
-}
-
-.course-desc-text{
-	font-family: 'Roboto';
-	font-weight: 300;
-	text-align: justify;
-	font-size: 1em;
-}
-
-.textoenlabarra{
-	font-size: 0.9em;
-	line-height: 30px;
-}
-
-.welldark{
-
-  min-height: 20px;
-  padding: 10px;
-  margin: 20px;
-  /*margin-bottom: 20px;*/
-  background-color: #dadada;
-  border: 0px solid #e3e3e3;
-  -webkit-border-radius: 4px;
-     -moz-border-radius: 4px;
-          border-radius: 4px;
-  -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 1);
-     -moz-box-shadow: inset 0 0 10px rgba(0, 0, 0, 1);
-          box-shadow: inset 0 0 10px rgba(0, 0, 0, 1);
-
-}
-
-.welldark p{
-	font-family: 'Roboto';
-}
-
-
-.wellbump{
-
-  min-height: 20px;
-  padding: 10px;
-  padding-top: 20px;
-  margin: 20px;
-  margin-bottom: 20px;
-  background-color: #dadada;
-  border: 0px solid #e3e3e3;
-  -webkit-border-radius: 4px;
-     -moz-border-radius: 4px;
-          border-radius: 4px;
-  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
-     -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
-          box-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
-
 }

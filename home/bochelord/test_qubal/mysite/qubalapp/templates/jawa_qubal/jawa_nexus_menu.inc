@@ -1,8 +1,8 @@
 		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jawa_qubal/css/nexus-menu-widget.css" />
 			<ul id="gn-menu" class="gn-menu-main">
 				<li class="gn-trigger">
-					<a class="gn-icon gn-icon-menu"><span>menu</span></a>
-					<nav class="gn-menu-wrapper">
+					<a class="gn-icon gn-icon-menu"><i class='qubal_icon_master_menu medbig-icon' ></i></a>
+					<nav class="gn-menu-wrapper" {{ classtype_color|safe }}>
 						<div class="gn-scroller">
 							<ul class="gn-menu">
 								<!-- <li class="gn-search-item">

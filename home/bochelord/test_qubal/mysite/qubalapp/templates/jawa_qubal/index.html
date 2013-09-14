@@ -56,58 +56,75 @@
 
 		                  
 		                  		<div class='row deadlines-box'>
-		                  			<div class='span4'>
+		                  			<div class='span3'>
 
-		                  				{% if latest_activity_deadlines_list.0.image %}
+		                  				<!-- {% if latest_activity_deadlines_list.0.image %}
 											{% generateimage 'qubalapp:thumbnail30x30' source=latest_activity_deadlines_list.0.image as image_holder_progress %}
-										{% endif %}
+										{% endif %} -->
 										<div class='span3 student-text'>{{ student.name }} {{ student.lastname }}</div>
-		                  				<p class='span3'><img src='{{ image_holder_progress.url }}' class='img-rounded'>&nbsp;&nbsp;{{latest_activity_deadlines_list.0.name}}</p>
-		                            	<div class="span3 progress progress-info">
+										<!--
+		                  				<p class='span3'><img src='{{ image_holder_progress.url }}' class='img-rounded'>&nbsp;&nbsp;{{latest_activity_deadlines_list.0.name}}</p> -->
+
+
+		                  				<p class='span3'>Study progress</p>
+		                            	<div class="span2 progress progress-info">
 		                                   <div class="bar" style="width:{{ percent }}%;"><span class='textoenlabarra'>{{percent}}%</span></div>
 		                                </div>
 		                            </div>
-		                  			<div class='span1'>
-		                            	<div class='deadlines-text-number pagination-centered'>{{ latest_activity_deadlines_list|length }}</div><br><span class='deadlines-text'>DEADLINES</span>
-		                            </div>
-		                            <div class='span4'>
-		                        {% for deadline in latest_activity_deadlines_list %}
 
-		                            {% if deadline.image %}
+		                            <div class='wellbump span6'>
 
-		                                {% generateimage 'qubalapp:thumbnail50x50' source=deadline.image as image_holder %}
-		                                <a href="#" rel='tooltip-bottom' title='{{deadline.name}} ending in {{ deadline.ending_date|timeuntil }}'><img src='{{ image_holder.url }}' class='img-rounded'></a>&nbsp;&nbsp;
-		                            {% else %}
-		                                <a href="#" rel="tooltip-bottom" title='{{deadline.name}} ending in {{ deadline.ending_date|timeuntil }}'><!--/{{ SUNRISE_URL }}course/{{ deadline.id }}/-->
-		                                  <img src='{{ STATIC_URL }}default_images/default_achievement.jpg' style="width:50px;" class='img-rounded'/>
-		                                </a>&nbsp;&nbsp;
+			                  			<div class='span1'>
+			                            	<div class='deadlines-text-number pagination-centered'>{{ latest_activity_deadlines_list|length }}</div><br><span class='deadlines-text'>DEADLINES</span>
+			                            </div>
+			                            <div class='span4'>
+			                        {% for deadline in latest_activity_deadlines_list %}
 
-		                            {% endif %}
-		                        {% empty %}
+			                            {% if deadline.image %}
 
-		                            No deadlines , yay! <i class='icon-meh'></i>
+			                                {% generateimage 'qubalapp:thumbnail50x50' source=deadline.image as image_holder %}
+			                                <a href="#" rel='tooltip' title='{{deadline.name}} ending in {{ deadline.ending_date|timeuntil }}'><img src='{{ image_holder.url }}' class='img-rounded'></a>&nbsp;&nbsp;
+			                            {% else %}
+			                                <a href="#" rel="tooltip" title='{{deadline.name}} ending in {{ deadline.ending_date|timeuntil }}'><!--/{{ SUNRISE_URL }}course/{{ deadline.id }}/-->
+			                                  <img src='{{ STATIC_URL }}default_images/default_achievement.jpg' style="width:50px;" class='img-rounded'/>
+			                                </a>&nbsp;&nbsp;
 
-		                        {% endfor %}
+			                            {% endif %}
+			                        {% empty %}
+
+			                            No deadlines , yay! <i class='icon-meh'></i>
+
+			                        {% endfor %}
+			                  			</div>
 		                  			</div>
-		                  
 
 		                    	</div><!--ROW-->
-		                  
-		                  
-		             <div class="row lobby-journey-box">    
+		             
+		            <!-- <div class="row powers-your-powers-box">
+						<div class="powers-your-powers-header" {{ classtype_color|safe }}>DETAILS</div>
+					</div> --> <!-- powers-your-powers-box -->
+
+					<!-- <div class="row powers-skills-box">
+						<div class="powers-skills-header" {{ classtype_color|safe }}>ALL COURSES</div>
+					</div> --> <!-- powers-skills-box div -->     
+				                  
+		            <div class="row powers-your-powers-box">    
 
 			            {% if latest_activity_deadlines_list.0.image %}
 							{% generateimage 'qubalapp:thumbnail70x70' source=latest_activity_deadlines_list.0.image as image_holder_2 %}
 						{% endif %}
                          
-
-                          <div class='row pagination-centered'>
+						<div class="powers-your-powers-header" {{ classtype_color|safe }}>YOUR LATEST ACTIVITY</div>
+                          <div class='row welldark'>
                             <div class='span5'>
                                <h4>
-                               	<p>Continue your journey</p>
-                                <p><img src='{{ image_holder_2.url }}' class='img-circle' rel='tooltip' title='Course: {{ latest_activity_deadlines_list.0.name }}'/>&nbsp;{{ latest_activity_deadlines_list.0.name }}</p>
+                                <p><img src='{{ image_holder_2.url }}' class='img-rounded' rel='tooltip' title='Course: {{ latest_activity_deadlines_list.0.name }}'/>&nbsp;{{ latest_activity_deadlines_list.0.name }}</p>
                                </h4>
-                               <div class='pull-left'>
+                               <div class='course-desc-text'>{{ latest_activity_deadlines_list.0.description }}</div>
+                            </div>
+                            <div class='span3'>
+                            	<br>
+                               <div class='pull-right'>
                                   COURSE PROGRESS
                                   <div class="progress progress-striped progress-danger active">
                                    <div class="bar" style="width:{{ percent }}%;"></div>
@@ -134,7 +151,9 @@
 
                     </div><!-- powers-classtype-box ENDS -->
 
-					<hr>
+
+                    <br>
+					
 				</div>
 
 			</div>

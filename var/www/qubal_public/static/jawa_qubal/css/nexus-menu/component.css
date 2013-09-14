@@ -22,7 +22,7 @@
 		margin: 0;
 		padding: 0;
 		/*background: #378181;*/
-		color: #5f6f81;
+		color: #ffffff;
 		list-style: none;
 		text-transform: none;
 		font-weight: 300;
@@ -42,7 +42,7 @@
 .gn-menu-main a {
 		display: block;
 		height: 100%;
-		color: #5f6f81;
+		color: #ebf5ff;;
 		text-decoration: none;
 		cursor: pointer;
 }
@@ -286,14 +286,19 @@ input.gn-search:focus {
 		overflow: hidden;
 }
 
+.gn-icon-menu{
+	color: #c2c2c2;
+}
+
 .gn-icon-menu::before {
 		margin-left: -15px;
 		/*vertical-align: -2px;*/
 		width: 30px;
 		height: 3px;
-		background: white;
+		background: #c2c2c2;
+		/*background: white;
 		box-shadow: 0 3px #5f6f81, 0 -6px white, 0 -9px #5f6f81, 0 -12px white;
-		content: '';
+		content: '';*/
 }
 
 .no-touch .gn-icon-menu:hover::before,

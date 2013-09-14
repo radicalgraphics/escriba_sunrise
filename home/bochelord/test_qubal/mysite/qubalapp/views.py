@@ -1525,7 +1525,7 @@ def jawa_index(request):
 
 				profile_widget_block = prerender_profile_widget(local_student)
 
-				nexus_menu_block = prerender_nexus_menu()
+				nexus_menu_block = prerender_nexus_menu(local_student)
 
 				classtype_color = prerender_classtype_color(local_student)
 
@@ -1665,7 +1665,7 @@ def jawa_powers(request):
 			current_level = calculate_level(total_xp) 
 
 			profile_widget_block = prerender_profile_widget(local_student)
-			nexus_menu_block = prerender_nexus_menu()
+			nexus_menu_block = prerender_nexus_menu(local_student)
 			classtype_color = prerender_classtype_color(local_student)
 
 			context = { 
@@ -1702,14 +1702,26 @@ def jawa_quests(request):
 			current_level = calculate_level(total_xp) 
 
 			profile_widget_block = prerender_profile_widget(local_student)
-			nexus_menu_block = prerender_nexus_menu()
+
+
+			classtype_color = prerender_classtype_color(local_student)
+
+			local_student_courses = local_student.active_courses.all().order_by('-starting_date')
+
+			course_list = Course.objects.all().order_by('-starting_date')[:10]
+
+			nexus_menu_block = prerender_nexus_menu(local_student)
+
 
 			context = { 
 						'student' : local_student,
 						'SUNRISE_URL': settings.SUNRISE_URL,
 					    'QUBAL_VERSION': settings.QUBAL_VERSION,
 					    'profile_widget': profile_widget_block,
-					    'nexus_menu_block' : nexus_menu_block
+					    'nexus_menu_block' : nexus_menu_block,
+					    'classtype_color': classtype_color,
+					    'local_student_courses': local_student_courses,
+				   		'course_list': course_list
 			    	  }
 
 			return render(request, 'jawa_qubal/jawa_quests.html', context)

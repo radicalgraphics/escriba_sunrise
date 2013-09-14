@@ -219,10 +219,27 @@ def prerender_profile_widget(request):
 
 			return fixed_profile_widget_block
 
-def prerender_nexus_menu():
+def prerender_nexus_menu(local_student):
+
+	if local_student.character_class == 'explorer':
+
+		class_color = "style='background-color: #648f2f;'"
+
+	elif local_student.character_class == 'inventor':
+
+		class_color = "style='background-color: #b38c2f;'"
+
+	elif local_student.character_class == 'unifier':
+
+		class_color = "style='background-color: #a24a26;'"
+
+	elif local_student.character_class == 'activist':
+
+		class_color = "style='background-color: #378181;'"
 
 	context={'SUNRISE_URL' : settings.SUNRISE_URL,
-			 'QUBAL_VERSION' : settings.QUBAL_VERSION}
+			 'QUBAL_VERSION' : settings.QUBAL_VERSION,
+			 'classtype_color' : class_color }
 
 	nexus_menu_block = render ('', 'jawa_qubal/jawa_nexus_menu.inc',context)
 	nexus_menu_block = str(nexus_menu_block)

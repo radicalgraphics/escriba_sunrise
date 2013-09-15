@@ -84,7 +84,6 @@
 	font-family: 'Roboto', Arial, sans-serif;
 	font-size: 10px;
 	font-weight: normal;
-	text-decoration: underline;
 
 }
 
@@ -94,6 +93,7 @@
 	font-family: 'Roboto', Arial, sans-serif;
 	font-size: 10px;
 	font-weight: normal;
+	text-decoration: overline;
 }
 
 .main-profile-powers-box {
@@ -358,19 +358,22 @@
 .main-profile-xp-box-current {
 	font-size: 12px;
 	padding-top: 8px;
+	padding-left: 3px;
 	color: #fff;
 	font-family: 'Roboto', Arial, sans-serif;
 	font-weight: normal;
 	text-align: left;
-	text-decoration: underline;
+	
 }
 
 .main-profile-xp-box-needed {
 	font-size: 12px;
+	padding-left: 3px;
 	color: #fff;
 	font-family: 'Roboto', Arial, sans-serif;
 	font-weight: normal;
 	text-align: left;
+	text-decoration: overline;
 }
 
 .main-profile-xp-box-xp {

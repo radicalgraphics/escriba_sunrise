@@ -100,28 +100,25 @@
 
 .quests-active-courses-column {
 	position: relative;
-	width: 300px;
-	height: 325px;
+	width: 290px;
+	height: 315px;
 	float: left;
 	border-right-style: solid;
 	border-right-width: 1px;
 	border-right-color: #d3d3d3;
-	/*background-color: #929292;*/
+	/*background-color: #fff;*/
 }
 
 .quests-active-courses-course-box {
 	float: left;
 	width: 80px;
-	height: 85px;
+	height: 80px;
 	/*background-color: #fff; /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< REMOVE AFTER IT'S DONE */
-	margin-left: 15px;
-	margin-top: 15px;
-	padding-left: 15px;
+	margin-left: 12px;
+	margin-top: 12px;
 }
 
-.quests-active-courses-course-box img{
-}
-
+/*
 .quests-active-courses-course-title {
 	position: relative;
 	font-family: 'Roboto', Arial, sans-serif;
@@ -130,7 +127,7 @@
 	font-size: 0.9em;
 	line-height: 1em;
 	margin-left: -15px;
-}
+}*/
 
 .quests-active-courses-course-box a {
 	color: #333;
@@ -152,7 +149,80 @@
 	margin-bottom: 5px;
 }
 
-.powers-your-powers-box {
+.quests-quests-column {
+	float: left;
+	width: 470px;
+	height: 315px;
+	/*background-color: #fff; /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+}
+
+.quests-quests-boxes {
+	float: left;
+	width: 80px;
+	height: 80px;
+	background-color: #fff; /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< REMOVE AFTER IT'S DONE */
+	margin-left: 12px;
+	margin-top: 12px;
+	-webkit-border-bottom-left-radius:10px;
+	-webkit-border-bottom-right-radius:10px;
+}
+
+.quests-quests-boxes-course-name {
+	font-family: 'Roboto', Arial, sans-serif;
+	text-align: center;
+	font-size: 0.8em;
+	font-weight: 500;
+	color: #000;
+}
+
+.quests-quests-boxes-icon {
+	text-align: center;
+	color: #000;
+}
+
+.quests-quests-actives-box {
+	float: right;
+	margin-top: 12px;
+	margin-right: 12px;
+	width: 80px;
+	height: 80px;
+}
+
+.quests-quests-actives-number {
+	font-family: 'Roboto', Arial, sans-serif;
+	text-align: center;
+	font-size: 1.5em;
+	font-weight: 700;
+	padding-top: 1px;
+	color: #fff;
+}
+
+.quests-quests-actives-text {
+	font-family: 'Roboto', Arial, sans-serif;
+	text-align: center;
+	font-size: 0.8em;
+	font-weight: 500;
+	color: #fff;
+}
+
+.quests-quests-actives-summary {
+	font-family: 'Roboto', Arial, sans-serif;
+	text-align: center;
+	font-size: 1.4em;
+	font-weight: 500;
+	color: #fff;
+}
+
+.quests-quests-actives-summary-text {
+	font-family: 'Roboto', Arial, sans-serif;
+	text-align: center;
+	font-size: 0.8em;
+	font-weight: 500;
+	color: #fff;
+}
+
+
+.quests-details-box {
 	width: 760px;
 	background-color: rgba(146,146,146,0.8);
 	margin-top: 10px;
@@ -171,7 +241,7 @@
 	border-bottom-right-radius:5px;
 }
 
-.powers-your-powers-header {
+.quests-details-header {
 	width: 760px;
 	background-color: #b38c2f; /* CLASSTYPE COLOR */
 	-webkit-border-top-left-radius:5px;
@@ -188,46 +258,8 @@
 	font-weight: 700;
 }
 
-.color-back-explorer {
-	background-color: #648f2f;
-}
-
-.powers-your-powers-power-icons {
-	float: left;
-	width: 120px;
-	margin-top: 10px;
-	margin-left: 5px;
-	text-align: center;
-	padding-top: 2px;
-}
-
-.powers-your-powers-power-name {
-	float: left;
-	width: 120px;
-	margin-top: 5px;
-	margin-left: 5px;
-	text-align: center;
-	font-family: 'Roboto', Arial, sans-serif;
-	/*font-size: 1.2em;*/
-	font-weight: 500;
-}
-
-
-.powers-your-powers-rating {
-	float: left;
-	width: 120px;
-	height: 28px;
-	margin-top: 8px;
-	margin-left: 5px;
-	text-align: center;
-	text-indent: -5px;
-	padding-top: 2px;
-	padding-left: 10px;
-}
-
-.powers-skills-box {
+.quests-all-courses-box {
 	width: 760px;
-	height: 250px;
 	background-color: rgba(146,146,146,0.8);
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -246,7 +278,7 @@
 	border-bottom-right-radius:5px;
 }
 
-.powers-skills-header {
+.quests-all-courses-header {
 	width: 760px;
 	background-color: #b38c2f; /* CLASSTYPE COLOR */
 	-webkit-border-top-left-radius:5px;

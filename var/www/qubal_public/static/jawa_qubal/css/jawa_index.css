@@ -218,7 +218,7 @@
 .welldark{
 
   min-height: 20px;
-  padding: 10px;
+  padding: 30px;
   margin: 20px;
   /*margin-bottom: 20px;*/
   background-color: #dadada;
@@ -252,5 +252,39 @@
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
      -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
           box-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+
+}
+
+.quest-box{
+	margin:20px;
+	margin-top: 0px;
+	padding:10px;
+	padding-top: 0px;
+}
+
+.questline{
+	padding: 0.2em;
+}
+
+.questline-text{
+	/*margin-bottom: 50px;*/
+	margin-left: 35px;
+	margin-top: -45px;
+	/*line-height: 30px;*/
+	font-size: 1.4em;
+	font-family: 'Roboto';
+	font-weight: 300;
+}
+.questline-text-number{
+	font-size: 1em;
+	
+	font-family: 'Roboto';
+	font-weight: 700;
+}
+
+.questline-header-text{
+	font-size: 1em;
+	font-weight: 300;
+	font-family: 'Roboto';
 
 }

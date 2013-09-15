@@ -38,6 +38,7 @@ from django.utils import timezone
 register.generator('qubalapp:thumbnail30x30', Thumbnail30x30)
 register.generator('qubalapp:thumbnail50x50', Thumbnail50x50)
 register.generator('qubalapp:thumbnail70x70', Thumbnail70x70)
+register.generator('qubalapp:thumbnail80x80', Thumbnail80x80)
 register.generator('qubalapp:thumbnail100x100', Thumbnail100x100)
 register.generator('qubalapp:thumbnail120x120', Thumbnail120x120)
 register.generator('qubalapp:thumbnail150x150', Thumbnail150x150)
@@ -467,11 +468,12 @@ def login(request):
 
 def logout(request):
 
-	
-	# Action to confirm the user has logged out
-	action.send(request.user, verb='notification_loggedout', description='Logged out ok')
-
-	auth.logout(request)
+	if request.user.is_authenticated():
+		# Action to confirm the user has logged out
+		action.send(request.user, verb='notification_loggedout', description='Logged out ok')
+		auth.logout(request)
+	else:
+		return HttpResponseRedirect(settings.SUNRISE_URL+"landing/")
 
 	return HttpResponseRedirect(settings.SUNRISE_URL)
 
@@ -1523,11 +1525,18 @@ def jawa_index(request):
 
 				latest_activity_deadlines_list = qubal_latest_activity.calculate_deadlines(local_student)
 
+				latest_twenty_actions = qubal_latest_activity.calculate_your_journey(local_student)
+
+				
+
 				profile_widget_block = prerender_profile_widget(local_student)
 
 				nexus_menu_block = prerender_nexus_menu(local_student)
 
 				classtype_color = prerender_classtype_color(local_student)
+
+
+
 
 				# context = {'student' : local_student,
 				# 	   'current_level' : current_level,

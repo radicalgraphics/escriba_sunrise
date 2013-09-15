@@ -12,14 +12,12 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = patterns('',
     #url(r'^courses/', include('qubalapp.urls')),
-    url(dajaxice_config.dajaxice_url, include('dajaxice.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^activity/', include('actstream.urls')),
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^django-session-idle-timeout/', include('django-session-idle-timeout.urls')),
-    # url(r'^test/dajaxice/', include('dajaxice.urls')),
-    
+    url(dajaxice_config.dajaxice_url, include('dajaxice.urls')),
     url(r'', include('social_auth.urls')),
     url(r'^', include('qubalapp.urls')),
 )

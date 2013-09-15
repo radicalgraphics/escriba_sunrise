@@ -81,13 +81,13 @@
 .powers-classtype-text p {
 	color: #e0e0e0;
 	font-size: 1.2em;
-	padding-top:1.5em;
-	padding-bottom: 1.5em;
-	padding-left: 3em;
-	padding-right: 3em;
+	padding-top:2.5em;
+	padding-bottom: 2.5em;
+	padding-left: 2.5em;
+	padding-right: 2.5em;
 	/*padding-top: 10px;*/
 	line-height: 1.2em;
-	font-weight: 500;
+	font-weight: 300;
 	font-family: 'Roboto';
 }
 
@@ -450,4 +450,25 @@
 	background-repeat: no-repeat;
 	margin-right: auto;
 	margin-left: auto;
+}
+
+.header-class-text{
+	padding-top: 1em;
+	font-family: 'Roboto';
+	font-weight: 700;
+	font-size: 2.5em;
+	color: #f0f0f0;
+}
+
+.color-question{
+	color: rgba(255,255,255,0.2);
+	text-align: justify;
+}
+
+.color-question a:hover{
+	color: rgba(255,255,255,0.7);
+}
+
+.paddingmebabe{
+	padding-right: 10px;
 }

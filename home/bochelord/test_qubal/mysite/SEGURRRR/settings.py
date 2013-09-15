@@ -141,12 +141,6 @@ TEMPLATE_DIRS = (
 )
 
 
-# DAJAXICE Configuration
-# SUNRISE_PREFIX = 'test/'
-# DAJAXICE_MEDIA_PREFIX = '%sdajaxice' % SUNRISE_PREFIX
-
-
-
 # SOCIAL AUTH configuration and Authentication backends for social register and login
 
 LOGIN_URL = '/login/'

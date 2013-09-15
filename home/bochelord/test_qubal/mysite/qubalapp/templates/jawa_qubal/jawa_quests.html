@@ -24,6 +24,9 @@
 		
 		
 		<script src="{{ STATIC_URL }}jawa_qubal/js/nexus-menu/modernizr.custom.js"></script>
+		<script src='{{ STATIC_URL }}jawa_qubal/js/jquery.dajax.core.js'></script>
+
+		{% dajaxice_js_import %}
 
 	</head>
 
@@ -50,18 +53,14 @@
 				        
 				            {% for course in local_student_courses.all %}
 				            	{% if forloop.counter <= 9 %}
-					          	    <div class="quests-active-courses-course-box">
-					              		<a href="{{ SUNRISE_URL }}course/{{ course.id }}/">
+					          	    <div class="quests-active-courses-course-box" rel='tooltip' title='{{ course.name }}'>
+					              		<a href="#" onclick="get_course({{ course.id }},{{ student.user.id }});">
 					              	{% if course.image %}
-					                  	{% generateimage 'qubalapp:thumbnail50x50' source=course.image as imagen %}
+ 					                  	{% generateimage 'qubalapp:thumbnail80x80' source=course.image as imagen %}
 					                 	   <img class="img-rounded" src='{{ imagen.url }}' />
 					              	{% else %}
 		                            	   <img class="img-rounded" src='{{ STATIC_URL }}default_images/default_course_dark.jpg' width='50' />
 					              	{% endif %}
-
-						                	<div class="quests-active-courses-course-title">
-						                  		{{ course.name|truncatechars:24 }}
-						                	</div>
 					                	</a>
 					                </div> <!-- quests-active-courses-boxes div -->
 					            {% endif %}
@@ -77,14 +76,19 @@
 
 					</div> <!-- quests-active-courses-column div -->
 
+					<div class="quests-quests-column">
+						<div id='idquests-list-boxes'></div>
+						
+
+					</div>
 				</div> <!-- quests-active-courses-box div -->
 				
-				<div class="row powers-your-powers-box">
-					<div class="powers-your-powers-header" {{ classtype_color|safe }}>DETAILS</div>
+				<div class="row quests-details-box">
+					<div class="quests-details-header" {{ classtype_color|safe }}>DETAILS</div>
 				</div> <!-- powers-your-powers-box -->
 
-				<div class="row powers-skills-box">
-					<div class="powers-skills-header" {{ classtype_color|safe }}>ALL COURSES</div>
+				<div class="row quests-all-courses-box">
+					<div class="quests-all-courses-header" {{ classtype_color|safe }}>ALL COURSES</div>
 				</div> <!-- powers-skills-box div -->
 
 			</div> <!-- span10 div -->
@@ -95,6 +99,7 @@
 	<script src="{{ STATIC_URL }}jawa_qubal/js/nexus-menu/gnmenu.js"></script>
 	<script src="{{ STATIC_URL }}qubalapp/main_engine/js/jquery.js"></script>
 	<script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap.js"></script>
+	<script src="{{ STATIC_URL }}qubalapp/main_engine/js/bootstrap-notify.js"></script>
 
 	<script>
 		new gnMenu( document.getElementById( 'gn-menu' ) );
@@ -107,6 +112,12 @@
 	</script>
 
 	{% autoescape off %}{{ notifications_content }}{% endautoescape %}
+
+	<script>
+		function get_course(course_id, student_id){
+			Dajaxice.qubalapp.get_course(Dajax.process,{'course_id':course_id, 'student_id':student_id});
+		}
+	</script>
 
 </body>
 </html>

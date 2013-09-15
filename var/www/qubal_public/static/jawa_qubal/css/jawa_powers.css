@@ -61,6 +61,11 @@
 	border-width:0px;
 }
 
+
+.lW { float: left; clear: left; height: 14px; }
+.rW { float: right; clear: right; height: 14px; }
+
+
 .powers-classtype-header {
 	width: 760px;
 	background-color: #b38c2f; /* CLASSTYPE COLOR */
@@ -81,6 +86,7 @@
 .powers-classtype-text p {
 	color: #e0e0e0;
 	font-size: 1.2em;
+	text-align: justify;
 	padding-top:2.5em;
 	padding-bottom: 2.5em;
 	padding-left: 2.5em;
@@ -89,6 +95,10 @@
 	line-height: 1.2em;
 	font-weight: 300;
 	font-family: 'Roboto';
+}
+
+.powers-classtype-text i {
+	padding-right: 10px;
 }
 
 .powers-classtype-oraclead {
@@ -469,6 +479,3 @@
 	color: rgba(255,255,255,0.7);
 }
 
-.paddingmebabe{
-	padding-right: 10px;
-}

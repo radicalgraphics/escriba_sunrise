@@ -38,29 +38,40 @@
 					<div class="powers-classtype-header" {{classtype_color|safe}}>YOUR CLASS TYPE<span class='pull-right' rel='tooltip-bottom' title='Your class is determined by the way you learn. Each of us learn in a different way and The Oracle can help you out to define the best QUBAL experience'><a class='color-question' ><i class='icon-question medium-icon'></i></a></span></div>
 					<div class="powers-classtype-text">
 					{% if student.character_class == 'explorer' %}
+
 						<div class='pagination-centered header-class-text'>{{ student.get_character_class_display|upper }}</div>
-						<p><i class='qubal_icon_master_explorer huge-icon pull-left paddingmebabe' rel='tooltip-left' title='{{ student.get_character_class_display|upper }}'></i>As an explorer you are resourceful and able to adapt to most situations. You are a self-assured strategic thinker with eyes on the future.<br><br>
+						
+						<p><i class='qubal_icon_master_explorer huge-icon pull-left' rel='tooltip-left' title='{{ student.get_character_class_display|upper }}'></i>As an explorer you are resourceful and able to adapt to most situations. You are a self-assured strategic thinker with eyes on the future.<br><br>
 						You enjoy puzzles as long as they are practical, but when it comes to working or learning you need clear goals and logical instructions.<br><br>
 						You want to be treated fair and are quite capable of self-eveluation. This is why you dislike hard criticism.<br><br>
 						You hate unclear goals. They put you in a passive state, which is a waste of your talents. If instructed properly, you will always come up with an answer.</p>
+
 					{% elif student.character_class == 'activist' %}
+
 						<div class='pagination-centered header-class-text'>{{ student.get_character_class_display|upper }}</div>
-						<p><i class='qubal_icon_master_activist huge-icon pull-left paddingmebabe'></i>As an activist you thrive on new ideas and social creation.
+
+						<p><i class='qubal_icon_master_activist huge-icon pull-left'></i>As an activist you thrive on new ideas and social creation.
 						You enjoy a good challenge. If you get general guidelines and the freedom to address the challenge in your own creative way you will find an answer.<br><br>
 						You want to be around enthusiastic people that recognize your individual strength and skills. Peer evaluation is important and you like to get a clear picture of where you stand compared to others.<br><br>
 						You hate it when people keep confirming you on what you already know. To much positive feedback stops you from working hard and puts you in a lazy state. Humor, symbolism and metaphors will always get you back on track.</p>
+
 					{% elif student.character_class == 'unifier' %}
+
 						<div class='pagination-centered header-class-text'>{{ student.get_character_class_display|upper }}</div>
-						<p><i class='qubal_icon_master_unifier huge-icon pull-left paddingmebabe'></i>As an unifier you are a team player. You will stand up for whats right and motivate or help people whenever you can.<br><br>
+						
+						<p><i class='qubal_icon_master_unifier huge-icon pull-left'></i>As an unifier you are a team player. You will stand up for whats right and motivate or help people whenever you can.<br><br>
 						You enjoy social collaboration and like to engage in practical social activities. When given relevant practical information and step by step instructions you will come up with a solution.<br><br>
 						You want to be treated with warmth and given support when needed. A friendly and social environment with equally shared tasks and clear goals, brings out the best in you.<br><br>
 						You hate negativity and solitude. It makes you unhappy and gives you the urge to quit. Positive, personal feedback always gets you back on track.</p>
 					{% elif student.character_class == 'inventor' %}
+
 						<div class='pagination-centered header-class-text'>{{ student.get_character_class_display|upper }}</div>
-						<p><i class='qubal_icon_master_inventor huge-icon pull-left paddingmebabe'></i>As an inventor you are a creative innovative thinker with strong analytical skills that doesn't back down from a big challenge.<br><br>
+
+						<p><i class='qubal_icon_master_inventor huge-icon pull-left'></i>As an inventor you are a creative innovative thinker with strong analytical skills that doesn't back down from a big challenge.<br><br>
 						You enjoy intellectual real world problems, theories and general explanations that you can sink your teeth in. Regularly discussing your ideas with peers helps you to create your own vision, but its you who comes up with the best solution. Off course backed up by a proper theory.<br><br>
 						You want to be treated with respect and respect others if they are competent at what they do and honest about their shortcomings. You prefer extensive ruthless feedback to social courtesy.<br><br>
 						You hate boring lectures and wasting time. Inspirational and original lectures, and asking for your expert opinion, always get you back on track.</p>
+
 					{% else %}
 						<div class="powers-classtype-oraclead">
                   			<a href='{{ SUNRISE_URL }}spex_/spex_oracle_landing/'>

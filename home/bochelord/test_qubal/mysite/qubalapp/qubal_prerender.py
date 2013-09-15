@@ -202,7 +202,7 @@ def prerender_profile_widget(request):
 			xp_needed = Rules_Xp_per_Level.objects.get(level=current_level).xp 
 
 			background_img = prerender_profile_widget_background(local_student)
-			background_color = prerender_profile_widget_backgoround_color(local_student)
+			background_color = prerender_profile_widget_background_color(local_student)
 
 			context = { 'student' : local_student,
 			    		'current_level' : current_level,
@@ -236,6 +236,10 @@ def prerender_nexus_menu(local_student):
 	elif local_student.character_class == 'activist':
 
 		class_color = "style='background-color: #378181;'"
+
+	else:
+
+		class_color = "style='background-color: #000;'"
 
 	context={'SUNRISE_URL' : settings.SUNRISE_URL,
 			 'QUBAL_VERSION' : settings.QUBAL_VERSION,
@@ -512,6 +516,10 @@ def prerender_classtype_color(local_student):
 
 		class_color = "style='background-color: #378181;'"
 
+	else:
+
+		class_color = "style='background-color: #000;'"
+
 	return class_color
 
 
@@ -533,10 +541,14 @@ def prerender_profile_widget_background(local_student):
 
 		class_color = "style='background: url("+ settings.STATIC_URL +"/jawa_qubal/img/profile_background_activist.png); background-size: 260px 248px;'"
 
+	else:
+
+		class_color = "style='background: url("+ settings.STATIC_URL +"/jawa_qubal/img/profile_background_no_class.png); background-size: 260px 248px;'"
+
 	return class_color
 
 
-def prerender_profile_widget_backgoround_color(local_student):
+def prerender_profile_widget_background_color(local_student):
 
 	if local_student.character_class == 'explorer':
 
@@ -553,6 +565,10 @@ def prerender_profile_widget_backgoround_color(local_student):
 	elif local_student.character_class == 'activist':
 
 		class_color = "style='background-color: #378181;'"
+
+	else:
+
+		class_color = "style='background-color: #000;'"
 
 	return class_color
 

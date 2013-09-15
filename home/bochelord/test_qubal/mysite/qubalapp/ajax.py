@@ -70,8 +70,10 @@ def get_course(request, course_id, student_id):
 			quests_html += "</a>"
 			quests_html += "</div>"
 
-		if Quest_Status.objects.filter(student=local_student, quest=quest):
-			active_quests += 1
+		if (Quest_Status.objects.filter(student=local_student, quest=quest)):
+			quest_status_object = Quest_Status.objects.get(student=local_student, quest=quest)
+			if not quest_status_object.completed:
+				active_quests += 1
 
 		if quest in quests_completed_list:
 			quests_completed += 1
@@ -82,7 +84,6 @@ def get_course(request, course_id, student_id):
 	quests_html += "<div class='quests-quests-actives-summary'>" + str(quests_completed) + " / " + str(quests_list.count()) + "</div>"
 	quests_html += "<div class='quests-quests-actives-summary-text'>COMPLETED</div>"
 	quests_html += "</div> <!-- quests-quests-actives-box div -->"
-
 	dajax.assign('#idquests-list-boxes', 'innerHTML', quests_html)
 
 	return dajax.json()

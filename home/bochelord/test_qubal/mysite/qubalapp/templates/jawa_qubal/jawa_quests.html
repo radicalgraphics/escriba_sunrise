@@ -24,7 +24,7 @@
 		
 		
 		<script src="{{ STATIC_URL }}jawa_qubal/js/nexus-menu/modernizr.custom.js"></script>
-		<script src='{{ STATIC_URL }}jawa_qubal/js/jquery.dajax.core.js'></script>
+		<script src='{{ STATIC_URL }}spex_qubal/js/jquery.dajax.core.js'></script>
 
 		{% dajaxice_js_import %}
 
@@ -77,6 +77,8 @@
 					</div> <!-- quests-active-courses-column div -->
 
 					<div class="quests-quests-column">
+
+						
 						<div id='idquests-list-boxes'></div>
 						
 
@@ -115,6 +117,10 @@
 
 	<script>
 		function get_course(course_id, student_id){
+			
+			//We inject the ajax spinner on the same div ID before making the AJAX call ;-)
+			$('#idquests-list-boxes').html('<div class="qubal_ajax_spinner pagination-centered"><img src="{{STATIC_URL}}jawa_qubal/img/spiffygif_42x42.gif"><br>loading</div>');
+
 			Dajaxice.qubalapp.get_course(Dajax.process,{'course_id':course_id, 'student_id':student_id});
 		}
 	</script>

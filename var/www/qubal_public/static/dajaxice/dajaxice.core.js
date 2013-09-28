@@ -21,6 +21,10 @@ var Dajaxice = {
         return Dajaxice.call('qubalapp.get_student', 'POST', callback_function, argv, custom_settings);
     },
 
+    get_team: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('qubalapp.get_team', 'POST', callback_function, argv, custom_settings);
+    },
+
     get_dashboard: function(callback_function, argv, custom_settings){
         return Dajaxice.call('qubalapp.get_dashboard', 'POST', callback_function, argv, custom_settings);
     },

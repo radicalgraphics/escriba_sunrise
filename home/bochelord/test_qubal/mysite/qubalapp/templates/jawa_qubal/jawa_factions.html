@@ -7,7 +7,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-		<title>QubalSPEX {{ QUBAL_VERSION }}</title>
+		<title>FACTIONS | Qubal JAWA {{ QUBAL_VERSION }}</title>
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<meta name="author" content="Radical Graphics" />
@@ -20,7 +20,7 @@
 		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jawa_qubal/css/qubal-icons.css" />
 		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jawa_qubal/css/jawa_index.css" />
 
-		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jawa_qubal/css/jawa_quests.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jawa_qubal/css/jawa_factions.css" />
 		
 		
 		<script src="{{ STATIC_URL }}jawa_qubal/js/nexus-menu/modernizr.custom.js"></script>
@@ -40,26 +40,26 @@
 		
 		<div class="row quests-container-box">
 			<div class="span10">
-				<div class="quests-header-icon" {{ classtype_color|safe }}><i class='qubal_icon_master_quests big-icon'></i><span>QUESTS</span></div>
+				<div class="quests-header-icon" {{ classtype_color|safe }}><i class='qubal_icon_master_factions big-icon'></i><span>FACTIONS</span></div>
 
 				<div class="row quests-active-courses-box">
-					<div class="quests-active-courses-header" {{ classtype_color|safe }}>ACTIVE COURSES
-						<span>QUESTS</span>
+					<div class="quests-active-courses-header" {{ classtype_color|safe }}>YOUR FACTIONS
+						<span>DETAILS</span>
 					</div>
 
 					<div class="quests-active-courses-column">
 						
-						{% if local_student_courses %}
+						{% if local_student_teams %}
 				        
-				            {% for course in local_student_courses.all %}
+				            {% for team in local_student_teams.all %}
 				            	{% if forloop.counter <= 9 %}
-					          	    <div class="quests-active-courses-course-box" rel='tooltip' title='{{ course.name }}'>
-					              		<a href="#" onclick="get_course({{ course.id }},{{ student.user.id }});">
-					              	{% if course.image %}
- 					                  	{% generateimage 'qubalapp:thumbnail80x80' source=course.image as imagen %}
-					                 	   <img class="img-rounded" src='{{ imagen.url }}' />
+					          	    <div class="quests-active-courses-course-box" rel='tooltip' title='{{ team.name }}'>
+					              		<a href="#" onclick="get_team({{ team.id }},{{ student.user.id }});">
+					              	{% if team.image %}
+ 					                  	{% generateimage 'qubalapp:thumbnail80x80' source=team.image as imagen %}
+					                 	   <img class="img-polaroid" src='{{ imagen.url }}' />
 					              	{% else %}
-		                            	   <img class="img-rounded" src='{{ STATIC_URL }}default_images/default_course_dark.jpg' width='50' />
+		                            	   <img class="img-polaroid" src='{{ STATIC_URL }}default_images/default_team_avatar.jpg' width='80' />
 					              	{% endif %}
 					                	</a>
 					                </div> <!-- quests-active-courses-boxes div -->
@@ -67,28 +67,32 @@
 				            {% endfor %}
 
 				        {% else %}
-				            <p class="your-courses">You are not enrolled in any Course! Try and check some courses here below!</p>
+				            <p class="your-courses">You are not enrolled in any Team! Try and check some teams here below!</p>
 				        {% endif %}
 
-				        {% if local_student_courses.count > 9 %}
+				        {% if local_student_teams.count > 9 %}
 							<div class="quests-actives-courses-view-more">view more <i class='icon-chevron-sign-right'></i></div>
 						{% endif %}
 
 					</div> <!-- quests-active-courses-column div -->
 
 					<div class="quests-quests-column">
-						<div id='idquests-list-boxes'><span class="quests-quests-column-select-text"><i class="icon-circle-arrow-left medium-icon center-icon"></i> Select a Course to view its Quests.</span></div>
-					</div>
 
+						
+						<div id='idquests-list-boxes'><span class="quests-quests-column-select-text"><i class="icon-circle-arrow-left medium-icon push-down-lineheight-20"></i> Select a Team to view its details.</span></div>
+						
+
+					</div>
 				</div> <!-- quests-active-courses-box div -->
 				
 				<div class="row quests-details-box">
-					<div class="quests-details-header" {{ classtype_color|safe }}>DETAILS</div>
-					<div id='idquests-course-details'></div>
+					<div class="quests-details-header" {{ classtype_color|safe }}>WANTED
+						<span>CANDIDATES</span>
+					</div>
 				</div> <!-- powers-your-powers-box -->
 
 				<div class="row quests-all-courses-box">
-					<div class="quests-all-courses-header" {{ classtype_color|safe }}>ALL COURSES</div>
+					<div class="quests-all-courses-header" {{ classtype_color|safe }}>CLASH of CLASS</div>
 				</div> <!-- powers-skills-box div -->
 
 			</div> <!-- span10 div -->
@@ -114,12 +118,13 @@
 	{% autoescape off %}{{ notifications_content }}{% endautoescape %}
 
 	<script>
-		function get_course(course_id, student_id){
+		function get_team(team_id, student_id){
 			
 			//We inject the ajax spinner on the same div ID before making the AJAX call ;-)
 			$('#idquests-list-boxes').html('<div class="qubal_ajax_spinner pagination-centered"><img src="{{STATIC_URL}}jawa_qubal/img/spiffygif_62x62.gif"><br><span class="quests-quests-boxes-course-name medium-icon">loading</span></div>');
 
-			Dajaxice.qubalapp.get_course(Dajax.process,{'course_id':course_id, 'student_id':student_id});
+			Dajaxice.qubalapp.get_team(Dajax.process,{'team_id':team_id,'student_id':student_id});
+
 		}
 	</script>
 

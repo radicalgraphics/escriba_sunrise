@@ -85,6 +85,8 @@ urlpatterns = patterns('',
 
     url(r'^jawa_/quests/$', views.jawa_quests),
 
+    url(r'^jawa_/factions/$', views.jawa_factions),
+
 
 
     ## Social Auth views

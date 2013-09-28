@@ -1739,3 +1739,49 @@ def jawa_quests(request):
 		
 		return HttpResponseRedirect(settings.SUNRISE_URL+"landing/")	
 
+
+def jawa_factions(request):
+
+	if request.user.is_authenticated():
+
+		local_user = request.user
+
+		real_person = Person.objects.get_subclass(user=local_user.id)
+		
+		# If local_person is a Student
+		if isinstance(real_person, Student):
+					
+			local_student = get_object_or_404(Student, pk=local_user.id)
+			
+			# We get the xp to calculate the current level for the navbar			
+			total_xp = local_student.xp
+			current_level = calculate_level(total_xp) 
+
+			profile_widget_block = prerender_profile_widget(local_student)
+
+
+			classtype_color = prerender_classtype_color(local_student)
+
+			local_student_teams = local_student.is_team_member_of.all().order_by('name')
+
+			course_list = Course.objects.all().order_by('-starting_date')[:10]
+
+			nexus_menu_block = prerender_nexus_menu(local_student)
+
+
+			context = { 
+						'student' : local_student,
+						'SUNRISE_URL': settings.SUNRISE_URL,
+					    'QUBAL_VERSION': settings.QUBAL_VERSION,
+					    'profile_widget': profile_widget_block,
+					    'nexus_menu_block' : nexus_menu_block,
+					    'classtype_color': classtype_color,
+					    'local_student_teams': local_student_teams,
+				   		'course_list': course_list
+			    	  }
+
+			return render(request, 'jawa_qubal/jawa_factions.html', context)
+
+	else:
+		
+		return HttpResponseRedirect(settings.SUNRISE_URL+"landing/")	

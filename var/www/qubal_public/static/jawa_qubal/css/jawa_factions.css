@@ -95,12 +95,12 @@
 }
 
 .quests-active-courses-header span {
-	margin-left: 140px;
+	margin-left: 180px;
 }
 
 .quests-active-courses-column {
 	position: relative;
-	width: 290px;
+	width: 200px;
 	height: 315px;
 	float: left;
 	border-right-style: solid;
@@ -151,31 +151,20 @@
 
 .quests-quests-column {
 	float: left;
-	width: 470px;
+	/*width: 470px;*/
 	height: 315px;
 	/*background-color: #fff; /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
-}
-
-.quests-quests-column-select-text {
-	float: left;
-	font-family: 'Roboto', Arial, sans-serif;
-	color: #fff;
-	text-align: center;
-	font-size: 1.5em;
-	font-weight: 500;
-	padding-top: 30px;
-	padding-left: 35px;
 }
 
 .quests-quests-boxes {
 	float: left;
 	width: 80px;
-	height: 80px;
-	background-color: #fff; /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< REMOVE AFTER IT'S DONE */
+	/*height: 80px;*/
+	/*background-color: #fff;*/ /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< REMOVE AFTER IT'S DONE */
 	margin-left: 12px;
 	margin-top: 12px;
-	-webkit-border-bottom-left-radius:10px;
-	-webkit-border-bottom-right-radius:10px;
+/*	-webkit-border-bottom-left-radius:10px;
+	-webkit-border-bottom-right-radius:10px;*/
 }
 
 .quests-quests-boxes-course-name {
@@ -232,81 +221,6 @@
 	color: #fff;
 }
 
-.quests-quests-course-started {
-	float: left;
-	width: 430px;
-	height: 200px;
-}
-
-.quests-quests-continue-box {
-	position: relative;
-	background-color: rgba(90,90,90,0.5);
-	float: left;
-	width: 445px;
-	height: 150px;
-	/*background-color: #fff; /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< REMOVE AFTER IT'S DONE */
-	margin-top: 200px;
-	margin-left: 12px;
-	margin-top: 35px;
-	-webkit-border-top-left-radius:5px;
-	-webkit-border-top-right-radius:5px;
-	-webkit-border-bottom-left-radius:5px;
-	-webkit-border-bottom-right-radius:5px;
-	-moz-border-radius-topleft: 5px;
-	-moz-border-radius-topright:5px;
-	-moz-border-radius-bottomleft:5px;
-	-moz-border-radius-bottomright:5px;
-	border-top-left-radius:5px;
-	border-top-right-radius:5px;
-	border-bottom-left-radius:5px;
-	border-bottom-right-radius:5px;
-}
-
-.quests-quests-continue-box-started {
-	font-family: 'Roboto', Arial, sans-serif;
-	text-align: left;
-	font-size: 1.5em;
-	font-weight: 400;
-	color: #fff;
-	padding-left: 80px;
-	padding-top: 22px;
-}
-
-.quests-quests-continue-box-deadline {
-	font-family: 'Roboto', Arial, sans-serif;
-	text-align: left;
-	font-size: 1.5em;
-	font-weight: 400;
-	color: #fff;
-	padding-left: 80px;
-	padding-top: 15px;
-}
-
-.quests-quests-continue-button {
-	position: absolute;
-	bottom: 0px;
-	height: 50px;
-	width: 445px;
-	background-color: #b38c2f; /* CLASSTYPE COLOR */
-	color: #fff;
-	padding-top: 15px;	
-	text-align: center;
-	font-family: 'Roboto', Arial, sans-serif;
-	font-size: 1.2em;
-	font-weight: 500;
-	-webkit-border-top-left-radius:5px;
-	-webkit-border-top-right-radius:5px;
-	-webkit-border-bottom-left-radius:5px;
-	-webkit-border-bottom-right-radius:5px;
-	-moz-border-radius-topleft: 5px;
-	-moz-border-radius-topright:5px;
-	-moz-border-radius-bottomleft:5px;
-	-moz-border-radius-bottomright:5px;
-	border-top-left-radius:5px;
-	border-top-right-radius:5px;
-	border-bottom-left-radius:5px;
-	border-bottom-right-radius:5px;
-}
 
 .quests-details-box {
 	width: 760px;
@@ -342,27 +256,6 @@
 	font-family: 'Roboto', Arial, sans-serif;
 	font-size: 1.2em;
 	font-weight: 700;
-}
-
-.quests-details-course-image-column {
-	width: 100px;
-}
-
-.quests-details-course-image {
-	float: left;
-	margin-top: 12px;
-	margin-left: 12px;
-	padding-bottom: 12px;
-}
-
-.progress-info .bar,
-.progress-info.progress-striped .bar,
-.progress .bar-info {
-	float: left;
-	background-color: #3498db;
-  	-moz-box-shadow:    inset 0 0 5px #3e3e3e;
-  	-webkit-box-shadow: inset 0 0 5px #3e3e3e;
-   	box-shadow:         inset 0 0 5px #3e3e3e;
 }
 
 .quests-all-courses-box {
@@ -401,3 +294,29 @@
 	font-size: 1.2em;
 	font-weight: 700;
 }
+
+.quests-quests-column-select-text {
+	float: left;
+	font-family: 'Roboto', Arial, sans-serif;
+	color: #fff;
+	text-align: center;
+	font-size: 2.3em;
+	font-weight: 500;
+	padding-top: 30px;
+	padding-left: 35px;
+}
+
+.push-down-lineheight-20{
+	line-height: 20px;
+}
+
+
+.quests-quests-boxes-container {
+	float: left;
+	width: 200px;
+	/*height: 80px;*/
+	/*background-color: #fff;*/ /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< REMOVE AFTER IT'S DONE */
+	padding: 3px;
+	margin: 20px;
+	/*margin-left: 10px;*/
+	border:1px solid #c2c2c2;

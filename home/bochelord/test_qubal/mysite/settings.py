@@ -79,7 +79,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-   '/var/www/qubal_public/static/',
+   '/home/bochelord/test_qubal/static/',
     #os.path.join(os.path.dirname(__file__),'media').replace('\\','/'),
 )
 
@@ -139,6 +139,12 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
+
+
+# DAJAXICE Configuration
+# SUNRISE_PREFIX = 'test/'
+# DAJAXICE_MEDIA_PREFIX = '%sdajaxice' % SUNRISE_PREFIX
+
 
 
 # SOCIAL AUTH configuration and Authentication backends for social register and login

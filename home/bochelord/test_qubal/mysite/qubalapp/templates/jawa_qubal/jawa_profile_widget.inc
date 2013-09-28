@@ -30,15 +30,15 @@
         			
         			<div class="main-profile-class-icon">
         				{% if student.character_class == 'explorer' %}
-        					<i class='icon-explorer' rel='tooltip-left' title='Explorer'></i>
+        					<i class='icon-explorer iconclass' rel='tooltip-left' title='Explorer'></i>
         				{% elif student.character_class == 'activist' %}
-        					<div><i class='icon-activist' rel='tooltip-left' title='Activist'></i></div>
+        					<div><i class='icon-activist iconclass' rel='tooltip-left' title='Activist'></i></div>
         				{% elif student.character_class == 'unifier' %}
-        					<i class='icon-unifier' rel='tooltip-left' title='Unifier'></i>
+        					<i class='icon-unifier iconclass' rel='tooltip-left' title='Unifier'></i>
         				{% elif student.character_class == 'inventor' %}
-        					<i class='icon-inventor' rel='tooltip-left' title='Inventor'></i>
+        					<i class='icon-inventor iconclass' rel='tooltip-left' title='Inventor'></i>
                         {% else %}
-                            <i class='icon-quest' rel='tooltip-left' title='You have to choose your path, visit The Oracle!'></i>
+                            <i class='icon-quest iconclass' rel='tooltip-left' title='You have to choose your path, visit The Oracle!'></i>
         				{% endif %}
         			</div> <!-- main-profile-class-icon div-->
         			<div class="main-profile-playername" {{ background_color|safe }}>{{ student.name|upper }}</div>
@@ -51,9 +51,10 @@
         				<div class="main-profile-power-perseverance" rel='tooltip-bottom' title="Perseverance">{{ student.has_powers.perseverance }}</div>
         			</div>
         			<div class="main-profile-xp-box">
-        				<div class="main-profile-xp-box-current">{{ current_xp }}</div>
-        				<div class="main-profile-xp-box-needed">{{ xp_needed }}</div>
-        				<div class="main-profile-xp-box-xp">XP</div>
+        				<div {{ background_color|safe }}><a href='#' class='main-profile-status-boxes-left'><i class='icon-thumbs-up status-size'></i></a></div>
+        				<div {{ background_color|safe }}><a href='#' class='main-profile-status-boxes-left'><i class='icon-thumbs-up status-size'></i></a></div>
+                        <div {{ background_color|safe }}><a href='#' class='main-profile-status-boxes-left'><i class='icon-thumbs-up status-size'></i></a></div>
+                        <div {{ background_color|safe }}><a href='#' class='main-profile-status-boxes-left'><i class='icon-thumbs-up status-size'></i></a></div>
         			</div>
 
         		</div> <!-- main-profile-powers-box div -->

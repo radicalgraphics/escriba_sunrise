@@ -121,33 +121,63 @@
                                 <p><img src='{{ image_holder_2.url }}' class='img-rounded' rel='tooltip' title='Course: {{ latest_activity_deadlines_list.0.name }}'/>&nbsp;{{ latest_activity_deadlines_list.0.name }}</p>
                                </h4>
                                <div class='course-desc-text'>{{ latest_activity_deadlines_list.0.description }}</div>
+                                <hr>
                             </div>
+
                             <div class='span3'>
                             	<br>
-                               <div class='pull-right'>
+                               <div class='pull-right' rel='tooltip-bottom' title='{{ latest_activity_deadlines_list.0.name }} progress: {{ percent }}% '>
                                   COURSE PROGRESS
                                   <div class="progress progress-striped progress-danger active">
                                    <div class="bar" style="width:{{ percent }}%;"></div>
                                   </div>
                                </div>
+
                             </div>
+
+							<div class='quest-box span8 offset2'>
+	                            <div class='questline-header-text'>Quests from <strong>{{ latest_activity_deadlines_list.0.name }}</strong></div><br>
+	                            <div class='row questline'  rel='tooltip-left' title='Quest I : Introduction to course'>
+	                              
+	                              <div class='span5 '>
+	                              	<p>
+	                              		<i class='icon-quest mediumbig-icon green'></i>
+	                              		<div class='questline-text'>&nbsp; <span class='questline-text-number'>1.-</span>
+	                              			&nbsp; Introduction to course &nbsp;<i class='icon-check-sign small-icon green' rel='tooltip-right' title='Done!'></i>
+	                              		</div>
+	                              		
+	                              	</p>
+	                              </div>
+	                            </div>
+
+	                            <div class='row questline'  rel='tooltip-left' title='Quest II : Getting onboard'>
+	                              
+	                              <div class='span5 '>
+	                              	<p>
+	                              		<i class='icon-quest mediumbig-icon green'></i>
+	                              		<div class='questline-text'>&nbsp; <span class='questline-text-number'>2.-</span>
+	                              			&nbsp; Get to know the basics &nbsp;<i class='icon-chevron-sign-right medium-font blue' rel='tooltip-right' title='Ongoing!'></i>
+	                              		</div>
+	                              		
+	                              	</p>
+	                              </div>
+	                            </div>
+
+
+
+	                            </div>
+	                            
+                          	</div>                          
+
+
+
+
+
+
+
                           </div>
 
-                            <div class='row questline'>
-                              <div class='span4'>
-                                <i class='icon-quest bigger-font green' rel='tooltip-left' title='Quest I : Introduction to course'></i>&nbsp; <span class='medium-font green'>Introduction to course</span> &nbsp;<i class='icon-check-sign medium-font green' rel='tooltip-right' title='Done!'></i>
-                              </div>
-                            </div>
-                            <div class='row questline'>
-                              <div class='span4'>
-                                <i class='icon-quest bigger-font green' rel='tooltip-left' title='Quest II : Get to know the basics'></i>&nbsp; <span class='medium-font green'>Get to know the basics</span> &nbsp;<i class='icon-check-sign medium-font green' rel='tooltip-right' title='Done!'></i>
-                              </div>
-                            </div>
-                            <div class='row questline'>
-                              <div class='span4'>
-                                <i class='icon-quest bigger-font blue' rel='tooltip-left' title='Quest III : Find your muse adhoc'></i>&nbsp; <span class='medium-font blue'>Find your muse adhoc</span> &nbsp;<i class='icon-chevron-sign-right medium-font blue' rel='tooltip-right' title='Ongoing!'></i>
-                              </div>
-                            </div>
+                          
 
                     </div><!-- powers-classtype-box ENDS -->
 

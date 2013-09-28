@@ -188,12 +188,28 @@
 
 
 
+/*AJAX icon SPINNER*/
+/*Here the class to make it appear on the center of the div*/
+
+.qubal_ajax_spinner{
+	padding: 5em;
+	margin-right: auto;
+	margin-left: auto;
+}
 
 
 /* sizes*/
 
 .64-icon{
 	font-size: 64px;
+}
+
+.tiny-icon{
+	font-size: 0.5em;
+}
+
+.smaller-icon{
+	font-size: 0.7em;
 }
 
 .small-icon{
